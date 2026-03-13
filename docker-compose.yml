@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  # ---- PostgreSQL + pgvector (RAG storage) ----
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: clct-postgres
+    environment:
+      POSTGRES_USER: clct
+      POSTGRES_PASSWORD: clct
+      POSTGRES_DB: clct_rag
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clct -d clct_rag"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - bot-network
+
+  # ---- CLCT Discord Bot ----
+  chatgpt-discord-bot:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: clct-discord-bot:latest
+    container_name: clct-discord-bot
+    env_file:
+      - .env
+    environment:
+      # Override POSTGRES_URL to use Docker service name
+      POSTGRES_URL: postgresql://clct:clct@postgres:5432/clct_rag
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/.cache
+    networks:
+      - bot-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  pgdata:
+
+networks:
+  bot-network:
+    driver: bridge

@@ -1,0 +1,2 @@
+# Place Project Zomboid knowledge files here (.md or .txt)
+# These will be chunked, embedded, and stored in PGVector for RAG retrieval.

@@ -1,0 +1,644 @@
+"""
+Discord client — CLCT Bot.
+
+Manages Discord connection, interaction triggers (mention, reply, thread),
+Ollama-powered response generation with streaming, and RAG integration.
+
+Enhanced with:
+- B2: Reaction-based feedback (👍/👎)
+- C3: Knowledge admin commands via @mention
+- D2: Knowledge base initialization
+- A3: Metrics initialization
+"""
+
+import os
+import asyncio
+import logging
+import time
+from typing import List, Dict, Optional
+
+import discord
+from discord import app_commands
+from dotenv import load_dotenv
+
+from src.log import logger
+from src import personas
+from src.ollama_provider import (
+    chat_completion,
+    stream_to_discord_chunks,
+    ensure_model,
+    health_check,
+)
+from utils.context_manager import ContextManager
+from utils.message_utils import send_split_message
+
+load_dotenv()
+
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
+ENABLE_RAG: bool = os.getenv("ENABLE_RAG", "true").lower() == "true"
+ENABLE_STREAMING: bool = os.getenv("ENABLE_STREAMING", "true").lower() == "true"
+ENABLE_IMPLICIT_REPLIES: bool = (
+    os.getenv("ENABLE_IMPLICIT_REPLIES", "false").lower() == "true"
+)
+ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "true").lower() == "true"
+ENABLE_FEEDBACK: bool = os.getenv("ENABLE_FEEDBACK", "true").lower() == "true"
+STREAM_EDIT_INTERVAL: float = float(os.getenv("STREAM_EDIT_INTERVAL", "1.5"))
+MAX_RESPONSE_LENGTH: int = int(os.getenv("MAX_RESPONSE_LENGTH", "4000"))
+
+# Admin user IDs (comma-separated in .env)
+ADMIN_USER_IDS: set = set(
+    os.getenv("ADMIN_USER_IDS", "").split(",")
+) - {""}
+
+# C3: Knowledge admin command keywords
+KB_COMMANDS = {
+    "reload knowledge": "reload",
+    "scan knowledge": "scan",
+    "kb reload": "reload",
+    "kb scan": "scan",
+    "kb status": "scan",
+    "knowledge status": "scan",
+    "reload kb": "reload",
+}
+
+
+class CLCTClient(discord.Client):
+    """
+    CLCT Discord client with Grok-style interaction triggers:
+    - @mention
+    - Reply to bot message
+    - Active thread participation
+    - (optional) Implicit similarity-based replies
+    - (C3) Knowledge admin commands via @mention
+    - (B2) Reaction-based feedback
+    """
+
+    def __init__(self) -> None:
+        intents = discord.Intents.default()
+        intents.message_content = True
+        intents.members = True
+        intents.reactions = True  # B2: Need reaction events
+        super().__init__(intents=intents)
+
+        self.tree = app_commands.CommandTree(self)
+
+        # Context manager (short-term memory per channel + RAG bridge)
+        self.context_manager = ContextManager()
+
+        # Legacy provider manager (kept for /provider command compatibility)
+        try:
+            from src.providers import ProviderManager, ProviderType
+            self.provider_manager = ProviderManager()
+            default_provider = os.getenv("DEFAULT_PROVIDER", "free")
+            try:
+                self.provider_manager.set_current_provider(ProviderType(default_provider))
+            except ValueError:
+                self.provider_manager.set_current_provider(ProviderType.FREE)
+        except Exception:
+            self.provider_manager = None
+
+        self.current_model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+
+        # Bot settings
+        self.activity = discord.Activity(
+            type=discord.ActivityType.listening,
+            name="@mentions & replies",
+        )
+        self.isPrivate = False
+        self.is_replying_all = os.getenv("REPLYING_ALL", "False") == "True"
+        self.replying_all_discord_channel_id = os.getenv("REPLYING_ALL_DISCORD_CHANNEL_ID")
+        self.current_channel = None
+
+        # Message queue for rate-limiting
+        self.message_queue: asyncio.Queue = asyncio.Queue()
+
+        # Rate-limit tracker: channel_id → last_response_time
+        self._rate_limits: Dict[str, float] = {}
+        self._rate_limit_seconds: float = float(os.getenv("RATE_LIMIT_SECONDS", "2"))
+
+    # ------------------------------------------------------------------
+    # Lifecycle
+    # ------------------------------------------------------------------
+
+    async def setup_hook(self) -> None:
+        """Called once when the bot starts — initialise DB, KB, and models."""
+        # Check Ollama health
+        if await health_check():
+            logger.info("✅ Ollama is reachable.")
+            await ensure_model()
+        else:
+            logger.warning("⚠️ Ollama is not reachable — responses will fail until it's up.")
+
+        # Initialise RAG database (non-blocking)
+        if ENABLE_RAG:
+            try:
+                from rag.db import init_db
+                await init_db()
+                logger.info("✅ RAG database initialised.")
+            except Exception as e:
+                logger.warning(f"⚠️ RAG DB init failed (non-fatal): {e}")
+
+            # A3: Initialize metrics tables
+            try:
+                from rag.metrics import get_metrics_manager
+                metrics = get_metrics_manager()
+                await metrics.init_db()
+                logger.info("✅ RAG metrics tables initialised.")
+            except Exception as e:
+                logger.warning(f"⚠️ Metrics DB init failed (non-fatal): {e}")
+
+        # D2: Initialize Knowledge Base
+        if ENABLE_KNOWLEDGE_BASE:
+            try:
+                from knowledge.manager import get_knowledge_manager
+                kb = get_knowledge_manager()
+                result = await kb.load_all()
+                total = sum(result.values())
+                logger.info(f"✅ Knowledge base loaded: {total} chunks across {len(result)} domains")
+            except Exception as e:
+                logger.warning(f"⚠️ Knowledge base init failed (non-fatal): {e}")
+
+    async def send_start_prompt(self) -> None:
+        """No-op — CLCT doesn't need an initial prompt broadcast."""
+        logger.info("CLCT ready — responding to @mentions and replies.")
+
+    # ------------------------------------------------------------------
+    # Trigger detection
+    # ------------------------------------------------------------------
+
+    def should_respond(self, message: discord.Message) -> bool:
+        """
+        Determine whether CLCT should respond to this message.
+        """
+        if message.author == self.user:
+            return False
+        if message.author.bot:
+            return False
+
+        # 1. Direct @mention
+        if self.user in message.mentions:
+            return True
+
+        # 2. Reply to bot message
+        if message.reference and message.reference.resolved:
+            ref_msg = message.reference.resolved
+            if hasattr(ref_msg, "author") and ref_msg.author == self.user:
+                return True
+
+        # 3. replyAll mode
+        if self.is_replying_all:
+            if self.replying_all_discord_channel_id:
+                if str(message.channel.id) == str(self.replying_all_discord_channel_id):
+                    return True
+            else:
+                return True
+
+        # 4. Active thread where bot participated
+        channel_id = str(message.channel.id)
+        if isinstance(message.channel, discord.Thread):
+            if self.context_manager.has_bot_participated(channel_id):
+                return True
+
+        return False
+
+    async def should_respond_implicit(self, message: discord.Message) -> bool:
+        """Check for implicit similarity-based reply (expensive, optional)."""
+        if not ENABLE_IMPLICIT_REPLIES:
+            return False
+
+        channel_id = str(message.channel.id)
+        match = await self.context_manager.detect_implicit_reply(
+            channel_id, message.content
+        )
+        return match is not None
+
+    # ------------------------------------------------------------------
+    # C3: Knowledge admin command detection
+    # ------------------------------------------------------------------
+
+    def _is_admin(self, user_id: str) -> bool:
+        """Check if a user is an admin."""
+        return user_id in ADMIN_USER_IDS
+
+    def _detect_kb_command(self, message_content: str) -> Optional[str]:
+        """
+        Detect knowledge base admin commands in @mention messages.
+        Returns command type or None.
+        """
+        content_lower = message_content.lower().strip()
+        for keyword, command in KB_COMMANDS.items():
+            if keyword in content_lower:
+                return command
+        return None
+
+    async def _handle_kb_command(
+        self, message: discord.Message, command: str
+    ) -> bool:
+        """
+        Handle a knowledge base admin command.
+        Returns True if handled, False otherwise.
+        """
+        user_id = str(message.author.id)
+
+        # Admin check
+        if not self._is_admin(user_id):
+            await message.reply(
+                "❌ Bạn không có quyền admin để thực hiện lệnh này.",
+                mention_author=False,
+            )
+            return True
+
+        if command == "reload":
+            await message.add_reaction("🔄")
+            try:
+                from knowledge.manager import get_knowledge_manager
+                kb = get_knowledge_manager()
+                result = await kb.reload()
+                total = sum(result.values())
+                status_lines = [f"📚 **Knowledge Base Reloaded**\n"]
+                for domain, count in result.items():
+                    status_lines.append(f"• **{domain}**: {count} chunks")
+                status_lines.append(f"\n**Total**: {total} chunks")
+                await message.reply("\n".join(status_lines), mention_author=False)
+                await message.remove_reaction("🔄", self.user)
+                await message.add_reaction("✅")
+            except Exception as e:
+                await message.reply(f"❌ Reload failed: {e}", mention_author=False)
+                await message.add_reaction("❌")
+            return True
+
+        elif command == "scan":
+            try:
+                from knowledge.manager import get_knowledge_manager
+                kb = get_knowledge_manager()
+                status = kb.get_status()
+                lines = [f"📊 **Knowledge Base Status**\n"]
+                lines.append(f"• Initialized: {'✅' if status['initialized'] else '❌'}")
+                lines.append(f"• Total domains: {status['total_domains']}")
+                lines.append(f"• Total documents: {status['total_docs']}")
+                lines.append(f"• Total chunks: {status['total_chunks']}")
+                if status['domains']:
+                    lines.append("\n**Domains:**")
+                    for name, info in status['domains'].items():
+                        prompt_icon = "📝" if info.get("has_prompt") else "📄"
+                        lines.append(
+                            f"  {prompt_icon} **{name}**: "
+                            f"{info['doc_count']} docs, {info['chunk_count']} chunks"
+                        )
+                else:
+                    lines.append("\n*No domains loaded. Add documents to `knowledge/docs/<domain>/`*")
+                await message.reply("\n".join(lines), mention_author=False)
+            except Exception as e:
+                await message.reply(f"❌ Scan failed: {e}", mention_author=False)
+            return True
+
+        return False
+
+    # ------------------------------------------------------------------
+    # B2: Reaction feedback handler
+    # ------------------------------------------------------------------
+
+    async def handle_reaction_feedback(
+        self, reaction: discord.Reaction, user: discord.User
+    ) -> None:
+        """
+        Process 👍/👎 reaction on bot messages for feedback tracking.
+        """
+        if not ENABLE_FEEDBACK:
+            return
+
+        # Only process reactions on bot messages
+        if reaction.message.author != self.user:
+            return
+
+        # Don't process bot's own reactions
+        if user.bot:
+            return
+
+        emoji = str(reaction.emoji)
+        if emoji not in ("👍", "👎"):
+            return
+
+        score = 1 if emoji == "👍" else -1
+        channel_id = str(reaction.message.channel.id)
+        message_id = str(reaction.message.id)
+        user_id = str(user.id)
+
+        # Get the query_id associated with this bot message
+        query_id = self.context_manager.get_last_query_id(channel_id)
+        if not query_id:
+            logger.debug("No query_id found for feedback — skipping")
+            return
+
+        try:
+            from rag.metrics import get_metrics_manager
+            metrics = get_metrics_manager()
+            await metrics.record_feedback(
+                message_id=message_id,
+                query_id=query_id,
+                user_id=user_id,
+                score=score,
+            )
+            logger.info(
+                f"{'👍' if score > 0 else '👎'} Feedback recorded: "
+                f"user={user.display_name}, msg={message_id[:8]}"
+            )
+        except Exception as e:
+            logger.warning(f"Failed to record feedback: {e}")
+
+    # ------------------------------------------------------------------
+    # Message processing queue
+    # ------------------------------------------------------------------
+
+    async def process_messages(self) -> None:
+        """Background loop that processes the message queue."""
+        while True:
+            try:
+                message, user_message = await asyncio.wait_for(
+                    self.message_queue.get(), timeout=5.0
+                )
+                await self._generate_and_send(message, user_message)
+                self.message_queue.task_done()
+            except asyncio.TimeoutError:
+                continue
+            except Exception as e:
+                logger.exception(f"Error in process_messages: {e}")
+
+    async def enqueue_message(self, message, user_message: str) -> None:
+        """Add a message to the processing queue."""
+        if hasattr(message, "response"):
+            try:
+                await message.response.defer(ephemeral=self.isPrivate)
+            except Exception:
+                pass
+        await self.message_queue.put((message, user_message))
+
+    # ------------------------------------------------------------------
+    # Core response generation (enhanced with A3 metrics timing)
+    # ------------------------------------------------------------------
+
+    async def _generate_and_send(
+        self, message: discord.Message, user_message: str
+    ) -> None:
+        """
+        Full response flow:
+        1. Track message in context
+        2. Build prompt (system + RAG + history)
+        3. Generate via Ollama (streaming or batch)
+        4. Send to Discord with typing indicator
+        5. Track bot response in context
+        6. B2: Add feedback reactions
+        """
+        channel_id = str(message.channel.id)
+        author_name = str(message.author.display_name)
+
+        # Get channel name for domain detection (D2)
+        channel_name = None
+        if hasattr(message.channel, "name"):
+            channel_name = message.channel.name
+
+        # Rate-limit check
+        now = time.time()
+        last = self._rate_limits.get(channel_id, 0)
+        if now - last < self._rate_limit_seconds:
+            await asyncio.sleep(self._rate_limit_seconds - (now - last))
+        self._rate_limits[channel_id] = time.time()
+
+        response_start = time.time()
+
+        try:
+            # Build prompt with RAG + context (now passes channel_name for D2)
+            prompt_messages, temperature = await self.context_manager.build_prompt(
+                channel_id=channel_id,
+                user_message=user_message,
+                user_name=author_name,
+                enable_rag=ENABLE_RAG,
+                channel_name=channel_name,
+                user_id=str(message.author.id),
+            )
+
+            response_text = ""
+            bot_msg = None
+
+            if ENABLE_STREAMING:
+                response_text, bot_msg = await self._stream_response(
+                    message, prompt_messages, temperature
+                )
+            else:
+                # Non-streaming fallback
+                async with message.channel.typing():
+                    response_text = await chat_completion(
+                        messages=prompt_messages,
+                        temperature=temperature,
+                    )
+                    if len(response_text) > MAX_RESPONSE_LENGTH:
+                        response_text = response_text[:MAX_RESPONSE_LENGTH] + "\n\n*…response truncated*"
+                    await self._send_response(message, response_text)
+
+            # A3: Record response timing
+            response_time = (time.time() - response_start) * 1000
+            try:
+                from rag.metrics import get_metrics_manager
+                metrics = get_metrics_manager()
+                # Update the most recent metric with response info
+                if metrics._recent:
+                    last_metric = metrics._recent[-1]
+                    last_metric.response_time_ms = response_time
+                    last_metric.response_length = len(response_text)
+            except Exception:
+                pass
+
+            # Track bot response in context
+            if response_text:
+                self.context_manager.track_message(
+                    channel_id=channel_id,
+                    message_id=f"bot-{message.id}",
+                    author_id=str(self.user.id),
+                    author_name=str(self.user.display_name),
+                    content=response_text,
+                    is_bot=True,
+                )
+
+            # B2: Add feedback reactions to bot response
+            if ENABLE_FEEDBACK and bot_msg:
+                try:
+                    await bot_msg.add_reaction("👍")
+                    await bot_msg.add_reaction("👎")
+                    # Track the bot message ID for feedback mapping
+                    self.context_manager.set_last_bot_msg_id(channel_id, str(bot_msg.id))
+                except Exception as e:
+                    logger.debug(f"Failed to add feedback reactions: {e}")
+
+        except Exception as e:
+            logger.exception(f"Response generation failed: {e}")
+            error_msg = f"❌ Sorry, I ran into an issue: {str(e)[:200]}"
+            try:
+                await self._send_response(message, error_msg)
+            except Exception:
+                pass
+
+    async def _stream_response(
+        self,
+        message: discord.Message,
+        prompt_messages: List[Dict[str, str]],
+        temperature: float,
+    ) -> tuple:
+        """
+        Stream Ollama tokens and progressively edit a Discord message.
+        Returns tuple of (final_text, bot_message) for feedback tracking.
+        """
+        # Send initial "thinking" message
+        if hasattr(message, "followup"):
+            bot_msg = await message.followup.send("🧠 *Thinking…*", wait=True)
+        else:
+            bot_msg = await message.channel.send("🧠 *Thinking…*")
+
+        final_text = ""
+        edit_count = 0
+        MAX_EDITS = 30
+
+        try:
+            async for accumulated in stream_to_discord_chunks(
+                messages=prompt_messages,
+                temperature=temperature,
+                chunk_interval=STREAM_EDIT_INTERVAL,
+            ):
+                final_text = accumulated
+                if edit_count < MAX_EDITS:
+                    display = accumulated
+                    if len(display) > 1950:
+                        display = display[:1950] + "\n\n*…streaming*"
+                    try:
+                        await bot_msg.edit(content=display)
+                        edit_count += 1
+                    except discord.HTTPException:
+                        pass
+
+            if final_text:
+                if len(final_text) > 2000:
+                    await bot_msg.edit(content=final_text[:1990])
+                    remaining = final_text[1990:]
+                    while remaining:
+                        chunk = remaining[:1990]
+                        remaining = remaining[1990:]
+                        await message.channel.send(chunk)
+                else:
+                    await bot_msg.edit(content=final_text)
+            else:
+                await bot_msg.edit(content="🤔 I generated an empty response. Try rephrasing?")
+
+        except Exception as e:
+            logger.error(f"Stream response error: {e}")
+            try:
+                await bot_msg.edit(content=f"❌ Streaming error: {str(e)[:300]}")
+            except Exception:
+                pass
+            final_text = ""
+
+        return final_text, bot_msg
+
+    async def _send_response(
+        self, message, content: str
+    ) -> None:
+        """Send a response, handling slash commands vs regular messages."""
+        if hasattr(message, "followup"):
+            await send_split_message(self, content, message)
+        else:
+            if len(content) > 2000:
+                parts = [content[i : i + 1990] for i in range(0, len(content), 1990)]
+                for part in parts:
+                    await message.channel.send(part)
+            else:
+                await message.reply(content, mention_author=False)
+
+    # ------------------------------------------------------------------
+    # Slash command response (legacy compatibility)
+    # ------------------------------------------------------------------
+
+    async def handle_response(self, user_message: str) -> str:
+        """Legacy handle_response for /chat command — uses Ollama directly."""
+        prompt_messages, temperature = await self.context_manager.build_prompt(
+            channel_id="slash-command",
+            user_message=user_message,
+            user_name="User",
+            enable_rag=ENABLE_RAG,
+        )
+        response = await chat_completion(
+            messages=prompt_messages,
+            temperature=temperature,
+        )
+        self.context_manager.track_message(
+            channel_id="slash-command",
+            message_id=f"slash-{id(user_message)}",
+            author_id="user",
+            author_name="User",
+            content=user_message,
+        )
+        self.context_manager.track_message(
+            channel_id="slash-command",
+            message_id=f"slash-resp-{id(response)}",
+            author_id="bot",
+            author_name="CLCT",
+            content=response,
+            is_bot=True,
+        )
+        return response
+
+    async def send_message(self, message, user_message: str) -> None:
+        """Legacy send_message for slash commands."""
+        if hasattr(message, "user"):
+            author = message.user.id
+        else:
+            author = message.author.id
+
+        try:
+            response = await self.handle_response(user_message)
+            response_content = f"> **{user_message}** - <@{author}>\n\n{response}"
+            await send_split_message(self, response_content, message)
+        except Exception as e:
+            logger.exception(f"Error sending: {e}")
+            error_msg = f"❌ Error: {str(e)}"
+            if hasattr(message, "followup"):
+                await message.followup.send(error_msg)
+            else:
+                await message.channel.send(error_msg)
+
+    # ------------------------------------------------------------------
+    # Conversation management
+    # ------------------------------------------------------------------
+
+    def reset_conversation_history(self, channel_id: Optional[str] = None) -> None:
+        """Reset conversation context."""
+        if channel_id:
+            self.context_manager.clear_context(channel_id)
+        else:
+            self.context_manager.clear_all()
+
+    async def switch_persona(self, persona: str, user_id: Optional[str] = None) -> None:
+        """Switch persona — resets context."""
+        self.reset_conversation_history()
+        personas.current_persona = persona
+
+    def get_current_provider_info(self) -> Dict:
+        """Get info about current provider/model."""
+        return {
+            "provider": "ollama",
+            "current_model": self.current_model,
+            "available_models": [],
+            "supports_images": False,
+        }
+
+    def switch_provider(self, provider_type, model: Optional[str] = None) -> None:
+        """Legacy provider switching."""
+        if self.provider_manager:
+            self.provider_manager.set_current_provider(provider_type)
+        if model:
+            self.current_model = model
+
+
+# ---------------------------------------------------------------------------
+# Singleton
+# ---------------------------------------------------------------------------
+discordClient = CLCTClient()
