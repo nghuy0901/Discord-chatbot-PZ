@@ -1,0 +1,533 @@
+---
+title: "Food — Canned food"
+category: Food
+type: Canned food
+source_url: https://pzwiki.net/wiki/Food#Canned_food
+scraped_at: 2026-02-24 16:35:41
+method: selenium_v2
+---
+
+# Food — Canned food
+
+### Canned food
+
+### Canned Beans
+- **Name:** Canned Beans
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TinnedBeans
+### Canned Beans (Open)
+- **Name:** Canned Beans (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** 10*
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.OpenBeans
+### Canned Carrots
+- **Name:** Canned Carrots
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCarrots2
+### Canned Carrots (Open)
+- **Name:** Canned Carrots (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -15
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCarrotsOpen
+### Canned Chili
+- **Name:** Canned Chili
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedChili
+### Canned Chili (Open)
+- **Name:** Canned Chili (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedChiliOpen
+### Canned Corn
+- **Name:** Canned Corn
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCorn
+### Canned Corn (Open)
+- **Name:** Canned Corn (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCornOpen
+### Canned Corned Beef
+- **Name:** Canned Corned Beef
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCornedBeef
+### Canned Corned Beef (Open)
+- **Name:** Canned Corned Beef (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedCornedBeefOpen
+### Canned Dog Food
+- **Name:** Canned Dog Food
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Dogfood
+### Canned Dog Food (Open)
+- **Name:** Canned Dog Food (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -38
+- **Thirst:** -
+- **Unhappiness:** 50
+- **Fresh (days):** 5
+- **Rotten (days):** 7
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DogfoodOpen
+### Canned Evaporated Milk
+- **Name:** Canned Evaporated Milk
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedMilk
+### Canned Evaporated Milk (Open)
+- **Name:** Canned Evaporated Milk (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -12
+- **Thirst:** -10
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedMilkOpen
+### Canned Fruit Beverage
+- **Name:** Canned Fruit Beverage
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedFruitBeverage
+### Canned Fruit Beverage (Open)
+- **Name:** Canned Fruit Beverage (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -19
+- **Thirst:** -85
+- **Unhappiness:** -10
+- **Fresh (days):** 5
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedFruitBeverageOpen
+### Canned Fruit Cocktail
+- **Name:** Canned Fruit Cocktail
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedFruitCocktail
+### Canned Fruit Cocktail (Open)
+- **Name:** Canned Fruit Cocktail (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -19
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Fresh (days):** 5
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedFruitCocktailOpen
+### Canned Mushroom Soup
+- **Name:** Canned Mushroom Soup
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedMushroomSoup
+### Canned Mushroom Soup (Open)
+- **Name:** Canned Mushroom Soup (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -12
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedMushroomSoupOpen
+### Canned Peaches
+- **Name:** Canned Peaches
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPeaches
+### Canned Peaches (Open)
+- **Name:** Canned Peaches (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -19
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Fresh (days):** 5
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPeachesOpen
+### Canned Peas
+- **Name:** Canned Peas
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPeas
+### Canned Peas (Open)
+- **Name:** Canned Peas (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -3
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPeasOpen
+### Canned Pineapple
+- **Name:** Canned Pineapple
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPineapple
+### Canned Pineapple (Open)
+- **Name:** Canned Pineapple (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -19
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Fresh (days):** 5
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPineappleOpen
+### Canned Potato
+- **Name:** Canned Potato
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPotato2
+### Canned Potato (Open)
+- **Name:** Canned Potato (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -18
+- **Hunger / Encumbrance:** -22
+- **Thirst:** -7
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedPotatoOpen
+### Canned Sardines
+- **Name:** Canned Sardines
+- **Encumbrance:** 0.3
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedSardines
+### Canned Sardines (Open)
+- **Name:** Canned Sardines (Open)
+- **Encumbrance:** 0.3
+- **Hunger:** -14
+- **Hunger / Encumbrance:** -47
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedSardinesOpen
+### Canned Spaghetti Bolognese
+- **Name:** Canned Spaghetti Bolognese
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedBolognese
+### Canned Spaghetti Bolognese (Open)
+- **Name:** Canned Spaghetti Bolognese (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedBologneseOpen
+### Canned Tomato
+- **Name:** Canned Tomato
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedTomato2
+### Canned Tomato (Open)
+- **Name:** Canned Tomato (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -15
+- **Thirst:** -8
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CannedTomatoOpen
+### Canned Tuna
+- **Name:** Canned Tuna
+- **Encumbrance:** 0.3
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TunaTin
+### Canned Tuna (Open)
+- **Name:** Canned Tuna (Open)
+- **Encumbrance:** 0.3
+- **Hunger:** -18
+- **Hunger / Encumbrance:** -60
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TunaTinOpen
+### Canned Vegetable Soup
+- **Name:** Canned Vegetable Soup
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TinnedSoup
+### Canned Vegetable Soup (Open)
+- **Name:** Canned Vegetable Soup (Open)
+- **Encumbrance:** 0.8
+- **Hunger:** -25
+- **Hunger / Encumbrance:** -31
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TinnedSoupOpen
+### Dented Unlabeled Can of Food
+- **Name:** Dented Unlabeled Can of Food
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DentedCan
+### Unlabeled Can of Food
+- **Name:** Unlabeled Can of Food
+- **Encumbrance:** 0.8
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MysteryCan

@@ -1,0 +1,571 @@
+---
+title: "Weapon — Spears"
+category: Weapons
+type: Spears
+source_url: https://pzwiki.net/wiki/Weapon#Spears
+scraped_at: 2026-02-24 16:33:35
+method: selenium_v2
+---
+
+# Weapon — Spears
+
+### Spears
+
+Spear weapons are two-handed. They receive a "bruiser" bonus at level 3 and 7, getting a 10% damage increase at and 20% damage increase respectively.
+
+They have two different special insta-kill attacks when held in both hands:
+
+- When zombies are 1.7 tiles or more away from any other zombie, requiring player timing and ideally a high spear skill.
+- When sprinting, which results in a charge attack. This does have a noticeable cooldown animation and is unsafe to do in groups, though it may be performed into them, unlike the prior attack.
+
+### Garden Fork
+- **Name:** Garden Fork
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.5
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.37
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.GardenFork
+### Garden Fork
+- **Name:** Garden Fork
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.5
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.37
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.GardenFork_Forged
+### Spear with Bone Head
+- **Name:** Spear with Bone Head
+- **Encumbrance:** 2.4
+- **Equipped:** 2H*
+- **Minimum damage:** 0.9
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.Spear_Bone
+### Spear with Fighting Knife
+- **Name:** Spear with Fighting Knife
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 8
+- **Average condition:** 72
+- **Item ID:** Base.SpearFightingKnife
+### Spear with Glass Head
+- **Name:** Spear with Glass Head
+- **Encumbrance:** 2.4
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 2
+- **Condition lower chance:** 2
+- **Average condition:** 4
+- **Item ID:** Base.SpearGlass
+### Spear with Hand Fork
+- **Name:** Spear with Hand Fork
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.1
+- **Maximum damage:** 1.6
+- **Door damage:** 6
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 4
+- **Average condition:** 28
+- **Item ID:** Base.SpearHandFork
+### Spear with Hunting Knife
+- **Name:** Spear with Hunting Knife
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 8
+- **Average condition:** 72
+- **Item ID:** Base.SpearHuntingKnife
+### Spear with Kitchen Knife
+- **Name:** Spear with Kitchen Knife
+- **Encumbrance:** 2.7
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 4
+- **Average condition:** 28
+- **Item ID:** Base.SpearKnife
+### Spear with Large Knife
+- **Name:** Spear with Large Knife
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 8
+- **Average condition:** 72
+- **Item ID:** Base.SpearLargeKnife
+### Spear with Long Bone Head
+- **Name:** Spear with Long Bone Head
+- **Encumbrance:** 2.7
+- **Equipped:** 2H*
+- **Minimum damage:** 1.1
+- **Maximum damage:** 1.6
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.Spear_BoneLong
+### Spear with Long Metal Head
+- **Name:** Spear with Long Metal Head
+- **Encumbrance:** 2.7
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.SpearLong
+### Spear with Long Simple Metal Head
+- **Name:** Spear with Long Simple Metal Head
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 7
+- **Average condition:** 35
+- **Item ID:** Base.SpearCrudeLong
+### Spear with Long Stone Head
+- **Name:** Spear with Long Stone Head
+- **Encumbrance:** 2.7
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.SpearStoneLong
+### Spear with Metal Head
+- **Name:** Spear with Metal Head
+- **Encumbrance:** 2.4
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.SpearShort
+### Spear with Plunger
+- **Name:** Spear with Plunger
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.55
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 2
+- **Average condition:** 12
+- **Item ID:** Base.Spear_Plunger
+### Spear with Scissors
+- **Name:** Spear with Scissors
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.42
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 3
+- **Average condition:** 18
+- **Item ID:** Base.SpearScissors
+### Spear with Scrap Knife
+- **Name:** Spear with Scrap Knife
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.7
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.48
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 8
+- **Average condition:** 72
+- **Item ID:** Base.SpearScrapKnife
+### Spear with Screwdriver
+- **Name:** Spear with Screwdriver
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.6
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 4
+- **Average condition:** 28
+- **Item ID:** Base.SpearScrewdriver
+### Spear with Simple Metal Head
+- **Name:** Spear with Simple Metal Head
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 7
+- **Average condition:** 28
+- **Item ID:** Base.SpearCrude
+### Spear with Small Knife
+- **Name:** Spear with Small Knife
+- **Encumbrance:** 2.7
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 4
+- **Average condition:** 28
+- **Item ID:** Base.SpearKnifeSmall
+### Spear with Steak Knife
+- **Name:** Spear with Steak Knife
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 2
+- **Average condition:** 14
+- **Item ID:** Base.SpearSteakKnife
+### Spear with Stone Head
+- **Name:** Spear with Stone Head
+- **Encumbrance:** 2.4
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.45
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.SpearStone
+### Umbrella (Closed)
+- **Name:** Umbrella (Closed)
+- **Encumbrance:** 1
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 3
+- **Average condition:** 21
+- **Item ID:** Base.ClosedUmbrellaBlack
+### Umbrella (Closed)
+- **Name:** Umbrella (Closed)
+- **Encumbrance:** 1
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 3
+- **Average condition:** 21
+- **Item ID:** Base.ClosedUmbrellaBlue
+### Umbrella (Closed)
+- **Name:** Umbrella (Closed)
+- **Encumbrance:** 1
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 3
+- **Average condition:** 21
+- **Item ID:** Base.ClosedUmbrellaRed
+### Umbrella (Closed)
+- **Name:** Umbrella (Closed)
+- **Encumbrance:** 1
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 3
+- **Average condition:** 21
+- **Item ID:** Base.ClosedUmbrellaTINTED
+### Umbrella (Closed)
+- **Name:** Umbrella (Closed)
+- **Encumbrance:** 1
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 3
+- **Average condition:** 21
+- **Item ID:** Base.ClosedUmbrellaWhite
+### Wooden Spear
+- **Name:** Wooden Spear
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.98
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 2
+- **Average condition:** 10
+- **Item ID:** Base.SpearCrafted
+### Wooden Spear (Fire Hardened)
+- **Name:** Wooden Spear (Fire Hardened)
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 4
+- **Average condition:** 28
+- **Item ID:** Base.SpearCraftedFireHardened

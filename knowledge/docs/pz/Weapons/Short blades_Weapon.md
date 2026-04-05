@@ -1,0 +1,1144 @@
+---
+title: "Weapon — Short blades"
+category: Weapons
+type: Short blades
+source_url: https://pzwiki.net/wiki/Weapon#Short_blades
+scraped_at: 2026-02-24 16:33:11
+method: selenium_v2
+---
+
+# Weapon — Short blades
+
+### Short blades
+
+Most short blade weapons have a unique instant-kill jaw stab attack, indicated by the raised hand of the player when in aim mode. Performing this action requires the player to be stationary and to have good timing, ideally with a combination of a high short blade skill. A high sneaking and lightfooted skill will help in safely getting close to zombies.
+
+They are an effective tool at dealing with single zombies, due to it being quick, quiet, and low rate of exertion . The player can whittle down a group of zombies, if careful, with a high short blade skill. Still, it does have some caveats, which are listed below.
+
+- Timing: striking too early leads to a regular (near useless) attack, but too late and the player risks getting hurt.
+- Modest recovery: if facing a group, it is recommended to isolate one for by at least a few feet before striking to prevent getting flanked.
+- Low condition: Most of the weapons break easily, with common cutlery breaking especially fast.
+- Weapons can get stuck in a zombie when performing the instant-kill jaw stab, and need to be recovered (which can be a problem if there are still zombies remaining).
+- The jaw stab attack can't be used against players .
+
+### Blunt Bone Knife
+- **Name:** Blunt Bone Knife
+- **Encumbrance:** 0.25
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 7%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.DullBoneKnife
+### Bone Fork
+- **Name:** Bone Fork
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Fork_Bone
+### Bone Spoon
+- **Name:** Bone Spoon
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Spoon_Bone
+### Bread Knife
+- **Name:** Bread Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.BreadKnife
+### Butter Knife
+- **Name:** Butter Knife
+- **Encumbrance:** 0.25
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 7%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.ButterKnife
+### Butterfly Knife
+- **Name:** Butterfly Knife
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.KnifeButterfly
+### Can Opener - Old-Fashioned
+- **Name:** Can Opener - Old-Fashioned
+- **Encumbrance:** 0.6
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.4
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.TinOpener_Old
+### Carving Fork
+- **Name:** Carving Fork
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 6
+- **Condition lower chance:** 9
+- **Average condition:** 54
+- **Item ID:** Base.CarvingFork2
+### Crude Scissors
+- **Name:** Crude Scissors
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 1
+- **Average condition:** 10
+- **Item ID:** Base.ScissorsForged
+### Fighting Knife
+- **Name:** Fighting Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.FightingKnife
+### Fillet Knife
+- **Name:** Fillet Knife
+- **Encumbrance:** 0.7
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 2
+- **Average condition:** 10
+- **Item ID:** Base.KnifeFillet
+### Forged Fork
+- **Name:** Forged Fork
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.ForkForged
+### Forged Spoon
+- **Name:** Forged Spoon
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.SpoonForged
+### Fork
+- **Name:** Fork
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.Fork
+### Gardening Trowel
+- **Name:** Gardening Trowel
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 9
+- **Average condition:** 54
+- **Item ID:** Base.HandShovel
+### Glass Shiv
+- **Name:** Glass Shiv
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 2
+- **Average condition:** 2
+- **Item ID:** Base.GlassShiv
+### Gold Butter Knife
+- **Name:** Gold Butter Knife
+- **Encumbrance:** 0.25
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 7%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.ButterKnife_Gold
+### Gold Fork
+- **Name:** Gold Fork
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Fork_Gold
+### Gold Spoon
+- **Name:** Gold Spoon
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Spoon_Gold
+### Hand Fork
+- **Name:** Hand Fork
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 6
+- **Condition lower chance:** 9
+- **Average condition:** 54
+- **Item ID:** Base.HandFork
+### Handguard Dagger
+- **Name:** Handguard Dagger
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.HandguardDagger
+### Handiknife
+- **Name:** Handiknife
+- **Encumbrance:** 0.4
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.Handiknife
+### Hunting Knife
+- **Name:** Hunting Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.HuntingKnife
+### Hunting Knife
+- **Name:** Hunting Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.HuntingKnifeForged
+### Ice Pick
+- **Name:** Ice Pick
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 0.9
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 7
+- **Average condition:** 70
+- **Item ID:** Base.IcePick
+### Improvised Screwdriver
+- **Name:** Improvised Screwdriver
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 3
+- **Average condition:** 9
+- **Item ID:** Base.Screwdriver_Improvised
+### Kitchen Knife
+- **Name:** Kitchen Knife
+- **Encumbrance:** 0.7
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.KitchenKnife
+### Kitchen Knife
+- **Name:** Kitchen Knife
+- **Encumbrance:** 0.6
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.KitchenKnifeForged
+### Large Knife
+- **Name:** Large Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.LargeKnife
+### Letter Opener
+- **Name:** Letter Opener
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 1
+- **Average condition:** 5
+- **Item ID:** Base.LetterOpener
+### Long Sharp Bone
+- **Name:** Long Sharp Bone
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.SharpBone_Long
+### Long Simple Metal Knife
+- **Name:** Long Simple Metal Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 7
+- **Average condition:** 35
+- **Item ID:** Base.LongCrudeKnife
+### Long Stone Knife
+- **Name:** Long Stone Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.01
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.StoneKnifeLong
+### Machete Blade Knife
+- **Name:** Machete Blade Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.MacheteKnife
+### Mason's Trowel
+- **Name:** Mason's Trowel
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 9
+- **Average condition:** 54
+- **Item ID:** Base.MasonsTrowel
+### Multitool
+- **Name:** Multitool
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.Multitool
+### Paring Knife
+- **Name:** Paring Knife
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.4
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.KnifeParing
+### Pocket Knife
+- **Name:** Pocket Knife
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.KnifePocket
+### Railroad Spike
+- **Name:** Railroad Spike
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.01
+- **Max condition:** 15
+- **Condition lower chance:** 30
+- **Average condition:** 450
+- **Item ID:** Base.RailroadSpike
+### Railroad Spike Knife
+- **Name:** Railroad Spike Knife
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.RailroadSpikeKnife
+### Scalpel
+- **Name:** Scalpel
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 1
+- **Average condition:** 5
+- **Item ID:** Base.Scalpel
+### Scissors
+- **Name:** Scissors
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 1
+- **Average condition:** 10
+- **Item ID:** Base.Scissors
+### Scrap Metal Large Knife
+- **Name:** Scrap Metal Large Knife
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.LargeKnife_Scrap
+### Screwdriver
+- **Name:** Screwdriver
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 6
+- **Average condition:** 60
+- **Item ID:** Base.Screwdriver
+### Screwdriver
+- **Name:** Screwdriver
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 6
+- **Average condition:** 60
+- **Item ID:** Base.Screwdriver_Old
+### Shiv
+- **Name:** Shiv
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 7
+- **Average condition:** 35
+- **Item ID:** Base.KnifeShiv
+### Silver Butter Knife
+- **Name:** Silver Butter Knife
+- **Encumbrance:** 0.25
+- **Equipped:** 1H*
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.4
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 7%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 2
+- **Condition lower chance:** 1
+- **Average condition:** 2
+- **Item ID:** Base.ButterKnife_Silver
+### Silver Fork
+- **Name:** Silver Fork
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 2
+- **Condition lower chance:** 1
+- **Average condition:** 2
+- **Item ID:** Base.Fork_Silver
+### Silver Spoon
+- **Name:** Silver Spoon
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 2
+- **Condition lower chance:** 1
+- **Average condition:** 2
+- **Item ID:** Base.Spoon_Silver
+### Simple Metal Knife
+- **Name:** Simple Metal Knife
+- **Encumbrance:** 0.7
+- **Equipped:** 1H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.9
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.CrudeKnife
+### Small Knife
+- **Name:** Small Knife
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 8
+- **Condition lower chance:** 2
+- **Average condition:** 16
+- **Item ID:** Base.SmallKnife
+### Smashed Bottle
+- **Name:** Smashed Bottle
+- **Encumbrance:** 1
+- **Equipped:** 1H*
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.5
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1.4
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.SmashedBottle
+### Spoon
+- **Name:** Spoon
+- **Encumbrance:** 0.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.2
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.01
+- **Max condition:** 3
+- **Condition lower chance:** 1
+- **Average condition:** 3
+- **Item ID:** Base.Spoon
+### Stake
+- **Name:** Stake
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.25
+- **Maximum damage:** 0.53
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.85
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 10×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 1
+- **Average condition:** 5
+- **Item ID:** Base.Stake
+### Steak Knife
+- **Name:** Steak Knife
+- **Encumbrance:** 0.5
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 2
+- **Average condition:** 10
+- **Item ID:** Base.SteakKnife
+### Stone Knife
+- **Name:** Stone Knife
+- **Encumbrance:** 0.75
+- **Equipped:** 1H*
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.69
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.01
+- **Max condition:** 6
+- **Condition lower chance:** 7
+- **Average condition:** 42
+- **Item ID:** Base.FlintKnife
+### Sushi Knife
+- **Name:** Sushi Knife
+- **Encumbrance:** 0.7
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.01
+- **Max condition:** 15
+- **Condition lower chance:** 3
+- **Average condition:** 45
+- **Item ID:** Base.KnifeSushi
+### Switchblade
+- **Name:** Switchblade
+- **Encumbrance:** 0.3
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.6
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.01
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.SwitchKnife
+### Toothbrush Shiv
+- **Name:** Toothbrush Shiv
+- **Encumbrance:** 0.25
+- **Equipped:** 1H*
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.01
+- **Max condition:** 5
+- **Condition lower chance:** 7
+- **Average condition:** 35
+- **Item ID:** Base.Toothbrush_Shiv

@@ -59,6 +59,20 @@ class RAGMetric:
     kb_results: int = 0
     chat_history_results: int = 0
 
+    # E1: Hybrid RAG metrics
+    vector_results: int = 0
+    bm25_results: int = 0
+    hybrid_fused_results: int = 0
+    vector_time_ms: float = 0.0
+    bm25_time_ms: float = 0.0
+
+    # E2: Self-RAG metrics
+    self_rag_enabled: bool = False
+    self_rag_graded: int = 0
+    self_rag_relevant: int = 0
+    self_rag_irrelevant: int = 0
+    self_rag_time_ms: float = 0.0
+
     # Response
     response_time_ms: float = 0.0
     response_length: int = 0

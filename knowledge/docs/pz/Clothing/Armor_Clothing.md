@@ -1,0 +1,3919 @@
+---
+title: "Clothing — Armor"
+category: Clothing
+type: Armor
+source_url: https://pzwiki.net/wiki/Clothing#Armor
+scraped_at: 2026-02-24 16:35:20
+method: selenium_v2
+---
+
+# Clothing — Armor
+
+### Armor
+
+### Articulated Metal Shin Armor
+- **Name:** Articulated Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L_Metal
+### Articulated Metal Shin Armor
+- **Name:** Articulated Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R_Metal
+### Articulated Metal Shoulder Armor - Left
+- **Name:** Articulated Metal Shoulder Armor - Left
+- **Encumbrance:** 2
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Articulated_L_Metal
+### Articulated Metal Shoulder Armor - Right
+- **Name:** Articulated Metal Shoulder Armor - Right
+- **Encumbrance:** 2
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Articulated_R_Metal
+### Articulated Metal Thigh Armor
+- **Name:** Articulated Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Thigh_ArticMetal_R
+### Articulated Metal Thigh Armor
+- **Name:** Articulated Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Thigh_ArticMetal_L
+### Bone Body Armor
+- **Name:** Bone Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_Bone
+### Bone Choker
+- **Name:** Bone Choker
+- **Encumbrance:** 0.5
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Necklace_Choker_Bone
+### Bone Forearm Armor
+- **Name:** Bone Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceBone_Right
+### Bone Forearm Armor
+- **Name:** Bone Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceBone_Left
+### Bone Shin Armor
+- **Name:** Bone Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveBone_Right
+### Bone Shin Armor
+- **Name:** Bone Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveBone_Left
+### Bone Shoulder Armor
+- **Name:** Bone Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Bone_L
+### Bone Shoulder Armor
+- **Name:** Bone Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Bone_R
+### Bone Thigh Armor
+- **Name:** Bone Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighBone_R
+### Bone Thigh Armor
+- **Name:** Bone Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighBone_L
+### Bulletproof Vest - Civilian
+- **Name:** Bulletproof Vest - Civilian
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 60%
+- **Wind resistance:** 25%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletCivilian
+### Bulletproof Vest - Military
+- **Name:** Bulletproof Vest - Military
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletArmy
+### Bulletproof Vest - Military
+- **Name:** Bulletproof Vest - Military
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletDesert
+### Bulletproof Vest - Military
+- **Name:** Bulletproof Vest - Military
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletDesertNew
+### Bulletproof Vest - Military
+- **Name:** Bulletproof Vest - Military
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletOliveDrab
+### Bulletproof Vest - Police
+- **Name:** Bulletproof Vest - Police
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 65%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletPolice
+### Bulletproof Vest - SWAT
+- **Name:** Bulletproof Vest - SWAT
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 65%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_BulletSWAT
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right_Civ
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left_Civ
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right_Desert
+### Bulletproof Vest Forearm Armor
+- **Name:** Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left_Desert
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right_Civ
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left_Civ
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right_Desert
+### Bulletproof Vest Shin Armor
+- **Name:** Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left_Desert
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R_Civ
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L_Civ
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R_Desert
+### Bulletproof Vest Thigh Armor
+- **Name:** Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L_Desert
+### Burlap Neck Guard
+- **Name:** Burlap Neck Guard
+- **Encumbrance:** 0.2
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 10%
+- **Scratch defense:** 20%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Gorget_Burlap
+### Catcher's Vest
+- **Name:** Catcher's Vest
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -10%
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_CatcherVest
+### Catcher's Vest
+- **Name:** Catcher's Vest
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -10%
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_CatcherVest_Red
+### Catcher's Vest
+- **Name:** Catcher's Vest
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -10%
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_CatcherVest_Blue
+### Catcher's Vest
+- **Name:** Catcher's Vest
+- **Encumbrance:** 5
+- **Body location:** torsoextravestbullet
+- **Movement speed:** -10%
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 75%
+- **Wind resistance:** 45%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Vest_CatcherVest_Green
+### Coat of Plates Body Armor
+- **Name:** Coat of Plates Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -5%
+- **Attack speed:** -3%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_CoatOfPlates
+### Denim Neck Guard
+- **Name:** Denim Neck Guard
+- **Encumbrance:** 0.2
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 10%
+- **Scratch defense:** 20%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Gorget_Denim
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_Leather
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_Leather
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_Military
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_Military
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_Sport
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_Sport
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_Tactical
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_Tactical
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_TINT
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_TINT
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_right
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Right Forearm  Right Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Right_Workman
+### Elbow Pad
+- **Name:** Elbow Pad
+- **Encumbrance:** 0.5
+- **Body location:** elbow_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm  Left Upper Arm
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ElbowPad_Left_Workman
+### Football Shoulderpad - Left
+- **Name:** Football Shoulderpad - Left
+- **Encumbrance:** 2
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Football_L
+### Football Shoulderpad - Right
+- **Name:** Football Shoulderpad - Right
+- **Encumbrance:** 2
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Football_R
+### Football Shoulderpads
+- **Name:** Football Shoulderpads
+- **Encumbrance:** 4
+- **Body location:** sportshoulderpad
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpads_Football
+### Football Shoulderpads
+- **Name:** Football Shoulderpads
+- **Encumbrance:** 4
+- **Body location:** sportshoulderpadontop
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpads_FootballOnTop
+### Full Chainmail Sleeve - Left
+- **Name:** Full Chainmail Sleeve - Left
+- **Encumbrance:** 1
+- **Body location:** leftarm
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Forearm  Left Upper Arm Left Hand
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Chainmail_SleeveFull_L
+### Full Chainmail Sleeve - Right
+- **Name:** Full Chainmail Sleeve - Right
+- **Encumbrance:** 1
+- **Body location:** rightarm
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Right Forearm  Right Upper Arm Right Hand
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Chainmail_SleeveFull_R
+### Full Metal Forearm Armor
+- **Name:** Full Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Vambrace_FullMetal_Right
+### Full Metal Forearm Armor
+- **Name:** Full Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Vambrace_FullMetal_Left
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_L
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_R
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_L_Blue
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_R_Blue
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_L_Red
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_R_Red
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_L_White
+### Hockey Goalie Shinpad
+- **Name:** Hockey Goalie Shinpad
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -25%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_HockeyGoalie_R_White
+### Ice Hockey Neck Guard
+- **Name:** Ice Hockey Neck Guard
+- **Encumbrance:** 0.5
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.IceHockeyNeckGuard
+### Ice Hockey Shoulderpads
+- **Name:** Ice Hockey Shoulderpads
+- **Encumbrance:** 5
+- **Body location:** sportshoulderpad
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Left Upper Arm Right Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpads_IceHockey
+### Ice Hockey Shoulderpads
+- **Name:** Ice Hockey Shoulderpads
+- **Encumbrance:** 5
+- **Body location:** sportshoulderpadontop
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Upper Torso  Left Upper Arm Right Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpads_IceHockeyOnTop
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_Leather
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_Leather
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_Workman
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_Workman
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_Military
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_Military
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_Sport
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_Sport
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_Tactical
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_Tactical
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_right
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin  Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Right_TINT
+### Kneepad
+- **Name:** Kneepad
+- **Encumbrance:** 0.5
+- **Body location:** knee_left
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin  Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Kneepad_Left_TINT
+### Leather Codpiece
+- **Name:** Leather Codpiece
+- **Encumbrance:** 0.5
+- **Body location:** codpiece
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Groin
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Codpiece_Leather
+### Leather Forearm Armor
+- **Name:** Leather Forearm Armor
+- **Encumbrance:** 0.5
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_Leather_Right
+### Leather Forearm Armor
+- **Name:** Leather Forearm Armor
+- **Encumbrance:** 0.5
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_Leather_Left
+### Leather Neck Guard
+- **Name:** Leather Neck Guard
+- **Encumbrance:** 0.5
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Gorget_Leather
+### Leather Strip Neck Guard
+- **Name:** Leather Strip Neck Guard
+- **Encumbrance:** 0.5
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 10%
+- **Scratch defense:** 20%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Gorget_LeatherWrap
+### Magazine Body Armor
+- **Name:** Magazine Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -3
+- **Item ID:** Base.Cuirass_Magazine
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveMagazine_Right
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveMagazine_Left
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceMagazine_Right
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceMagazine_Left
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMagazine_R
+### Magazine Limb Armor
+- **Name:** Magazine Limb Armor
+- **Encumbrance:** 0.6
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 1
+- **Condition lower chance:** -
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMagazine_L
+### Metal Body Armor
+- **Name:** Metal Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_Metal
+### Metal Codpiece
+- **Name:** Metal Codpiece
+- **Encumbrance:** 1
+- **Body location:** codpiece
+- **Movement speed:** -3%
+- **Attack speed:** -
+- **Body parts protected:** Groin
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Codpiece_Metal
+### Metal Forearm Armor
+- **Name:** Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Vambrace_Right
+### Metal Forearm Armor
+- **Name:** Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Vambrace_Left
+### Metal Neck Guard
+- **Name:** Metal Neck Guard
+- **Encumbrance:** 1
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 15%
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** -
+- **Condition loss:** -5
+- **Item ID:** Base.Gorget_Metal
+### Metal Shin Armor
+- **Name:** Metal Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Greave_Right
+### Metal Shin Armor
+- **Name:** Metal Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Greave_Left
+### Metal Shoulder Armor
+- **Name:** Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Metal_L
+### Metal Shoulder Armor
+- **Name:** Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Metal_R
+### Metal Thigh Armor
+- **Name:** Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMetal_R
+### Metal Thigh Armor
+- **Name:** Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMetal_L
+### Military Bulletproof Vest Forearm Armor
+- **Name:** Military Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right_Army
+### Military Bulletproof Vest Forearm Armor
+- **Name:** Military Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left_Army
+### Military Bulletproof Vest Shin Armor
+- **Name:** Military Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right_Army
+### Military Bulletproof Vest Shin Armor
+- **Name:** Military Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left_Army
+### Military Bulletproof Vest Thigh Armor
+- **Name:** Military Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R_Army
+### Military Bulletproof Vest Thigh Armor
+- **Name:** Military Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L_Army
+### Police Bulletproof Vest Forearm Armor
+- **Name:** Police Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right_Police
+### Police Bulletproof Vest Forearm Armor
+- **Name:** Police Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left_Police
+### Police Bulletproof Vest Shin Armor
+- **Name:** Police Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right_Police
+### Police Bulletproof Vest Shin Armor
+- **Name:** Police Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left_Police
+### Police Bulletproof Vest Thigh Armor
+- **Name:** Police Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R_Police
+### Police Bulletproof Vest Thigh Armor
+- **Name:** Police Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L_Police
+### Rag Neck Guard
+- **Name:** Rag Neck Guard
+- **Encumbrance:** 0.2
+- **Body location:** gorget
+- **Movement speed:** -
+- **Attack speed:** -
+- **Body parts protected:** Neck
+- **Bite defense:** 5%
+- **Scratch defense:** 10%
+- **Bullet defense:** -
+- **Neck protection:** 100%
+- **Insulation:** 100%
+- **Wind resistance:** 100%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Gorget_Rag
+### Rigid Shin Pad
+- **Name:** Rigid Shin Pad
+- **Encumbrance:** 0.5
+- **Body location:** calf_left_texture
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 40%
+- **Scratch defense:** 60%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_L_Rigid
+### Rigid Shin Pad
+- **Name:** Rigid Shin Pad
+- **Encumbrance:** 0.5
+- **Body location:** calf_right_texture
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 40%
+- **Scratch defense:** 60%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_R_Rigid
+### SWAT Bulletproof Vest Forearm Armor
+- **Name:** SWAT Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Right_SWAT
+### SWAT Bulletproof Vest Forearm Armor
+- **Name:** SWAT Bulletproof Vest Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_BodyArmour_Left_SWAT
+### SWAT Bulletproof Vest Shin Armor
+- **Name:** SWAT Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Right_SWAT
+### SWAT Bulletproof Vest Shin Armor
+- **Name:** SWAT Bulletproof Vest Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.GreaveBodyArmour_Left_SWAT
+### SWAT Bulletproof Vest Thigh Armor
+- **Name:** SWAT Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_R_SWAT
+### SWAT Bulletproof Vest Thigh Armor
+- **Name:** SWAT Bulletproof Vest Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 30%
+- **Scratch defense:** 55%
+- **Bullet defense:** 100%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.ThighBodyArmour_L_SWAT
+### Scrap Metal Body Armor
+- **Name:** Scrap Metal Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_MetalScrap
+### Scrap Metal Forearm Armor
+- **Name:** Scrap Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceScrap_Right
+### Scrap Metal Forearm Armor
+- **Name:** Scrap Metal Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -1%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceScrap_Left
+### Scrap Metal Shin Armor
+- **Name:** Scrap Metal Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveScrap_Left
+### Scrap Metal Shin Armor
+- **Name:** Scrap Metal Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveScrap_Right
+### Scrap Metal Shoulder Armor
+- **Name:** Scrap Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalScrap_L
+### Scrap Metal Shoulder Armor
+- **Name:** Scrap Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalScrap_R
+### Scrap Metal Thigh Armor
+- **Name:** Scrap Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighScrapMetal_R
+### Scrap Metal Thigh Armor
+- **Name:** Scrap Metal Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighScrapMetal_L
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L_Baseball
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R_Baseball
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L_IceHockey
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R_IceHockey
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L_Protective
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R_Protective
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_L_TINT
+### Shin Guard
+- **Name:** Shin Guard
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuard_R_TINT
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_left_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_L
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_right_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_R
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_left_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_L_Blue
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_right_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_R_Blue
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_left_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_L_White
+### Soft Shin Pad
+- **Name:** Soft Shin Pad
+- **Encumbrance:** 0.3
+- **Body location:** calf_right_texture
+- **Movement speed:** -5%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 30%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Shinpad_R_White
+### Spiked Articulated Metal Shin Armor
+- **Name:** Spiked Articulated Metal Shin Armor
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_R_Metal
+### Spiked Articulated Metal Shin Armor
+- **Name:** Spiked Articulated Metal Shin Armor
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 25%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_L_Metal
+### Spiked Articulated Metal Shoulder Armor - Left
+- **Name:** Spiked Articulated Metal Shoulder Armor - Left
+- **Encumbrance:** 3
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_ArticulatedSpike_L
+### Spiked Articulated Metal Shoulder Armor - Right
+- **Name:** Spiked Articulated Metal Shoulder Armor - Right
+- **Encumbrance:** 3
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** 20%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_ArticulatedSpike_R
+### Spiked Football Shoulderpad - Left
+- **Name:** Spiked Football Shoulderpad - Left
+- **Encumbrance:** 2
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -2%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Football_Spiked_L
+### Spiked Football Shoulderpad - Right
+- **Name:** Spiked Football Shoulderpad - Right
+- **Encumbrance:** 2
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Football_Spiked_R
+### Spiked Football Shoulderpads (On Top)
+- **Name:** Spiked Football Shoulderpads (On Top)
+- **Encumbrance:** 4
+- **Body location:** sportshoulderpadontop
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpads_FootballOnTop_Spiked
+### Spiked Leather Forearm Armor
+- **Name:** Spiked Leather Forearm Armor
+- **Encumbrance:** 1.5
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_LeatherSpike_Right
+### Spiked Leather Forearm Armor
+- **Name:** Spiked Leather Forearm Armor
+- **Encumbrance:** 1.5
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 10
+- **Condition lower chance:** -
+- **Condition loss:** -10
+- **Item ID:** Base.Vambrace_LeatherSpike_Left
+### Spiked Metal Forearm Armor
+- **Name:** Spiked Metal Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceSpike_Left
+### Spiked Metal Forearm Armor
+- **Name:** Spiked Metal Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceSpike_Right
+### Spiked Metal Shin Armor
+- **Name:** Spiked Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveSpike_Left
+### Spiked Metal Shin Armor
+- **Name:** Spiked Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveSpike_Right
+### Spiked Metal Shoulder Armor
+- **Name:** Spiked Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalSpike_L
+### Spiked Metal Shoulder Armor
+- **Name:** Spiked Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalSpike_R
+### Spiked Metal Thigh Armor
+- **Name:** Spiked Metal Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMetalSpike_R
+### Spiked Metal Thigh Armor
+- **Name:** Spiked Metal Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 15%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighMetalSpike_L
+### Spiked Scrap Metal Forearm Armor
+- **Name:** Spiked Scrap Metal Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceSpikeScrap_Left
+### Spiked Scrap Metal Forearm Armor
+- **Name:** Spiked Scrap Metal Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -10%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceSpikeScrap_Right
+### Spiked Scrap Metal Shin Armor
+- **Name:** Spiked Scrap Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveSpikeScrap_Left
+### Spiked Scrap Metal Shin Armor
+- **Name:** Spiked Scrap Metal Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveSpikeScrap_Right
+### Spiked Scrap Metal Shoulder Armor
+- **Name:** Spiked Scrap Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalSpikeScrap_L
+### Spiked Scrap Metal Shoulder Armor
+- **Name:** Spiked Scrap Metal Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 60%
+- **Scratch defense:** 80%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_MetalSpikeScrap_R
+### Spiked Scrap Metal Thigh Armor
+- **Name:** Spiked Scrap Metal Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_right
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighScrapMetalSpike_R
+### Spiked Scrap Metal Thigh Armor
+- **Name:** Spiked Scrap Metal Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_left
+- **Movement speed:** -15%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** 10%
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 4
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighScrapMetalSpike_L
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_R
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_L
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_R_Baseball
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_L_Baseball
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_R_IceHockey
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_L_IceHockey
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_R_Protective
+### Spiked Shin Guard
+- **Name:** Spiked Shin Guard
+- **Encumbrance:** 3
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ShinKneeGuardSpike_L_Protective
+### Thigh Guard
+- **Name:** Thigh Guard
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighProtective_R
+### Thigh Guard
+- **Name:** Thigh Guard
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 33%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighProtective_L
+### Tire Body Armor
+- **Name:** Tire Body Armor
+- **Encumbrance:** 6
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_Tire
+### Tire Forearm Armor
+- **Name:** Tire Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceTire_Right
+### Tire Forearm Armor
+- **Name:** Tire Forearm Armor
+- **Encumbrance:** 2
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceTire_Left
+### Tire Shin Armor
+- **Name:** Tire Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveTire_Right
+### Tire Shin Armor
+- **Name:** Tire Shin Armor
+- **Encumbrance:** 2
+- **Body location:** calf_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveTire_Left
+### Tire Shoulder Armor - Left
+- **Name:** Tire Shoulder Armor - Left
+- **Encumbrance:** 3
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 20%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Tire_L
+### Tire Shoulder Armor - Right
+- **Name:** Tire Shoulder Armor - Right
+- **Encumbrance:** 3
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Upper Torso
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Tire_R
+### Tire Thigh Armor
+- **Name:** Tire Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_right
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighTire_R
+### Tire Thigh Armor
+- **Name:** Tire Thigh Armor
+- **Encumbrance:** 2
+- **Body location:** thigh_left
+- **Movement speed:** -20%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 5
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighTire_L
+### Wooden Body Armor
+- **Name:** Wooden Body Armor
+- **Encumbrance:** 4
+- **Body location:** cuirass
+- **Movement speed:** -10%
+- **Attack speed:** -5%
+- **Body parts protected:** Upper Torso  Lower Torso Back
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** 80%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Cuirass_Wood
+### Wooden Forearm Armor
+- **Name:** Wooden Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_right
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Right Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceWood_Right
+### Wooden Forearm Armor
+- **Name:** Wooden Forearm Armor
+- **Encumbrance:** 1
+- **Body location:** forearm_left
+- **Movement speed:** -
+- **Attack speed:** -3%
+- **Body parts protected:** Left Forearm
+- **Bite defense:** 100%
+- **Scratch defense:** 100%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.VambraceWood_Left
+### Wooden Shin Armor
+- **Name:** Wooden Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveWood_Right
+### Wooden Shin Armor
+- **Name:** Wooden Shin Armor
+- **Encumbrance:** 1
+- **Body location:** calf_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Shin
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.GreaveWood_Left
+### Wooden Shoulder Armor
+- **Name:** Wooden Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadleft
+- **Movement speed:** -
+- **Attack speed:** -5%
+- **Body parts protected:** Left Upper Arm
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Wood_L
+### Wooden Shoulder Armor
+- **Name:** Wooden Shoulder Armor
+- **Encumbrance:** 1
+- **Body location:** shoulderpadright
+- **Movement speed:** -
+- **Attack speed:** -8%
+- **Body parts protected:** Right Upper Arm
+- **Bite defense:** 50%
+- **Scratch defense:** 50%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** -
+- **Wind resistance:** -
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.Shoulderpad_Wood_R
+### Wooden Thigh Armor
+- **Name:** Wooden Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_right
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Right Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighWood_R
+### Wooden Thigh Armor
+- **Name:** Wooden Thigh Armor
+- **Encumbrance:** 1
+- **Body location:** thigh_left
+- **Movement speed:** -10%
+- **Attack speed:** -
+- **Body parts protected:** Left Thigh
+- **Bite defense:** 80%
+- **Scratch defense:** 90%
+- **Bullet defense:** -
+- **Neck protection:** -
+- **Insulation:** 35%
+- **Wind resistance:** 30%
+- **Water resistance:** -
+- **Max condition:** 3
+- **Condition lower chance:** 50%
+- **Condition loss:** -1
+- **Item ID:** Base.ThighWood_L

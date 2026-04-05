@@ -1,0 +1,930 @@
+---
+title: "Food — Evolved recipes"
+category: Food
+type: Evolved recipes
+source_url: https://pzwiki.net/wiki/Food#Evolved_recipes
+scraped_at: 2026-02-24 16:36:21
+method: selenium_v2
+---
+
+# Food — Evolved recipes
+
+### Evolved recipes
+
+#### Base items
+
+### Bagel
+- **Name:** Bagel
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 1
+- **Rotten (days):** 6
+- **Cooked (mins):** 5
+- **Burned (mins):** 10
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BagelPlain
+### Base.FruitSaladClay
+- **Name:** Base.FruitSaladClay
+- **Encumbrance:** 0.7
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -86
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 3
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FruitSaladClay
+### Base.HotDrinkCopper
+- **Name:** Base.HotDrinkCopper
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkCopper
+### Base.HotDrinkGold
+- **Name:** Base.HotDrinkGold
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkGold
+### Base.HotDrinkMetal
+- **Name:** Base.HotDrinkMetal
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkMetal
+### Base.HotDrinkSilver
+- **Name:** Base.HotDrinkSilver
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkSilver
+### Base.HotDrinkTumbler
+- **Name:** Base.HotDrinkTumbler
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkTumbler
+### Bowl of Oatmeal
+- **Name:** Bowl of Oatmeal
+- **Encumbrance:** 0.8
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -12
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 1
+- **Rotten (days):** 2
+- **Cooked (mins):** 5
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Oatmeal
+### Bread
+- **Name:** Bread
+- **Encumbrance:** 0.3
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -80
+- **Thirst:** 15
+- **Unhappiness:** 10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BreadDough
+### Bucket of Soup
+- **Name:** Bucket of Soup
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 50
+- **Burned (mins):** 100
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BucketOfSoup
+### Bucket of Stew
+- **Name:** Bucket of Stew
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 50
+- **Burned (mins):** 100
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BucketOfStew
+### Burger
+- **Name:** Burger
+- **Encumbrance:** 0.3
+- **Hunger:** -25
+- **Hunger / Encumbrance:** -83
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Burger
+### Burger
+- **Name:** Burger
+- **Encumbrance:** 0.3
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -67
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BurgerRecipe
+### Burrito
+- **Name:** Burrito
+- **Encumbrance:** 0.3
+- **Hunger:** -25
+- **Hunger / Encumbrance:** -83
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Burrito
+### Burrito
+- **Name:** Burrito
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BurritoRecipe
+### Cake
+- **Name:** Cake
+- **Encumbrance:** 0.5
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 9
+- **Cooked (mins):** 40
+- **Burned (mins):** 110
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CakeRaw
+### Chum
+- **Name:** Chum
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** ?
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Chum
+### Hot Dog
+- **Name:** Hot Dog
+- **Encumbrance:** 0.3
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -67
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Hotdog
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkTea
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkTeaCeramic
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrink
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkClay
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkSpiffo
+### Hot Drink
+- **Name:** Hot Drink
+- **Encumbrance:** 0.5
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Thirst:** -20
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 10
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotDrinkWhite
+### Ice Cream Cone
+- **Name:** Ice Cream Cone
+- **Encumbrance:** 0.2
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -75
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 1
+- **Rotten (days):** 2
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ConeIcecreamToppings
+### Omelette
+- **Name:** Omelette
+- **Encumbrance:** 0.5
+- **Hunger:** -14
+- **Hunger / Encumbrance:** -28
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.OmeletteRecipe
+### Omelette
+- **Name:** Omelette
+- **Encumbrance:** 0.5
+- **Hunger:** -14
+- **Hunger / Encumbrance:** -28
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.OmeletteRecipeForged
+### Pancakes
+- **Name:** Pancakes
+- **Encumbrance:** 0.3
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -67
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PancakesRecipe
+### Pasta
+- **Name:** Pasta
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PastaPan
+### Pasta
+- **Name:** Pasta
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PastaPanCopper
+### Pasta
+- **Name:** Pasta
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PastaPot
+### Pasta
+- **Name:** Pasta
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PastaPotForged
+### Pie
+- **Name:** Pie
+- **Encumbrance:** 0.5
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** 10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 9
+- **Cooked (mins):** 40
+- **Burned (mins):** 110
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PieWholeRaw
+### Pie
+- **Name:** Pie
+- **Encumbrance:** 0.5
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** 10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 9
+- **Cooked (mins):** 40
+- **Burned (mins):** 110
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PieWholeRawSweet
+### Pizza
+- **Name:** Pizza
+- **Encumbrance:** 1.5
+- **Hunger:** -80
+- **Hunger / Encumbrance:** -53
+- **Thirst:** -
+- **Unhappiness:** 10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PizzaRecipe
+### Pizza
+- **Name:** Pizza
+- **Encumbrance:** 1.8
+- **Hunger:** -150
+- **Hunger / Encumbrance:** -83
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PizzaWhole
+### Plain Muffins
+- **Name:** Plain Muffins
+- **Encumbrance:** 1.5
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 10
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BakingTray_Muffin_Recipe
+### Poppy Bagel
+- **Name:** Poppy Bagel
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 1
+- **Rotten (days):** 6
+- **Cooked (mins):** 5
+- **Burned (mins):** 10
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BagelPoppy
+### Pot of Soup
+- **Name:** Pot of Soup
+- **Encumbrance:** 3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -10
+- **Thirst:** -30
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 50
+- **Burned (mins):** 100
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PotOfSoup
+### Pot of Soup
+- **Name:** Pot of Soup
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 50
+- **Burned (mins):** 100
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PotOfSoupRecipe
+### Pot of Soup
+- **Name:** Pot of Soup
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 50
+- **Burned (mins):** 100
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PotForgedSoupRecipe
+### Pot of Stew
+- **Name:** Pot of Stew
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 70
+- **Burned (mins):** 140
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PotOfStew
+### Pot of Stew
+- **Name:** Pot of Stew
+- **Encumbrance:** 3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -13
+- **Thirst:** -40
+- **Unhappiness:** -20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 70
+- **Burned (mins):** 140
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PotForgedStew
+### Rice
+- **Name:** Rice
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RicePan
+### Rice
+- **Name:** Rice
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RicePanCopper
+### Rice
+- **Name:** Rice
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RicePot
+### Rice
+- **Name:** Rice
+- **Encumbrance:** 3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -3
+- **Thirst:** -
+- **Unhappiness:** 20
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RicePotForged
+### Roast
+- **Name:** Roast
+- **Encumbrance:** 1.3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -8
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PanFriedVegetables2
+### Salad
+- **Name:** Salad
+- **Encumbrance:** 0.7
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -86
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 3
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FruitSalad
+### Salad
+- **Name:** Salad
+- **Encumbrance:** 0.5
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -120
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -5
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 3
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Salad
+### Salad
+- **Name:** Salad
+- **Encumbrance:** 0.5
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -120
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -5
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 3
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SaladClay
+### Sandwich
+- **Name:** Sandwich
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 5
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BaguetteSandwich
+### Sandwich
+- **Name:** Sandwich
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 5
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Sandwich
+### Sesame Bagel
+- **Name:** Sesame Bagel
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 1
+- **Rotten (days):** 6
+- **Cooked (mins):** 5
+- **Burned (mins):** 10
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BagelSesame
+### Stir Fry (pan)
+- **Name:** Stir Fry (pan)
+- **Encumbrance:** 1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -10
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PanFriedVegetablesForged
+### Stir Fry
+- **Name:** Stir Fry
+- **Encumbrance:** 1.5
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -7
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.GriddlePanFriedVegetables
+### Stir Fry
+- **Name:** Stir Fry
+- **Encumbrance:** 1.5
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -7
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PanFriedVegetables
+### Taco
+- **Name:** Taco
+- **Encumbrance:** 0.3
+- **Hunger:** -25
+- **Hunger / Encumbrance:** -83
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Taco
+### Taco
+- **Name:** Taco
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 15
+- **Rotten (days):** 20
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TacoRecipe
+### Toast
+- **Name:** Toast
+- **Encumbrance:** 0.1
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -80
+- **Thirst:** -
+- **Unhappiness:** -
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Toast
+### Waffles
+- **Name:** Waffles
+- **Encumbrance:** 0.3
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Boredom:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.WafflesRecipe

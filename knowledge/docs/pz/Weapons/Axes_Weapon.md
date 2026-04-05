@@ -1,0 +1,870 @@
+---
+title: "Weapon — Axes"
+category: Weapons
+type: Axes
+source_url: https://pzwiki.net/wiki/Weapon#Axes
+scraped_at: 2026-02-24 16:32:47
+method: selenium_v2
+---
+
+# Weapon — Axes
+
+### Axes
+
+Axe weapons are typically two-handed weapons that can be used to cut down trees for logs effectively. They usually also provide very high base damage numbers, and are therefore also a very effective choice of weapon to fight with, especially with the Ax-pert trait from the lumberjack occupation, and a "bruiser" bonus at level 3 and 7, getting a 10% damage increase at and 20% damage increase respectively.
+
+### Antique Table Leg with Sawblade
+- **Name:** Antique Table Leg with Sawblade
+- **Encumbrance:** 2
+- **Equipped:** 2H
+- **Minimum damage:** 0.9
+- **Maximum damage:** 1.7
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 3
+- **Average condition:** 12
+- **Item ID:** Base.TableLeg_Sawblade
+### Axe
+- **Name:** Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 0.8
+- **Maximum damage:** 2
+- **Door damage:** 35
+- **Tree damage:** 35
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 35
+- **Average condition:** 455
+- **Item ID:** Base.Axe_Old
+### Baseball Bat with Railspike
+- **Name:** Baseball Bat with Railspike
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.9
+- **Door damage:** 7
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.28
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 40%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.BaseballBat_RailSpike
+### Baseball Bat with Sawblade
+- **Name:** Baseball Bat with Sawblade
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.9
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.8
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.BaseballBat_Sawblade
+### Bone War Hatchet
+- **Name:** Bone War Hatchet
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 2
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Hatchet_Bone
+### Brake Disc Scrap Metal Weapon
+- **Name:** Brake Disc Scrap Metal Weapon
+- **Encumbrance:** 4
+- **Equipped:** 2H*
+- **Minimum damage:** 0.8
+- **Maximum damage:** 1.9
+- **Door damage:** 15
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.ScrapWeapon_Brake
+### Crude Stone Axe
+- **Name:** Crude Stone Axe
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.5
+- **Door damage:** 15
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.AxeStone
+### Cudgel with Brake Disc
+- **Name:** Cudgel with Brake Disc
+- **Encumbrance:** 6
+- **Equipped:** 2H
+- **Minimum damage:** 2
+- **Maximum damage:** 3
+- **Door damage:** 40
+- **Tree damage:** 10
+- **Minimum range:** 0.7
+- **Maximum range:** 1.35
+- **Attack speed:** 0.85
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 2×
+- **Knockback:** 1
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Cudgel_Brake
+### Cudgel with Sawblade
+- **Name:** Cudgel with Sawblade
+- **Encumbrance:** 6
+- **Equipped:** 2H
+- **Minimum damage:** 1.9
+- **Maximum damage:** 3
+- **Door damage:** 40
+- **Tree damage:** 10
+- **Minimum range:** 0.7
+- **Maximum range:** 1.35
+- **Attack speed:** 0.85
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 2×
+- **Knockback:** 1
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Cudgel_Sawblade
+### Cudgel with Spade Head
+- **Name:** Cudgel with Spade Head
+- **Encumbrance:** 6
+- **Equipped:** 2H
+- **Minimum damage:** 1.8
+- **Maximum damage:** 3
+- **Door damage:** 40
+- **Tree damage:** 15
+- **Minimum range:** 0.7
+- **Maximum range:** 1.35
+- **Attack speed:** 0.85
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 2×
+- **Knockback:** 1
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Cudgel_SpadeHead
+### Entrenching Tool
+- **Name:** Entrenching Tool
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.3
+- **Door damage:** 10
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.EntrenchingTool
+### Field Hockey Stick with Sawblade
+- **Name:** Field Hockey Stick with Sawblade
+- **Encumbrance:** 1.5
+- **Equipped:** 2H*
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 15
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.63
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 7
+- **Condition lower chance:** 2
+- **Average condition:** 14
+- **Item ID:** Base.FieldHockeyStick_Sawblade
+### Firefighter Axe
+- **Name:** Firefighter Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 0.8
+- **Maximum damage:** 2
+- **Door damage:** 35
+- **Tree damage:** 35
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 35
+- **Average condition:** 455
+- **Item ID:** Base.Axe
+### Flint Saw
+- **Name:** Flint Saw
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.Saw_Flint
+### Garden Fork Scrap Metal Weapon
+- **Name:** Garden Fork Scrap Metal Weapon
+- **Encumbrance:** 4
+- **Equipped:** 2H*
+- **Minimum damage:** 0.8
+- **Maximum damage:** 2
+- **Door damage:** 15
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.ScrapWeaponGardenFork
+### Hand Axe
+- **Name:** Hand Axe
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 20
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.HandAxe_Old
+### Hand Scythe
+- **Name:** Hand Scythe
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.HandScythe
+### Hand Scythe
+- **Name:** Hand Scythe
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.HandScytheForged
+### Hatchet
+- **Name:** Hatchet
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 20
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.HandAxe
+### Hatchet
+- **Name:** Hatchet
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 20
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.HandAxeForged
+### Ice Axe
+- **Name:** Ice Axe
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 20
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.IceAxe
+### Iron Pipe with Railspike
+- **Name:** Iron Pipe with Railspike
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MetalPipe_Railspike
+### Jawbone War Axe
+- **Name:** Jawbone War Axe
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 10
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 35%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.JawboneBovide_Axe
+### Large Handle with Railspike
+- **Name:** Large Handle with Railspike
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.LongHandle_Railspike
+### Large Handle with Sawblade
+- **Name:** Large Handle with Sawblade
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.LongHandle_Sawblade
+### Large Stone Axe
+- **Name:** Large Stone Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.8
+- **Door damage:** 30
+- **Tree damage:** 30
+- **Minimum range:** 0.61
+- **Maximum range:** 1.35
+- **Attack speed:** 1
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.StoneAxeLarge
+### Meat Cleaver
+- **Name:** Meat Cleaver
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.MeatCleaver
+### Meat Cleaver
+- **Name:** Meat Cleaver
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.MeatCleaverForged
+### Metal Baseball Bat with Sawblade
+- **Name:** Metal Baseball Bat with Sawblade
+- **Encumbrance:** 2.5
+- **Equipped:** 2H*
+- **Minimum damage:** 1.2
+- **Maximum damage:** 1.9
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.8
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 15
+- **Average condition:** 225
+- **Item ID:** Base.BaseballBat_Metal_Sawblade
+### Pickaxe
+- **Name:** Pickaxe
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 2.2
+- **Door damage:** 35
+- **Tree damage:** 35
+- **Minimum range:** 0.61
+- **Maximum range:** 1.6
+- **Attack speed:** 0.8
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 9×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 20
+- **Average condition:** 260
+- **Item ID:** Base.PickAxe
+### Pickaxe
+- **Name:** Pickaxe
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 1
+- **Maximum damage:** 2.2
+- **Door damage:** 35
+- **Tree damage:** 35
+- **Minimum range:** 0.61
+- **Maximum range:** 1.6
+- **Attack speed:** 0.8
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 9×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 20
+- **Average condition:** 260
+- **Item ID:** Base.PickAxeForged
+### Plank with Brake Disc
+- **Name:** Plank with Brake Disc
+- **Encumbrance:** 4
+- **Equipped:** 2H
+- **Minimum damage:** 0.8
+- **Maximum damage:** 1.7
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.Plank_Brake
+### Plank with Sawblade
+- **Name:** Plank with Sawblade
+- **Encumbrance:** 4
+- **Equipped:** 2H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 2
+- **Average condition:** 20
+- **Item ID:** Base.Plank_Sawblade
+### Sawblade Axe
+- **Name:** Sawblade Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H*
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.8
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Axe_Sawblade
+### Sawblade Hatchet
+- **Name:** Sawblade Hatchet
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.3
+- **Door damage:** 10
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Axe_Sawblade_Hatchet
+### Scrap Metal Cleaver
+- **Name:** Scrap Metal Cleaver
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.MeatCleaver_Scrap
+### Scrap Metal Cleaver-Axe
+- **Name:** Scrap Metal Cleaver-Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.7
+- **Door damage:** 55
+- **Tree damage:** 55
+- **Minimum range:** 0.61
+- **Maximum range:** 1.35
+- **Attack speed:** 0.9
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Axe_ScrapCleaver
+### Short Bat with Railspike
+- **Name:** Short Bat with Railspike
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.4
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.05
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 10
+- **Average condition:** 150
+- **Item ID:** Base.ShortBat_RailSpike
+### Short Bat with Sawblade
+- **Name:** Short Bat with Sawblade
+- **Encumbrance:** 3
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 10
+- **Average condition:** 130
+- **Item ID:** Base.ShortBat_Sawblade
+### Spade Head Scrap Metal Weapon
+- **Name:** Spade Head Scrap Metal Weapon
+- **Encumbrance:** 4
+- **Equipped:** 2H*
+- **Minimum damage:** 0.8
+- **Maximum damage:** 2
+- **Door damage:** 15
+- **Tree damage:** 15
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.ScrapWeaponSpade
+### Stone-Blade Scythe
+- **Name:** Stone-Blade Scythe
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.PrimitiveScythe
+### Sturdy Bone Club with Spikes
+- **Name:** Sturdy Bone Club with Spikes
+- **Encumbrance:** 2.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.5
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.LargeBoneClub_Spiked
+### Tree Branch with Railspike
+- **Name:** Tree Branch with Railspike
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.TreeBranch_Railspike
+### Wood Axe
+- **Name:** Wood Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H
+- **Minimum damage:** 1.3
+- **Maximum damage:** 3
+- **Door damage:** 55
+- **Tree damage:** 55
+- **Minimum range:** 0.61
+- **Maximum range:** 1.35
+- **Attack speed:** 1
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 12×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 40
+- **Average condition:** 600
+- **Item ID:** Base.WoodAxe
+### Wood Axe
+- **Name:** Wood Axe
+- **Encumbrance:** 3
+- **Equipped:** 2H
+- **Minimum damage:** 1.3
+- **Maximum damage:** 3
+- **Door damage:** 55
+- **Tree damage:** 55
+- **Minimum range:** 0.61
+- **Maximum range:** 1.35
+- **Attack speed:** 1
+- **Endurance modifier:** 3×
+- **Critical hit chance:** 50%
+- **Crit multiplier:** 12×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 25
+- **Average condition:** 375
+- **Item ID:** Base.WoodAxeForged

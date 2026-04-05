@@ -1,7 +1,7 @@
 """
 Embedding generation via LangChain OllamaEmbeddings.
 
-Default model: nomic-embed-text (768-dim, high quality, fast).
+Default model: nomic-embed-text-v2-moe (768-dim, high quality, fast).
 Wraps langchain_ollama.OllamaEmbeddings for consistent usage across
 the RAG pipeline and context manager.
 """
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Configuration
 # ---------------------------------------------------------------------------
 OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-EMBED_MODEL: str = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
+EMBED_MODEL: str = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text-v2-moe")
 
 # ---------------------------------------------------------------------------
 # LangChain OllamaEmbeddings singleton

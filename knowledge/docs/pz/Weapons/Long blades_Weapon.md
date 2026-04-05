@@ -1,0 +1,281 @@
+---
+title: "Weapon — Long blades"
+category: Weapons
+type: Long blades
+source_url: https://pzwiki.net/wiki/Weapon#Long_blades
+scraped_at: 2026-02-24 16:33:05
+method: selenium_v2
+---
+
+# Weapon — Long blades
+
+### Long blades
+
+Long blade weapons are strong weapons, especially valuable end-game. They both deal damage to clothing, which can be beneficial in reducing zombie armor, but results in damaged clothing.
+
+### Broken Katana
+- **Name:** Broken Katana
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 1.5
+- **Maximum damage:** 2
+- **Door damage:** 5
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Katana_Broken
+### Broken Scrap Metal Sword
+- **Name:** Broken Scrap Metal Sword
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.9
+- **Maximum damage:** 1.6
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Sword_Scrap_Broken
+### Broken Simple Sword
+- **Name:** Broken Simple Sword
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.9
+- **Maximum damage:** 1.8
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.CrudeSword_Broken
+### Broken Sword
+- **Name:** Broken Sword
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 1.4
+- **Maximum damage:** 1.8
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 13
+- **Condition lower chance:** 15
+- **Average condition:** 195
+- **Item ID:** Base.Sword_Broken
+### Katana
+- **Name:** Katana
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 8
+- **Maximum damage:** 8
+- **Door damage:** 8
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 35%
+- **Crit multiplier:** 6×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.Katana
+### Machete
+- **Name:** Machete
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 2
+- **Maximum damage:** 3
+- **Door damage:** 10
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 25
+- **Average condition:** 325
+- **Item ID:** Base.Machete
+### Machete
+- **Name:** Machete
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 2
+- **Maximum damage:** 3
+- **Door damage:** 10
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 13
+- **Condition lower chance:** 25
+- **Average condition:** 325
+- **Item ID:** Base.MacheteForged
+### Scrap Metal Chopper
+- **Name:** Scrap Metal Chopper
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 1
+- **Maximum damage:** 2
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.Machete_Crude
+### Scrap Metal Shortsword
+- **Name:** Scrap Metal Shortsword
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.9
+- **Maximum damage:** 1.8
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.ShortSword_Scrap
+### Scrap Metal Sword
+- **Name:** Scrap Metal Sword
+- **Encumbrance:** 3
+- **Equipped:** 2H
+- **Minimum damage:** 1.5
+- **Maximum damage:** 2.5
+- **Door damage:** 8
+- **Tree damage:** 10
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Sword_Scrap
+### Shortsword
+- **Name:** Shortsword
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 1.5
+- **Maximum damage:** 2
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 13
+- **Condition lower chance:** 20
+- **Average condition:** 260
+- **Item ID:** Base.ShortSword
+### Simple Shortsword
+- **Name:** Simple Shortsword
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 1
+- **Maximum damage:** 2
+- **Door damage:** 5
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.CrudeShortSword
+### Simple Sword
+- **Name:** Simple Sword
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 1.5
+- **Maximum damage:** 3
+- **Door damage:** 8
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.CrudeSword
+### Sword
+- **Name:** Sword
+- **Encumbrance:** 2
+- **Equipped:** 2H*
+- **Minimum damage:** 2
+- **Maximum damage:** 3
+- **Door damage:** 8
+- **Tree damage:** 5
+- **Minimum range:** 0.61
+- **Maximum range:** 1.4
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 13
+- **Condition lower chance:** 20
+- **Average condition:** 260
+- **Item ID:** Base.Sword

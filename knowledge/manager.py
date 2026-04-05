@@ -218,8 +218,8 @@ class KnowledgeManager:
 
             self._vectorstore = PGVector(
                 collection_name=KB_COLLECTION,
-                connection=PGVECTOR_CONNECTION,
-                embeddings=get_embeddings(),
+                connection_string=PGVECTOR_CONNECTION,
+                embedding_function=get_embeddings(),
                 use_jsonb=True,
             )
             logger.info(f"Knowledge base vectorstore initialized: collection={KB_COLLECTION}")

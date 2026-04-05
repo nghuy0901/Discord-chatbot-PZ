@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U clct -d clct_rag"]
       interval: 10s
@@ -34,6 +34,8 @@ services:
     environment:
       # Override POSTGRES_URL to use Docker service name
       POSTGRES_URL: postgresql://clct:clct@postgres:5432/clct_rag
+      # Override OLLAMA_BASE_URL so the container can reach Ollama on the host machine
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,8 +54,6 @@ services:
         max-size: "10m"
         max-file: "3"
 
-volumes:
-  pgdata:
 
 networks:
   bot-network:

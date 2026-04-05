@@ -1,6 +1,12 @@
 # Generated image files
 images/
 
+# PostgreSQL data (bind mount)
+pgdata/
+
+# Backups
+backups/
+
 config.json
 cookies.json
 *.har

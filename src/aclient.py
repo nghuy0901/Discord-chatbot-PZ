@@ -44,8 +44,18 @@ ENABLE_IMPLICIT_REPLIES: bool = (
 )
 ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "true").lower() == "true"
 ENABLE_FEEDBACK: bool = os.getenv("ENABLE_FEEDBACK", "true").lower() == "true"
+ENABLE_NAME_MENTION: bool = (
+    os.getenv("ENABLE_NAME_MENTION", "true").lower() == "true"
+)
 STREAM_EDIT_INTERVAL: float = float(os.getenv("STREAM_EDIT_INTERVAL", "1.5"))
 MAX_RESPONSE_LENGTH: int = int(os.getenv("MAX_RESPONSE_LENGTH", "4000"))
+
+# Bot name aliases for mention detection (case-insensitive)
+BOT_NAME_ALIASES: list = [
+    alias.strip().lower()
+    for alias in os.getenv("BOT_NAME_ALIASES", "nomnom,nom nom,nôm nôm").split(",")
+    if alias.strip()
+]
 
 # Admin user IDs (comma-separated in .env)
 ADMIN_USER_IDS: set = set(
@@ -160,6 +170,20 @@ class CLCTClient(discord.Client):
             except Exception as e:
                 logger.warning(f"⚠️ Knowledge base init failed (non-fatal): {e}")
 
+        # E1: Initialize BM25 indices for Hybrid RAG
+        if ENABLE_RAG:
+            try:
+                from rag.bm25_search import init_bm25_indices
+                bm25_results = await init_bm25_indices()
+                total_bm25 = sum(bm25_results.values())
+                logger.info(
+                    f"✅ BM25 indices initialized: {total_bm25} docs "
+                    f"(chat={bm25_results.get('chat_history', 0)}, "
+                    f"kb={bm25_results.get('knowledge_base', 0)})"
+                )
+            except Exception as e:
+                logger.warning(f"⚠️ BM25 index init failed (non-fatal, hybrid search degrades to vector-only): {e}")
+
     async def send_start_prompt(self) -> None:
         """No-op — CLCT doesn't need an initial prompt broadcast."""
         logger.info("CLCT ready — responding to @mentions and replies.")
@@ -200,6 +224,17 @@ class CLCTClient(discord.Client):
         if isinstance(message.channel, discord.Thread):
             if self.context_manager.has_bot_participated(channel_id):
                 return True
+
+        # 5. Name mention detection (F1): Check if bot's name appears in message text
+        if ENABLE_NAME_MENTION and message.content:
+            content_lower = message.content.lower()
+            for alias in BOT_NAME_ALIASES:
+                if alias in content_lower:
+                    logger.info(
+                        f"🔍 Name mention detected: '{alias}' in message from "
+                        f"{message.author.display_name}"
+                    )
+                    return True
 
         return False
 
@@ -261,6 +296,16 @@ class CLCTClient(discord.Client):
                 for domain, count in result.items():
                     status_lines.append(f"• **{domain}**: {count} chunks")
                 status_lines.append(f"\n**Total**: {total} chunks")
+
+                # E1: Refresh BM25 index for hybrid search
+                try:
+                    from rag.bm25_search import get_kb_bm25
+                    kb_bm25 = get_kb_bm25()
+                    bm25_count = await kb_bm25.refresh_from_kb()
+                    status_lines.append(f"🔍 **BM25 Index**: {bm25_count} docs reindexed")
+                except Exception as bm25_err:
+                    status_lines.append(f"⚠️ BM25 reindex skipped: {bm25_err}")
+
                 await message.reply("\n".join(status_lines), mention_author=False)
                 await message.remove_reaction("🔄", self.user)
                 await message.add_reaction("✅")

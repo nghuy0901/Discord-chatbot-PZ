@@ -78,8 +78,8 @@ def get_vectorstore() -> PGVector:
     if _vectorstore is None:
         _vectorstore = PGVector(
             collection_name=COLLECTION_NAME,
-            connection=PGVECTOR_CONNECTION,
-            embeddings=get_embeddings(),
+            connection_string=PGVECTOR_CONNECTION,
+            embedding_function=get_embeddings(),
             use_jsonb=True,
         )
         logger.info(f"PGVector store initialised: collection={COLLECTION_NAME}")

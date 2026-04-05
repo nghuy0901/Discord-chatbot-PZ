@@ -1,0 +1,1877 @@
+---
+title: "Weapon — Short blunts"
+category: Weapons
+type: Short blunts
+source_url: https://pzwiki.net/wiki/Weapon#Short_blunts
+scraped_at: 2026-02-24 16:32:58
+method: selenium_v2
+---
+
+# Weapon — Short blunts
+
+### Short blunts
+
+Short blunt weapons are one of the most versatile one-handed weapons, being able to critically hit without the jaw stab bonus, making a good all-rounder weapons. They are also easy to find and do not damage the clothing of zombies or players on hit.
+
+### Animal Bone
+- **Name:** Animal Bone
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.AnimalBone
+### Badminton Racket
+- **Name:** Badminton Racket
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.2
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 3
+- **Average condition:** 12
+- **Item ID:** Base.BadmintonRacket
+### Ball-peen Hammer
+- **Name:** Ball-peen Hammer
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 30
+- **Average condition:** 300
+- **Item ID:** Base.BallPeenHammer
+### Ball-peen Hammer
+- **Name:** Ball-peen Hammer
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 30
+- **Average condition:** 300
+- **Item ID:** Base.BallPeenHammerForged
+### Block Mace
+- **Name:** Block Mace
+- **Encumbrance:** 2.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.2
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 20
+- **Average condition:** 200
+- **Item ID:** Base.BlockMace
+### Bone Club
+- **Name:** Bone Club
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 10
+- **Average condition:** 50
+- **Item ID:** Base.BoneClub
+### Bone Club with Spikes
+- **Name:** Bone Club with Spikes
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.BoneClub_Spiked
+### Bowling Pin
+- **Name:** Bowling Pin
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.BowlingPin
+### Bowling Pin with Nails
+- **Name:** Bowling Pin with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.7
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.BowlingPin_Nails
+### Brass Nameplate
+- **Name:** Brass Nameplate
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 5
+- **Average condition:** 20
+- **Item ID:** Base.BrassNameplate
+### Broken Acoustic Guitar Neck
+- **Name:** Broken Acoustic Guitar Neck
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.GuitarAcousticNeck_Broken
+### Broken Banjo Neck
+- **Name:** Broken Banjo Neck
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.BanjoNeck_Broken
+### Broken Baseball Bat
+- **Name:** Broken Baseball Bat
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.9
+- **Door damage:** 3
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.BaseballBat_Broken
+### Broken Baseball Bat with Nails
+- **Name:** Broken Baseball Bat with Nails
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.2
+- **Door damage:** 4
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.BaseballBat_Broken_Nails
+### Broken Branch
+- **Name:** Broken Branch
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 3
+- **Average condition:** 15
+- **Item ID:** Base.Branch_Broken
+### Broken Branch with Nails
+- **Name:** Broken Branch with Nails
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 3
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 3
+- **Condition lower chance:** 3
+- **Average condition:** 9
+- **Item ID:** Base.Branch_Broken_Nails
+### Broken Electric Bass Neck
+- **Name:** Broken Electric Bass Neck
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.GuitarElectricBassNeck_Broken
+### Broken Electric Guitar Neck
+- **Name:** Broken Electric Guitar Neck
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.GuitarElectricNeck_Broken
+### Broken Field Hockey Stick
+- **Name:** Broken Field Hockey Stick
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.22
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.FieldHockeyStick_Broken
+### Broken Field Hockey Stick with Nails
+- **Name:** Broken Field Hockey Stick with Nails
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.FieldHockeyStick_Broken_Nails
+### Broken Garden Tool Handle
+- **Name:** Broken Garden Tool Handle
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.GardenToolHandle_Broken
+### Broken Iron Pipe
+- **Name:** Broken Iron Pipe
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.9
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 10
+- **Average condition:** 60
+- **Item ID:** Base.MetalPipe_Broken
+### Broken Large Handle
+- **Name:** Broken Large Handle
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.LongHandle_Broken
+### Broken Large Handle with Nails
+- **Name:** Broken Large Handle with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.LongHandle_Broken_Nails
+### Broken Long Stick
+- **Name:** Broken Long Stick
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.3
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 2
+- **Average condition:** 8
+- **Item ID:** Base.LongStick_Broken
+### Broken Plank
+- **Name:** Broken Plank
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.7
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.Plank_Broken
+### Broken Plank with Nails
+- **Name:** Broken Plank with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 0.9
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.Plank_Broken_Nails
+### Broken Stick
+- **Name:** Broken Stick
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.WoodenStick_Broken
+### Broken Stick with Nails
+- **Name:** Broken Stick with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.7
+- **Door damage:** 4
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.13
+- **Attack speed:** 1.15
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.WoodenStick_Broken_Nails
+### Broken Table Leg
+- **Name:** Broken Table Leg
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.TableLeg_Broken
+### Broken Table Leg with Nails
+- **Name:** Broken Table Leg with Nails
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.TableLeg_Broken_Nails
+### Carpentry Chisel
+- **Name:** Carpentry Chisel
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.CarpentryChisel
+### Chair Leg
+- **Name:** Chair Leg
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 3
+- **Condition lower chance:** 2
+- **Average condition:** 6
+- **Item ID:** Base.ChairLeg
+### Chair Leg with Nails
+- **Name:** Chair Leg with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 3
+- **Condition lower chance:** 2
+- **Average condition:** 6
+- **Item ID:** Base.ChairLeg_Nails
+### Claw Hammer
+- **Name:** Claw Hammer
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 30
+- **Average condition:** 300
+- **Item ID:** Base.Hammer
+### Claw Hammer
+- **Name:** Claw Hammer
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 30
+- **Average condition:** 300
+- **Item ID:** Base.HammerForged
+### Club Hammer
+- **Name:** Club Hammer
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 25
+- **Average condition:** 250
+- **Item ID:** Base.ClubHammer
+### Club Hammer
+- **Name:** Club Hammer
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 25
+- **Average condition:** 250
+- **Item ID:** Base.ClubHammerForged
+### Debug Yardstick
+- **Name:** Debug Yardstick
+- **Encumbrance:** 3
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.2
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.3
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.YardstickDEBUG
+### Drumstick
+- **Name:** Drumstick
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.2
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.3
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Drumstick
+### Dumbbell
+- **Name:** Dumbbell
+- **Encumbrance:** 5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 25
+- **Average condition:** 250
+- **Item ID:** Base.DumbBell
+### Dumbbell
+- **Name:** Dumbbell
+- **Encumbrance:** 5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 0.9
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 25
+- **Average condition:** 250
+- **Item ID:** Base.DumbBell_Forged
+### File
+- **Name:** File
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.File
+### Fireplace Poker
+- **Name:** Fireplace Poker
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 35%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.FireplacePoker
+### Firewood
+- **Name:** Firewood
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.7
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 5
+- **Average condition:** 5
+- **Item ID:** Base.Firewood
+### Firewood with Nails
+- **Name:** Firewood with Nails
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 5
+- **Average condition:** 5
+- **Item ID:** Base.Firewood_Nails
+### Flute
+- **Name:** Flute
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.2
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.3
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Flute
+### Frying Pan
+- **Name:** Frying Pan
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 3
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** 1.3×
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 12
+- **Average condition:** 120
+- **Item ID:** Base.Pan
+### Frying Pan
+- **Name:** Frying Pan
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 3
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** 1.3×
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 12
+- **Average condition:** 120
+- **Item ID:** Base.PanForged
+### Gavel
+- **Name:** Gavel
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.1
+- **Maximum damage:** 0.2
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.9
+- **Attack speed:** 1.3
+- **Endurance modifier:** -
+- **Critical hit chance:** -
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Gavel
+### Griddle Pan
+- **Name:** Griddle Pan
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.25
+- **Maximum damage:** 0.45
+- **Door damage:** 3
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** 1.3×
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 1.7×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 12
+- **Average condition:** 120
+- **Item ID:** Base.GridlePan
+### Iron Bar Half
+- **Name:** Iron Bar Half
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.IronBarHalf
+### Iron Pipe
+- **Name:** Iron Pipe
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MetalPipe
+### Jawbone
+- **Name:** Jawbone
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.JawboneBovide
+### Jawbone Club
+- **Name:** Jawbone Club
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.JawboneBovide_Club
+### Large Animal Bone
+- **Name:** Large Animal Bone
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.LargeAnimalBone
+### Large Hook
+- **Name:** Large Hook
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 0.8
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.LargeHook
+### Lead Pipe
+- **Name:** Lead Pipe
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.2
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.15
+- **Attack speed:** 0.93
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.LeadPipe
+### Mace
+- **Name:** Mace
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.8
+- **Maximum damage:** 1.4
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 40%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.Mace
+### Mason's Chisel
+- **Name:** Mason's Chisel
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MasonsChisel
+### Medium Handle
+- **Name:** Medium Handle
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 5
+- **Average condition:** 50
+- **Item ID:** Base.Handle
+### Medium Handle - Can-Reinforced
+- **Name:** Medium Handle - Can-Reinforced
+- **Encumbrance:** 1.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.6
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 10%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 8
+- **Average condition:** 120
+- **Item ID:** Base.Handle_Can
+### Medium Handle with Nails
+- **Name:** Medium Handle with Nails
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.7
+- **Door damage:** 4
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.13
+- **Attack speed:** 1.15
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 3
+- **Average condition:** 30
+- **Item ID:** Base.Handle_Nails
+### Metalworking Chisel
+- **Name:** Metalworking Chisel
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MetalworkingChisel
+### Metalworking Punch
+- **Name:** Metalworking Punch
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MetalworkingPunch
+### Nightstick
+- **Name:** Nightstick
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.Nightstick
+### Pipe Wrench
+- **Name:** Pipe Wrench
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 25
+- **Average condition:** 250
+- **Item ID:** Base.PipeWrench
+### Plunger
+- **Name:** Plunger
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 3
+- **Condition lower chance:** 2
+- **Average condition:** 6
+- **Item ID:** Base.Plunger
+### Plunger with Barbed Wire
+- **Name:** Plunger with Barbed Wire
+- **Encumbrance:** 0.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.45
+- **Maximum damage:** 0.75
+- **Door damage:** -
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 6
+- **Condition lower chance:** 4
+- **Average condition:** 24
+- **Item ID:** Base.Plunger_BarbedWire
+### Ratchet Wrench
+- **Name:** Ratchet Wrench
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 10
+- **Average condition:** 90
+- **Item ID:** Base.Ratchet
+### Rolling Pin
+- **Name:** Rolling Pin
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.5
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.2
+- **Endurance modifier:** 1.4×
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 8
+- **Condition lower chance:** 14
+- **Average condition:** 112
+- **Item ID:** Base.RollingPin
+### Saucepan
+- **Name:** Saucepan
+- **Encumbrance:** 0.7
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 10
+- **Average condition:** 50
+- **Item ID:** Base.Saucepan
+### Saucepan
+- **Name:** Saucepan
+- **Encumbrance:** 0.7
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.7
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 10
+- **Average condition:** 50
+- **Item ID:** Base.SaucepanCopper
+### Scrap Metal Morningstar - Short
+- **Name:** Scrap Metal Morningstar - Short
+- **Encumbrance:** 2.25
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.4
+- **Door damage:** 5
+- **Tree damage:** 1
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.Morningstar_Scrap_Short
+### Sheet Metal Snips
+- **Name:** Sheet Metal Snips
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.23
+- **Max condition:** 8
+- **Condition lower chance:** 10
+- **Average condition:** 80
+- **Item ID:** Base.SheetMetalSnips
+### Short Bat
+- **Name:** Short Bat
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 15
+- **Average condition:** 150
+- **Item ID:** Base.ShortBat
+### Short Bat - Can-Reinforced
+- **Name:** Short Bat - Can-Reinforced
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.26
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.ShortBat_Can
+### Short Bat with Nails
+- **Name:** Short Bat with Nails
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.3
+- **Door damage:** 6
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.05
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.ShortBat_Nails
+### Short Bat with Rake Spikes
+- **Name:** Short Bat with Rake Spikes
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.4
+- **Door damage:** 7
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.23
+- **Attack speed:** 1.05
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.ShortBat_RakeHead
+### Short Bat with Spikes
+- **Name:** Short Bat with Spikes
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.2
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 15
+- **Average condition:** 225
+- **Item ID:** Base.SpikedShortBat
+### Smithing Hammer
+- **Name:** Smithing Hammer
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 10
+- **Condition lower chance:** 30
+- **Average condition:** 300
+- **Item ID:** Base.SmithingHammer
+### Steel Bar Half
+- **Name:** Steel Bar Half
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.SteelBarHalf
+### Steel Rod
+- **Name:** Steel Rod
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.MetalBar
+### Steel Rod Half
+- **Name:** Steel Rod Half
+- **Encumbrance:** 0.75
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 15
+- **Average condition:** 120
+- **Item ID:** Base.SteelRodHalf
+### Stone Hammer
+- **Name:** Stone Hammer
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.7
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.05
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 15%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.HammerStone
+### Stone Mace
+- **Name:** Stone Mace
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.8
+- **Maximum damage:** 1.3
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.3
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 40%
+- **Crit multiplier:** 4×
+- **Knockback:** 0.5
+- **Max condition:** 15
+- **Condition lower chance:** 20
+- **Average condition:** 300
+- **Item ID:** Base.Mace_Stone
+### Sturdy Bone Club
+- **Name:** Sturdy Bone Club
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1.1
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.5
+- **Max condition:** 5
+- **Condition lower chance:** 10
+- **Average condition:** 50
+- **Item ID:** Base.LargeBoneClub
+### Tennis Racket
+- **Name:** Tennis Racket
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.3
+- **Maximum damage:** 0.5
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.25
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** 1×
+- **Knockback:** 0.3
+- **Max condition:** 4
+- **Condition lower chance:** 6
+- **Average condition:** 24
+- **Item ID:** Base.TennisRacket
+### Tire Iron
+- **Name:** Tire Iron
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.2
+- **Attack speed:** 0.95
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 10
+- **Condition lower chance:** 10
+- **Average condition:** 100
+- **Item ID:** Base.TireIron
+### Tree Branch
+- **Name:** Tree Branch
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.TreeBranch2
+### Tree Branch - Can-Reinforced
+- **Name:** Tree Branch - Can-Reinforced
+- **Encumbrance:** 2.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.6
+- **Maximum damage:** 1.1
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.13
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 30%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.3
+- **Max condition:** 8
+- **Condition lower chance:** 8
+- **Average condition:** 64
+- **Item ID:** Base.TreeBranch_Can
+### Tree Branch with Bone Spikes
+- **Name:** Tree Branch with Bone Spikes
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.TreeBranch_Bone
+### Tree Branch with Nails
+- **Name:** Tree Branch with Nails
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.7
+- **Maximum damage:** 1.2
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.TreeBranch_Nails
+### Violin
+- **Name:** Violin
+- **Encumbrance:** 0.7
+- **Equipped:** 1H
+- **Minimum damage:** 0.2
+- **Maximum damage:** 0.4
+- **Door damage:** 5
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.2
+- **Endurance modifier:** -
+- **Critical hit chance:** 5%
+- **Crit multiplier:** -
+- **Knockback:** 0.3
+- **Max condition:** 1
+- **Condition lower chance:** 1
+- **Average condition:** 1
+- **Item ID:** Base.Violin
+### Wooden Mallet
+- **Name:** Wooden Mallet
+- **Encumbrance:** 1.5
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.9
+- **Door damage:** 9
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1
+- **Attack speed:** 1.1
+- **Endurance modifier:** -
+- **Critical hit chance:** 17%
+- **Crit multiplier:** 3×
+- **Knockback:** 0.5
+- **Max condition:** 8
+- **Condition lower chance:** 20
+- **Average condition:** 160
+- **Item ID:** Base.WoodenMallet
+### Wooden Rod
+- **Name:** Wooden Rod
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.4
+- **Maximum damage:** 0.8
+- **Door damage:** 1
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.3
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.WoodenStick2
+### Wooden Rod with Nails
+- **Name:** Wooden Rod with Nails
+- **Encumbrance:** 2
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 2
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.33
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 25%
+- **Crit multiplier:** 5×
+- **Knockback:** 0.3
+- **Max condition:** 5
+- **Condition lower chance:** 5
+- **Average condition:** 25
+- **Item ID:** Base.WoodenStick_Nails
+### Wrench
+- **Name:** Wrench
+- **Encumbrance:** 1
+- **Equipped:** 1H
+- **Minimum damage:** 0.5
+- **Maximum damage:** 1
+- **Door damage:** 10
+- **Tree damage:** -
+- **Minimum range:** 0.61
+- **Maximum range:** 1.1
+- **Attack speed:** 1
+- **Endurance modifier:** -
+- **Critical hit chance:** 20%
+- **Crit multiplier:** 2×
+- **Knockback:** 0.3
+- **Max condition:** 9
+- **Condition lower chance:** 15
+- **Average condition:** 135
+- **Item ID:** Base.Wrench

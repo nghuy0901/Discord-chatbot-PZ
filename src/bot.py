@@ -78,6 +78,12 @@ def run_discord_bot():
         # Check if we should respond
         should_respond = discordClient.should_respond(message)
 
+        # Debug: log trigger decision
+        logger.debug(
+            f"🔎 Trigger check: author={message.author.display_name}, "
+            f"content='{message.content[:60]}', should_respond={should_respond}"
+        )
+
         # Optional: check implicit reply (expensive, only if enabled)
         if not should_respond:
             should_respond = await discordClient.should_respond_implicit(message)

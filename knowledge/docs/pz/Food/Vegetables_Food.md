@@ -1,0 +1,897 @@
+---
+title: "Food — Vegetables"
+category: Food
+type: Vegetables
+source_url: https://pzwiki.net/wiki/Food#Vegetables
+scraped_at: 2026-02-24 16:36:15
+method: selenium_v2
+---
+
+# Food — Vegetables
+
+### Vegetables
+
+### Avocado
+- **Name:** Avocado
+- **Encumbrance:** 0.3
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -53
+- **Thirst:** -7
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 14
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Avocado
+### Bell Pepper
+- **Name:** Bell Pepper
+- **Encumbrance:** 0.2
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -2
+- **Unhappiness:** -
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BellPepper
+### Black Beans
+- **Name:** Black Beans
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Blackbeans
+### Black Beans (Dried)
+- **Name:** Black Beans (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedBlackBeans
+### Bowl of Beans
+- **Name:** Bowl of Beans
+- **Encumbrance:** 1.5
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -16
+- **Thirst:** -
+- **Unhappiness:** 10
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BeanBowl
+### Broccoli
+- **Name:** Broccoli
+- **Encumbrance:** 0.2
+- **Hunger:** -9
+- **Hunger / Encumbrance:** -45
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Broccoli
+### Brussels Sprouts
+- **Name:** Brussels Sprouts
+- **Encumbrance:** 0.6
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -5
+- **Unhappiness:** 10*
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BrusselSprouts
+### Cabbage
+- **Name:** Cabbage
+- **Encumbrance:** 0.2
+- **Hunger:** -24
+- **Hunger / Encumbrance:** -120
+- **Thirst:** -10
+- **Unhappiness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Cabbage
+### Capers
+- **Name:** Capers
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.Capers
+### Carrots
+- **Name:** Carrots
+- **Encumbrance:** 0.2
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Carrots
+### Cauliflower
+- **Name:** Cauliflower
+- **Encumbrance:** 0.2
+- **Hunger:** -9
+- **Hunger / Encumbrance:** -45
+- **Thirst:** -4
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Cauliflower
+### Chick Peas (Dried)
+- **Name:** Chick Peas (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedChickpeas
+### Corn
+- **Name:** Corn
+- **Encumbrance:** 0.2
+- **Hunger:** -14
+- **Hunger / Encumbrance:** -70
+- **Thirst:** -4
+- **Unhappiness:** 5
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Corn
+### Corn (Dried)
+- **Name:** Corn (Dried)
+- **Encumbrance:** 0.02
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -200
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CornSeed
+### Cucumber
+- **Name:** Cucumber
+- **Encumbrance:** 0.3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -10
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 14
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Cucumber
+### Daikon
+- **Name:** Daikon
+- **Encumbrance:** 0.2
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -60
+- **Thirst:** -5
+- **Unhappiness:** -
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Daikon
+### Dandelions
+- **Name:** Dandelions
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Dandelions
+### Edamame
+- **Name:** Edamame
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Edamame
+### Eggplant
+- **Name:** Eggplant
+- **Encumbrance:** 0.2
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -80
+- **Thirst:** -9
+- **Unhappiness:** 10*
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Eggplant
+### Fried Onion Rings
+- **Name:** Fried Onion Rings
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FriedOnionRings
+### Fried Onion Rings
+- **Name:** Fried Onion Rings
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FriedOnionRingsCraft
+### Fries
+- **Name:** Fries
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FrenchFries
+### Grape Leaves
+- **Name:** Grape Leaves
+- **Encumbrance:** 0.1
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.GrapeLeaves
+### Green Peas
+- **Name:** Green Peas
+- **Encumbrance:** 0.2
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Greenpeas
+### Green Peas (Dried)
+- **Name:** Green Peas (Dried)
+- **Encumbrance:** 0.02
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.GreenpeasSeed
+### Habanero
+- **Name:** Habanero
+- **Encumbrance:** 0.1
+- **Hunger:** -2
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.PepperHabanero
+### Habanero (Dried)
+- **Name:** Habanero (Dried)
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.PepperHabaneroDried
+### Jalapeno
+- **Name:** Jalapeno
+- **Encumbrance:** 0.1
+- **Hunger:** -2
+- **Hunger / Encumbrance:** -20
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.PepperJalapeno
+### Jalapeno (Dried)
+- **Name:** Jalapeno (Dried)
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.PepperJalapenoDried
+### Kale
+- **Name:** Kale
+- **Encumbrance:** 0.2
+- **Hunger:** -16
+- **Hunger / Encumbrance:** -80
+- **Thirst:** -10
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 5
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Kale
+### Kidney Beans (Dried)
+- **Name:** Kidney Beans (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedKidneyBeans
+### Leek
+- **Name:** Leek
+- **Encumbrance:** 0.2
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -60
+- **Thirst:** -5
+- **Unhappiness:** 5*
+- **Fresh (days):** 5
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Leek
+### Lentils (Dried)
+- **Name:** Lentils (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedLentils
+### Lettuce
+- **Name:** Lettuce
+- **Encumbrance:** 0.2
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -75
+- **Thirst:** -7
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Lettuce
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -13
+- **Hunger / Encumbrance:** -65
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric1
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -13
+- **Hunger / Encumbrance:** -65
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric2
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -75
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric3
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -13
+- **Hunger / Encumbrance:** -65
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric4
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -75
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric5
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -13
+- **Hunger / Encumbrance:** -65
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric6
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -13
+- **Hunger / Encumbrance:** -65
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomGeneric7
+### Mushrooms
+- **Name:** Mushrooms
+- **Encumbrance:** 0.2
+- **Hunger:** -7
+- **Hunger / Encumbrance:** -35
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MushroomsButton
+### Olives
+- **Name:** Olives
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.Olives
+### Onion
+- **Name:** Onion
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 28
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Onion
+### Packaged Corn
+- **Name:** Packaged Corn
+- **Encumbrance:** 0.6
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -5
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.CornFrozen
+### Packaged Peas
+- **Name:** Packaged Peas
+- **Encumbrance:** 0.6
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -5
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Peas
+### Packaged Vegetables
+- **Name:** Packaged Vegetables
+- **Encumbrance:** 0.6
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -5
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MixedVegetables
+### Peanuts
+- **Name:** Peanuts
+- **Encumbrance:** 0.2
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Peanuts
+### Potato
+- **Name:** Potato
+- **Encumbrance:** 0.2
+- **Hunger:** -18
+- **Hunger / Encumbrance:** -90
+- **Thirst:** -7
+- **Unhappiness:** 5*
+- **Fresh (days):** 28
+- **Rotten (days):** 280
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Potato
+### Pumpkin
+- **Name:** Pumpkin
+- **Encumbrance:** 1
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** 10*
+- **Fresh (days):** 14
+- **Rotten (days):** 28
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Pumpkin
+### Pumpkin Chunks
+- **Name:** Pumpkin Chunks
+- **Encumbrance:** 0.2
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** 2*
+- **Fresh (days):** 14
+- **Rotten (days):** 28
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PumpkinSmashed
+### Pumpkin Slice
+- **Name:** Pumpkin Slice
+- **Encumbrance:** 0.1
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 28
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PumpkinSliced
+### Radish
+- **Name:** Radish
+- **Encumbrance:** 0.1
+- **Hunger:** -3
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -1
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RedRadish
+### Refried Beans
+- **Name:** Refried Beans
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RefriedBeans
+### Soybeans
+- **Name:** Soybeans
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Soybeans
+### Soybeans (Dried)
+- **Name:** Soybeans (Dried)
+- **Encumbrance:** 0.02
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SoybeansSeed
+### Spinach
+- **Name:** Spinach
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Spinach
+### Split Peas (Dried)
+- **Name:** Split Peas (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedSplitPeas
+### Squash
+- **Name:** Squash
+- **Encumbrance:** 0.5
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -40
+- **Thirst:** -
+- **Unhappiness:** 10*
+- **Fresh (days):** 14
+- **Rotten (days):** 28
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Squash
+### Sugar Beet
+- **Name:** Sugar Beet
+- **Encumbrance:** 0.2
+- **Hunger:** -9
+- **Hunger / Encumbrance:** -45
+- **Thirst:** -4
+- **Unhappiness:** 10
+- **Fresh (days):** 4
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SugarBeet
+### Sweet Potato
+- **Name:** Sweet Potato
+- **Encumbrance:** 0.2
+- **Hunger:** -18
+- **Hunger / Encumbrance:** -90
+- **Thirst:** -7
+- **Unhappiness:** 10*
+- **Fresh (days):** 28
+- **Rotten (days):** 280
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SweetPotato
+### Tato Dots
+- **Name:** Tato Dots
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -10
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TatoDots
+### Tofu
+- **Name:** Tofu
+- **Encumbrance:** 0.3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 14
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Tofu
+### Tofu (Fried)
+- **Name:** Tofu (Fried)
+- **Encumbrance:** 0.3
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -50
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 14
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TofuFried
+### Tomato
+- **Name:** Tomato
+- **Encumbrance:** 0.2
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -60
+- **Thirst:** -8
+- **Unhappiness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 12
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Tomato
+### Turnip
+- **Name:** Turnip
+- **Encumbrance:** 0.2
+- **Hunger:** -18
+- **Hunger / Encumbrance:** -90
+- **Thirst:** -7
+- **Unhappiness:** -
+- **Fresh (days):** 28
+- **Rotten (days):** 280
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Turnip
+### White Beans (Dried)
+- **Name:** White Beans (Dried)
+- **Encumbrance:** 2
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -30
+- **Thirst:** -
+- **Unhappiness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DriedWhiteBeans
+### Zucchini
+- **Name:** Zucchini
+- **Encumbrance:** 0.3
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -33
+- **Thirst:** -10
+- **Unhappiness:** -
+- **Fresh (days):** 6
+- **Rotten (days):** 14
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Zucchini

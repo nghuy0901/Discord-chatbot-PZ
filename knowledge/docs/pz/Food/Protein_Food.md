@@ -1,0 +1,1569 @@
+---
+title: "Food — Protein"
+category: Food
+type: Protein
+source_url: https://pzwiki.net/wiki/Food#Protein
+scraped_at: 2026-02-24 16:36:03
+method: selenium_v2
+---
+
+# Food — Protein
+
+### Protein
+
+#### Meat
+
+### Bacon
+- **Name:** Bacon
+- **Encumbrance:** 0.3
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -40
+- **Food Sickness:** ?
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Bacon
+### Bacon Bits
+- **Name:** Bacon Bits
+- **Encumbrance:** 0.025
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -40
+- **Food Sickness:** ?
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 15
+- **Burned (mins):** 30
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.BaconBits
+### Bacon Strip
+- **Name:** Bacon Strip
+- **Encumbrance:** 0.1
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -40
+- **Food Sickness:** ?
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 15
+- **Burned (mins):** 35
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BaconRashers
+### Baloney
+- **Name:** Baloney
+- **Encumbrance:** 0.2
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -150
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Baloney
+### Baloney Slices
+- **Name:** Baloney Slices
+- **Encumbrance:** 0.04
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -125
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 5
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BaloneySlice
+### Beef
+- **Name:** Beef
+- **Encumbrance:** 0.5
+- **Hunger:** -80
+- **Hunger / Encumbrance:** -160
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Beef
+### Beef Jerky
+- **Name:** Beef Jerky
+- **Encumbrance:** 0.2
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** -
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BeefJerky
+### Beef Patty
+- **Name:** Beef Patty
+- **Encumbrance:** 0.3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -133
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MeatPatty
+### Chicken (Whole)
+- **Name:** Chicken (Whole)
+- **Encumbrance:** 1.2
+- **Hunger:** -160
+- **Hunger / Encumbrance:** -133
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ChickenWhole
+### Chicken Fillet
+- **Name:** Chicken Fillet
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ChickenFillet
+### Chicken Leg
+- **Name:** Chicken Leg
+- **Encumbrance:** 0.3
+- **Hunger:** -33
+- **Hunger / Encumbrance:** -110
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Chicken
+### Chicken Nuggets
+- **Name:** Chicken Nuggets
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ChickenNuggets
+### Chicken Wing
+- **Name:** Chicken Wing
+- **Encumbrance:** 0.3
+- **Hunger:** -19
+- **Hunger / Encumbrance:** -63
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ChickenWings
+### Ground Beef
+- **Name:** Ground Beef
+- **Encumbrance:** 0.3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -133
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MincedMeat
+### Ham
+- **Name:** Ham
+- **Encumbrance:** 1
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -60
+- **Food Sickness:** -
+- **Fresh (days):** 5
+- **Rotten (days):** 10
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Ham
+### Ham Slice
+- **Name:** Ham Slice
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HamSlice
+### Hotdog Wiener
+- **Name:** Hotdog Wiener
+- **Encumbrance:** 0.15
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -67
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Hotdog_single
+### Meat Dumpling
+- **Name:** Meat Dumpling
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MeatDumpling
+### Mutton Chop
+- **Name:** Mutton Chop
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MuttonChop
+### Pack of Hotdogs
+- **Name:** Pack of Hotdogs
+- **Encumbrance:** 0.6
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.HotdogPack
+### Pepperoni
+- **Name:** Pepperoni
+- **Encumbrance:** 0.1
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** -
+- **Fresh (days):** 15
+- **Rotten (days):** 30
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Pepperoni
+### Pork
+- **Name:** Pork
+- **Encumbrance:** 0.5
+- **Hunger:** -60
+- **Hunger / Encumbrance:** -120
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Pork
+### Pork Chop
+- **Name:** Pork Chop
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.PorkChop
+### Salami
+- **Name:** Salami
+- **Encumbrance:** 0.1
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** -
+- **Fresh (days):** 10
+- **Rotten (days):** 15
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Salami
+### Salami Slices
+- **Name:** Salami Slices
+- **Encumbrance:** 0.02
+- **Hunger:** -4
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** -
+- **Fresh (days):** 10
+- **Rotten (days):** 15
+- **Cooked (mins):** 5
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SalamiSlice
+### Sausage
+- **Name:** Sausage
+- **Encumbrance:** 0.1
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Sausage
+### Steak
+- **Name:** Steak
+- **Encumbrance:** 0.3
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -133
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Steak
+### Turkey (Whole)
+- **Name:** Turkey (Whole)
+- **Encumbrance:** 1.3
+- **Hunger:** -224
+- **Hunger / Encumbrance:** -172
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TurkeyWhole
+### Turkey Fillet
+- **Name:** Turkey Fillet
+- **Encumbrance:** 0.3
+- **Hunger:** -50
+- **Hunger / Encumbrance:** -167
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TurkeyFillet
+### Turkey Leg
+- **Name:** Turkey Leg
+- **Encumbrance:** 0.3
+- **Hunger:** -42
+- **Hunger / Encumbrance:** -140
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TurkeyLegs
+### Turkey Wing
+- **Name:** Turkey Wing
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TurkeyWings
+### Venison
+- **Name:** Venison
+- **Encumbrance:** 0.5
+- **Hunger:** -80
+- **Hunger / Encumbrance:** -160
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 50
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Venison
+
+#### Game
+
+### Dead Bird
+- **Name:** Dead Bird
+- **Encumbrance:** 0.1
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 8
+- **Rotten (days):** 12
+- **Cooked (mins):** 25
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadBird
+### Dead Mouse
+- **Name:** Dead Mouse
+- **Encumbrance:** 0.05
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -200
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 15
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadMouse
+### Dead Rabbit
+- **Name:** Dead Rabbit
+- **Encumbrance:** 1
+- **Hunger:** -45
+- **Hunger / Encumbrance:** -45
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 8
+- **Rotten (days):** 12
+- **Cooked (mins):** 25
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadRabbit
+### Dead Rat
+- **Name:** Dead Rat
+- **Encumbrance:** 0.2
+- **Hunger:** -22
+- **Hunger / Encumbrance:** -110
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadRat
+### Dead Squirrel
+- **Name:** Dead Squirrel
+- **Encumbrance:** 0.4
+- **Hunger:** -32
+- **Hunger / Encumbrance:** -80
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 8
+- **Rotten (days):** 12
+- **Cooked (mins):** 25
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadSquirrel
+### Frog Meat
+- **Name:** Frog Meat
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 10
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FrogMeat
+### Mouse Pups (Dead)
+- **Name:** Mouse Pups (Dead)
+- **Encumbrance:** 0.03
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -167
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 15
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadMousePups
+### Rabbit Meat
+- **Name:** Rabbit Meat
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 25
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Rabbitmeat
+### Rat Baby (Dead)
+- **Name:** Rat Baby (Dead)
+- **Encumbrance:** 0.12
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadRatBaby
+### Rat King (Dead)
+- **Name:** Rat King (Dead)
+- **Encumbrance:** 1
+- **Hunger:** -110
+- **Hunger / Encumbrance:** -110
+- **Unhappiness:** 150
+- **Food Sickness:** ?
+- **Fresh (days):** ∞
+- **Rotten (days):** ∞
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RatKing
+### Rodent Meat
+- **Name:** Rodent Meat
+- **Encumbrance:** 0.3
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 20
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Smallanimalmeat
+### Skinned Mouse (Dead)
+- **Name:** Skinned Mouse (Dead)
+- **Encumbrance:** 0.05
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -200
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 15
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadMouseSkinned
+### Skinned Mouse Pups (Dead)
+- **Name:** Skinned Mouse Pups (Dead)
+- **Encumbrance:** 0.03
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -167
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 15
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadMousePupsSkinned
+### Skinned Rat (Dead)
+- **Name:** Skinned Rat (Dead)
+- **Encumbrance:** 0.2
+- **Hunger:** -22
+- **Hunger / Encumbrance:** -110
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadRatSkinned
+### Skinned Rat Baby (Dead)
+- **Name:** Skinned Rat Baby (Dead)
+- **Encumbrance:** 0.12
+- **Hunger:** -12
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 30
+- **Food Sickness:** ?
+- **Fresh (days):** 6
+- **Rotten (days):** 10
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.DeadRatBabySkinned
+### Small Bird Meat
+- **Name:** Small Bird Meat
+- **Encumbrance:** 0.3
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 20
+- **Burned (mins):** 70
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Smallbirdmeat
+
+#### Seafood
+
+### Alligator Gar
+- **Name:** Alligator Gar
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.AligatorGar
+### Bag of Fish Fingers
+- **Name:** Bag of Fish Fingers
+- **Encumbrance:** 1
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Frozen_FishFingers
+### Black Crappie
+- **Name:** Black Crappie
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BlackCrappie
+### Blue Catfish
+- **Name:** Blue Catfish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BlueCatfish
+### Bluegill
+- **Name:** Bluegill
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Bluegill
+### Channel Catfish
+- **Name:** Channel Catfish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ChannelCatfish
+### Crayfish
+- **Name:** Crayfish
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Crayfish
+### Fish (Fried)
+- **Name:** Fish (Fried)
+- **Encumbrance:** 0.2
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FishFried
+### Fish Fillet
+- **Name:** Fish Fillet
+- **Encumbrance:** 0.2
+- **Hunger:** -25
+- **Hunger / Encumbrance:** -125
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 20
+- **Burned (mins):** 50
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FishFillet
+### Fish Fingers
+- **Name:** Fish Fingers
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** 20
+- **Burned (mins):** 40
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FishFingers
+### Fish Guts
+- **Name:** Fish Guts
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FishGuts
+### Fish Roe
+- **Name:** Fish Roe
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as spice in cooking
+- **Item ID:** Base.FishRoe
+### Fish Roe Sac
+- **Name:** Fish Roe Sac
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FishRoeSac
+### Fish Sushi
+- **Name:** Fish Sushi
+- **Encumbrance:** 0.1
+- **Hunger:** -8
+- **Hunger / Encumbrance:** -80
+- **Unhappiness:** -10
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SushiFish
+### Flathead Catfish
+- **Name:** Flathead Catfish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FlatheadCatfish
+### Freshwater Drum
+- **Name:** Freshwater Drum
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.FreshwaterDrum
+### Fried Shrimp
+- **Name:** Fried Shrimp
+- **Encumbrance:** 0.1
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ShrimpFried
+### Fried Shrimp
+- **Name:** Fried Shrimp
+- **Encumbrance:** 0.1
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 30
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ShrimpFriedCraft
+### Green Sunfish
+- **Name:** Green Sunfish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.GreenSunfish
+### Largemouth Bass
+- **Name:** Largemouth Bass
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.LargemouthBass
+### Little Bait Fish
+- **Name:** Little Bait Fish
+- **Encumbrance:** 0.1
+- **Hunger:** -3
+- **Hunger / Encumbrance:** -30
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BaitFish
+### Lobster
+- **Name:** Lobster
+- **Encumbrance:** 0.4
+- **Hunger:** -40
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 30
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Lobster
+### Muskellunge
+- **Name:** Muskellunge
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Muskellunge
+### Mussels
+- **Name:** Mussels
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Mussels
+### Oysters
+- **Name:** Oysters
+- **Encumbrance:** 0.1
+- **Hunger:** -5
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Oysters
+### Oysters (Fried)
+- **Name:** Oysters (Fried)
+- **Encumbrance:** 0.1
+- **Hunger:** -6
+- **Hunger / Encumbrance:** -60
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 7
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.OystersFried
+### Paddlefish
+- **Name:** Paddlefish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Paddlefish
+### Redear Sunfish
+- **Name:** Redear Sunfish
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.RedearSunfish
+### Salmon
+- **Name:** Salmon
+- **Encumbrance:** 0.3
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Salmon
+### Sauger
+- **Name:** Sauger
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Sauger
+### Shrimp
+- **Name:** Shrimp
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** ?
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Shrimp
+### Shrimp Dumpling
+- **Name:** Shrimp Dumpling
+- **Encumbrance:** 0.1
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.ShrimpDumpling
+### Smallmouth Bass
+- **Name:** Smallmouth Bass
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SmallmouthBass
+### Spotted Bass
+- **Name:** Spotted Bass
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SpottedBass
+### Squid
+- **Name:** Squid
+- **Encumbrance:** 0.2
+- **Hunger:** -30
+- **Hunger / Encumbrance:** -150
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Squid
+### Squid Calamari
+- **Name:** Squid Calamari
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** -
+- **Food Sickness:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 10
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SquidCalamari
+### Striped Bass
+- **Name:** Striped Bass
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.StripedBass
+### Tin of Caviar
+- **Name:** Tin of Caviar
+- **Encumbrance:** 0.2
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -50
+- **Unhappiness:** -20
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 5
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Caviar
+### Walleye
+- **Name:** Walleye
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Walleye
+### White Bass
+- **Name:** White Bass
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.WhiteBass
+### White Crappie
+- **Name:** White Crappie
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.WhiteCrappie
+### Yellow Perch
+- **Name:** Yellow Perch
+- **Encumbrance:** 0.4
+- **Hunger:** -15
+- **Hunger / Encumbrance:** -38
+- **Unhappiness:** 20*
+- **Food Sickness:** ?
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 20
+- **Burned (mins):** 60
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.YellowPerch
+
+#### Egg
+
+### Egg
+- **Name:** Egg
+- **Encumbrance:** 0.1
+- **Hunger:** -7
+- **Hunger / Encumbrance:** -70
+- **Food Sickness:** ?
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 4
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Egg
+### Egg (Boiled)
+- **Name:** Egg (Boiled)
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.EggBoiled
+### Egg (Poached)
+- **Name:** Egg (Poached)
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.EggPoached
+### Egg (Scrambled)
+- **Name:** Egg (Scrambled)
+- **Encumbrance:** 0.1
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.EggScrambled
+### Egg Carton
+- **Name:** Egg Carton
+- **Encumbrance:** 1
+- **Hunger:** -
+- **Hunger / Encumbrance:** -
+- **Food Sickness:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.EggCarton
+### Omelette
+- **Name:** Omelette
+- **Encumbrance:** 0.1
+- **Hunger:** -20
+- **Hunger / Encumbrance:** -200
+- **Food Sickness:** -
+- **Fresh (days):** 3
+- **Rotten (days):** 6
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.EggOmelette
+### Turkey Egg
+- **Name:** Turkey Egg
+- **Encumbrance:** 0.1
+- **Hunger:** -10
+- **Hunger / Encumbrance:** -100
+- **Food Sickness:** ?
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 4
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.TurkeyEgg
+### Wild Eggs
+- **Name:** Wild Eggs
+- **Encumbrance:** 0.1
+- **Hunger:** -7
+- **Hunger / Encumbrance:** -70
+- **Food Sickness:** ?
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 4
+- **Burned (mins):** 20
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.WildEggs
+
+#### Insects
+
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.AmericanLadyCaterpillar
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.BandedWoolyBearCaterpillar
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** 1
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.MonarchCaterpillar
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SawflyLarva
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SilkMothCaterpillar
+### Caterpillar
+- **Name:** Caterpillar
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** 1
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.SwallowtailCaterpillar
+### Centipede
+- **Name:** Centipede
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Centipede
+### Centipede
+- **Name:** Centipede
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Centipede2
+### Cockroach
+- **Name:** Cockroach
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Cockroach
+### Cricket
+- **Name:** Cricket
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Cricket
+### Grasshopper
+- **Name:** Grasshopper
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Grasshopper
+### Ladybug
+- **Name:** Ladybug
+- **Encumbrance:** 0.01
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** -
+- **Burned (mins):** -
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Ladybug
+### Leech
+- **Name:** Leech
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 2
+- **Rotten (days):** 4
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Leech
+### Maggots
+- **Name:** Maggots
+- **Encumbrance:** 0.01
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Maggots
+### Millipede
+- **Name:** Millipede
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** 1
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Millipede
+### Millipede
+- **Name:** Millipede
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** 1
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Millipede2
+### Pillbug
+- **Name:** Pillbug
+- **Encumbrance:** 0.01
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Pillbug
+### Slug
+- **Name:** Slug
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Slug
+### Slug
+- **Name:** Slug
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Slug2
+### Snail
+- **Name:** Snail
+- **Encumbrance:** 0.1
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -10
+- **Unhappiness:** 20
+- **Food Sickness:** ?
+- **Poison:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Snail
+### Termites
+- **Name:** Termites
+- **Encumbrance:** 0.01
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 14
+- **Rotten (days):** 21
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Termites
+### Worm
+- **Name:** Worm
+- **Encumbrance:** 0.01
+- **Hunger:** -1
+- **Hunger / Encumbrance:** -100
+- **Unhappiness:** 20
+- **Food Sickness:** -
+- **Poison:** -
+- **Fresh (days):** 4
+- **Rotten (days):** 8
+- **Cooked (mins):** 5
+- **Burned (mins):** 25
+- **Spice:** Used as ingredient in cooking
+- **Item ID:** Base.Worm

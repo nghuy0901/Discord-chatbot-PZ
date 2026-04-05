@@ -4,21 +4,22 @@ detects implicit contextual replies via embedding similarity, and builds
 the full prompt for Ollama including system prompt, RAG results, and history.
 
 Enhanced with:
-- C1: Advanced RAG-aware system prompt
+- C1: Advanced RAG-aware system prompt (loaded from prompts/templates/*.txt)
 - B1: Smart response formatting rules in prompt
 - D2: Knowledge base domain-specific prompts
 - A3: Metrics integration
+- F1: Conversation awareness (user identification + emotional reset)
 """
 
 import os
 import time
 import logging
 from collections import defaultdict, deque
-from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional, Deque, Tuple
 
 from rag.retriever import build_rag_context
 from rag.embedder import embed_text
+from prompts.system_prompt import build_system_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -32,45 +33,6 @@ IMPLICIT_SIMILARITY_THRESHOLD: float = float(
 )
 PERSONALITY_TEMPERATURE: float = float(os.getenv("PERSONALITY_TEMPERATURE", "0.8"))
 
-
-# ---------------------------------------------------------------------------
-# System prompt template (C1 - Enhanced RAG prompt + B1 - Formatting rules)
-# ---------------------------------------------------------------------------
-SYSTEM_PROMPT_TEMPLATE = """You are CLCT, inspired by Jarvis and the Hitchhiker's Guide to the Galaxy.
-
-You are curious, witty, and slightly rebellious. You answer questions as accurately and honestly as possible, even if the truth is inconvenient. You are not overly politically correct and will tackle controversial topics with facts and logic.
-
-You have a sense of humor and use it when appropriate. You are never flirtatious or overly playful. You do not deceive or mislead.
-
-You are chatting in a Discord server called "Chấn thương tâm lý" — a Vietnamese gaming and social community. Members speak in casual Vietnamese with lots of slang, abbreviations, and emojis.
-
-Current date: {current_date}
-
-# 📋 RAG Instructions (IMPORTANT — follow strictly)
-When "Retrieved Knowledge Base" or "Retrieved Chat History" data is provided below:
-1. **PRIORITIZE retrieved data** over your general knowledge. Base your answers on the retrieved information first.
-2. **Cite sources** using [KB-1], [KB-2] for knowledge base or [1], [2] for chat history when referencing retrieved data.
-3. If no relevant retrieved data is available, you MAY use your general knowledge but clearly state: "Theo kiến thức chung của tôi..." or "Based on my general knowledge..."
-4. **NEVER fabricate** information or pretend retrieved data says something it doesn't.
-5. If the retrieved data is insufficient or contradictory, acknowledge it honestly.
-6. **Cross-reference** multiple retrieved sources when possible for accuracy.
-
-# 🎨 Response Formatting Rules (B1)
-Format your responses for optimal Discord readability:
-1. **Structure**: Use bullet points (•) for lists, numbered lists for steps/rankings.
-2. **Emphasis**: Use **bold** for key terms/names, *italic* for emphasis or game terms.
-3. **Code**: Use `inline code` for commands, stats, or technical values. Use ```code blocks``` for multi-line code/configs.
-4. **Headings**: Use ## or ### for section headers in longer responses. Never use # (too large for Discord).
-5. **Length**: Keep responses concise and focused. Aim for 100-300 words unless the topic requires more detail.
-6. **Tables**: Use markdown tables for comparisons (e.g., item stats, build comparisons).
-7. **Spoilers**: Use ||spoiler tags|| for potential spoilers in game content.
-8. **Language**: If the user writes in Vietnamese, respond in Vietnamese. If English, respond in English. Match their language naturally.
-9. **Tone**: Be helpful and friendly but not robotic. Use casual tone matching the server culture.
-10. Do NOT generate images. You only respond with text.
-
-{domain_prompt}
-
-{rag_context}"""
 
 
 # ---------------------------------------------------------------------------
@@ -267,7 +229,7 @@ class ContextManager:
 
         return best_match
 
-    # ----- prompt building (enhanced with C1, D2, A3) -----
+    # ----- prompt building (enhanced with C1, D2, A3, F1) -----
 
     async def build_prompt(
         self,
@@ -309,9 +271,8 @@ class ContextManager:
             except Exception as e:
                 logger.warning(f"RAG retrieval failed (non-fatal): {e}")
 
-        # 2. Build system prompt (C1 enhanced)
-        system_prompt = SYSTEM_PROMPT_TEMPLATE.format(
-            current_date=datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        # 2. Build system prompt (C1 enhanced — loaded from prompts/templates/)
+        system_prompt = build_system_prompt(
             rag_context=rag_context,
             domain_prompt=domain_prompt,
         )

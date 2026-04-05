@@ -1,9 +1,21 @@
 """
-RAG retriever — Enhanced with query preprocessing (A2), metrics (A3),
-similarity threshold + fallback (A4), and knowledge base integration (D2).
+RAG retriever — Enhanced with:
+- A2: Query preprocessing (clean Discord formatting, expand abbrevs)
+- A3: Metrics tracking
+- A4: Similarity threshold + fallback
+- D2: Knowledge base integration
+- 🆕 E1: Hybrid RAG (BM25 lexical + Vector semantic via RRF)
+- 🆕 E2: Self-RAG (LLM-based relevance grading)
 
-Searches both chat history (LangChain PGVector) and static knowledge base,
-then merges and formats results for prompt injection.
+Pipeline:
+    User Query
+        → A2: Preprocess (clean, expand, detect language/domain)
+        → D2: Knowledge Base search (hybrid: vector + BM25)
+        → A4: Chat History search (hybrid: vector + BM25)
+        → E1: Reciprocal Rank Fusion (merge BM25 + vector)
+        → E2: Self-RAG relevance grading (filter irrelevant results)
+        → Format for prompt injection
+        → A3: Record metrics
 """
 
 import os
@@ -32,9 +44,15 @@ RAG_FALLBACK_TOP_K: int = int(os.getenv("RAG_FALLBACK_TOP_K", "5"))
 KB_TOP_K: int = int(os.getenv("KB_TOP_K", "5"))
 KB_THRESHOLD: float = float(os.getenv("KB_THRESHOLD", "0.35"))
 
+# E1: Hybrid RAG settings
+HYBRID_ENABLED: bool = os.getenv("HYBRID_RAG_ENABLED", "true").lower() == "true"
+
+# E2: Self-RAG settings
+SELF_RAG_ENABLED: bool = os.getenv("SELF_RAG_ENABLED", "true").lower() == "true"
+
 
 # ---------------------------------------------------------------------------
-# Core retrieval with A4 fallback strategy
+# Core retrieval with A4 fallback + E1 hybrid search
 # ---------------------------------------------------------------------------
 async def retrieve(
     query: str,
@@ -44,19 +62,39 @@ async def retrieve(
     include_context: bool = True,
 ) -> List[Dict[str, Any]]:
     """
-    Search for relevant historical messages via LangChain PGVector.
+    Search for relevant historical messages via Hybrid RAG (BM25 + Vector).
+    Falls back to vector-only if hybrid is disabled or BM25 index not ready.
+
     Implements A4 fallback strategy:
     1. Try with normal threshold
     2. If too few results, retry with lower threshold but fewer results
     """
     try:
-        filter_dict = {"channel_id": channel_id} if channel_id else None
-        results = search_similar(
-            query=query,
-            k=top_k,
-            filter_dict=filter_dict,
-            score_threshold=threshold,
-        )
+        if HYBRID_ENABLED:
+            # E1: Use hybrid search (vector + BM25 via RRF)
+            from rag.hybrid_retriever import hybrid_search
+            results, search_meta = await hybrid_search(
+                query=query,
+                channel_id=channel_id,
+                vector_top_k=top_k,
+                bm25_top_k=top_k,
+                final_top_k=top_k,
+                vector_threshold=threshold,
+                search_type="chat",
+            )
+            logger.debug(
+                f"Hybrid chat search: vector={search_meta['vector_results']}, "
+                f"bm25={search_meta['bm25_results']}, fused={search_meta['fused_results']}"
+            )
+        else:
+            # Fallback: vector-only search
+            filter_dict = {"channel_id": channel_id} if channel_id else None
+            results = search_similar(
+                query=query,
+                k=top_k,
+                filter_dict=filter_dict,
+                score_threshold=threshold,
+            )
 
         # A4: Fallback strategy — if no results with normal threshold,
         # try with lower threshold but limit to fewer results
@@ -65,12 +103,25 @@ async def retrieve(
                 f"No results at threshold={threshold:.2f}, "
                 f"falling back to threshold={RAG_FALLBACK_THRESHOLD:.2f}"
             )
-            results = search_similar(
-                query=query,
-                k=RAG_FALLBACK_TOP_K,
-                filter_dict=filter_dict,
-                score_threshold=RAG_FALLBACK_THRESHOLD,
-            )
+            if HYBRID_ENABLED:
+                from rag.hybrid_retriever import hybrid_search
+                results, _ = await hybrid_search(
+                    query=query,
+                    channel_id=channel_id,
+                    vector_top_k=RAG_FALLBACK_TOP_K,
+                    bm25_top_k=RAG_FALLBACK_TOP_K,
+                    final_top_k=RAG_FALLBACK_TOP_K,
+                    vector_threshold=RAG_FALLBACK_THRESHOLD,
+                    search_type="chat",
+                )
+            else:
+                filter_dict = {"channel_id": channel_id} if channel_id else None
+                results = search_similar(
+                    query=query,
+                    k=RAG_FALLBACK_TOP_K,
+                    filter_dict=filter_dict,
+                    score_threshold=RAG_FALLBACK_THRESHOLD,
+                )
             if results:
                 logger.debug(f"Fallback found {len(results)} results")
 
@@ -92,7 +143,67 @@ async def retrieve(
 
 
 # ---------------------------------------------------------------------------
-# Prompt formatting
+# Knowledge base retrieval with hybrid search
+# ---------------------------------------------------------------------------
+async def retrieve_knowledge(
+    query: str,
+    domains: Optional[List[str]] = None,
+    top_k: int = KB_TOP_K,
+    threshold: float = KB_THRESHOLD,
+) -> Tuple[List[Dict[str, Any]], Optional[str]]:
+    """
+    Search knowledge base using hybrid search (vector + BM25).
+    Returns (results, primary_domain).
+    """
+    try:
+        from knowledge.domain_router import get_domain_router
+
+        router = get_domain_router()
+
+        if HYBRID_ENABLED:
+            # Hybrid KB search
+            from rag.hybrid_retriever import hybrid_search
+
+            kb_results, kb_meta = await hybrid_search(
+                query=query,
+                vector_top_k=top_k,
+                bm25_top_k=top_k,
+                final_top_k=top_k,
+                vector_threshold=threshold,
+                search_type="kb",
+            )
+
+            primary_domain = None
+            if kb_results:
+                primary_domain = kb_results[0].get("domain")
+
+            return kb_results, primary_domain
+        else:
+            # Fallback: standard domain router search
+            if domains is None:
+                domains_to_search = router.route(query)
+            else:
+                domains_to_search = domains
+
+            if domains_to_search:
+                return router.search_knowledge(
+                    query=query,
+                    domains=domains_to_search,
+                    top_k=top_k,
+                    threshold=threshold,
+                )
+            return [], None
+
+    except ImportError:
+        logger.debug("Knowledge base module not available")
+        return [], None
+    except Exception as e:
+        logger.warning(f"Knowledge base search failed: {e}")
+        return [], None
+
+
+# ---------------------------------------------------------------------------
+# Prompt formatting (enhanced with retrieval method tags)
 # ---------------------------------------------------------------------------
 def format_retrieved_for_prompt(
     results: List[Dict[str, Any]],
@@ -110,15 +221,27 @@ def format_retrieved_for_prompt(
         ts = r.get("timestamp", "")
         if hasattr(ts, "isoformat"):
             ts = ts.isoformat()
-        similarity = r.get("similarity", 0.0)
+        similarity = r.get("similarity", r.get("rrf_score", 0.0))
         content = r.get("content", "")
-        msg_id = r.get("message_id", "")
 
         if len(content) > 500:
             content = content[:497] + "…"
 
+        # E1: Show retrieval method for transparency
+        methods = r.get("retrieval_methods", [])
+        method_tag = ""
+        if methods:
+            method_tag = f" [{'+'.join(methods)}]"
+
+        # E2: Show Self-RAG grade if available
+        rag_grade = ""
+        self_rag_rel = r.get("self_rag_relevance")
+        if self_rag_rel:
+            self_rag_score = r.get("self_rag_score", 0)
+            rag_grade = f" (graded: {self_rag_rel} {self_rag_score:.0%})"
+
         citation = (
-            f"[{i}] ({similarity:.0%} match) @{author} — {ts}\n"
+            f"[{i}] ({similarity:.0%} match{method_tag}{rag_grade}) @{author} — {ts}\n"
             f"    {content}"
         )
 
@@ -156,11 +279,13 @@ async def build_rag_context(
     """
     High-level helper: build the RAG context block for prompt construction.
 
-    Enhanced with:
+    Enhanced pipeline:
     - A2: Query preprocessing (clean Discord formatting, expand abbrevs)
     - A3: Metrics tracking
     - A4: Similarity threshold fallback
     - D2: Knowledge base integration
+    - 🆕 E1: Hybrid RAG (BM25 + Vector via Reciprocal Rank Fusion)
+    - 🆕 E2: Self-RAG (LLM relevance grading + filtering)
 
     Args:
         query: Current user message.
@@ -196,9 +321,10 @@ async def build_rag_context(
 
     retrieval_start = time.time()
 
-    # ---- D2: Search knowledge base ----
+    # ---- D2 + E1: Knowledge base hybrid search ----
     kb_context = ""
     domain_prompt = None
+    kb_results = []
     try:
         from knowledge.domain_router import get_domain_router, format_kb_results_for_prompt
 
@@ -210,14 +336,13 @@ async def build_rag_context(
         )
 
         if domains_to_search:
-            kb_results, primary_domain = router.search_knowledge(
+            kb_results, primary_domain = await retrieve_knowledge(
                 query=processed_query,
                 domains=domains_to_search,
                 top_k=KB_TOP_K,
                 threshold=KB_THRESHOLD,
             )
             metric.kb_results = len(kb_results)
-            kb_context = format_kb_results_for_prompt(kb_results)
 
             if primary_domain:
                 domain_prompt = router.get_domain_prompt(primary_domain)
@@ -228,7 +353,7 @@ async def build_rag_context(
     except Exception as e:
         logger.warning(f"Knowledge base search failed (non-fatal): {e}")
 
-    # ---- Chat history retrieval (with A4 fallback) ----
+    # ---- E1: Chat history hybrid retrieval (with A4 fallback) ----
     chat_results = await retrieve(
         query=search_text,
         channel_id=channel_id,
@@ -239,9 +364,47 @@ async def build_rag_context(
     retrieval_end = time.time()
     metric.retrieval_time_ms = (retrieval_end - retrieval_start) * 1000
 
+    # ---- E2: Self-RAG relevance grading ----
+    self_rag_annotation = ""
+    if SELF_RAG_ENABLED and (kb_results or chat_results):
+        try:
+            from rag.self_rag import grade_relevance, format_self_rag_annotation
+
+            # Grade KB results
+            if kb_results:
+                kb_results, kb_rag_meta = await grade_relevance(
+                    query=processed_query,
+                    results=kb_results,
+                )
+                metric.kb_results = len(kb_results)
+                logger.debug(
+                    f"Self-RAG KB: {kb_rag_meta.relevant_count} relevant, "
+                    f"{kb_rag_meta.irrelevant_count} filtered"
+                )
+
+            # Grade chat results
+            if chat_results:
+                chat_results, chat_rag_meta = await grade_relevance(
+                    query=processed_query,
+                    results=chat_results,
+                )
+                metric.chat_history_results = len(chat_results)
+                self_rag_annotation = format_self_rag_annotation(chat_rag_meta)
+                logger.debug(
+                    f"Self-RAG Chat: {chat_rag_meta.relevant_count} relevant, "
+                    f"{chat_rag_meta.irrelevant_count} filtered"
+                )
+
+        except ImportError:
+            logger.debug("Self-RAG module not available")
+        except Exception as e:
+            logger.warning(f"Self-RAG grading failed (non-fatal, using unfiltered): {e}")
+
     # ---- Compute similarity stats for A3 ----
     all_similarities = [
-        r.get("similarity", 0) for r in chat_results if r.get("similarity")
+        r.get("similarity", r.get("rrf_score", 0))
+        for r in chat_results
+        if r.get("similarity") or r.get("rrf_score")
     ]
     if all_similarities:
         metric.avg_similarity = sum(all_similarities) / len(all_similarities)
@@ -250,8 +413,15 @@ async def build_rag_context(
     metric.num_results = len(chat_results) + metric.kb_results
 
     # ---- Format combined context ----
+    if kb_results:
+        from knowledge.domain_router import format_kb_results_for_prompt
+        kb_context = format_kb_results_for_prompt(kb_results)
+
     chat_context = format_retrieved_for_prompt(chat_results)
+
     combined_parts = []
+    if self_rag_annotation:
+        combined_parts.append(self_rag_annotation)
     if kb_context:
         combined_parts.append(kb_context)
     if chat_context:
