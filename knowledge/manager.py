@@ -4,7 +4,7 @@ multi-domain static knowledge base documents.
 
 Features:
 - Multi-domain support (pz, server_rules, general, etc.)
-- Sentence-based chunking with overlap (C2)
+- Hybrid chunking: MarkdownSemanticChunker + SentenceChunker fallback (C2)
 - Hot-reload via @mention commands (C3)
 - Domain-specific prompts
 - PGVector storage for similarity search
@@ -15,8 +15,10 @@ import re
 import time
 import logging
 import hashlib
+import yaml
 from pathlib import Path
 from typing import Optional, List, Dict, Any, Tuple
+from enum import Enum
 
 from langchain_core.documents import Document
 
@@ -151,6 +153,320 @@ class SentenceChunker:
 
 
 # ---------------------------------------------------------------------------
+# Content mode enum
+# ---------------------------------------------------------------------------
+class ContentMode(Enum):
+    """Detected content mode for a markdown section."""
+    RECIPE = "recipe"           # ### Recipe: ... with ingredients/tools
+    RECORD_ITEM = "record_item" # ### Name + list of - **Key:** Value
+    PROSE = "prose"             # Free-form paragraphs / explanatory text
+
+
+# ---------------------------------------------------------------------------
+# MarkdownSemanticChunker — context-aware markdown chunker
+# ---------------------------------------------------------------------------
+class MarkdownSemanticChunker:
+    """
+    Split markdown documents into semantically meaningful chunks by
+    respecting document structure: headings, record blocks, recipe blocks.
+
+    Modes:
+    - RECIPE:      ### Recipe: ... → atomic chunk (1 recipe = 1 chunk)
+    - RECORD_ITEM: ### Name + key-value list → atomic chunk (1 item = 1 chunk)
+    - PROSE:       General text → SentenceChunker with heading-path context
+
+    Compatible with all KB domains (pz, general, server_rules, etc.)
+    """
+
+    # Sections to skip entirely (noise)
+    NOISE_HEADINGS = {
+        "see also", "gallery", "references", "external links",
+        "navigation", "categories", "notes", "trivia",
+    }
+
+    # Pattern: "### Recipe: <name>, <products>"
+    RE_RECIPE_HEADING = re.compile(
+        r"^###\s+Recipe:\s+(.+)", re.IGNORECASE
+    )
+    # Pattern: "- **Key:** Value"
+    RE_KEY_VALUE = re.compile(r"^\s*-\s+\*\*[^*]+\*\*[:\s]")
+    # Pattern: any heading "# ...", "## ...", "### ..."
+    RE_HEADING = re.compile(r"^(#{1,6})\s+(.+)")
+
+    def __init__(
+        self,
+        chunk_size: int = CHUNK_SIZE,
+        chunk_overlap: int = CHUNK_OVERLAP,
+    ):
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
+        self.sentence_chunker = SentenceChunker(chunk_size, chunk_overlap)
+
+    def chunk(
+        self, text: str, source: str = ""
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """
+        Parse markdown text and return list of (chunk_text, metadata).
+
+        Args:
+            text: Raw markdown content (including optional YAML frontmatter).
+            source: File path for context prefix.
+
+        Returns:
+            List of (chunk_text, chunk_metadata) tuples.
+        """
+        # 1. Parse and strip YAML frontmatter
+        frontmatter, body = self._parse_frontmatter(text)
+
+        # 2. Split into heading-delimited sections
+        sections = self._split_into_sections(body)
+
+        # 3. Process each section based on detected content mode
+        chunks: List[Tuple[str, Dict[str, Any]]] = []
+        for heading_path, heading_text, section_body in sections:
+            # Skip noise sections
+            if self._is_noise(heading_text):
+                continue
+
+            mode = self._detect_mode(heading_text, section_body)
+            section_chunks = self._process_section(
+                heading_path, heading_text, section_body, mode, frontmatter
+            )
+            chunks.extend(section_chunks)
+
+        return chunks
+
+    # ------------------------------------------------------------------ #
+    #  Frontmatter
+    # ------------------------------------------------------------------ #
+    def _parse_frontmatter(self, text: str) -> Tuple[Dict[str, Any], str]:
+        """Extract YAML frontmatter and return (metadata_dict, body_text)."""
+        text = text.strip()
+        if text.startswith("---"):
+            parts = text.split("---", 2)
+            if len(parts) >= 3:
+                try:
+                    fm = yaml.safe_load(parts[1]) or {}
+                except yaml.YAMLError:
+                    fm = {}
+                return fm, parts[2].strip()
+        return {}, text
+
+    # ------------------------------------------------------------------ #
+    #  Section splitting
+    # ------------------------------------------------------------------ #
+    def _split_into_sections(
+        self, text: str
+    ) -> List[Tuple[List[str], str, str]]:
+        """
+        Split text by headings into (heading_path, heading_text, body).
+
+        heading_path: list of ancestor headings, e.g. ["Clothing — Armor", "Armor"]
+        heading_text: the current heading text
+        body: the text content under this heading until the next heading
+        """
+        lines = text.split("\n")
+        sections: List[Tuple[List[str], str, str]] = []
+
+        # Track heading hierarchy: level → heading_text
+        heading_stack: Dict[int, str] = {}
+        current_heading = ""
+        current_body_lines: List[str] = []
+
+        def _flush():
+            body = "\n".join(current_body_lines).strip()
+            if current_heading or body:
+                # Build heading path from stack
+                path = []
+                for lvl in sorted(heading_stack.keys()):
+                    if heading_stack[lvl]:
+                        path.append(heading_stack[lvl])
+                sections.append((path, current_heading, body))
+
+        for line in lines:
+            m = self.RE_HEADING.match(line)
+            if m:
+                _flush()
+                level = len(m.group(1))  # number of #
+                heading_text = m.group(2).strip()
+
+                # Update stack: set current level, clear deeper levels
+                heading_stack[level] = heading_text
+                for lvl in list(heading_stack.keys()):
+                    if lvl > level:
+                        del heading_stack[lvl]
+
+                current_heading = heading_text
+                current_body_lines = []
+            else:
+                current_body_lines.append(line)
+
+        _flush()  # last section
+        return sections
+
+    # ------------------------------------------------------------------ #
+    #  Content mode detection
+    # ------------------------------------------------------------------ #
+    def _detect_mode(self, heading: str, body: str) -> ContentMode:
+        """Detect content mode from heading and body patterns."""
+        # Recipe mode: heading starts with "Recipe:"
+        if self.RE_RECIPE_HEADING.match(f"### {heading}"):
+            return ContentMode.RECIPE
+
+        # Record item mode: body is mostly key-value list items
+        body_lines = [l for l in body.split("\n") if l.strip()]
+        if body_lines:
+            kv_count = sum(
+                1 for l in body_lines if self.RE_KEY_VALUE.match(l)
+            )
+            ratio = kv_count / len(body_lines)
+            if ratio >= 0.5 and kv_count >= 2:
+                return ContentMode.RECORD_ITEM
+
+        return ContentMode.PROSE
+
+    # ------------------------------------------------------------------ #
+    #  Noise detection
+    # ------------------------------------------------------------------ #
+    def _is_noise(self, heading: str) -> bool:
+        """Check if a heading is noise (should be skipped)."""
+        return heading.lower().strip() in self.NOISE_HEADINGS
+
+    # ------------------------------------------------------------------ #
+    #  Section processing
+    # ------------------------------------------------------------------ #
+    def _process_section(
+        self,
+        heading_path: List[str],
+        heading_text: str,
+        body: str,
+        mode: ContentMode,
+        frontmatter: Dict[str, Any],
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """Process a section and return chunks with metadata."""
+
+        # Build context prefix from heading hierarchy
+        context_prefix = self._build_context_prefix(heading_path, frontmatter)
+
+        base_meta = {
+            "heading_path": " > ".join(heading_path) if heading_path else "",
+            "content_mode": mode.value,
+            "category": frontmatter.get("category", ""),
+            "type": frontmatter.get("type", ""),
+        }
+
+        if mode == ContentMode.RECIPE:
+            return self._chunk_recipe(
+                heading_text, body, context_prefix, base_meta
+            )
+        elif mode == ContentMode.RECORD_ITEM:
+            return self._chunk_record_item(
+                heading_text, body, context_prefix, base_meta
+            )
+        else:
+            return self._chunk_prose(
+                heading_text, body, context_prefix, base_meta
+            )
+
+    def _build_context_prefix(
+        self, heading_path: List[str], frontmatter: Dict[str, Any]
+    ) -> str:
+        """Build a context prefix like [Clothing/Armor] or [Player/Health]."""
+        category = frontmatter.get("category", "")
+        ftype = frontmatter.get("type", "")
+        if category and ftype:
+            return f"[{category}/{ftype}]"
+        elif category:
+            return f"[{category}]"
+        return ""
+
+    # ------------------------------------------------------------------ #
+    #  Mode-specific chunking
+    # ------------------------------------------------------------------ #
+    def _chunk_recipe(
+        self,
+        heading: str,
+        body: str,
+        context_prefix: str,
+        base_meta: Dict[str, Any],
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """Recipe mode: entire recipe = 1 atomic chunk."""
+        # Reconstruct full recipe text
+        recipe_text = f"{heading}\n{body}".strip()
+        if context_prefix:
+            recipe_text = f"{context_prefix} {recipe_text}"
+
+        # Clean markdown bold syntax for cleaner embedding
+        recipe_text = self._clean_markdown_bold(recipe_text)
+
+        meta = {**base_meta, "record_name": heading}
+        return [(recipe_text, meta)]
+
+    def _chunk_record_item(
+        self,
+        heading: str,
+        body: str,
+        context_prefix: str,
+        base_meta: Dict[str, Any],
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """Record item mode: heading + key-value list = 1 atomic chunk."""
+        item_text = f"{heading}\n{body}".strip()
+        if context_prefix:
+            item_text = f"{context_prefix} {item_text}"
+
+        # Clean markdown bold syntax
+        item_text = self._clean_markdown_bold(item_text)
+
+        meta = {**base_meta, "record_name": heading}
+        return [(item_text, meta)]
+
+    def _chunk_prose(
+        self,
+        heading: str,
+        body: str,
+        context_prefix: str,
+        base_meta: Dict[str, Any],
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        """Prose mode: use SentenceChunker with heading context prefix."""
+        if not body.strip():
+            return []
+
+        # Prepend heading for context
+        full_text = body.strip()
+
+        # Use SentenceChunker for sub-chunking
+        sub_chunks = self.sentence_chunker.chunk(full_text)
+        if not sub_chunks:
+            return []
+
+        result = []
+        for i, chunk_text in enumerate(sub_chunks):
+            # Add context prefix and heading to each sub-chunk
+            prefixed = chunk_text
+            if heading:
+                prefixed = f"{heading}: {prefixed}"
+            if context_prefix:
+                prefixed = f"{context_prefix} {prefixed}"
+
+            meta = {
+                **base_meta,
+                "prose_chunk_index": i,
+                "prose_total_chunks": len(sub_chunks),
+            }
+            result.append((prefixed, meta))
+
+        return result
+
+    # ------------------------------------------------------------------ #
+    #  Utilities
+    # ------------------------------------------------------------------ #
+    @staticmethod
+    def _clean_markdown_bold(text: str) -> str:
+        """Remove markdown bold markers **text** → text for cleaner embedding."""
+        return re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
+
+
+# ---------------------------------------------------------------------------
 # Domain info
 # ---------------------------------------------------------------------------
 class KnowledgeDomain:
@@ -203,7 +519,8 @@ class KnowledgeManager:
     ):
         self.docs_dir = docs_dir
         self.prompts_dir = prompts_dir
-        self.chunker = SentenceChunker(chunk_size, chunk_overlap)
+        self.sentence_chunker = SentenceChunker(chunk_size, chunk_overlap)
+        self.md_chunker = MarkdownSemanticChunker(chunk_size, chunk_overlap)
         self.domains: Dict[str, KnowledgeDomain] = {}
         self._vectorstore = None
         self._initialized = False
@@ -439,7 +756,12 @@ class KnowledgeManager:
     def _load_and_chunk_file(
         self, filepath: str, domain: str
     ) -> List[Document]:
-        """Load a file, chunk its content, and return LangChain Documents."""
+        """Load a file, chunk its content, and return LangChain Documents.
+
+        Routing:
+        - .md files → MarkdownSemanticChunker (heading-aware, mode detection)
+        - .txt/.rst  → SentenceChunker (fallback)
+        """
         with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -448,10 +770,46 @@ class KnowledgeManager:
 
         # Get relative path for source reference
         rel_path = os.path.relpath(filepath, self.docs_dir)
+        ext = os.path.splitext(filepath)[1].lower()
 
-        # Chunk the content
-        chunks = self.chunker.chunk(content)
+        documents = []
 
+        if ext == ".md":
+            # ---- MarkdownSemanticChunker ----
+            try:
+                md_chunks = self.md_chunker.chunk(content, source=rel_path)
+                for i, (chunk_text, chunk_meta) in enumerate(md_chunks):
+                    doc = Document(
+                        page_content=chunk_text,
+                        metadata={
+                            "domain": domain,
+                            "source": rel_path,
+                            "chunk_index": i,
+                            "total_chunks": len(md_chunks),
+                            "file_name": os.path.basename(filepath),
+                            "content_type": "knowledge_base",
+                            **chunk_meta,  # heading_path, content_mode, etc.
+                        },
+                    )
+                    documents.append(doc)
+            except Exception as e:
+                logger.warning(
+                    f"MarkdownSemanticChunker failed for {filepath}, "
+                    f"falling back to SentenceChunker: {e}"
+                )
+                # Fallback to SentenceChunker
+                documents = self._fallback_chunk(content, rel_path, domain)
+        else:
+            # ---- SentenceChunker (fallback for .txt, .rst) ----
+            documents = self._fallback_chunk(content, rel_path, domain)
+
+        return documents
+
+    def _fallback_chunk(
+        self, content: str, rel_path: str, domain: str
+    ) -> List[Document]:
+        """Fallback chunking using SentenceChunker."""
+        chunks = self.sentence_chunker.chunk(content)
         documents = []
         for i, chunk_text in enumerate(chunks):
             doc = Document(
@@ -461,12 +819,12 @@ class KnowledgeManager:
                     "source": rel_path,
                     "chunk_index": i,
                     "total_chunks": len(chunks),
-                    "file_name": os.path.basename(filepath),
+                    "file_name": os.path.basename(rel_path),
                     "content_type": "knowledge_base",
+                    "content_mode": "sentence_fallback",
                 },
             )
             documents.append(doc)
-
         return documents
 
 
