@@ -47,6 +47,7 @@ class RAGMetric:
     processed_query: str = ""
     query_language: str = ""
     detected_domain: Optional[str] = None
+    query_intent: Optional[str] = None  # Phase 4: "analytical"/"narrative"/"hybrid"/"conversation"
 
     # Retrieval performance
     retrieval_time_ms: float = 0.0

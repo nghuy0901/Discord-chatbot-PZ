@@ -1,0 +1,56 @@
+
+≡ƒº¬ Phase 4: Query Intent Classifier Test Suite
+======================================================================
+  Γ£à [analytical   ] Vietnamese superlative                   | "Axe n├áo mß║ính nhß║Ñt?"
+  Γ£à [analytical   ] Vietnamese superlative + stat            | "food giß║úm hunger nhiß╗üu nhß║Ñt?"
+  Γ£à [analytical   ] Vietnamese ranking                       | "weapon damage cao nhß║Ñt"
+  Γ£à [analytical   ] English superlative                      | "best armor in the game"
+  Γ£à [analytical   ] English ranking                          | "top 5 weapons by damage"
+  Γ£à [analytical   ] English superlative adj                  | "strongest melee weapon"
+  Γ£à [analytical   ] English superlative adj                  | "lightest axe"
+  Γ£à [analytical   ] Vietnamese comparison                    | "so s├ính Axe vs Hatchet"
+  Γ£à [analytical   ] English comparison                       | "compare Firefighter Axe and Wood Axe"
+  Γ£à [analytical   ] Multi-item comparison                    | "Axe vs Hatchet vs Hand Axe"
+  Γ£à [analytical   ] Vietnamese difference                    | "Axe kh├íc g├¼ Hatchet?"
+  Γ£à [analytical   ] Vietnamese recipe lookup                 | "craft Baguette cß║ºn g├¼?"
+  Γ£à [analytical   ] English recipe lookup                    | "recipe for axe"
+  Γ£à [analytical   ] Vietnamese craft how                     | "c├ích craft bandage"
+  Γ£à [analytical   ] Vietnamese recipe word                   | "c├┤ng thß╗⌐c nß║Ñu ─ân"
+  Γ£à [analytical   ] Vietnamese ingredient                    | "nguy├¬n liß╗çu ─æß╗â l├ám bread"
+  Γ£à [analytical   ] Vietnamese location                      | "gas station ß╗ƒ ─æ├óu?"
+  Γ£à [analytical   ] English location                         | "where to find police station"
+  Γ£à [analytical   ] Vietnamese coordinates                   | "tß╗ìa ─æß╗Ö gas station Louisville"
+  Γ£à [analytical   ] English find location                    | "find hospital in Louisville"
+  Γ£à [analytical   ] Vietnamese stats lookup                  | "stats cß╗ºa Firefighter Axe"
+  Γ£à [analytical   ] Filter query                             | "damage > 2 weapons"
+  Γ£à [analytical   ] Item ID lookup                           | "item_id Base.Axe_Old"
+  Γ£à [narrative    ] Vietnamese what-is                       | "Sneaking skill l├á g├¼?"
+  Γ£à [narrative    ] English what-is                          | "what is carpentry in Project Zomboid?"
+  Γ£à [narrative    ] English how-does                         | "how does fishing work?"
+  Γ£à [narrative    ] Vietnamese effect                        | "t├íc dß╗Ñng cß╗ºa trait Athletic"
+  Γ£à [narrative    ] Vietnamese explain                       | "giß║úi th├¡ch moodle anxious"
+  Γ£à [narrative    ] Vietnamese guide                         | "h╞░ß╗¢ng dß║½n t─âng skill carpentry"
+  Γ£à [narrative    ] Lore query                               | "lore cß╗ºa Knox country"
+  Γ£à [narrative    ] Vietnamese tell-about                    | "kß╗â vß╗ü c├óu chuyß╗çn Project Zomboid"
+  Γ£à [narrative    ] Server rules query                       | "server rules l├á g├¼?"
+  Γ£à [narrative    ] Vietnamese rules                         | "nß╗Öi quy server"
+  Γ£à [narrative    ] English rules                            | "rules of the server"
+  Γ£à [narrative    ] Vietnamese mechanics                     | "skill Carpentry hoß║ít ─æß╗Öng nh╞░ thß║┐ n├áo?"
+  Γ£à [narrative    ] English mechanics                        | "how does the hunger system work?"
+  Γ£à [conversation ] Simple greeting                          | "hi"
+  Γ£à [conversation ] Greeting                                 | "hello bot"
+  Γ£à [conversation ] Vietnamese greeting                      | "xin ch├áo"
+  Γ£à [conversation ] Vietnamese thanks                        | "cß║úm ╞ín nha"
+  Γ£à [conversation ] Who are you                              | "bß║ín l├á ai?"
+  Γ£à [conversation ] Laughing                                 | "haha"
+  Γ£à [conversation ] Farewell                                 | "bye"
+  Γ£à [hybrid       ] Single word PZ-related                   | "Axe"
+  Γ£à [hybrid       ] Broad PZ query                           | "tell me everything about weapons"
+
+======================================================================
+  Γ£à Standalone classify_query() helper works
+  Γ£à preprocess() includes query_intent correctly
+
+======================================================================
+ALL 45 TESTS PASSED Γ£à
+======================================================================

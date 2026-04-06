@@ -7,13 +7,26 @@ Features:
 - Expand common abbreviations (Vietnamese + English + gaming)
 - Detect language (vi/en)
 - Add domain context if a knowledge domain is detected
+- 🆕 Phase 4: Query intent classification (analytical / narrative / hybrid)
 """
 
 import re
 import logging
+from enum import Enum
 from typing import Optional, Tuple
 
 logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Query Intent Classification (Phase 4)
+# ---------------------------------------------------------------------------
+class QueryIntent(str, Enum):
+    """Classifies what kind of response pipeline a query needs."""
+    ANALYTICAL = "analytical"    # → SQLite Tool Calling (data/comparison/ranking)
+    NARRATIVE = "narrative"      # → Vector Search streaming (lore/prose/explanation)
+    HYBRID = "hybrid"           # → Tool Calling + Vector Search (factual + context)
+    CONVERSATION = "conversation"  # → No tools, no RAG needed (casual chat)
 
 # ---------------------------------------------------------------------------
 # Abbreviation/slang expansion maps
@@ -127,9 +140,15 @@ class QueryPreprocessor:
         if metadata["domain"]:
             cleaned = self._add_domain_context(cleaned, metadata["domain"])
 
+        # Step 7 (Phase 4): Classify query intent for routing
+        metadata["query_intent"] = self.classify_query(
+            cleaned, detected_domain=metadata["domain"]
+        )
+
         logger.debug(
             f"Query preprocessed: '{raw_query[:60]}' → '{cleaned[:60]}' "
-            f"(lang={metadata['language']}, domain={metadata['domain']})"
+            f"(lang={metadata['language']}, domain={metadata['domain']}, "
+            f"intent={metadata['query_intent'].value})"
         )
 
         return cleaned, metadata
@@ -210,6 +229,147 @@ class QueryPreprocessor:
         """Add a custom abbreviation mapping."""
         self._abbreviations[abbr.lower()] = expansion
 
+    # ------------------------------------------------------------------
+    # Phase 4: Query Intent Classification
+    # ------------------------------------------------------------------
+
+    # Patterns that strongly indicate ANALYTICAL intent (need SQL/tool calling)
+    _ANALYTICAL_PATTERNS: list = [
+        # Ranking / superlative (Vietnamese)
+        r"nào\s+(mạnh|tốt|nhanh|nhẹ|nặng|cao|thấp|nhiều|ít|giỏi|dày)\s*nhất",
+        r"(mạnh|tốt|nhanh|nhẹ|nặng|cao|thấp|nhiều|ít)\s*nhất",
+        r"top\s*\d+",
+        r"xếp\s*hạng",
+        r"bảng\s*(xếp|so)\s*sánh",
+        # Ranking / superlative (English)
+        r"(best|worst|strongest|weakest|fastest|slowest|lightest|heaviest|highest|lowest)\b",
+        r"\btop\s*\d+\b",
+        r"\branking\b",
+        # Comparison
+        r"so\s*sánh",
+        r"\bvs\.?\b",
+        r"\bcompare\b",
+        r"khác\s*(nhau|gì)",
+        r"hơn\s*(gì|không|ko)",
+        # Crafting / recipe lookup
+        r"(cần|cần\s+gì|nguyên\s*liệu).*?(craft|chế|làm|tạo)",
+        r"(craft|chế|làm|tạo).*?(cần|cần\s+gì|nguyên\s*liệu)",
+        r"\brecipe\b",
+        r"cách\s*(craft|chế\s*tạo|làm)\b",
+        r"công\s*thức",
+        # Stats / data lookup
+        r"\b(damage|dmg|defense|def|encumbrance|weight|hunger|thirst|capacity)\b.*?\d",
+        r"\d+.*?\b(damage|dmg|defense|def|encumbrance|weight)\b",
+        r"(chỉ\s*số|stats?|thông\s*số)\s+(của|cho)",
+        # Location queries
+        r"(ở\s*đâu|chỗ\s*nào|tìm\s*(được|thấy)?\s*ở)",
+        r"\b(find|where)\b.*?(location|station|shop|store|hospital)",
+        r"(gas\s*station|police|hospital|gun\s*store|restaurant)",
+        r"tọa\s*độ",
+        r"coordinates",
+        # Explicit item detail queries
+        r"\bitem[\s_]*id\b",
+        r"Base\.[\w.]+",
+        # Filter queries
+        r"(damage|defense|hunger)\s*(>|<|>=|<=|lớn\s*hơn|nhỏ\s*hơn|trên|dưới)\s*\d",
+    ]
+
+    # Patterns that strongly indicate NARRATIVE intent (prose/lore/explanation)
+    _NARRATIVE_PATTERNS: list = [
+        # "What is" / explanation
+        r"(là\s+gì|là\s+cái\s+gì)",
+        r"\b(what\s+is|what\s+are|how\s+does|how\s+do|how\s+to)\b",
+        r"(tác\s*dụng|ảnh\s*hưởng|công\s*dụng|hiệu\s*quả)\s+(của|gì|như\s*thế)",
+        r"(giải\s*thích|explain|describe|mô\s*tả)",
+        r"(hướng\s*dẫn|guide|tutorial|tips?\b)",
+        # Lore / narrative
+        r"(lore|story|câu\s*chuyện|lịch\s*sử|background)",
+        r"(kể|tell\s*me\s*about)",
+        # Server rules / community
+        r"(server\s*rules?|quy\s*(tắc|định)|luật|rules?\s+of)",
+        r"(nội\s*quy|regulation)",
+        # Mechanics explanation
+        r"(hoạt\s*động|works?|mechanism|cơ\s*chế)\s+(như\s*thế\s*nào|how|ra\s*sao)",
+        r"(skill|kỹ\s*năng)\s+(làm\s*gì|tác\s*dụng|level\s*up)",
+    ]
+
+    # Patterns that indicate CONVERSATION (casual chat, no game data needed)
+    _CONVERSATION_PATTERNS: list = [
+        r"^(hi|hello|hey|xin\s*chào|chào|ê|oi|yo|sup)\b",
+        r"^(cảm\s*ơn|thanks?|thank\s*you|tks)\b",
+        r"^(bye|tạm\s*biệt|goodbye|bb)\b",
+        r"(bạn\s*(là\s*ai|tên\s*gì|là\s*gì)|who\s*are\s*you|your\s*name)",
+        r"(đùa|joke|funny|haha|lol|kk|:v|xD)",
+        r"(khỏe\s*(không|ko)|how\s*are\s*you)",
+        r"(tâm\s*sự|vent|rant)",
+    ]
+
+    def classify_query(
+        self,
+        text: str,
+        detected_domain: Optional[str] = None,
+    ) -> QueryIntent:
+        """
+        Classify query intent to determine the optimal response pipeline.
+
+        Priority:
+        1. CONVERSATION — casual chat, no game data needed
+        2. ANALYTICAL — data/comparative/ranking → needs SQLite tools
+        3. NARRATIVE — lore/prose/explanation → needs vector search
+        4. HYBRID — unclear, might benefit from both
+
+        Args:
+            text: Preprocessed query text.
+            detected_domain: Domain detected by preprocess (e.g., "pz").
+
+        Returns:
+            QueryIntent enum value.
+        """
+        text_lower = text.lower().strip()
+
+        # Short messages that are just greetings / casual
+        if len(text_lower) < 30:
+            for pattern in self._CONVERSATION_PATTERNS:
+                if re.search(pattern, text_lower):
+                    return QueryIntent.CONVERSATION
+
+        # Check analytical patterns first (higher priority for PZ domain)
+        analytical_score = 0
+        for pattern in self._ANALYTICAL_PATTERNS:
+            if re.search(pattern, text_lower):
+                analytical_score += 1
+
+        # Check narrative patterns
+        narrative_score = 0
+        for pattern in self._NARRATIVE_PATTERNS:
+            if re.search(pattern, text_lower):
+                narrative_score += 1
+
+        # Decision logic
+        if analytical_score > 0 and narrative_score == 0:
+            return QueryIntent.ANALYTICAL
+
+        if narrative_score > 0 and analytical_score == 0:
+            return QueryIntent.NARRATIVE
+
+        if analytical_score > 0 and narrative_score > 0:
+            # Both matched — prefer analytical if score is higher
+            if analytical_score >= narrative_score:
+                return QueryIntent.ANALYTICAL
+            return QueryIntent.HYBRID
+
+        # No game-related patterns matched
+        if detected_domain:
+            # Domain detected but no specific intent → hybrid
+            return QueryIntent.HYBRID
+
+        # No domain, no patterns → conversation
+        if len(text_lower) < 50:
+            return QueryIntent.CONVERSATION
+
+        # Longer messages without clear intent → hybrid (let RAG try)
+        return QueryIntent.HYBRID
+
 
 # ---------------------------------------------------------------------------
 # Singleton
@@ -223,3 +383,21 @@ def get_preprocessor() -> QueryPreprocessor:
     if _preprocessor is None:
         _preprocessor = QueryPreprocessor()
     return _preprocessor
+
+
+def classify_query(
+    text: str,
+    detected_domain: Optional[str] = None,
+) -> QueryIntent:
+    """
+    Standalone helper: classify query intent for routing.
+
+    Args:
+        text: Raw or preprocessed query text.
+        detected_domain: Domain hint.
+
+    Returns:
+        QueryIntent enum value.
+    """
+    return get_preprocessor().classify_query(text, detected_domain)
+

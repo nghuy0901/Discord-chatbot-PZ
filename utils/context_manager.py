@@ -239,16 +239,18 @@ class ContextManager:
         enable_rag: bool = True,
         channel_name: Optional[str] = None,
         user_id: Optional[str] = None,
-    ) -> Tuple[List[Dict[str, str]], float]:
+    ) -> Tuple[List[Dict[str, str]], float, Optional[str]]:
         """
         Build the complete message list for an Ollama chat call.
 
         Returns:
-            (messages, temperature) — ready for ollama.chat()
+            (messages, temperature, query_intent) — ready for ollama.chat()
+            query_intent: "analytical" | "narrative" | "hybrid" | "conversation" | None
         """
         # 1. Retrieve RAG context (now returns 3-tuple with domain prompt + metric)
         rag_context = ""
         domain_prompt = ""
+        query_intent = None
         if enable_rag:
             try:
                 recent_texts = [
@@ -267,6 +269,10 @@ class ContextManager:
                 # B2: Store query_id for feedback mapping
                 if metric and metric.query_id:
                     self.set_last_query_id(channel_id, metric.query_id)
+
+                # Phase 4: Extract query intent for routing
+                if metric and metric.query_intent:
+                    query_intent = metric.query_intent
 
             except Exception as e:
                 logger.warning(f"RAG retrieval failed (non-fatal): {e}")
@@ -291,7 +297,7 @@ class ContextManager:
         if not history or history[-1].content != user_message:
             messages.append({"role": "user", "content": f"@{user_name}: {user_message}"})
 
-        return messages, PERSONALITY_TEMPERATURE
+        return messages, PERSONALITY_TEMPERATURE, query_intent
 
     # ----- housekeeping -----
 

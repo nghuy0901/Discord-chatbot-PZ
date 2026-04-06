@@ -313,6 +313,11 @@ async def build_rag_context(
     metric.query_language = query_meta.get("language", "unknown")
     metric.detected_domain = query_meta.get("domain")
 
+    # Phase 4: Capture query intent for routing
+    query_intent = query_meta.get("query_intent")
+    if query_intent:
+        metric.query_intent = query_intent.value if hasattr(query_intent, 'value') else str(query_intent)
+
     # Enrich query with recent context
     search_text = processed_query
     if recent_messages:

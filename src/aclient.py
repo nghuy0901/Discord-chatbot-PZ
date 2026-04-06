@@ -475,7 +475,8 @@ class CLCTClient(discord.Client):
 
         try:
             # Build prompt with RAG + context (now passes channel_name for D2)
-            prompt_messages, temperature = await self.context_manager.build_prompt(
+            # Phase 4: build_prompt now returns query_intent as 3rd element
+            prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
                 channel_id=channel_id,
                 user_message=user_message,
                 user_name=author_name,
@@ -487,17 +488,34 @@ class CLCTClient(discord.Client):
             response_text = ""
             bot_msg = None
 
-            # Determine if tool calling is available
-            use_tools = (
+            # Phase 4: Intent-based routing
+            # Determine if tool calling should be attempted based on query intent
+            tools_available = (
                 ENABLE_TOOL_CALLING
                 and STRUCTURED_TOOLS_AVAILABLE
                 and PZ_TOOLS
             )
 
+            # Route decision based on query_intent:
+            #   ANALYTICAL → always use tools (no streaming — need full response for tool detection)
+            #   HYBRID     → try tools first, fallback to streaming if no tools triggered
+            #   NARRATIVE  → skip tools entirely, go straight to streaming
+            #   CONVERSATION → skip tools entirely, go straight to streaming
+            #   None       → hybrid behavior (backward compat)
+            use_tools_for_query = tools_available and query_intent in (
+                "analytical", "hybrid", None
+            )
+
+            logger.debug(
+                f"🔀 Routing: intent={query_intent}, "
+                f"tools_available={tools_available}, "
+                f"use_tools={use_tools_for_query}"
+            )
+
             if ENABLE_STREAMING:
-                if use_tools:
-                    # Try tool calling first (non-streaming, because Ollama
-                    # tool calls require the full response to detect calls)
+                if use_tools_for_query:
+                    # ANALYTICAL or HYBRID: Try tool calling first (non-streaming,
+                    # because Ollama tool calls require full response to detect calls)
                     async with message.channel.typing():
                         response_text = await chat_with_tools(
                             messages=prompt_messages,
@@ -520,19 +538,19 @@ class CLCTClient(discord.Client):
                             await message.channel.send(remaining[:2000])
                             remaining = remaining[2000:]
                     else:
-                        # Empty response from tool call — fallback to streaming
+                        # Empty/no-tool response — fallback to streaming
                         response_text, bot_msg = await self._stream_response(
                             message, prompt_messages, temperature
                         )
                 else:
-                    # No tools — pure streaming
+                    # NARRATIVE or CONVERSATION: Pure streaming (skip tool overhead)
                     response_text, bot_msg = await self._stream_response(
                         message, prompt_messages, temperature
                     )
             else:
                 # Non-streaming mode
                 async with message.channel.typing():
-                    if use_tools:
+                    if use_tools_for_query:
                         response_text = await chat_with_tools(
                             messages=prompt_messages,
                             tools=PZ_TOOLS,
@@ -673,13 +691,19 @@ class CLCTClient(discord.Client):
 
     async def handle_response(self, user_message: str) -> str:
         """Legacy handle_response for /chat command — uses Ollama directly."""
-        prompt_messages, temperature = await self.context_manager.build_prompt(
+        prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
             channel_id="slash-command",
             user_message=user_message,
             user_name="User",
             enable_rag=ENABLE_RAG,
         )
-        if ENABLE_TOOL_CALLING and STRUCTURED_TOOLS_AVAILABLE:
+        # Phase 4: Intent-based routing for slash commands
+        use_tools = (
+            ENABLE_TOOL_CALLING
+            and STRUCTURED_TOOLS_AVAILABLE
+            and query_intent in ("analytical", "hybrid", None)
+        )
+        if use_tools:
             response = await chat_with_tools(
                 messages=prompt_messages,
                 tools=PZ_TOOLS,
