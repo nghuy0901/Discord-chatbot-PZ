@@ -1,0 +1,95 @@
+
+≡ƒöº PZ Tools Validation Suite
+
+======================================================================
+TEST 1: search_items ΓÇö Top 5 weapons by max_damage
+======================================================================
+  1. Katana                              | dmg: 8.0
+  2. Cudgel with Brake Disc              | dmg: 3.0
+  3. Cudgel with Sawblade                | dmg: 3.0
+  4. Cudgel with Spade Head              | dmg: 3.0
+  5. Wood Axe                            | dmg: 3.0
+
+======================================================================
+TEST 2: search_items ΓÇö Axes with damage > 1.5, sorted by encumbrance
+======================================================================
+  1. Field Hockey Stick with Sawblade | dmg:  1.5 | enc: 1.5
+  2. Hatchet                        | dmg:  1.5 | enc: 1.5
+  3. Hatchet                        | dmg:  1.5 | enc: 1.5
+  4. Antique Table Leg with Sawblade | dmg:  1.7 | enc: 2.0
+  5. Crude Stone Axe                | dmg:  1.5 | enc: 2.0
+  6. Hand Axe                       | dmg:  1.5 | enc: 2.0
+  7. Ice Axe                        | dmg:  1.5 | enc: 2.0
+  8. Large Handle with Railspike    | dmg:  1.5 | enc: 2.0
+  9. Large Handle with Sawblade     | dmg:  1.5 | enc: 2.0
+  10. Baseball Bat with Railspike    | dmg:  1.9 | enc: 2.5
+
+======================================================================
+TEST 3: compare_items ΓÇö Axe vs Hatchet vs Hand Axe
+======================================================================
+  Axe                  | {'name': 'Axe', 'item_id': 'Base.Axe_Old', 'category': 'Weapons', 'encumbrance': 3.0, 'max_damage': 2.0, 'min_damage': 0.8, 'attack_speed': 1.0, 'knockback': 0.3}
+  Hand Axe             | {'name': 'Hand Axe', 'item_id': 'Base.HandAxe_Old', 'category': 'Weapons', 'encumbrance': 2.0, 'max_damage': 1.5, 'min_damage': 0.7, 'attack_speed': 1.0, 'knockback': 0.3}
+  Hatchet              | {'name': 'Hatchet', 'item_id': 'Base.HandAxe', 'category': 'Weapons', 'encumbrance': 1.5, 'max_damage': 1.5, 'min_damage': 0.7, 'attack_speed': 1.0, 'knockback': 0.3}
+  Hatchet              | {'name': 'Hatchet', 'item_id': 'Base.HandAxeForged', 'category': 'Weapons', 'encumbrance': 1.5, 'max_damage': 1.5, 'min_damage': 0.7, 'attack_speed': 1.0, 'knockback': 0.3}
+
+======================================================================
+TEST 4: get_recipe ΓÇö Baguette recipe
+======================================================================
+  Recipe: Prepare Baguette
+    Product: Baguette ├ù1
+    Ingredients: Each of:, flour (tag) ├ù10, One of:, Salt ├ù2, Seasoning Salt ├ù2, Each of:, Yeast,...
+    Tools: Each of:, rollingpin (tag) ├ù1, (may degrade), mixingutensil (tag) ├ù1, One of:, B...
+    Workstation: Crafting surface
+
+======================================================================
+TEST 5: get_recipe ΓÇö Recipes that need 'flour'
+======================================================================
+  Prepare Baguette                         ΓåÆ Baguette ├ù1
+  Prepare Biscuits                         ΓåÆ Biscuits ├ù1
+  Prepare Bread Dough                      ΓåÆ Bread ├ù1
+  Make Cake Batter                         ΓåÆ Cake Batter ├ù1
+  Prepare Chocolate Chip Cookies           ΓåÆ Baking Tray with Chocolate Chip Cookies ├ù1
+
+======================================================================
+TEST 6: get_item_details ΓÇö Firefighter Axe (full stats)
+======================================================================
+  item_id                  : Base.Axe
+  name                     : Firefighter Axe
+  category                 : Equipment
+  sub_category             : Tools
+  encumbrance              : 3.0
+  types                    : Axe
+  equip_category           : Tool / Weapon
+  related_recipes          : [{'name': 'Assemble Long Implement', 'product': '(Products are dependent on inputs) One of:, Axe ├ù1, Firefighter Axe ├ù1, Pickaxe ├ù1, Sledgehammer ├ù1, Wood Axe ├ù1', 'ingredients': 'One of:, Axe Head ├ù1, Pick Axe Head ├ù1, Sledgehammer Head ├ù1, Wood Axe Head ├ù1, Firefighter Axe Head ├ù1, Each of:, Large Handle ├ù1', 'tools': 'One of:, hammer (tag) ├ù1, clubhammer (tag) ├ù1, mallet (tag) ├ù1, (may degrade), Each of:, sharpknife (tag) ├ù1, (not dull)', 'workstation': 'Crafting surface'}, {'name': 'Dismantle Long Implement', 'product': '(Products are dependent on inputs) One of:, Mace Head ├ù1, Stone Mace Head ├ù1, Axe Head ├ù1, Pick Axe Head ├ù1, Sledgehammer Head ├ù1, Wood Axe Head ├ù1, Firefighter Axe Head ├ù1, Garden Fork Head ├ù1, Garden Hoe Head ├ù1, Garden Fork Head ├ù1, Rake Head ├ù1, Scythe Blade ├ù1, Spade Head ├ù1, Spade Head ├ù1, Simple Metal Blade ├ù1, Long Simple Metal Blade ├ù1, Long Stone Blade ├ù1, Stone Blade ├ù1, Long Sharp Bone ├ù1, Sharp Bone Fragment ├ù1, Long Metal Spearhead ├ù1, Metal Spearhead ├ù1, Sharp Flint Flake ├ù1, Stone ├ù1, Large Stone Axe Head ├ù1, Stone Maul Head ├ù1, Broken Large Handle ├ù1, Broken Long Stick ├ù1, Broken Garden Tool Handle ├ù1, Broken Branch ├ù1', 'ingredients': 'One of:, Axe ├ù1, Long Mace ├ù1, Long Stone Mace ├ù1, Pickaxe ├ù1, Pickaxe ├ù1, Sledgehammer ├ù1, Sledgehammer ├ù1, Sledgehammer ├ù1, Wood Axe ├ù1, Wood Axe ├ù1, Firefighter Axe ├ù1, Garden Hoe ├ù1, Garden Fork ├ù1, Garden Hoe ├ù1, Garden Fork ├ù1, Rake ├ù1, Scythe ├ù1, Scythe ├ù1, Spade ├ù1, Spade ├ù1, Spear with Simple Metal Head ├ù1, Spear with Long Simple Metal Head ├ù1, Spear with Long Metal Head ├ù1, Spear with Metal Head ├ù1, Spear with Long Stone Head ├ù1, Spear with Stone Head ├ù1, Spear with Long Bone Head ├ù1, Spear with Bone Head ├ù1, Crude Stone Axe ├ù1, Stone Hammer ├ù1, Large Stone Axe ├ù1, Stone Maul ├ù1', 'tools': 'One of:, hammer (tag) ├ù1, clubhammer (tag) ├ù1, mallet (tag) ├ù1, (may degrade)', 'workstation': 'Crafting surface'}]
+
+======================================================================
+TEST 7: find_location ΓÇö Gas stations in Louisville
+======================================================================
+  Fossoil                             | Gas station          | 12998x2160
+  Gas 2 Go                            | Gas station          | 12701x2227  13130x1321
+  Gas 2 Go                            | Gas station          | 13553x2130
+  Fossoil                             | Gas station          | 12259x1619
+  Fossoil                             | Gas station          | 12909x3033
+  Gas 2 Go                            | Gas station          | 13382x2965
+  Fossoil                             | Gas station          | 12441x3537
+  Burned down Gas station             | Gas station          | 11599x8259
+  Gas 2 Go                            | Gas station          | 13959x3275
+  Fossoil                             | Gas station          | 13375x1415
+  Gas 2 Go                            | Gas station          | 13611x1531
+  GigaMart                            | Supermarket/Gas station | 12567x2542
+  Martin's Essentials & Laundry       | Gas station/Laundromat | 12081x2098
+
+======================================================================
+TEST 8: Registry ΓÇö PZ_TOOLS and PZ_TOOL_FUNCTIONS
+======================================================================
+  PZ_TOOLS: 5 tools
+    - search_items
+    - compare_items
+    - get_recipe
+    - get_item_details
+    - find_location
+  PZ_TOOL_FUNCTIONS: ['search_items', 'compare_items', 'get_recipe', 'get_item_details', 'find_location']
+
+======================================================================
+ALL TESTS PASSED Γ£à
+======================================================================

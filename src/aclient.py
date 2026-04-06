@@ -25,12 +25,22 @@ from src.log import logger
 from src import personas
 from src.ollama_provider import (
     chat_completion,
+    chat_with_tools,
     stream_to_discord_chunks,
     ensure_model,
     health_check,
 )
 from utils.context_manager import ContextManager
 from utils.message_utils import send_split_message
+
+# PZ Structured Data tools (Phase 3)
+try:
+    from knowledge.structured.pz_tools import PZ_TOOLS, PZ_TOOL_FUNCTIONS
+    STRUCTURED_TOOLS_AVAILABLE = True
+except Exception:
+    PZ_TOOLS = []
+    PZ_TOOL_FUNCTIONS = {}
+    STRUCTURED_TOOLS_AVAILABLE = False
 
 load_dotenv()
 
@@ -44,6 +54,7 @@ ENABLE_IMPLICIT_REPLIES: bool = (
 )
 ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "true").lower() == "true"
 ENABLE_FEEDBACK: bool = os.getenv("ENABLE_FEEDBACK", "true").lower() == "true"
+ENABLE_TOOL_CALLING: bool = os.getenv("ENABLE_TOOL_CALLING", "true").lower() == "true"
 ENABLE_NAME_MENTION: bool = (
     os.getenv("ENABLE_NAME_MENTION", "true").lower() == "true"
 )
@@ -186,6 +197,15 @@ class CLCTClient(discord.Client):
 
     async def send_start_prompt(self) -> None:
         """No-op — CLCT doesn't need an initial prompt broadcast."""
+        if ENABLE_TOOL_CALLING and STRUCTURED_TOOLS_AVAILABLE:
+            logger.info(
+                f"✅ Tool calling enabled: {len(PZ_TOOLS)} PZ tools available "
+                f"({', '.join(PZ_TOOL_FUNCTIONS.keys())})"
+            )
+        elif ENABLE_TOOL_CALLING and not STRUCTURED_TOOLS_AVAILABLE:
+            logger.warning("⚠️ Tool calling enabled but PZ tools failed to load")
+        else:
+            logger.info("ℹ️ Tool calling disabled")
         logger.info("CLCT ready — responding to @mentions and replies.")
 
     # ------------------------------------------------------------------
@@ -467,19 +487,68 @@ class CLCTClient(discord.Client):
             response_text = ""
             bot_msg = None
 
+            # Determine if tool calling is available
+            use_tools = (
+                ENABLE_TOOL_CALLING
+                and STRUCTURED_TOOLS_AVAILABLE
+                and PZ_TOOLS
+            )
+
             if ENABLE_STREAMING:
-                response_text, bot_msg = await self._stream_response(
-                    message, prompt_messages, temperature
-                )
-            else:
-                # Non-streaming fallback
-                async with message.channel.typing():
-                    response_text = await chat_completion(
-                        messages=prompt_messages,
-                        temperature=temperature,
+                if use_tools:
+                    # Try tool calling first (non-streaming, because Ollama
+                    # tool calls require the full response to detect calls)
+                    async with message.channel.typing():
+                        response_text = await chat_with_tools(
+                            messages=prompt_messages,
+                            tools=PZ_TOOLS,
+                            tool_functions=PZ_TOOL_FUNCTIONS,
+                            temperature=temperature,
+                        )
+
+                    if response_text:
+                        # Tool calling produced a response — send directly
+                        if len(response_text) > MAX_RESPONSE_LENGTH:
+                            response_text = (
+                                response_text[:MAX_RESPONSE_LENGTH]
+                                + "\n\n*…response truncated*"
+                            )
+                        bot_msg = await message.channel.send(response_text[:2000])
+                        # Send remaining parts if response > 2000 chars
+                        remaining = response_text[2000:]
+                        while remaining:
+                            await message.channel.send(remaining[:2000])
+                            remaining = remaining[2000:]
+                    else:
+                        # Empty response from tool call — fallback to streaming
+                        response_text, bot_msg = await self._stream_response(
+                            message, prompt_messages, temperature
+                        )
+                else:
+                    # No tools — pure streaming
+                    response_text, bot_msg = await self._stream_response(
+                        message, prompt_messages, temperature
                     )
+            else:
+                # Non-streaming mode
+                async with message.channel.typing():
+                    if use_tools:
+                        response_text = await chat_with_tools(
+                            messages=prompt_messages,
+                            tools=PZ_TOOLS,
+                            tool_functions=PZ_TOOL_FUNCTIONS,
+                            temperature=temperature,
+                        )
+                    else:
+                        response_text = await chat_completion(
+                            messages=prompt_messages,
+                            temperature=temperature,
+                        )
                     if len(response_text) > MAX_RESPONSE_LENGTH:
-                        response_text = response_text[:MAX_RESPONSE_LENGTH] + "\n\n*…response truncated*"
+                        response_text = (
+                            response_text[:MAX_RESPONSE_LENGTH]
+                            + "\n\n*…response truncated*"
+                        )
                     await self._send_response(message, response_text)
 
             # A3: Record response timing
@@ -610,10 +679,18 @@ class CLCTClient(discord.Client):
             user_name="User",
             enable_rag=ENABLE_RAG,
         )
-        response = await chat_completion(
-            messages=prompt_messages,
-            temperature=temperature,
-        )
+        if ENABLE_TOOL_CALLING and STRUCTURED_TOOLS_AVAILABLE:
+            response = await chat_with_tools(
+                messages=prompt_messages,
+                tools=PZ_TOOLS,
+                tool_functions=PZ_TOOL_FUNCTIONS,
+                temperature=temperature,
+            )
+        else:
+            response = await chat_completion(
+                messages=prompt_messages,
+                temperature=temperature,
+            )
         self.context_manager.track_message(
             channel_id="slash-command",
             message_id=f"slash-{id(user_message)}",
