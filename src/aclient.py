@@ -12,6 +12,7 @@ Enhanced with:
 """
 
 import os
+import re
 import asyncio
 import logging
 import time
@@ -138,6 +139,37 @@ class CLCTClient(discord.Client):
         # Rate-limit tracker: channel_id → last_response_time
         self._rate_limits: Dict[str, float] = {}
         self._rate_limit_seconds: float = float(os.getenv("RATE_LIMIT_SECONDS", "2"))
+
+    # ------------------------------------------------------------------
+    # Mention resolution: convert @Username text → real Discord mentions
+    # ------------------------------------------------------------------
+    def _resolve_mentions(self, text: str, guild: discord.Guild) -> str:
+        """Replace @Username plain text with real Discord <@user_id> mentions.
+
+        The LLM often outputs '@SomeName' as plain text.  This scans for
+        such patterns and substitutes them with the proper mention syntax
+        so the tagged user actually receives a notification.
+        """
+        if not guild or not text:
+            return text
+
+        # Match @Name patterns (but not already-resolved <@id> mentions)
+        at_pattern = re.compile(r'(?<![<\w])@(\w[\w._ ]{0,30}\w)')
+
+        def _replace(match: re.Match) -> str:
+            name = match.group(1).strip()
+            # Try exact match on display_name, global_name, username
+            for member in guild.members:
+                if (
+                    member.display_name.lower() == name.lower()
+                    or member.name.lower() == name.lower()
+                    or (member.global_name and member.global_name.lower() == name.lower())
+                ):
+                    return member.mention  # e.g. <@123456789>
+            # No match found — keep original text
+            return match.group(0)
+
+        return at_pattern.sub(_replace, text)
 
     # ------------------------------------------------------------------
     # Lifecycle
@@ -506,7 +538,7 @@ class CLCTClient(discord.Client):
                 "analytical", "hybrid", None
             )
 
-            logger.debug(
+            logger.info(
                 f"🔀 Routing: intent={query_intent}, "
                 f"tools_available={tools_available}, "
                 f"use_tools={use_tools_for_query}"
@@ -531,6 +563,10 @@ class CLCTClient(discord.Client):
                                 response_text[:MAX_RESPONSE_LENGTH]
                                 + "\n\n*…response truncated*"
                             )
+                        # Resolve @Username → real Discord mentions
+                        response_text = self._resolve_mentions(
+                            response_text, getattr(message, 'guild', None)
+                        )
                         bot_msg = await message.channel.send(response_text[:2000])
                         # Send remaining parts if response > 2000 chars
                         remaining = response_text[2000:]
@@ -649,6 +685,10 @@ class CLCTClient(discord.Client):
                         pass
 
             if final_text:
+                # Resolve @Username → real Discord mentions
+                final_text = self._resolve_mentions(
+                    final_text, getattr(message, 'guild', None)
+                )
                 if len(final_text) > 2000:
                     await bot_msg.edit(content=final_text[:1990])
                     remaining = final_text[1990:]
@@ -675,6 +715,10 @@ class CLCTClient(discord.Client):
         self, message, content: str
     ) -> None:
         """Send a response, handling slash commands vs regular messages."""
+        # Resolve @Username → real Discord mentions
+        content = self._resolve_mentions(
+            content, getattr(message, 'guild', None)
+        )
         if hasattr(message, "followup"):
             await send_split_message(self, content, message)
         else:
