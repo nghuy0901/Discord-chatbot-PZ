@@ -4,7 +4,7 @@ category: Equipment
 type: Tools
 source_url: https://pzwiki.net/wiki/Tools
 scraped_at: 2026-02-24 16:36:55
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Tool

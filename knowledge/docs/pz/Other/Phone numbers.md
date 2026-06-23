@@ -4,7 +4,7 @@ category: Other
 type: Phone numbers
 source_url: https://pzwiki.net/wiki/Phone_numbers
 scraped_at: 2026-02-24 16:43:10
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Phone numbers

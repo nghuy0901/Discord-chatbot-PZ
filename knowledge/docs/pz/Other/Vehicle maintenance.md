@@ -4,7 +4,7 @@ category: Other
 type: Vehicle maintenance
 source_url: https://pzwiki.net/wiki/Vehicle_maintenance
 scraped_at: 2026-02-24 16:39:21
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Vehicle maintenance

@@ -4,7 +4,7 @@ category: Plumbing
 type: Other
 source_url: https://pzwiki.net/wiki/Plumbing#Other
 scraped_at: 2026-02-24 16:44:39
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Plumbing — Other

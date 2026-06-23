@@ -4,7 +4,7 @@ category: Miscellaneous
 type: Trash
 source_url: https://pzwiki.net/wiki/Trash
 scraped_at: 2026-02-24 16:48:36
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Trash

@@ -4,7 +4,7 @@ category: Clothing
 type: Accessories
 source_url: https://pzwiki.net/wiki/Clothing#Accessories
 scraped_at: 2026-02-24 16:35:15
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Clothing

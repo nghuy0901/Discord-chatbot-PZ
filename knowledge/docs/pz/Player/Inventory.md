@@ -4,7 +4,7 @@ category: Player
 type: Inventory
 source_url: https://pzwiki.net/wiki/Inventory
 scraped_at: 2026-02-24 16:22:30
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Inventory

@@ -4,7 +4,7 @@ category: Crafting
 type: Blade
 source_url: https://pzwiki.net/wiki/Blade_(crafting)
 scraped_at: 2026-02-24 16:17:12
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Blade(crafting)

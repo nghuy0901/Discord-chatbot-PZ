@@ -4,7 +4,7 @@ category: Comfort
 type: Other
 source_url: https://pzwiki.net/wiki/Comfort#Other
 scraped_at: 2026-02-24 16:45:47
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Comfort — Other

@@ -4,7 +4,7 @@ category: Miscellaneous
 type: Floors
 source_url: https://pzwiki.net/wiki/Floors
 scraped_at: 2026-02-24 16:47:48
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Floors

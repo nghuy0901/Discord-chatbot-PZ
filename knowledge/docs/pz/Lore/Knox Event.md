@@ -4,7 +4,7 @@ category: Lore
 type: Knox Event
 source_url: https://pzwiki.net/wiki/Knox_Event
 scraped_at: 2026-02-24 16:26:26
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Knox Event

@@ -4,7 +4,7 @@ category: Equipment
 type: Fishing
 source_url: https://pzwiki.net/wiki/Fishing
 scraped_at: 2026-02-24 16:38:28
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fishing

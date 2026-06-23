@@ -4,7 +4,7 @@ category: Locations
 type: Fort Knox
 source_url: https://pzwiki.net/wiki/Fort_Knox
 scraped_at: 2026-02-24 16:31:05
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fort Knox

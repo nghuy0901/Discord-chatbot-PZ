@@ -4,7 +4,7 @@ category: Crafting
 type: Farming
 source_url: https://pzwiki.net/wiki/Farming_(crafting)
 scraped_at: 2026-02-24 16:18:44
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Farming(crafting)

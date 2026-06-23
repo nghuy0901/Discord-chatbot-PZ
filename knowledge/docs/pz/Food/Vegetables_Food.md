@@ -4,7 +4,7 @@ category: Food
 type: Vegetables
 source_url: https://pzwiki.net/wiki/Food#Vegetables
 scraped_at: 2026-02-24 16:36:15
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Food — Vegetables

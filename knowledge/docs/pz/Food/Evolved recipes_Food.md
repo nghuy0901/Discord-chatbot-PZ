@@ -4,7 +4,7 @@ category: Food
 type: Evolved recipes
 source_url: https://pzwiki.net/wiki/Food#Evolved_recipes
 scraped_at: 2026-02-24 16:36:21
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Food — Evolved recipes

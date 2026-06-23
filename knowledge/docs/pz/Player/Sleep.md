@@ -4,7 +4,7 @@ category: Player
 type: Sleep
 source_url: https://pzwiki.net/wiki/Sleep
 scraped_at: 2026-02-24 16:24:01
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Sleep

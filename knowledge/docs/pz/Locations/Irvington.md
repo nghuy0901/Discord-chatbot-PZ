@@ -4,7 +4,7 @@ category: Locations
 type: Irvington
 source_url: https://pzwiki.net/wiki/Irvington
 scraped_at: 2026-02-24 16:30:54
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Irvington

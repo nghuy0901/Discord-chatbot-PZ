@@ -4,7 +4,7 @@ category: Equipment
 type: Camping
 source_url: https://pzwiki.net/wiki/Camping
 scraped_at: 2026-02-24 16:38:39
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Camping

@@ -4,7 +4,7 @@ category: Comfort
 type: Camping
 source_url: https://pzwiki.net/wiki/Comfort#Camping
 scraped_at: 2026-02-24 16:45:28
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Comfort — Camping

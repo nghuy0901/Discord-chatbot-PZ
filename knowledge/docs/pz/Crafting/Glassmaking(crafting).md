@@ -4,7 +4,7 @@ category: Crafting
 type: Glassmaking
 source_url: https://pzwiki.net/wiki/Glassmaking_(crafting)
 scraped_at: 2026-02-24 16:19:20
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Glassmaking(crafting)

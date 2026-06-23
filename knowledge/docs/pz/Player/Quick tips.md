@@ -4,7 +4,7 @@ category: Player
 type: Quick tips
 source_url: https://pzwiki.net/wiki/Quick_tips
 scraped_at: 2026-02-24 16:24:54
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Quick tips

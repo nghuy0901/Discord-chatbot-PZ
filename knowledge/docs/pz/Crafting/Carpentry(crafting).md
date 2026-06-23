@@ -4,7 +4,7 @@ category: Crafting
 type: Carpentry
 source_url: https://pzwiki.net/wiki/Carpentry_(crafting)
 scraped_at: 2026-02-24 16:17:25
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Carpentry(crafting)

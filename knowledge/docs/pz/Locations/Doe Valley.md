@@ -4,7 +4,7 @@ category: Locations
 type: Doe Valley
 source_url: https://pzwiki.net/wiki/Doe_Valley
 scraped_at: 2026-02-24 16:29:56
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Doe Valley

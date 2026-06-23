@@ -4,7 +4,7 @@ category: Crafting
 type: Cooking
 source_url: https://pzwiki.net/wiki/Cooking_(crafting)
 scraped_at: 2026-02-24 16:18:02
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Cooking(crafting)

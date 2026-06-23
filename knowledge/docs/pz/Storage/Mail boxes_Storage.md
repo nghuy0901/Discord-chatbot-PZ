@@ -4,7 +4,7 @@ category: Storage
 type: Mail boxes
 source_url: https://pzwiki.net/wiki/Storage#Mail_boxes
 scraped_at: 2026-02-24 16:46:45
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Mail boxes

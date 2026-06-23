@@ -4,7 +4,7 @@ category: Other
 type: Debug
 source_url: https://pzwiki.net/wiki/Debug
 scraped_at: 2026-02-24 16:41:58
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Debug

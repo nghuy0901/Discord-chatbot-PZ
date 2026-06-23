@@ -4,7 +4,7 @@ category: Storage
 type: Other
 source_url: https://pzwiki.net/wiki/Storage#Other
 scraped_at: 2026-02-24 16:47:13
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Other

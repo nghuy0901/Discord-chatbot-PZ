@@ -5,9 +5,9 @@
 ---
 > [!IMPORTANT]
 >
-> **Major Refactor (2025/07):**
-> - **5 AI Providers**: Free (g4f), OpenAI, Claude, Gemini, Grok
-> - **No Cookie Authentication**: Removed unreliable cookie-based auth for free providers
+> **Major Refactor (2026/06):**
+> - **Provider-neutral LLM path**: OpenAI, Gemini, and OpenAI-compatible endpoints
+> - **Text-first knowledge ingestion**: Markdown, plain text, reStructuredText, and Discord JSON exports
 
 
 # Setup
@@ -50,32 +50,32 @@
 ### Have a good chat!
 ---
 
+## Supported Knowledge Inputs
+
+NomNom currently supports text-based knowledge sources:
+
+- Markdown (`.md`)
+- Plain text (`.txt`)
+- reStructuredText (`.rst`)
+- Discord JSON exports through the ingestion script
+
+OCR, image parsing, PDF extraction, and browser auto-login ingestion are intentionally out of scope for this version.
+
 ## Provider Configuration
 
-### Free Provider (unstable)
-Outdated model, close to GPT-3.5 or GPT-4 capabilities
-
-No configuration required
-
-### Premium Providers (Optional)
+### LLM Providers
 
 #### OpenAI
 1. Obtain your API key from https://platform.openai.com/api-keys
-2. Add to `.env`: `OPENAI_KEY=your_api_key_here`
-
-#### Claude (Anthropic)
-1. Get API key from https://console.anthropic.com/
-2. Add to `.env`: `CLAUDE_KEY=your_api_key_here`
+2. Add to `.env`: `LLM_PROVIDER=openai` and `LLM_API_KEY=your_api_key_here`
 
 #### Gemini (Google)
 1. Get API key from https://ai.google.dev/
-2. Add to `.env`: `GEMINI_KEY=your_api_key_here`
+2. Add to `.env`: `LLM_PROVIDER=gemini` and `LLM_API_KEY=your_api_key_here`
 
-#### Grok (xAI)
-1. Get API key from https://x.ai/api
-2. Add to `.env`: `GROK_KEY=your_api_key_here`
-
-Use `/provider` command in Discord to switch between available providers
+#### OpenAI-compatible
+1. Serve a model behind an OpenAI-compatible `/v1` endpoint.
+2. Add to `.env`: `LLM_PROVIDER=openai_compatible`, `LLM_BASE_URL`, and `LLM_API_KEY` if required by the endpoint.
 
 ## Image Generation
 
@@ -92,8 +92,7 @@ Image generation is now integrated with the provider system:
 - Use `/draw [prompt] gemini`
 
 ### Fallback Options
-- If premium providers are unavailable, the bot will attempt to use free alternatives
-- Image generation capabilities vary by provider availability
+- Image generation requires an OpenAI-compatible image model or OpenAI image API support
 
 ## Optional: Setup system prompt
 
@@ -115,7 +114,7 @@ Image generation is now integrated with the provider system:
 
 ### Core Commands
 * `/chat [message]` - Chat with the current AI provider
-* `/provider` - Switch between AI providers (Free, OpenAI, Claude, Gemini, Grok)
+* `/provider` - Switch between configured AI providers
 * `/draw [prompt] [model]` - Generate images with specified provider
 * `/reset` - Clear conversation history
 * `/help` - Display all available commands
@@ -147,7 +146,6 @@ Jailbreak personas require admin privileges for enhanced security:
 > Jailbreak personas may generate content that bypasses normal AI safety measures. Admin access required.
 
 ### Environment Security
-- No cookie-based authentication (removed for reliability)
 - Secure API key management via environment variables
 - Docker security hardening with non-root user
 - Read-only filesystem for container security

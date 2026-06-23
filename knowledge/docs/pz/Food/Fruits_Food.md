@@ -4,7 +4,7 @@ category: Food
 type: Fruits
 source_url: https://pzwiki.net/wiki/Food#Fruits
 scraped_at: 2026-02-24 16:36:11
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Food — Fruits

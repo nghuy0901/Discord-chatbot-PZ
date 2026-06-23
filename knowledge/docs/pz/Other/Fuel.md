@@ -4,7 +4,7 @@ category: Other
 type: Fuel
 source_url: https://pzwiki.net/wiki/Fuel
 scraped_at: 2026-02-24 16:40:59
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fuel

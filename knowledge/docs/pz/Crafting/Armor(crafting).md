@@ -4,7 +4,7 @@ category: Crafting
 type: Armor
 source_url: https://pzwiki.net/wiki/Armor_(crafting)
 scraped_at: 2026-02-24 16:16:35
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Armor(crafting)

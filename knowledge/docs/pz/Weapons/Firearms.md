@@ -4,7 +4,7 @@ category: Weapons
 type: Firearms
 source_url: https://pzwiki.net/wiki/Firearm
 scraped_at: 2026-02-24 16:33:53
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Firearm

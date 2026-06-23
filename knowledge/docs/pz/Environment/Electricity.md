@@ -4,7 +4,7 @@ category: Environment
 type: Electricity
 source_url: https://pzwiki.net/wiki/Electricity
 scraped_at: 2026-02-24 16:26:17
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Electricity

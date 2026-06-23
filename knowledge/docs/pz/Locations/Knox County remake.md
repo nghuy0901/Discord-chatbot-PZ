@@ -4,7 +4,7 @@ category: Locations
 type: Knox County remake
 source_url: https://pzwiki.net/wiki/Knox_County_remake
 scraped_at: 2026-02-24 16:32:13
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Knox County remake

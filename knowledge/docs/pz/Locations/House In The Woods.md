@@ -4,7 +4,7 @@ category: Locations
 type: House In The Woods
 source_url: https://pzwiki.net/wiki/House_In_The_Woods
 scraped_at: 2026-02-24 16:32:01
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # House In The Woods

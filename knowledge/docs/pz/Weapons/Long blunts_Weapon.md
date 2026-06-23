@@ -4,7 +4,7 @@ category: Weapons
 type: Long blunts
 source_url: https://pzwiki.net/wiki/Weapon#Long_blunts
 scraped_at: 2026-02-24 16:32:53
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Weapon — Long blunts

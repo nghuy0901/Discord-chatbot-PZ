@@ -4,7 +4,7 @@ category: Locations
 type: Coalfield
 source_url: https://pzwiki.net/wiki/Coalfield
 scraped_at: 2026-02-24 16:30:35
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Coalfield

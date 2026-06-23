@@ -4,7 +4,7 @@ category: Weapons
 type: Explosives
 source_url: https://pzwiki.net/wiki/Explosives
 scraped_at: 2026-02-24 16:34:26
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Explosive

@@ -4,7 +4,7 @@ category: Storage
 type: Mannequins
 source_url: https://pzwiki.net/wiki/Storage#Mannequins
 scraped_at: 2026-02-24 16:47:03
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Mannequins

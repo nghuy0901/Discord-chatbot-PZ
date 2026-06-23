@@ -4,7 +4,7 @@ category: Lore
 type: Raleigh Outbreak
 source_url: https://pzwiki.net/wiki/Raleigh_Outbreak
 scraped_at: 2026-02-24 16:26:37
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Raleigh Outbreak

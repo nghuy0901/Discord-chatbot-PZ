@@ -4,7 +4,7 @@ category: Locations
 type: Valley Station
 source_url: https://pzwiki.net/wiki/Valley_Station
 scraped_at: 2026-02-24 16:28:43
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Valley Station

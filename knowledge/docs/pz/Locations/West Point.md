@@ -4,7 +4,7 @@ category: Locations
 type: West Point
 source_url: https://pzwiki.net/wiki/West_Point
 scraped_at: 2026-02-24 16:28:32
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # West Point

@@ -4,7 +4,7 @@ category: Locations
 type: March Ridge
 source_url: https://pzwiki.net/wiki/March_Ridge
 scraped_at: 2026-02-24 16:28:52
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # March Ridge

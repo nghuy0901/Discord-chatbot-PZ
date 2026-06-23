@@ -4,7 +4,7 @@ category: Storage
 type: Crates
 source_url: https://pzwiki.net/wiki/Storage#Crates
 scraped_at: 2026-02-24 16:46:32
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Crates

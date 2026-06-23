@@ -4,7 +4,7 @@ category: Locations
 type: Basements
 source_url: https://pzwiki.net/wiki/Basements
 scraped_at: 2026-02-24 16:31:27
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Basement

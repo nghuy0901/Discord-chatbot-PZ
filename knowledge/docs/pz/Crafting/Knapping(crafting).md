@@ -4,7 +4,7 @@ category: Crafting
 type: Knapping
 source_url: https://pzwiki.net/wiki/Knapping_(crafting)
 scraped_at: 2026-02-24 16:19:32
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Knapping(crafting)

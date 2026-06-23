@@ -4,7 +4,7 @@ category: Weapons
 type: Axes
 source_url: https://pzwiki.net/wiki/Weapon#Axes
 scraped_at: 2026-02-24 16:32:47
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Weapon — Axes

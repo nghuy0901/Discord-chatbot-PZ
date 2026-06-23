@@ -4,7 +4,7 @@ category: Other
 type: Gardening
 source_url: https://pzwiki.net/wiki/Gardening
 scraped_at: 2026-02-24 16:40:37
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Gardening

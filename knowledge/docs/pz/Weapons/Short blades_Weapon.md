@@ -4,7 +4,7 @@ category: Weapons
 type: Short blades
 source_url: https://pzwiki.net/wiki/Weapon#Short_blades
 scraped_at: 2026-02-24 16:33:11
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Weapon — Short blades

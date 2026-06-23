@@ -4,7 +4,7 @@ category: Crafting
 type: Fishing
 source_url: https://pzwiki.net/wiki/Fishing_(crafting)
 scraped_at: 2026-02-24 16:19:08
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fishing(crafting)

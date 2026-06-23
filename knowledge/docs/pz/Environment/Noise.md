@@ -4,7 +4,7 @@ category: Environment
 type: Noise
 source_url: https://pzwiki.net/wiki/Noise
 scraped_at: 2026-02-24 16:26:05
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Noise

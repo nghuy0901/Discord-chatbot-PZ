@@ -4,7 +4,7 @@ category: Equipment
 type: Fluid containers
 source_url: https://pzwiki.net/wiki/Fluid_containers
 scraped_at: 2026-02-24 16:37:17
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fluid container

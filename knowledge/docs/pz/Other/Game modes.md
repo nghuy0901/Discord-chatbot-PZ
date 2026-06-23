@@ -4,7 +4,7 @@ category: Other
 type: Game modes
 source_url: https://pzwiki.net/wiki/Game_modes
 scraped_at: 2026-02-24 16:42:37
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Game modes

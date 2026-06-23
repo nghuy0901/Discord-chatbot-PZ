@@ -4,7 +4,7 @@ category: Locations
 type: Abandoned town
 source_url: https://pzwiki.net/wiki/Abandoned_town
 scraped_at: 2026-02-24 16:30:15
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Abandoned town

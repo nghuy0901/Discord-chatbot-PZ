@@ -4,7 +4,7 @@ category: Crafting
 type: Metalworking
 source_url: https://pzwiki.net/wiki/Metalworking_(crafting)
 scraped_at: 2026-02-24 16:20:02
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Metalworking(crafting)

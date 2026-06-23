@@ -4,7 +4,7 @@ category: Equipment
 type: Containers
 source_url: https://pzwiki.net/wiki/Containers
 scraped_at: 2026-02-24 16:37:07
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Container(tile)

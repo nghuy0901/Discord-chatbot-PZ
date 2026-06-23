@@ -4,7 +4,7 @@ category: Crafting
 type: Tools
 source_url: https://pzwiki.net/wiki/Tools_(crafting)
 scraped_at: 2026-02-24 16:21:31
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Tools(crafting)

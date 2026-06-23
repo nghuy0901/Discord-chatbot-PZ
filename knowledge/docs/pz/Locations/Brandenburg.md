@@ -4,7 +4,7 @@ category: Locations
 type: Brandenburg
 source_url: https://pzwiki.net/wiki/Brandenburg
 scraped_at: 2026-02-24 16:30:44
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Brandenburg

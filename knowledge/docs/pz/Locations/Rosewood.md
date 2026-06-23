@@ -4,7 +4,7 @@ category: Locations
 type: Rosewood
 source_url: https://pzwiki.net/wiki/Rosewood
 scraped_at: 2026-02-24 16:29:13
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Rosewood

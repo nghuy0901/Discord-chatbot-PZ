@@ -4,7 +4,7 @@ category: Storage
 type: Shelves
 source_url: https://pzwiki.net/wiki/Storage#Shelves
 scraped_at: 2026-02-24 16:46:07
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Shelves

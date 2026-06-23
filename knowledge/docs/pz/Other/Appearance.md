@@ -4,7 +4,7 @@ category: Other
 type: Appearance
 source_url: https://pzwiki.net/wiki/Appearance
 scraped_at: 2026-02-24 16:39:41
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Appearance

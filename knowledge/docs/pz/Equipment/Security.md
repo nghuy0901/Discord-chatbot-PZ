@@ -4,7 +4,7 @@ category: Equipment
 type: Security
 source_url: https://pzwiki.net/wiki/Security
 scraped_at: 2026-02-24 16:39:09
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Security

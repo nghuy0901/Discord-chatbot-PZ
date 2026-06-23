@@ -4,7 +4,7 @@ category: Food
 type: Canned food
 source_url: https://pzwiki.net/wiki/Food#Canned_food
 scraped_at: 2026-02-24 16:35:41
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Food — Canned food

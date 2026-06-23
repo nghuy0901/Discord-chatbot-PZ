@@ -4,7 +4,7 @@ category: Weapons
 type: Ammo
 source_url: https://pzwiki.net/wiki/Ammo
 scraped_at: 2026-02-24 16:34:04
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Ammo

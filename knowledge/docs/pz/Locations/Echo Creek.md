@@ -4,7 +4,7 @@ category: Locations
 type: Echo Creek
 source_url: https://pzwiki.net/wiki/Echo_Creek
 scraped_at: 2026-02-24 16:30:24
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Echo Creek

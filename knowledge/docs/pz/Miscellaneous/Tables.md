@@ -4,7 +4,7 @@ category: Miscellaneous
 type: Tables
 source_url: https://pzwiki.net/wiki/Tables
 scraped_at: 2026-02-24 16:47:24
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Tables

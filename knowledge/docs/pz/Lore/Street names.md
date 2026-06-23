@@ -4,7 +4,7 @@ category: Lore
 type: Street names
 source_url: https://pzwiki.net/wiki/Street_names
 scraped_at: 2026-02-24 16:26:59
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Street names

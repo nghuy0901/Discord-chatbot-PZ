@@ -4,7 +4,7 @@ category: Crafting
 type: Weaponry
 source_url: https://pzwiki.net/wiki/Weaponry_(crafting)
 scraped_at: 2026-02-24 16:21:45
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Weaponry(crafting)

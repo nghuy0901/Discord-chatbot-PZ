@@ -4,7 +4,7 @@ category: Other
 type: Junk
 source_url: https://pzwiki.net/wiki/Junk
 scraped_at: 2026-02-24 16:41:08
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Junk

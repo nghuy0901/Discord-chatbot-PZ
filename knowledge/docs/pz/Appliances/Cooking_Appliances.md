@@ -4,7 +4,7 @@ category: Appliances
 type: Cooking appliances
 source_url: https://pzwiki.net/wiki/Appliances#Cooking_appliances
 scraped_at: 2026-02-24 16:43:39
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Appliances — Cooking appliances

@@ -4,7 +4,7 @@ category: Plumbing
 type: Sinks
 source_url: https://pzwiki.net/wiki/Plumbing#Sinks
 scraped_at: 2026-02-24 16:43:58
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Plumbing — Sinks

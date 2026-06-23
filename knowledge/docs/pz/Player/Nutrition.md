@@ -4,7 +4,7 @@ category: Player
 type: Nutrition
 source_url: https://pzwiki.net/wiki/Nutrition
 scraped_at: 2026-02-24 16:23:41
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Nutrition

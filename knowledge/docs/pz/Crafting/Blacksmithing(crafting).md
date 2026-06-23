@@ -4,7 +4,7 @@ category: Crafting
 type: Blacksmithing
 source_url: https://pzwiki.net/wiki/Blacksmithing_(crafting)
 scraped_at: 2026-02-24 16:17:01
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Blacksmithing(crafting)

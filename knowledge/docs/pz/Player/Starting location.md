@@ -4,7 +4,7 @@ category: Player
 type: Starting location
 source_url: https://pzwiki.net/wiki/Starting_location
 scraped_at: 2026-02-24 16:24:45
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Starting location

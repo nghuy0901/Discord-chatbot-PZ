@@ -4,7 +4,7 @@ category: Appliances
 type: Communication
 source_url: https://pzwiki.net/wiki/Appliances#Communication
 scraped_at: 2026-02-24 16:43:35
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Appliances — Communication

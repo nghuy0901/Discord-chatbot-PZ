@@ -4,7 +4,7 @@ category: Player
 type: Moodle
 source_url: https://pzwiki.net/wiki/Moodle
 scraped_at: 2026-02-24 16:22:49
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Moodle

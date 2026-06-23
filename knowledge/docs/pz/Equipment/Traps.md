@@ -4,7 +4,7 @@ category: Equipment
 type: Traps
 source_url: https://pzwiki.net/wiki/Traps
 scraped_at: 2026-02-24 16:37:25
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Trap

@@ -4,7 +4,7 @@ category: Comfort
 type: Couches
 source_url: https://pzwiki.net/wiki/Comfort#Couches
 scraped_at: 2026-02-24 16:44:58
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Comfort — Couches

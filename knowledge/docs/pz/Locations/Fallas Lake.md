@@ -4,7 +4,7 @@ category: Locations
 type: Fallas Lake
 source_url: https://pzwiki.net/wiki/Fallas_Lake
 scraped_at: 2026-02-24 16:30:05
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Fallas Lake

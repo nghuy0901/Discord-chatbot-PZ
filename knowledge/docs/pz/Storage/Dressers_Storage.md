@@ -4,7 +4,7 @@ category: Storage
 type: Dressers
 source_url: https://pzwiki.net/wiki/Storage#Dressers
 scraped_at: 2026-02-24 16:46:22
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Dressers

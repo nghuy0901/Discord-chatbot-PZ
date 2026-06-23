@@ -4,7 +4,7 @@ category: Appliances
 type: Fridges
 source_url: https://pzwiki.net/wiki/Appliances#Fridges
 scraped_at: 2026-02-24 16:43:46
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Appliances — Fridges

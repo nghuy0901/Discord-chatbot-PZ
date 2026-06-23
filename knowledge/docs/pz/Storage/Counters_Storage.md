@@ -4,7 +4,7 @@ category: Storage
 type: Counters
 source_url: https://pzwiki.net/wiki/Storage#Counters
 scraped_at: 2026-02-24 16:45:59
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Storage — Counters

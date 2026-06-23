@@ -4,7 +4,7 @@ category: Player
 type: Occupation
 source_url: https://pzwiki.net/wiki/Occupation
 scraped_at: 2026-02-24 16:22:58
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Occupation

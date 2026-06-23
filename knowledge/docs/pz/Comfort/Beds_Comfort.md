@@ -4,7 +4,7 @@ category: Comfort
 type: Beds
 source_url: https://pzwiki.net/wiki/Comfort#Beds
 scraped_at: 2026-02-24 16:44:51
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Comfort — Beds

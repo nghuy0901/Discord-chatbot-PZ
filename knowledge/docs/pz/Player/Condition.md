@@ -4,7 +4,7 @@ category: Player
 type: Condition
 source_url: https://pzwiki.net/wiki/Condition
 scraped_at: 2026-02-24 16:24:29
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Condition

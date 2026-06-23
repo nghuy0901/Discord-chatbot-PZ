@@ -4,7 +4,7 @@ category: Plumbing
 type: Toilets
 source_url: https://pzwiki.net/wiki/Plumbing#Toilets
 scraped_at: 2026-02-24 16:44:32
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Plumbing — Toilets

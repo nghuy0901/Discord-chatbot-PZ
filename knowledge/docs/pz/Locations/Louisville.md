@@ -4,7 +4,7 @@ category: Locations
 type: Louisville
 source_url: https://pzwiki.net/wiki/Louisville
 scraped_at: 2026-02-24 16:29:44
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Louisville

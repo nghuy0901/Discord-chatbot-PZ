@@ -4,7 +4,7 @@ category: Crafting
 type: Miscellaneous
 source_url: https://pzwiki.net/wiki/Miscellaneous_(crafting)
 scraped_at: 2026-02-24 16:22:10
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Miscellaneous(crafting)

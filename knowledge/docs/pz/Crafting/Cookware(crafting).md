@@ -4,7 +4,7 @@ category: Crafting
 type: Cookware
 source_url: https://pzwiki.net/wiki/Cookware_(crafting)
 scraped_at: 2026-02-24 16:18:12
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Cookware(crafting)

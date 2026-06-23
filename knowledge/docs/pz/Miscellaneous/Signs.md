@@ -4,7 +4,7 @@ category: Miscellaneous
 type: Signs
 source_url: https://pzwiki.net/wiki/Signs
 scraped_at: 2026-02-24 16:48:12
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Signs

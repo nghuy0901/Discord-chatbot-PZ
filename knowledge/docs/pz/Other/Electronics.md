@@ -4,7 +4,7 @@ category: Other
 type: Electronics
 source_url: https://pzwiki.net/wiki/Electronics
 scraped_at: 2026-02-24 16:40:21
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Electronics

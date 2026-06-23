@@ -4,7 +4,7 @@ category: Weapons
 type: Long blades
 source_url: https://pzwiki.net/wiki/Weapon#Long_blades
 scraped_at: 2026-02-24 16:33:05
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Weapon — Long blades

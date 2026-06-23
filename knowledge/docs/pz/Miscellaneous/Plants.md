@@ -4,7 +4,7 @@ category: Miscellaneous
 type: Plants
 source_url: https://pzwiki.net/wiki/Plants
 scraped_at: 2026-02-24 16:48:25
-method: selenium_v2
+method: archived_wiki_markdown
 ---
 
 # Plants
