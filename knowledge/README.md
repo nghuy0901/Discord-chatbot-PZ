@@ -1,6 +1,6 @@
 # Knowledge Base Module
 
-This module provides the **Multi-Domain Knowledge Base** system for CLCT Bot.
+This module provides the **Multi-Domain Knowledge Base** system for NomNom Bot.
 
 ## Structure
 

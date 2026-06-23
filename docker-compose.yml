@@ -4,17 +4,17 @@ services:
   # ---- PostgreSQL + pgvector (RAG storage) ----
   postgres:
     image: pgvector/pgvector:pg16
-    container_name: clct-postgres
+    container_name: nomnom-postgres
     environment:
-      POSTGRES_USER: clct
-      POSTGRES_PASSWORD: clct
-      POSTGRES_DB: clct_rag
+      POSTGRES_USER: nomnom
+      POSTGRES_PASSWORD: nomnom
+      POSTGRES_DB: nomnom_rag
     ports:
       - "5432:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U clct -d clct_rag"]
+      test: ["CMD-SHELL", "pg_isready -U nomnom -d nomnom_rag"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -22,18 +22,18 @@ services:
     networks:
       - bot-network
 
-  # ---- CLCT Discord Bot ----
+  # ---- NomNom Discord Bot ----
   chatgpt-discord-bot:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: clct-discord-bot:latest
-    container_name: clct-discord-bot
+    image: nomnom-discord-bot:latest
+    container_name: nomnom-discord-bot
     env_file:
       - .env
     environment:
       # Override POSTGRES_URL to use Docker service name
-      POSTGRES_URL: postgresql://clct:clct@postgres:5432/clct_rag
+      POSTGRES_URL: postgresql://nomnom:nomnom@postgres:5432/nomnom_rag
       # Override OLLAMA_BASE_URL so the container can reach Ollama on the host machine
       OLLAMA_BASE_URL: http://host.docker.internal:11434
     depends_on:

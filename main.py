@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CLCT Discord Bot — Main entry point.
+NomNom Discord Bot — Main entry point.
 
 Validates environment, initialises subsystems, and launches the bot.
 """
@@ -58,7 +58,7 @@ def validate_environment() -> bool:
 
 def main():
     """Main entry point."""
-    logger.info("Starting CLCT Discord Bot …")
+    logger.info("Starting NomNom Discord Bot …")
 
     if not validate_environment():
         sys.exit(1)

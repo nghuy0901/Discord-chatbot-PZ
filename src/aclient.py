@@ -1,5 +1,5 @@
 """
-Discord client — CLCT Bot.
+Discord client — NomNom Bot.
 
 Manages Discord connection, interaction triggers (mention, reply, thread),
 Ollama-powered response generation with streaming, and RAG integration.
@@ -86,9 +86,9 @@ KB_COMMANDS = {
 }
 
 
-class CLCTClient(discord.Client):
+class NomNomClient(discord.Client):
     """
-    CLCT Discord client with Grok-style interaction triggers:
+    NomNom Discord client with Grok-style interaction triggers:
     - @mention
     - Reply to bot message
     - Active thread participation
@@ -228,7 +228,7 @@ class CLCTClient(discord.Client):
                 logger.warning(f"⚠️ BM25 index init failed (non-fatal, hybrid search degrades to vector-only): {e}")
 
     async def send_start_prompt(self) -> None:
-        """No-op — CLCT doesn't need an initial prompt broadcast."""
+        """No-op — NomNom doesn't need an initial prompt broadcast."""
         if ENABLE_TOOL_CALLING and STRUCTURED_TOOLS_AVAILABLE:
             logger.info(
                 f"✅ Tool calling enabled: {len(PZ_TOOLS)} PZ tools available "
@@ -238,7 +238,7 @@ class CLCTClient(discord.Client):
             logger.warning("⚠️ Tool calling enabled but PZ tools failed to load")
         else:
             logger.info("ℹ️ Tool calling disabled")
-        logger.info("CLCT ready — responding to @mentions and replies.")
+        logger.info("NomNom ready — responding to @mentions and replies.")
 
     # ------------------------------------------------------------------
     # Trigger detection
@@ -246,7 +246,7 @@ class CLCTClient(discord.Client):
 
     def should_respond(self, message: discord.Message) -> bool:
         """
-        Determine whether CLCT should respond to this message.
+        Determine whether NomNom should respond to this message.
         """
         if message.author == self.user:
             return False
@@ -770,7 +770,7 @@ class CLCTClient(discord.Client):
             channel_id="slash-command",
             message_id=f"slash-resp-{id(response)}",
             author_id="bot",
-            author_name="CLCT",
+            author_name="NomNom",
             content=response,
             is_bot=True,
         )
@@ -831,4 +831,4 @@ class CLCTClient(discord.Client):
 # ---------------------------------------------------------------------------
 # Singleton
 # ---------------------------------------------------------------------------
-discordClient = CLCTClient()
+discordClient = NomNomClient()

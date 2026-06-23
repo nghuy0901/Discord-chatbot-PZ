@@ -1,5 +1,5 @@
 """
-CLCT Discord Bot — command registration and event handlers.
+NomNom Discord Bot — command registration and event handlers.
 
 Trigger logic:
 - @mention → respond (or handle KB admin command via C3)
@@ -33,7 +33,7 @@ def run_discord_bot():
         await discordClient.tree.sync()
         loop = asyncio.get_event_loop()
         loop.create_task(discordClient.process_messages())
-        logger.info(f"✅ {discordClient.user} is now running! (CLCT mode)")
+        logger.info(f"✅ {discordClient.user} is now running! (NomNom mode)")
 
     # ------------------------------------------------------------------
     # B2: Reaction feedback events
@@ -124,7 +124,7 @@ def run_discord_bot():
     # Slash commands
     # ------------------------------------------------------------------
 
-    @discordClient.tree.command(name="chat", description="Chat with CLCT")
+    @discordClient.tree.command(name="chat", description="Chat with NomNom")
     async def chat(interaction: discord.Interaction, *, message: str):
         if len(message) > 2000:
             await interaction.response.send_message(
@@ -163,7 +163,7 @@ def run_discord_bot():
             "🔄 All conversation contexts cleared.", ephemeral=False
         )
 
-    @discordClient.tree.command(name="status", description="Show CLCT status")
+    @discordClient.tree.command(name="status", description="Show NomNom status")
     async def status(interaction: discord.Interaction):
         """Enhanced status with A3 metrics and D2 knowledge base info."""
         from src.ollama_provider import health_check, OLLAMA_MODEL
@@ -214,7 +214,7 @@ def run_discord_bot():
             pass
 
         embed = discord.Embed(
-            title="🤖 CLCT Status",
+            title="🤖 NomNom Status",
             color=discord.Color.green() if ollama_ok else discord.Color.red(),
         )
         embed.add_field(
@@ -243,7 +243,7 @@ def run_discord_bot():
         """Interactive provider and model selection (legacy compatibility)."""
         if not discordClient.provider_manager:
             await interaction.response.send_message(
-                "ℹ️ CLCT uses Ollama locally. Use `/status` to check model info.",
+                "ℹ️ NomNom uses Ollama locally. Use `/status` to check model info.",
                 ephemeral=True,
             )
             return
@@ -347,7 +347,7 @@ def run_discord_bot():
     @discordClient.tree.command(name="help", description="Show all available commands")
     async def help(interaction: discord.Interaction):
         embed = discord.Embed(
-            title="🤖 CLCT — Help",
+            title="🤖 NomNom — Help",
             description=(
                 "I respond when you **@mention** me or **reply** to my messages.\n"
                 "I also participate in threads where I've been active."
@@ -357,7 +357,7 @@ def run_discord_bot():
 
         commands = [
             ("💬 **Chat**", [
-                ("@CLCT [message]", "Mention me to chat"),
+                ("@NomNom [message]", "Mention me to chat"),
                 ("Reply to my message", "Continue the conversation"),
                 ("/chat [message]", "Slash command chat"),
                 ("/reset", "Clear this channel's context"),
