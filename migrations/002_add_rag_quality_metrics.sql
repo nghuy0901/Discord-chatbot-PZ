@@ -1,0 +1,24 @@
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS vector_results INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS bm25_results INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS hybrid_fused_results INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS vector_time_ms FLOAT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS bm25_time_ms FLOAT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS self_rag_enabled BOOLEAN DEFAULT FALSE;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS self_rag_graded INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS self_rag_relevant INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS self_rag_irrelevant INT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS self_rag_time_ms FLOAT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS empty_retrieval BOOLEAN DEFAULT FALSE;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS citation_coverage FLOAT DEFAULT 0;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS prompt_version TEXT DEFAULT '';
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS retrieval_error TEXT;
+ALTER TABLE rag_metrics ADD COLUMN IF NOT EXISTS llm_error TEXT;
+
+CREATE TABLE IF NOT EXISTS embedding_collections (
+  collection_name TEXT PRIMARY KEY,
+  provider TEXT NOT NULL,
+  model TEXT NOT NULL,
+  dimension INT NOT NULL,
+  collection_version TEXT NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
