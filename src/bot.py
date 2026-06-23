@@ -256,11 +256,9 @@ def run_discord_bot():
                 available_providers = discordClient.provider_manager.get_available_providers()
                 for provider_type in available_providers:
                     emoji_map = {
-                        ProviderType.FREE: "🆓",
                         ProviderType.OPENAI: "🟢",
-                        ProviderType.CLAUDE: "🟣",
                         ProviderType.GEMINI: "🔵",
-                        ProviderType.GROK: "⚫",
+                        ProviderType.OPENAI_COMPATIBLE: "⚙️",
                     }
                     options.append(
                         discord.SelectOption(

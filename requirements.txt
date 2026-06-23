@@ -3,13 +3,10 @@ discord.py==2.6.4
 python-dotenv==1.0.1
 aiohttp==3.11.11
 
-# ---- Ollama (local LLM) ----
-ollama>=0.4.0
 
 # ---- LangChain RAG ----
 langchain-core>=0.3.0
 langchain-community>=0.3.0
-langchain-ollama>=0.3.0
 psycopg[binary]>=3.1.0
 pgvector>=0.3.0
 
@@ -18,8 +15,6 @@ asyncpg>=0.30.0
 
 # ---- Legacy providers (optional, kept for /provider command) ----
 openai==1.66.2
-g4f==0.3.2.9
-g4f[all]
 google-generativeai==0.8.3
 anthropic==0.42.0
 
@@ -32,6 +27,3 @@ asgiref==3.8.1
 # ---- Testing ----
 pytest==8.3.4
 pytest-asyncio==0.24.0
-
-# ---- Auto-login (optional) ----
-selenium==4.28.1

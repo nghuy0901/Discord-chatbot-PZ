@@ -10,17 +10,19 @@ import os
 class TestDiscordClientLogic:
     """Test only the business logic parts that don't require Discord initialization"""
     
-    def test_provider_logic(self):
+    def test_provider_logic(self, monkeypatch):
         """Test provider management logic without Discord"""
         from src.providers import ProviderManager, ProviderType
-        
+
         # Test provider manager creation
+        monkeypatch.setenv("LLM_PROVIDER", "openai")
+        monkeypatch.setenv("LLM_API_KEY", "test-key")
         manager = ProviderManager()
-        assert ProviderType.FREE in manager.get_available_providers()
-        
+        assert ProviderType.OPENAI in manager.get_available_providers()
+
         # Test provider switching logic
-        manager.set_current_provider(ProviderType.FREE)
-        assert manager.current_provider == ProviderType.FREE
+        manager.set_current_provider(ProviderType.OPENAI)
+        assert manager.current_provider == ProviderType.OPENAI
     
     def test_conversation_history_management(self):
         """Test conversation history logic"""

@@ -113,11 +113,11 @@ class NomNomClient(discord.Client):
         try:
             from src.providers import ProviderManager, ProviderType
             self.provider_manager = ProviderManager()
-            default_provider = os.getenv("DEFAULT_PROVIDER", "free")
+            default_provider = os.getenv("DEFAULT_PROVIDER") or os.getenv("LLM_PROVIDER")
             try:
                 self.provider_manager.set_current_provider(ProviderType(default_provider))
-            except ValueError:
-                self.provider_manager.set_current_provider(ProviderType.FREE)
+            except (TypeError, ValueError):
+                logger.warning("Configured default provider is not available: %s", default_provider)
         except Exception:
             self.provider_manager = None
 
