@@ -25,10 +25,11 @@ def validate_environment() -> bool:
         logger.error("Please check your .env file (see .env.example)")
         return False
 
-    # Ollama
-    ollama_model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
-    ollama_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    logger.info(f"Ollama: model={ollama_model}, url={ollama_url}")
+    # LLM provider
+    llm_provider = os.getenv("LLM_PROVIDER", "not configured")
+    llm_model = os.getenv("LLM_MODEL", os.getenv("OLLAMA_MODEL", "vllm-local"))
+    llm_url = os.getenv("LLM_BASE_URL", os.getenv("OLLAMA_BASE_URL", ""))
+    logger.info(f"LLM: provider={llm_provider}, model={llm_model}, base_url={llm_url or 'default'}")
 
     # RAG
     if os.getenv("ENABLE_RAG", "true").lower() == "true":

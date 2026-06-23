@@ -3,7 +3,7 @@ PostgreSQL + pgvector database layer via LangChain PGVector.
 
 Uses:
 - langchain_community.vectorstores.PGVector for vector storage & similarity search
-- langchain_ollama.OllamaEmbeddings for embedding generation
+- provider-neutral LangChain embeddings from src.llm.embedding_factory
 - asyncpg for direct SQL operations (edges table, counts, custom queries)
 
 Tables (managed by LangChain + custom SQL):
@@ -19,7 +19,6 @@ from typing import Optional, List, Dict, Any
 
 import asyncpg
 from langchain_community.vectorstores import PGVector
-from langchain_ollama import OllamaEmbeddings
 from langchain_core.documents import Document
 from dotenv import load_dotenv
 
@@ -31,7 +30,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 POSTGRES_URL: str = os.getenv(
     "POSTGRES_URL",
-    "postgresql://clct:clct@localhost:5432/clct_rag",
+    "postgresql://postgres:postgres@localhost:5432/postgres",
 )
 # LangChain PGVector needs the psycopg2/postgresql+psycopg URI scheme
 # Convert asyncpg-style URL → SQLAlchemy-style if needed
@@ -39,27 +38,25 @@ PGVECTOR_CONNECTION: str = POSTGRES_URL.replace(
     "postgresql://", "postgresql+psycopg://", 1
 ) if "postgresql://" in POSTGRES_URL else POSTGRES_URL
 
-EMBEDDING_DIM: int = int(os.getenv("EMBEDDING_DIM", "768"))
-OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-EMBED_MODEL: str = os.getenv("OLLAMA_EMBED_MODEL", "nomic-embed-text")
+EMBEDDING_DIM: int = int(os.getenv("EMBEDDING_DIMENSION", os.getenv("EMBEDDING_DIM", "768")))
+EMBED_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 COLLECTION_NAME: str = os.getenv("PGVECTOR_COLLECTION", "discord_messages")
 
 
 # ---------------------------------------------------------------------------
-# LangChain Embeddings (singleton)
+# LangChain embeddings (singleton)
 # ---------------------------------------------------------------------------
-_embeddings: Optional[OllamaEmbeddings] = None
+_embeddings: Optional[Any] = None
 
 
-def get_embeddings() -> OllamaEmbeddings:
-    """Return (and lazily create) the LangChain OllamaEmbeddings instance."""
+def get_embeddings() -> Any:
+    """Return (and lazily create) the configured LangChain embeddings instance."""
     global _embeddings
     if _embeddings is None:
-        _embeddings = OllamaEmbeddings(
-            model=EMBED_MODEL,
-            base_url=OLLAMA_BASE_URL,
-        )
-        logger.info(f"OllamaEmbeddings initialised: model={EMBED_MODEL}, url={OLLAMA_BASE_URL}")
+        from src.llm.embedding_factory import get_langchain_embeddings
+
+        _embeddings = get_langchain_embeddings()
+        logger.info("LangChain embeddings initialised: model=%s", EMBED_MODEL)
     return _embeddings
 
 

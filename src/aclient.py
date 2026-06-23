@@ -2,7 +2,7 @@
 Discord client — NomNom Bot.
 
 Manages Discord connection, interaction triggers (mention, reply, thread),
-Ollama-powered response generation with streaming, and RAG integration.
+provider-neutral response generation, and RAG integration.
 
 Enhanced with:
 - B2: Reaction-based feedback (👍/👎)
@@ -121,7 +121,7 @@ class NomNomClient(discord.Client):
         except Exception:
             self.provider_manager = None
 
-        self.current_model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+        self.current_model = os.getenv("LLM_MODEL", os.getenv("OLLAMA_MODEL", "vllm-local"))
 
         # Bot settings
         self.activity = discord.Activity(
@@ -177,12 +177,12 @@ class NomNomClient(discord.Client):
 
     async def setup_hook(self) -> None:
         """Called once when the bot starts — initialise DB, KB, and models."""
-        # Check Ollama health
+        # Check configured LLM provider health
         if await health_check():
-            logger.info("✅ Ollama is reachable.")
+            logger.info("✅ LLM provider is configured.")
             await ensure_model()
         else:
-            logger.warning("⚠️ Ollama is not reachable — responses will fail until it's up.")
+            logger.warning("⚠️ LLM provider is not configured — responses will fail until it is set.")
 
         # Initialise RAG database (non-blocking)
         if ENABLE_RAG:
@@ -483,7 +483,7 @@ class NomNomClient(discord.Client):
         Full response flow:
         1. Track message in context
         2. Build prompt (system + RAG + history)
-        3. Generate via Ollama (streaming or batch)
+        3. Generate via configured LLM provider (streaming or batch)
         4. Send to Discord with typing indicator
         5. Track bot response in context
         6. B2: Add feedback reactions
@@ -547,7 +547,7 @@ class NomNomClient(discord.Client):
             if ENABLE_STREAMING:
                 if use_tools_for_query:
                     # ANALYTICAL or HYBRID: Try tool calling first (non-streaming,
-                    # because Ollama tool calls require full response to detect calls)
+                    # because tool calls require full response to detect calls)
                     async with message.channel.typing():
                         response_text = await chat_with_tools(
                             messages=prompt_messages,
@@ -654,7 +654,7 @@ class NomNomClient(discord.Client):
         temperature: float,
     ) -> tuple:
         """
-        Stream Ollama tokens and progressively edit a Discord message.
+        Stream LLM tokens and progressively edit a Discord message.
         Returns tuple of (final_text, bot_message) for feedback tracking.
         """
         # Send initial "thinking" message
@@ -734,7 +734,7 @@ class NomNomClient(discord.Client):
     # ------------------------------------------------------------------
 
     async def handle_response(self, user_message: str) -> str:
-        """Legacy handle_response for /chat command — uses Ollama directly."""
+        """Legacy handle_response for /chat command."""
         prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
             channel_id="slash-command",
             user_message=user_message,
@@ -814,7 +814,7 @@ class NomNomClient(discord.Client):
     def get_current_provider_info(self) -> Dict:
         """Get info about current provider/model."""
         return {
-            "provider": "ollama",
+            "provider": os.getenv("LLM_PROVIDER", "not_configured"),
             "current_model": self.current_model,
             "available_models": [],
             "supports_images": False,

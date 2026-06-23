@@ -3,7 +3,7 @@ RAG (Retrieval-Augmented Generation) module for Discord bot.
 
 Components:
 - db.py: PostgreSQL + pgvector connection and table management
-- embedder.py: Embedding generation via Ollama
+- embedder.py: Embedding generation via configured embedding provider
 - ingest.py: Historical conversation dataset ingestion
 - retriever.py: Semantic search and context retrieval (orchestrator)
 - bm25_search.py: BM25 lexical search for hybrid RAG (E1)

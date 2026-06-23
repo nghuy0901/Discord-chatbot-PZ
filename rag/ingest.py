@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Ingestion script — processes a historical Discord conversation dataset (JSON),
-generates embeddings via Ollama, and upserts into PostgreSQL + pgvector.
+generates embeddings via the configured embedding provider, and upserts into PostgreSQL + pgvector.
 
 Usage:
-    python -m rag.ingest <path_to_json> [--batch-size 100] [--model nomic-embed-text]
+    python -m rag.ingest <path_to_json> [--batch-size 100] [--model text-embedding-3-small]
 
 The JSON file is expected to be either:
   - A JSON array of message objects, OR
@@ -259,7 +259,7 @@ def main():
         "--model",
         type=str,
         default=None,
-        help="Ollama embedding model override (default: from .env or nomic-embed-text).",
+        help="Embedding model override (default: EMBEDDING_MODEL from .env).",
     )
     args = parser.parse_args()
 

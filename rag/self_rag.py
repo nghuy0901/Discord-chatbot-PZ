@@ -11,8 +11,7 @@ hallucinations and improves answer quality by:
 4. **Adaptive behavior**: If all results are graded irrelevant, fall back
    to general knowledge with explicit disclaimer
 
-The grading uses the same Ollama model with a specialized prompt,
-keeping the pipeline fully local and private.
+The grading uses the configured LLM provider with a specialized prompt.
 
 Performance notes:
 - Grading is batched to minimize LLM calls

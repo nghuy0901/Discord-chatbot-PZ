@@ -168,7 +168,7 @@ def run_discord_bot():
         """Enhanced status with A3 metrics and D2 knowledge base info."""
         from src.ollama_provider import health_check, OLLAMA_MODEL
 
-        ollama_ok = await health_check()
+        llm_ok = await health_check()
         ctx_stats = discordClient.context_manager.stats()
 
         # RAG status
@@ -215,11 +215,11 @@ def run_discord_bot():
 
         embed = discord.Embed(
             title="🤖 NomNom Status",
-            color=discord.Color.green() if ollama_ok else discord.Color.red(),
+            color=discord.Color.green() if llm_ok else discord.Color.red(),
         )
         embed.add_field(
-            name="Ollama",
-            value=f"{'✅ Online' if ollama_ok else '❌ Offline'}",
+            name="LLM",
+            value=f"{'✅ Configured' if llm_ok else '❌ Not configured'}",
             inline=True,
         )
         embed.add_field(name="Model", value=OLLAMA_MODEL, inline=True)
@@ -243,7 +243,7 @@ def run_discord_bot():
         """Interactive provider and model selection (legacy compatibility)."""
         if not discordClient.provider_manager:
             await interaction.response.send_message(
-                "ℹ️ NomNom uses Ollama locally. Use `/status` to check model info.",
+                "ℹ️ NomNom uses the configured LLM provider. Use `/status` to check model info.",
                 ephemeral=True,
             )
             return
