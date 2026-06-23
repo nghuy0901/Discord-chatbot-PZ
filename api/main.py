@@ -5,6 +5,7 @@ from typing import Optional, Dict, Any
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
+from api.auth import require_configured_api_key
 from api.schemas import MetricsSummary
 
 # Load environment variables
@@ -48,7 +49,7 @@ API_KEY_NAME = "X-API-Key"
 api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 async def get_api_key(api_key: str = Depends(api_key_header)):
-    expected_key = os.getenv("API_KEY", "PZ-Default-Key-123")
+    expected_key = require_configured_api_key()
     if not api_key or api_key != expected_key:
         raise HTTPException(status_code=403, detail="Invalid or missing API Key")
     return api_key
