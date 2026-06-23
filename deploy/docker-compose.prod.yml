@@ -6,8 +6,6 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -15,14 +13,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
+    restart: always
 
   redis:
     image: redis:7-alpine
     container_name: nomnom-redis
     command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
-    ports:
-      - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
@@ -30,16 +26,16 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
+    restart: always
 
   nomnom-api:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile
-    image: nomnom-bot:local
+    image: nomnom-bot:prod
     container_name: nomnom-api
     env_file:
-      - .env
+      - ../.env
     environment:
       POSTGRES_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-postgres}
       REDIS_URL: redis://redis:6379/0
@@ -56,16 +52,16 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
-    restart: unless-stopped
+    restart: always
 
   nomnom-bot:
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile
-    image: nomnom-bot:local
+    image: nomnom-bot:prod
     container_name: nomnom-bot
     env_file:
-      - .env
+      - ../.env
     environment:
       POSTGRES_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-postgres}
       REDIS_URL: redis://redis:6379/0
@@ -75,7 +71,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    restart: unless-stopped
+    restart: always
 
 volumes:
   postgres_data:
