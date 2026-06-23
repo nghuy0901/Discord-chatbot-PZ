@@ -73,6 +73,10 @@ def get_vectorstore() -> PGVector:
     """
     global _vectorstore
     if _vectorstore is None:
+        from rag.embedding_registry import current_embedding_signature
+
+        signature = current_embedding_signature()
+        logger.info("Embedding signature for collection %s: %s", COLLECTION_NAME, signature)
         _vectorstore = PGVector(
             collection_name=COLLECTION_NAME,
             connection_string=PGVECTOR_CONNECTION,
