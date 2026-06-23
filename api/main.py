@@ -6,6 +6,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
 from api.auth import require_configured_api_key
+from api.rate_limit import InMemoryRateLimiter
 from api.schemas import MetricsSummary
 
 # Load environment variables
@@ -43,6 +44,12 @@ except ImportError:
 
 ENABLE_RAG: bool = os.getenv("ENABLE_RAG", "True").lower() == "true"
 ENABLE_TOOL_CALLING: bool = os.getenv("ENABLE_TOOL_CALLING", "True").lower() == "true"
+API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "60"))
+API_RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("API_RATE_LIMIT_WINDOW_SECONDS", "60"))
+api_rate_limiter = InMemoryRateLimiter(
+    limit=API_RATE_LIMIT,
+    window_seconds=API_RATE_LIMIT_WINDOW_SECONDS,
+)
 
 # Security configuration
 API_KEY_NAME = "X-API-Key"
@@ -128,11 +135,17 @@ async def health_check():
         }
     }
 
-@app.post("/api/query", tags=["Query"], dependencies=[Depends(get_api_key)])
-async def execute_rag_query(payload: QueryRequest):
+@app.post("/api/query", tags=["Query"])
+async def execute_rag_query(
+    payload: QueryRequest,
+    api_key: str = Depends(get_api_key),
+):
     query_start = time.time()
     query = payload.query
     channel_name = payload.domain
+    rate_key = f"{api_key}:{payload.user_id or 'api_user'}"
+    if not api_rate_limiter.allow(rate_key):
+        raise HTTPException(status_code=429, detail="Rate limit exceeded")
     request_context = RequestContext.new(
         channel_id=payload.channel_id or "api_channel",
         user_id=payload.user_id or "api_user",

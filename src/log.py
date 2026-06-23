@@ -1,6 +1,30 @@
 import os
 import logging
 import logging.handlers
+import re
+
+
+SENSITIVE_ENV_VARS = [
+    "API_KEY",
+    "LLM_API_KEY",
+    "EMBEDDING_API_KEY",
+    "DISCORD_BOT_TOKEN",
+]
+
+
+def redact_sensitive(text: str) -> str:
+    redacted = text
+    for env_var in SENSITIVE_ENV_VARS:
+        value = os.getenv(env_var)
+        if value:
+            redacted = redacted.replace(value, "[redacted]")
+    redacted = re.sub(
+        r"Bearer\s+[A-Za-z0-9._~+/=-]+",
+        "Bearer [redacted]",
+        redacted,
+        flags=re.IGNORECASE,
+    )
+    return redacted
 
 
 class CustomFormatter(logging.Formatter):
@@ -30,7 +54,7 @@ class CustomFormatter(logging.Formatter):
             text = formatter.formatException(record.exc_info)
             record.exc_text = f'\x1b[31m{text}\x1b[0m'
 
-        output = formatter.format(record)
+        output = redact_sensitive(formatter.format(record))
         # Remove the cache layer
         record.exc_text = None
         return output
