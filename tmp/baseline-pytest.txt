@@ -1,0 +1,145 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.9, pytest-8.3.4, pluggy-1.5.0
+rootdir: C:\Workspaces\chatGPT-discord-bot
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.10.0, langsmith-0.7.1, asyncio-0.24.0
+asyncio: mode=Mode.AUTO, default_loop_scope=session
+collected 63 items
+
+tests\test_aclient.py F..                                                [  4%]
+tests\test_personas.py ........                                          [ 17%]
+tests\test_providers.py .FFF.....FFFFFF                                  [ 41%]
+tests\test_verification_plan.py .....................................    [100%]
+
+================================== FAILURES ===================================
+_________________ TestDiscordClientLogic.test_provider_logic __________________
+tests\test_aclient.py:18: in test_provider_logic
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+____________________ TestFreeProvider.test_chat_completion ____________________
+tests\test_providers.py:32: in test_chat_completion
+    provider = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+_________________ TestFreeProvider.test_get_available_models __________________
+tests\test_providers.py:47: in test_get_available_models
+    provider = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+_______________ TestFreeProvider.test_supports_image_generation _______________
+tests\test_providers.py:57: in test_supports_image_generation
+    provider = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+___________ TestProviderManager.test_initialize_with_free_provider ____________
+tests\test_providers.py:118: in test_initialize_with_free_provider
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+____________________ TestProviderManager.test_get_provider ____________________
+tests\test_providers.py:123: in test_get_provider
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+________________ TestProviderManager.test_set_current_provider ________________
+tests\test_providers.py:134: in test_set_current_provider
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+________________ TestProviderManager.test_set_invalid_provider ________________
+tests\test_providers.py:139: in test_set_invalid_provider
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+______________ TestProviderManager.test_get_available_providers _______________
+tests\test_providers.py:154: in test_get_available_providers
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+______________ TestProviderManager.test_initialize_with_api_keys ______________
+tests\test_providers.py:162: in test_initialize_with_api_keys
+    manager = ProviderManager()
+src\providers.py:447: in __init__
+    self._initialize_providers()
+src\providers.py:468: in _initialize_providers
+    self.providers[ProviderType.FREE] = FreeProvider()
+src\providers.py:81: in __init__
+    'provider': g4f.Provider.Chatai,
+E   AttributeError: module 'g4f.Provider' has no attribute 'Chatai'
+============================== warnings summary ===============================
+..\..\Users\Esquelotio\anaconda3\Lib\site-packages\g4f\requests\aiohttp.py:21
+  C:\Users\Esquelotio\anaconda3\Lib\site-packages\g4f\requests\aiohttp.py:21: DeprecationWarning: Inheritance class StreamSession from ClientSession is discouraged
+    class StreamSession(ClientSession):
+
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a1_pgvector_extension_enabled
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a2_admin_schedules_table_exists
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a3_admin_schedules_indexes
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a4_rls_enabled
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b1_rag_tables_exist
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b2_langchain_schema_correct
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b3_message_edges_schema_correct
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b5_rag_metrics_table_schema
+tests/test_verification_plan.py::TestPhaseC_AdminFeatures::test_c3_create_schedule
+  C:\Users\Esquelotio\anaconda3\Lib\site-packages\supabase\_sync\client.py:309: DeprecationWarning: The 'timeout' parameter is deprecated. Please configure it in the http client instead.
+    return SyncPostgrestClient(
+
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a1_pgvector_extension_enabled
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a2_admin_schedules_table_exists
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a3_admin_schedules_indexes
+tests/test_verification_plan.py::TestPhaseA_SupabaseSetup::test_a4_rls_enabled
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b1_rag_tables_exist
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b2_langchain_schema_correct
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b3_message_edges_schema_correct
+tests/test_verification_plan.py::TestPhaseB_RAGMigration::test_b5_rag_metrics_table_schema
+tests/test_verification_plan.py::TestPhaseC_AdminFeatures::test_c3_create_schedule
+  C:\Users\Esquelotio\anaconda3\Lib\site-packages\supabase\_sync\client.py:309: DeprecationWarning: The 'verify' parameter is deprecated. Please configure it in the http client instead.
+    return SyncPostgrestClient(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_aclient.py::TestDiscordClientLogic::test_provider_logic - A...
+FAILED tests/test_providers.py::TestFreeProvider::test_chat_completion - Attr...
+FAILED tests/test_providers.py::TestFreeProvider::test_get_available_models
+FAILED tests/test_providers.py::TestFreeProvider::test_supports_image_generation
+FAILED tests/test_providers.py::TestProviderManager::test_initialize_with_free_provider
+FAILED tests/test_providers.py::TestProviderManager::test_get_provider - Attr...
+FAILED tests/test_providers.py::TestProviderManager::test_set_current_provider
+FAILED tests/test_providers.py::TestProviderManager::test_set_invalid_provider
+FAILED tests/test_providers.py::TestProviderManager::test_get_available_providers
+FAILED tests/test_providers.py::TestProviderManager::test_initialize_with_api_keys
+================= 10 failed, 53 passed, 19 warnings in 30.64s =================
