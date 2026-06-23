@@ -46,6 +46,12 @@ KB_COLLECTION = os.getenv("KB_COLLECTION", "knowledge_base")
 SUPPORTED_EXTENSIONS = {".md", ".txt", ".rst"}
 
 
+def _stable_doc_id(domain: str, source: str, chunk_index: int, text: str) -> str:
+    normalized_source = source.replace(os.sep, "/")
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+    return f"{domain}:{normalized_source}:{chunk_index}:{digest}"
+
+
 # ---------------------------------------------------------------------------
 # Sentence-based text chunker (C2)
 # ---------------------------------------------------------------------------
@@ -626,10 +632,23 @@ class KnowledgeManager:
 
         # Delete old domain docs and insert new ones
         if all_chunks:
-            # Note: PGVector doesn't have a great "delete by metadata" in all versions
-            # We use add_documents which will create new entries
             store = self._get_vectorstore()
             try:
+                from rag.db import get_pool
+
+                pool = await get_pool()
+                async with pool.acquire() as conn:
+                    await conn.execute(
+                        """
+                        DELETE FROM langchain_pg_embedding e
+                        USING langchain_pg_collection c
+                        WHERE e.collection_id = c.uuid
+                          AND c.name = $1
+                          AND e.cmetadata->>'domain' = $2;
+                        """,
+                        KB_COLLECTION,
+                        domain_name,
+                    )
                 store.add_documents(all_chunks)
                 logger.info(
                     f"Domain '{domain_name}': loaded {len(files)} files → "
@@ -784,6 +803,7 @@ class KnowledgeManager:
                         metadata={
                             "domain": domain,
                             "source": rel_path,
+                            "doc_id": _stable_doc_id(domain, rel_path, i, chunk_text),
                             "chunk_index": i,
                             "total_chunks": len(md_chunks),
                             "file_name": os.path.basename(filepath),
@@ -817,6 +837,7 @@ class KnowledgeManager:
                 metadata={
                     "domain": domain,
                     "source": rel_path,
+                    "doc_id": _stable_doc_id(domain, rel_path, i, chunk_text),
                     "chunk_index": i,
                     "total_chunks": len(chunks),
                     "file_name": os.path.basename(rel_path),
