@@ -3,6 +3,7 @@ import asyncio
 import json
 import logging
 import os
+import re
 import time
 from typing import Any, Dict, List, Optional
 
@@ -10,11 +11,28 @@ from dotenv import load_dotenv
 
 from evaluation.dataset_schema import validate_example
 from evaluation.ragas_runner import run_ragas_evaluation
+from evaluation.retrieval_metrics import (
+    keyword_coverage,
+    mean_reciprocal_rank,
+    ndcg_at_k,
+    precision_at_k,
+    recall_at_k,
+    source_hit_rate,
+)
 
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger("ragas_evaluator")
+
+
+def _extract_sources_from_context(context: str) -> List[str]:
+    sources = []
+    for line in context.splitlines():
+        match = re.match(r"^\[KB-\d+\].*?\]\s+(.+)$", line.strip())
+        if match:
+            sources.append(match.group(1).strip())
+    return sources
 
 
 async def execute_naive_rag(query: str, domain: Optional[str] = None) -> Dict[str, Any]:
@@ -27,6 +45,7 @@ async def execute_naive_rag(query: str, domain: Optional[str] = None) -> Dict[st
         filter_dict = {"domain": domain} if domain else None
         docs = store.similarity_search(query, k=3, filter=filter_dict)
         contexts = [doc.page_content for doc in docs]
+        sources = [str(doc.metadata.get("source", "")) for doc in docs]
         context_text = "\n\n".join(contexts)
         messages = [
             {
@@ -42,6 +61,7 @@ async def execute_naive_rag(query: str, domain: Optional[str] = None) -> Dict[st
         return {
             "answer": answer,
             "contexts": contexts,
+            "sources": sources,
             "latency_ms": (time.time() - start_time) * 1000,
         }
     except Exception as exc:
@@ -63,6 +83,7 @@ async def execute_optimized_rag(query: str, domain: Optional[str] = None) -> Dic
             return {
                 "answer": cached["response_text"],
                 "contexts": ["CACHED_HIT"],
+                "sources": [],
                 "latency_ms": (time.time() - start_time) * 1000,
                 "cached": True,
             }
@@ -98,24 +119,42 @@ async def execute_optimized_rag(query: str, domain: Optional[str] = None) -> Dic
         return {
             "answer": answer,
             "contexts": [rag_context] if rag_context else [],
+            "sources": _extract_sources_from_context(rag_context),
             "latency_ms": (time.time() - start_time) * 1000,
             "cached": False,
         }
     except Exception as exc:
         logger.error("Optimized RAG execution failed: %s", exc)
-        return {"answer": f"Error: {exc}", "contexts": [], "latency_ms": 0, "cached": False}
+        return {"answer": f"Error: {exc}", "contexts": [], "sources": [], "latency_ms": 0, "cached": False}
 
 
 def _row_for_ragas(example, run: Dict[str, Any]) -> Dict[str, Any]:
+    deterministic_scores = _deterministic_scores(example, run)
     return {
         "question": example.question,
         "answer": run["answer"],
         "contexts": run["contexts"],
+        "sources": run.get("sources", []),
         "ground_truth": example.ground_truth,
         "latency_ms": run["latency_ms"],
         "cached": run.get("cached", False),
         "expected_sources": example.expected_sources,
         "expected_context_keywords": example.expected_context_keywords,
+        "deterministic_scores": deterministic_scores,
+    }
+
+
+def _deterministic_scores(example, run: Dict[str, Any]) -> Dict[str, float]:
+    retrieved_sources = run.get("sources", [])
+    expected_sources = set(example.expected_sources)
+    context_text = " ".join(run.get("contexts", []))
+    return {
+        "recall_at_5": recall_at_k(retrieved_sources, expected_sources, k=5),
+        "precision_at_5": precision_at_k(retrieved_sources, expected_sources, k=5),
+        "mrr": mean_reciprocal_rank(retrieved_sources, expected_sources),
+        "ndcg_at_5": ndcg_at_k(retrieved_sources, expected_sources, k=5),
+        "source_hit_rate": source_hit_rate(retrieved_sources, expected_sources),
+        "keyword_coverage": keyword_coverage(context_text, example.expected_context_keywords),
     }
 
 
@@ -130,6 +169,20 @@ def _aggregate_ragas(rows: List[Dict[str, Any]]) -> Dict[str, float]:
     return {
         key: round(sum(float(row.get(key, 0.0) or 0.0) for row in rows) / len(rows), 4)
         for key in numeric_keys
+    }
+
+
+def _aggregate_deterministic(rows: List[Dict[str, Any]]) -> Dict[str, float]:
+    if not rows:
+        return {}
+    keys = rows[0].get("deterministic_scores", {}).keys()
+    return {
+        key: round(
+            sum(float(row.get("deterministic_scores", {}).get(key, 0.0)) for row in rows)
+            / len(rows),
+            4,
+        )
+        for key in keys
     }
 
 
@@ -178,8 +231,14 @@ async def main() -> None:
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         },
         "summaries": {
-            "naive_rag": _aggregate_ragas(naive_scores),
-            "optimized_rag": _aggregate_ragas(optimized_scores),
+            "naive_rag": {
+                **_aggregate_ragas(naive_scores),
+                **_aggregate_deterministic(naive_rows),
+            },
+            "optimized_rag": {
+                **_aggregate_ragas(optimized_scores),
+                **_aggregate_deterministic(optimized_rows),
+            },
         },
         "details": {
             "naive": naive_rows,
