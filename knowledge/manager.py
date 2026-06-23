@@ -530,6 +530,7 @@ class KnowledgeManager:
         self.domains: Dict[str, KnowledgeDomain] = {}
         self._vectorstore = None
         self._initialized = False
+        self.kb_version = os.getenv("KB_VERSION", "v1")
 
     # ----- Initialization -----
 
@@ -607,6 +608,7 @@ class KnowledgeManager:
         if not files:
             logger.info(f"No documents found in domain '{domain_name}'")
             self.domains[domain_name] = domain
+            self._refresh_kb_version()
             return 0
 
         # Check if files changed (skip reload if not forced and unchanged)
@@ -659,6 +661,7 @@ class KnowledgeManager:
                 return 0
 
         self.domains[domain_name] = domain
+        self._refresh_kb_version()
         return len(all_chunks)
 
     # ----- Search -----
@@ -721,11 +724,25 @@ class KnowledgeManager:
         Returns:
             Dict of domain → chunk_count.
         """
+        old_kb_version = self.kb_version
+
+        # Lazy-import to prevent circular imports
+        try:
+            from utils.cache import get_query_cache
+            cache = get_query_cache()
+        except Exception:
+            cache = None
+
         if domain:
             count = await self.load_domain(domain, force=True)
+            if cache:
+                await cache.invalidate_domain(domain, kb_version=old_kb_version)
             return {domain: count}
         else:
-            return await self.load_all()
+            res = await self.load_all()
+            if cache:
+                await cache.invalidate_domain("all", kb_version=old_kb_version)
+            return res
 
     def get_status(self) -> Dict[str, Any]:
         """Get knowledge base status for admin commands."""
@@ -771,6 +788,40 @@ class KnowledgeManager:
             for chunk in iter(lambda: f.read(8192), b""):
                 hasher.update(chunk)
         return hasher.hexdigest()
+
+    def _compute_kb_version(
+        self,
+        domain_hashes: Optional[Dict[str, Dict[str, str]]] = None,
+    ) -> str:
+        if domain_hashes is None:
+            domain_hashes = {
+                name: domain.file_hashes
+                for name, domain in self.domains.items()
+                if domain.file_hashes
+            }
+        if not domain_hashes:
+            return os.getenv("KB_VERSION", "v1")
+
+        hasher = hashlib.sha256()
+        for domain_name in sorted(domain_hashes):
+            hasher.update(domain_name.encode("utf-8"))
+            for path, digest in sorted(domain_hashes[domain_name].items()):
+                normalized_path = self._normalize_hash_path(path)
+                hasher.update(normalized_path.encode("utf-8"))
+                hasher.update(digest.encode("utf-8"))
+        return hasher.hexdigest()[:12]
+
+    def _refresh_kb_version(self) -> str:
+        self.kb_version = self._compute_kb_version()
+        return self.kb_version
+
+    def _normalize_hash_path(self, filepath: str) -> str:
+        try:
+            if os.path.isabs(filepath):
+                filepath = os.path.relpath(filepath, self.docs_dir)
+        except ValueError:
+            pass
+        return filepath.replace(os.sep, "/")
 
     def _load_and_chunk_file(
         self, filepath: str, domain: str
