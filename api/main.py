@@ -19,6 +19,8 @@ from rag.db import init_db, close_pool, get_pool
 from rag.metrics import get_metrics_manager, RAGMetric
 from rag.query_preprocessor import get_preprocessor
 from rag.retriever import build_rag_context
+from src.observability.prompts import prompt_version
+from src.observability.request_context import RequestContext
 from src.ollama_provider import (
     chat_completion,
     chat_with_tools,
@@ -129,6 +131,11 @@ async def execute_rag_query(payload: QueryRequest):
     query_start = time.time()
     query = payload.query
     channel_name = payload.domain
+    request_context = RequestContext.new(
+        channel_id=payload.channel_id or "api_channel",
+        user_id=payload.user_id or "api_user",
+        source="api",
+    )
 
     cached_response = None
     detected_domain = None
@@ -159,6 +166,9 @@ async def execute_rag_query(payload: QueryRequest):
         try:
             metrics = get_metrics_manager()
             metric = RAGMetric(
+                query_id=request_context.query_id,
+                request_id=request_context.request_id,
+                source=request_context.source,
                 channel_id=payload.channel_id,
                 user_id=payload.user_id,
                 original_query=query,
@@ -180,6 +190,7 @@ async def execute_rag_query(payload: QueryRequest):
 
         return {
             "query": query,
+            "query_id": request_context.query_id,
             "response": response_text,
             "cache_hit": True,
             "latency_ms": round(latency, 2),
@@ -198,6 +209,9 @@ async def execute_rag_query(payload: QueryRequest):
         rag_context = ""
         domain_prompt = ""
         metric = RAGMetric(
+            query_id=request_context.query_id,
+            request_id=request_context.request_id,
+            source=request_context.source,
             channel_id=payload.channel_id,
             user_id=payload.user_id,
             original_query=query[:500],
@@ -210,6 +224,7 @@ async def execute_rag_query(payload: QueryRequest):
                 channel_id=payload.channel_id,
                 channel_name=channel_name,
                 user_id=payload.user_id,
+                request_context=request_context,
             )
             if domain_prompt_text:
                 domain_prompt = f"\n# 🎯 Domain-Specific Instructions\n{domain_prompt_text}\n"
@@ -222,6 +237,7 @@ async def execute_rag_query(payload: QueryRequest):
             rag_context=rag_context,
             domain_prompt=domain_prompt,
         )
+        metric.prompt_version = prompt_version(system_prompt)
         prompt_messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": query}
@@ -242,11 +258,13 @@ async def execute_rag_query(payload: QueryRequest):
                 tools=PZ_TOOLS,
                 tool_functions=PZ_TOOL_FUNCTIONS,
                 temperature=0.8,
+                request_context=request_context,
             )
         else:
             response_text = await chat_completion(
                 messages=prompt_messages,
                 temperature=0.8,
+                request_context=request_context,
             )
 
         latency = (time.time() - query_start) * 1000
@@ -295,6 +313,7 @@ async def execute_rag_query(payload: QueryRequest):
 
         return {
             "query": query,
+            "query_id": request_context.query_id,
             "response": response_text,
             "cache_hit": False,
             "latency_ms": round(latency, 2),

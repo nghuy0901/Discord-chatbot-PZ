@@ -24,6 +24,7 @@ from dotenv import load_dotenv
 
 from src.log import logger
 from src import personas
+from src.observability.request_context import RequestContext
 from src.ollama_provider import (
     chat_completion,
     chat_with_tools,
@@ -489,6 +490,11 @@ class NomNomClient(discord.Client):
         6. B2: Add feedback reactions
         """
         channel_id = str(message.channel.id)
+        request_context = RequestContext.new(
+            channel_id=channel_id,
+            user_id=str(message.author.id),
+            source="discord",
+        )
         author_name = str(message.author.display_name)
 
         # Get channel name for domain detection (D2)
@@ -515,6 +521,7 @@ class NomNomClient(discord.Client):
                 enable_rag=ENABLE_RAG,
                 channel_name=channel_name,
                 user_id=str(message.author.id),
+                request_context=request_context,
             )
 
             response_text = ""
@@ -554,6 +561,7 @@ class NomNomClient(discord.Client):
                             tools=PZ_TOOLS,
                             tool_functions=PZ_TOOL_FUNCTIONS,
                             temperature=temperature,
+                            request_context=request_context,
                         )
 
                     if response_text:
@@ -576,12 +584,12 @@ class NomNomClient(discord.Client):
                     else:
                         # Empty/no-tool response — fallback to streaming
                         response_text, bot_msg = await self._stream_response(
-                            message, prompt_messages, temperature
+                            message, prompt_messages, temperature, request_context
                         )
                 else:
                     # NARRATIVE or CONVERSATION: Pure streaming (skip tool overhead)
                     response_text, bot_msg = await self._stream_response(
-                        message, prompt_messages, temperature
+                        message, prompt_messages, temperature, request_context
                     )
             else:
                 # Non-streaming mode
@@ -592,11 +600,13 @@ class NomNomClient(discord.Client):
                             tools=PZ_TOOLS,
                             tool_functions=PZ_TOOL_FUNCTIONS,
                             temperature=temperature,
+                            request_context=request_context,
                         )
                     else:
                         response_text = await chat_completion(
                             messages=prompt_messages,
                             temperature=temperature,
+                            request_context=request_context,
                         )
                     if len(response_text) > MAX_RESPONSE_LENGTH:
                         response_text = (
@@ -652,6 +662,7 @@ class NomNomClient(discord.Client):
         message: discord.Message,
         prompt_messages: List[Dict[str, str]],
         temperature: float,
+        request_context: Optional[RequestContext] = None,
     ) -> tuple:
         """
         Stream LLM tokens and progressively edit a Discord message.
@@ -672,6 +683,7 @@ class NomNomClient(discord.Client):
                 messages=prompt_messages,
                 temperature=temperature,
                 chunk_interval=STREAM_EDIT_INTERVAL,
+                request_context=request_context,
             ):
                 final_text = accumulated
                 if edit_count < MAX_EDITS:
@@ -735,11 +747,17 @@ class NomNomClient(discord.Client):
 
     async def handle_response(self, user_message: str) -> str:
         """Legacy handle_response for /chat command."""
+        request_context = RequestContext.new(
+            channel_id="slash-command",
+            user_id="api_user",
+            source="discord_slash",
+        )
         prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
             channel_id="slash-command",
             user_message=user_message,
             user_name="User",
             enable_rag=ENABLE_RAG,
+            request_context=request_context,
         )
         # Phase 4: Intent-based routing for slash commands
         use_tools = (
@@ -753,11 +771,13 @@ class NomNomClient(discord.Client):
                 tools=PZ_TOOLS,
                 tool_functions=PZ_TOOL_FUNCTIONS,
                 temperature=temperature,
+                request_context=request_context,
             )
         else:
             response = await chat_completion(
                 messages=prompt_messages,
                 temperature=temperature,
+                request_context=request_context,
             )
         self.context_manager.track_message(
             channel_id="slash-command",

@@ -274,6 +274,7 @@ async def build_rag_context(
     channel_id: Optional[str] = None,
     channel_name: Optional[str] = None,
     user_id: Optional[str] = None,
+    request_context: Optional[Any] = None,
     top_k: int = RAG_TOP_K,
 ) -> Tuple[str, Optional[str], RAGMetric]:
     """
@@ -298,11 +299,19 @@ async def build_rag_context(
     Returns:
         Tuple of (formatted_context_string, domain_prompt, metric)
     """
-    metric = RAGMetric(
-        channel_id=channel_id or "",
-        user_id=user_id or "",
-        original_query=query[:500],
-    )
+    metric_kwargs = {
+        "channel_id": channel_id or "",
+        "user_id": user_id or "",
+        "request_id": request_context.request_id if request_context else "",
+        "source": request_context.source if request_context else "",
+        "original_query": query[:500],
+        "llm_model": os.getenv("LLM_MODEL", ""),
+        "embedding_model": os.getenv("EMBEDDING_MODEL", ""),
+        "retrieval_config_version": os.getenv("RETRIEVAL_CONFIG_VERSION", "v1"),
+    }
+    if request_context:
+        metric_kwargs["query_id"] = request_context.query_id
+    metric = RAGMetric(**metric_kwargs)
 
     start_time = time.time()
 

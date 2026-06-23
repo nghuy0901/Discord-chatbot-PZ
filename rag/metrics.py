@@ -41,6 +41,8 @@ class RAGMetric:
     timestamp: float = field(default_factory=time.time)
     channel_id: str = ""
     user_id: str = ""
+    request_id: str = ""
+    source: str = ""
 
     # Query info
     original_query: str = ""
@@ -48,6 +50,10 @@ class RAGMetric:
     query_language: str = ""
     detected_domain: Optional[str] = None
     query_intent: Optional[str] = None  # Phase 4: "analytical"/"narrative"/"hybrid"/"conversation"
+    prompt_version: str = ""
+    llm_model: str = ""
+    embedding_model: str = ""
+    retrieval_config_version: str = ""
 
     # Retrieval performance
     retrieval_time_ms: float = 0.0

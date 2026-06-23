@@ -239,6 +239,7 @@ class ContextManager:
         enable_rag: bool = True,
         channel_name: Optional[str] = None,
         user_id: Optional[str] = None,
+        request_context: Optional[Any] = None,
     ) -> Tuple[List[Dict[str, str]], float, Optional[str]]:
         """
         Build the complete message list for an Ollama chat call.
@@ -262,6 +263,7 @@ class ContextManager:
                     channel_id=channel_id,
                     channel_name=channel_name,
                     user_id=user_id,
+                    request_context=request_context,
                 )
                 if domain_prompt_text:
                     domain_prompt = f"\n# 🎯 Domain-Specific Instructions\n{domain_prompt_text}\n"

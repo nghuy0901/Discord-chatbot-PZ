@@ -31,6 +31,7 @@ async def chat_completion(
     model: Optional[str] = None,
     temperature: float = 0.8,
     images: Optional[List[str]] = None,
+    request_context: Optional[Any] = None,
 ) -> str:
     global _last_token_usage
     client = get_chat_client()
@@ -45,6 +46,7 @@ async def chat_with_tools(
     tool_functions: Optional[dict] = None,
     model: Optional[str] = None,
     temperature: float = 0.8,
+    request_context: Optional[Any] = None,
 ) -> str:
     global _last_token_usage
     client = get_chat_client()
@@ -61,8 +63,15 @@ async def chat_completion_stream(
     model: Optional[str] = None,
     temperature: float = 0.8,
     images: Optional[List[str]] = None,
+    request_context: Optional[Any] = None,
 ) -> AsyncGenerator[str, None]:
-    yield await chat_completion(messages, model=model, temperature=temperature, images=images)
+    yield await chat_completion(
+        messages,
+        model=model,
+        temperature=temperature,
+        images=images,
+        request_context=request_context,
+    )
 
 
 async def stream_to_discord_chunks(
@@ -71,8 +80,15 @@ async def stream_to_discord_chunks(
     temperature: float = 0.8,
     chunk_interval: float = 1.0,
     images: Optional[List[str]] = None,
+    request_context: Optional[Any] = None,
 ) -> AsyncGenerator[str, None]:
-    yield await chat_completion(messages, model=model, temperature=temperature, images=images)
+    yield await chat_completion(
+        messages,
+        model=model,
+        temperature=temperature,
+        images=images,
+        request_context=request_context,
+    )
 
 
 async def list_models() -> List[Dict[str, Any]]:
