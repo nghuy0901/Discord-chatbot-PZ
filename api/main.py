@@ -5,6 +5,7 @@ from typing import Optional, Dict, Any
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
+from api.schemas import MetricsSummary
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -330,11 +331,49 @@ async def execute_rag_query(payload: QueryRequest):
         logger.exception(f"Error handling query: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/api/metrics", tags=["Metrics"], dependencies=[Depends(get_api_key)])
-async def get_metrics():
+def _build_metrics_summary(raw: Dict[str, Any]) -> MetricsSummary:
+    total_queries = int(raw.get("total_queries", raw.get("recent_queries", 0)) or 0)
+    errors = int(raw.get("errors", raw.get("total_errors", 0)) or 0)
+    error_rate = (errors / total_queries) if total_queries else 0.0
+    success_rate = 1.0 - error_rate if total_queries else 0.0
+
+    response_percentiles = raw.get("percentiles", {}).get("response", {})
+    avg_latency = float(raw.get("avg_response_time_ms", 0.0) or 0.0)
+    retrieval_latency = float(raw.get("avg_retrieval_time_ms", 0.0) or 0.0)
+
+    return MetricsSummary(
+        total_queries=total_queries,
+        success_rate=round(success_rate, 4),
+        error_rate=round(error_rate, 4),
+        avg_latency_ms=round(avg_latency, 2),
+        p50_latency_ms=float(response_percentiles.get("p50", 0.0) or 0.0),
+        p95_latency_ms=float(response_percentiles.get("p95", 0.0) or 0.0),
+        p99_latency_ms=float(response_percentiles.get("p99", 0.0) or 0.0),
+        retrieval_latency_ms=round(retrieval_latency, 2),
+        llm_latency_ms=round(max(avg_latency - retrieval_latency, 0.0), 2),
+        empty_retrieval_rate=round(float(raw.get("empty_retrieval_rate", 0.0) or 0.0), 4),
+        average_retrieved_chunks=round(float(raw.get("avg_results_per_query", 0.0) or 0.0), 2),
+        citation_coverage=round(float(raw.get("citation_coverage", 0.0) or 0.0), 4),
+        cache_hit_rate=round(float(raw.get("cache_hit_rate", 0.0) or 0.0), 4),
+        total_tokens=int(raw.get("total_tokens", 0) or 0),
+        estimated_cost_usd=round(
+            float(raw.get("total_estimated_cost_usd", raw.get("estimated_cost_usd", 0.0)) or 0.0),
+            6,
+        ),
+    )
+
+
+@app.get(
+    "/api/metrics",
+    tags=["Metrics"],
+    dependencies=[Depends(get_api_key)],
+    response_model=MetricsSummary,
+)
+async def get_metrics() -> MetricsSummary:
     try:
         metrics = get_metrics_manager()
-        return metrics.get_summary()
+        raw = await metrics.get_db_summary()
+        return _build_metrics_summary(raw)
     except Exception as e:
         logger.error(f"Error retrieving metrics: {e}")
         raise HTTPException(status_code=500, detail=str(e))
