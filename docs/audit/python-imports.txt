@@ -1,0 +1,317 @@
+admin\handler.py:15:import os
+admin\handler.py:16:import logging
+admin\handler.py:17:from typing import Optional
+admin\handler.py:19:import discord
+admin\handler.py:21:from admin.intent_parser import (
+admin\handler.py:32:from admin.scheduler import ScheduleManager
+admin\db.py:8:import os
+admin\db.py:9:import logging
+admin\db.py:10:from datetime import datetime
+admin\db.py:11:from typing import Optional, List, Dict, Any
+admin\scheduler.py:8:import os
+admin\scheduler.py:9:import logging
+admin\scheduler.py:10:from datetime import datetime, timedelta
+admin\scheduler.py:11:from typing import Optional, List, Dict, Any
+admin\scheduler.py:12:from zoneinfo import ZoneInfo
+admin\scheduler.py:14:from croniter import croniter
+admin\scheduler.py:16:from admin.db import AdminDB
+admin\background.py:13:import os
+admin\background.py:14:import asyncio
+admin\background.py:15:import logging
+admin\background.py:16:from datetime import datetime, timedelta
+admin\background.py:17:from zoneinfo import ZoneInfo
+admin\background.py:19:import discord
+admin\background.py:21:from admin.scheduler import ScheduleManager
+admin\background.py:22:from admin import announcer
+admin\__init__.py:13:from admin.handler import AdminAgentHandler
+admin\__init__.py:14:from admin.background import start_admin_background_tasks
+admin\announcer.py:10:import logging
+admin\announcer.py:11:from datetime import datetime
+admin\announcer.py:12:from typing import Optional, Dict, Any
+admin\announcer.py:14:import discord
+admin\intent_parser.py:9:import os
+admin\intent_parser.py:10:import json
+admin\intent_parser.py:11:import logging
+admin\intent_parser.py:12:from typing import Optional, Dict, Any, Tuple
+admin\intent_parser.py:13:from dataclasses import dataclass, field
+main.py:8:import os
+main.py:9:import sys
+main.py:10:import asyncio
+main.py:11:from dotenv import load_dotenv
+main.py:12:from src.bot import run_discord_bot
+main.py:13:from src.log import logger
+rag\db.py:14:import os
+rag\db.py:15:import json
+rag\db.py:16:import logging
+rag\db.py:17:import asyncio
+rag\db.py:18:from typing import Optional, List, Dict, Any
+rag\db.py:20:import asyncpg
+rag\db.py:21:from langchain_community.vectorstores import PGVector
+rag\db.py:22:from langchain_ollama import OllamaEmbeddings
+rag\db.py:23:from langchain_core.documents import Document
+rag\db.py:24:from dotenv import load_dotenv
+api\main.py:1:import os
+api\main.py:2:import time
+api\main.py:3:import logging
+api\main.py:4:from typing import Optional, Dict, Any
+api\main.py:5:from fastapi import FastAPI, Depends, HTTPException
+api\main.py:6:from fastapi.security.api_key import APIKeyHeader
+api\main.py:7:from pydantic import BaseModel
+api\main.py:10:from dotenv import load_dotenv
+api\main.py:18:from rag.db import init_db, close_pool, get_pool
+api\main.py:19:from rag.metrics import get_metrics_manager, RAGMetric
+api\main.py:20:from rag.query_preprocessor import get_preprocessor
+api\main.py:21:from rag.retriever import build_rag_context
+api\main.py:22:from src.ollama_provider import chat_completion, chat_with_tools, get_last_token_usage
+api\main.py:23:from utils.cache import get_query_cache
+api\main.py:24:from knowledge.manager import get_knowledge_manager
+discord_bot.py:3:import logging
+discord_bot.py:4:import config
+discord_bot.py:5:import discord
+discord_bot.py:6:import llm_provider
+discord_bot.py:8:from typing import cast, TypedDict
+utils\message_utils.py:1:import re
+utils\message_utils.py:2:from discord import Message
+llm_provider.py:3:import os
+llm_provider.py:4:import sys
+llm_provider.py:5:import config
+llm_provider.py:6:import logging
+llm_provider.py:7:import typing
+llm_provider.py:9:from llama_index.core.query_engine import BaseQueryEngine
+llm_provider.py:11:from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+llm_provider.py:12:from llama_index.embeddings.openai import OpenAIEmbedding
+llm_provider.py:14:from llama_index.llms.ollama import Ollama
+llm_provider.py:15:from llama_index.llms.openai import OpenAI
+llm_provider.py:16:from llama_index.llms.deepseek import DeepSeek
+llm_provider.py:17:from llama_index.llms.anthropic import Anthropic
+llm_provider.py:19:from llama_index.core import(
+knowledge\__init__.py:9:from knowledge.manager import get_knowledge_manager, KnowledgeManager
+knowledge\__init__.py:10:from knowledge.domain_router import get_domain_router, DomainRouter
+auto_login\AutoLoginTest.py:1:from AutoLogin import GoogleBardAutoLogin, MicrosoftBingAutoLogin
+auto_login\AutoLoginTest.py:2:from dotenv import load_dotenv
+auto_login\AutoLoginTest.py:3:import os
+auto_login\AutoLoginTest.py:4:from time import sleep
+auto_login\AutoLoginTest.py:5:import unittest
+prompts\system_prompt.py:3:from modular template sections stored as .txt files in prompts/templates/.
+prompts\system_prompt.py:15:import logging
+prompts\system_prompt.py:16:from pathlib import Path
+prompts\system_prompt.py:17:from datetime import datetime, timezone
+prompts\system_prompt.py:18:from typing import Optional, List
+auto_login\AutoLogin.py:1:from dotenv import load_dotenv
+auto_login\AutoLogin.py:2:import json
+auto_login\AutoLogin.py:3:import os
+auto_login\AutoLogin.py:4:import random
+auto_login\AutoLogin.py:5:import string
+auto_login\AutoLogin.py:6:from selenium.webdriver.common.by import By
+auto_login\AutoLogin.py:7:from selenium.webdriver.common.keys import Keys
+auto_login\AutoLogin.py:8:from selenium.webdriver.support.ui import WebDriverWait
+auto_login\AutoLogin.py:9:from selenium.webdriver.support import expected_conditions as EC
+auto_login\AutoLogin.py:10:from selenium.common.exceptions import NoSuchElementException, TimeoutException
+auto_login\AutoLogin.py:11:from time import sleep
+auto_login\AutoLogin.py:12:from undetected_chromedriver import Chrome, ChromeOptions
+auto_login\AutoLogin.py:13:import warnings
+rename_execute.py:1:import os
+rag\embedder.py:9:import os
+rag\embedder.py:10:import logging
+rag\embedder.py:11:import asyncio
+rag\embedder.py:12:from typing import List, Optional
+rag\embedder.py:14:import ollama as ollama_client
+rag\embedder.py:15:from langchain_ollama import OllamaEmbeddings
+rag\embedder.py:16:from dotenv import load_dotenv
+scripts\run_ragas_eval.py:1:import os
+scripts\run_ragas_eval.py:2:import re
+scripts\run_ragas_eval.py:3:import json
+scripts\run_ragas_eval.py:4:import time
+scripts\run_ragas_eval.py:5:import argparse
+scripts\run_ragas_eval.py:6:import asyncio
+scripts\run_ragas_eval.py:7:import logging
+scripts\run_ragas_eval.py:8:from typing import List, Dict, Any, Optional
+scripts\run_ragas_eval.py:11:from dotenv import load_dotenv
+scripts\run_ragas_eval.py:21:from rag.retriever import build_rag_context
+scripts\run_ragas_eval.py:22:from src.ollama_provider import chat_completion, chat_with_tools
+scripts\run_ragas_eval.py:23:from knowledge.manager import get_knowledge_manager
+prompts\__init__.py:5:from individual template sections stored as .txt files.
+prompts\__init__.py:8:from prompts.system_prompt import build_system_prompt, reload_templates
+utils\context_manager.py:14:import os
+utils\context_manager.py:15:import time
+utils\context_manager.py:16:import logging
+utils\context_manager.py:17:from collections import defaultdict, deque
+utils\context_manager.py:18:from typing import List, Dict, Any, Optional, Deque, Tuple
+utils\context_manager.py:20:from rag.retriever import build_rag_context
+utils\context_manager.py:21:from rag.embedder import embed_text
+utils\context_manager.py:22:from prompts.system_prompt import build_system_prompt
+tests\test_personas.py:1:import pytest
+tests\test_personas.py:2:from src.personas import (
+tests\test_verification_plan.py:13:import os
+tests\test_verification_plan.py:14:import sys
+tests\test_verification_plan.py:15:import asyncio
+tests\test_verification_plan.py:16:import logging
+tests\test_verification_plan.py:17:import pytest
+tests\test_verification_plan.py:18:from datetime import datetime, timedelta
+tests\test_verification_plan.py:19:from typing import Dict, Any
+tests\test_verification_plan.py:20:from unittest.mock import AsyncMock, MagicMock, patch
+tests\test_verification_plan.py:21:from zoneinfo import ZoneInfo
+tests\test_verification_plan.py:26:from dotenv import load_dotenv
+utils\cache.py:6:import os
+utils\cache.py:7:import logging
+utils\cache.py:8:import hashlib
+utils\cache.py:9:import json
+utils\cache.py:10:from typing import Optional, Any, Dict
+scripts\test_query_classifier.py:11:import sys
+scripts\test_query_classifier.py:12:import os
+scripts\test_query_classifier.py:16:from rag.query_preprocessor import (
+scripts\test_sqlite_data.py:2:import sqlite3
+scripts\test_sqlite_data.py:3:import sys
+rag\metrics.py:17:import os
+rag\metrics.py:18:import time
+rag\metrics.py:19:import uuid
+rag\metrics.py:20:import logging
+rag\metrics.py:21:import asyncio
+rag\metrics.py:22:from collections import deque
+rag\metrics.py:23:from dataclasses import dataclass, field, asdict
+rag\metrics.py:24:from typing import Optional, List, Dict, Any, Deque
+rag\query_preprocessor.py:13:import re
+rag\query_preprocessor.py:14:import logging
+rag\query_preprocessor.py:15:from enum import Enum
+rag\query_preprocessor.py:16:from typing import Optional, Tuple
+tests\test_providers.py:1:import pytest
+tests\test_providers.py:2:import asyncio
+tests\test_providers.py:3:from unittest.mock import Mock, patch, AsyncMock
+tests\test_providers.py:4:import os
+tests\test_providers.py:6:from src.providers import (
+rag\retriever.py:21:import os
+rag\retriever.py:22:import time
+rag\retriever.py:23:import logging
+rag\retriever.py:24:from typing import List, Dict, Any, Optional, Tuple
+rag\retriever.py:26:from rag.db import search_similar, get_message_context
+rag\retriever.py:27:from rag.query_preprocessor import get_preprocessor
+rag\retriever.py:28:from rag.metrics import get_metrics_manager, RAGMetric
+knowledge\manager.py:13:import os
+knowledge\manager.py:14:import re
+knowledge\manager.py:15:import time
+knowledge\manager.py:16:import logging
+knowledge\manager.py:17:import hashlib
+knowledge\manager.py:18:import yaml
+knowledge\manager.py:19:from pathlib import Path
+knowledge\manager.py:20:from typing import Optional, List, Dict, Any, Tuple
+knowledge\manager.py:21:from enum import Enum
+knowledge\manager.py:23:from langchain_core.documents import Document
+rag\self_rag.py:24:import os
+rag\self_rag.py:25:import json
+rag\self_rag.py:26:import time
+rag\self_rag.py:27:import logging
+rag\self_rag.py:28:import asyncio
+rag\self_rag.py:29:from typing import List, Dict, Any, Optional, Tuple
+rag\self_rag.py:30:from dataclasses import dataclass, field
+test_km.py:1:import asyncio
+test_km.py:2:import os
+test_km.py:3:import logging
+test_km.py:4:from knowledge.manager import KnowledgeManager
+tests\test_aclient.py:1:import pytest
+tests\test_aclient.py:2:import asyncio
+tests\test_aclient.py:3:from unittest.mock import Mock, patch, AsyncMock, MagicMock
+tests\test_aclient.py:4:import os
+knowledge\domain_router.py:9:import logging
+knowledge\domain_router.py:10:from typing import Optional, List, Dict, Any, Tuple
+knowledge\domain_router.py:12:from knowledge.manager import get_knowledge_manager
+knowledge\domain_router.py:13:from rag.query_preprocessor import get_preprocessor
+src\bot.py:13:import os
+src\bot.py:14:import asyncio
+src\bot.py:15:import discord
+src\bot.py:16:from discord import app_commands
+src\bot.py:17:from typing import Optional
+src\bot.py:19:from src.aclient import discordClient
+src\bot.py:20:from src.log import logger
+src\bot.py:21:from src import personas
+knowledge\structured\pz_tools.py:19:import os
+knowledge\structured\pz_tools.py:20:import json
+knowledge\structured\pz_tools.py:21:import sqlite3
+knowledge\structured\pz_tools.py:22:import logging
+knowledge\structured\pz_tools.py:23:from typing import List, Optional
+scripts\convert_md_to_sqlite.py:15:import os
+scripts\convert_md_to_sqlite.py:16:import re
+scripts\convert_md_to_sqlite.py:17:import sys
+scripts\convert_md_to_sqlite.py:18:import json
+scripts\convert_md_to_sqlite.py:19:import yaml
+scripts\convert_md_to_sqlite.py:20:import sqlite3
+scripts\convert_md_to_sqlite.py:21:import logging
+scripts\convert_md_to_sqlite.py:22:import argparse
+scripts\convert_md_to_sqlite.py:23:from pathlib import Path
+scripts\convert_md_to_sqlite.py:24:from typing import List, Dict, Any, Optional, Tuple
+src\art.py:1:import os
+src\art.py:3:from openai import AsyncOpenAI
+src\art.py:4:from g4f.client import AsyncClient
+src\art.py:5:from g4f.Provider import BingCreateImages, Gemini, OpenaiChat
+src\ollama_provider.py:6:import os
+src\ollama_provider.py:7:import json
+src\ollama_provider.py:8:import asyncio
+src\ollama_provider.py:9:import logging
+src\ollama_provider.py:10:from typing import List, Dict, Any, Optional, AsyncGenerator
+src\ollama_provider.py:12:import ollama
+src\ollama_provider.py:13:from dotenv import load_dotenv
+rag\hybrid_retriever.py:21:import os
+rag\hybrid_retriever.py:22:import logging
+rag\hybrid_retriever.py:23:from typing import List, Dict, Any, Optional, Set, Tuple
+src\log.py:1:import os
+src\log.py:2:import logging
+src\log.py:3:import logging.handlers
+src\aclient.py:14:import os
+src\aclient.py:15:import re
+src\aclient.py:16:import asyncio
+src\aclient.py:17:import logging
+src\aclient.py:18:import time
+src\aclient.py:19:from typing import List, Dict, Optional
+src\aclient.py:21:import discord
+src\aclient.py:22:from discord import app_commands
+src\aclient.py:23:from dotenv import load_dotenv
+src\aclient.py:25:from src.log import logger
+src\aclient.py:26:from src import personas
+src\aclient.py:27:from src.ollama_provider import (
+src\aclient.py:34:from utils.context_manager import ContextManager
+src\aclient.py:35:from utils.message_utils import send_split_message
+scripts\generate_eval_dataset.py:1:import os
+scripts\generate_eval_dataset.py:2:import re
+scripts\generate_eval_dataset.py:3:import json
+scripts\generate_eval_dataset.py:4:import argparse
+scripts\generate_eval_dataset.py:5:import asyncio
+scripts\generate_eval_dataset.py:6:import logging
+scripts\generate_eval_dataset.py:7:from typing import List, Dict, Any, Optional
+scripts\generate_eval_dataset.py:10:from dotenv import load_dotenv
+scripts\test_pz_tools.py:6:import sys
+scripts\test_pz_tools.py:7:import os
+scripts\test_pz_tools.py:8:import json
+scripts\test_pz_tools.py:13:from knowledge.structured.pz_tools import (
+rag\bm25_search.py:21:import os
+rag\bm25_search.py:22:import re
+rag\bm25_search.py:23:import time
+rag\bm25_search.py:24:import logging
+rag\bm25_search.py:25:import asyncio
+rag\bm25_search.py:26:import threading
+rag\bm25_search.py:27:from typing import List, Dict, Any, Optional, Tuple
+src\personas.py:7:import os
+src\personas.py:8:from typing import Optional, List
+rag\ingest.py:24:import os
+rag\ingest.py:25:import sys
+rag\ingest.py:26:import json
+rag\ingest.py:27:import asyncio
+rag\ingest.py:28:import argparse
+rag\ingest.py:29:import logging
+rag\ingest.py:30:from datetime import datetime, timezone
+rag\ingest.py:31:from typing import List, Dict, Any, Optional
+rag\ingest.py:32:from pathlib import Path
+rag\ingest.py:34:from dotenv import load_dotenv
+src\providers.py:1:import os
+src\providers.py:2:import logging
+src\providers.py:3:import re
+src\providers.py:4:from typing import Dict, List, Optional, Any
+src\providers.py:5:from abc import ABC, abstractmethod
+src\providers.py:6:from dataclasses import dataclass
+src\providers.py:7:from enum import Enum
+src\providers.py:8:import asyncio
+src\providers.py:10:import g4f
+src\providers.py:11:from g4f.client import Client
+src\providers.py:12:from g4f.Provider import RetryProvider
+src\providers.py:13:from openai import AsyncOpenAI
+src\providers.py:14:import google.generativeai as genai
+src\providers.py:15:from anthropic import AsyncAnthropic
+src\providers.py:16:import aiohttp

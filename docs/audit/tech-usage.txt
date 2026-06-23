@@ -1,0 +1,466 @@
+admin\announcer.py:63:            from src.ollama_provider import chat_completion
+api\main.py:22:from src.ollama_provider import chat_completion, chat_with_tools, get_last_token_usage
+api\main.py:85:    ollama_ok = False
+api\main.py:86:    redis_ok = False
+api\main.py:103:                ollama_ok = True
+api\main.py:110:        if cache._redis:
+api\main.py:111:            await cache._redis.ping()
+api\main.py:112:            redis_ok = True
+api\main.py:116:    overall_status = "healthy" if (postgres_ok and ollama_ok) else "degraded"
+api\main.py:122:            "ollama": "connected" if ollama_ok else "disconnected",
+api\main.py:123:            "redis_cache": "connected" if redis_ok else "disconnected (caching disabled)",
+auto_login\AutoLogin.py:6:from selenium.webdriver.common.by import By
+auto_login\AutoLogin.py:7:from selenium.webdriver.common.keys import Keys
+auto_login\AutoLogin.py:8:from selenium.webdriver.support.ui import WebDriverWait
+auto_login\AutoLogin.py:9:from selenium.webdriver.support import expected_conditions as EC
+auto_login\AutoLogin.py:10:from selenium.common.exceptions import NoSuchElementException, TimeoutException
+config.sample.py:12:# OPENAI_API_KEY = "your_openai_api_key_here"
+admin\intent_parser.py:146:        from src.ollama_provider import chat_completion
+main.py:29:    ollama_model = os.getenv("OLLAMA_MODEL", "llama3.1:8b")
+main.py:30:    ollama_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+main.py:31:    logger.info(f"Ollama: model={ollama_model}, url={ollama_url}")
+llm_provider.py:12:from llama_index.embeddings.openai import OpenAIEmbedding
+llm_provider.py:14:from llama_index.llms.ollama import Ollama
+llm_provider.py:15:from llama_index.llms.openai import OpenAI
+llm_provider.py:45:        case "openai":
+llm_provider.py:65:        case "ollama":
+llm_provider.py:72:        case "openai":
+deploy\README.md:97:   OLLAMA_BASE_URL=https://ollama.yourcloudprovider.com
+docs\audit\python-imports.txt:48:rag\db.py:20:import asyncpg
+docs\audit\python-imports.txt:49:rag\db.py:21:from langchain_community.vectorstores import PGVector
+docs\audit\python-imports.txt:50:rag\db.py:22:from langchain_ollama import OllamaEmbeddings
+docs\audit\python-imports.txt:51:rag\db.py:23:from langchain_core.documents import Document
+docs\audit\python-imports.txt:65:api\main.py:22:from src.ollama_provider import chat_completion, chat_with_tools, get_last_token_usage
+docs\audit\python-imports.txt:82:llm_provider.py:12:from llama_index.embeddings.openai import OpenAIEmbedding
+docs\audit\python-imports.txt:83:llm_provider.py:14:from llama_index.llms.ollama import Ollama
+docs\audit\python-imports.txt:84:llm_provider.py:15:from llama_index.llms.openai import OpenAI
+docs\audit\python-imports.txt:105:auto_login\AutoLogin.py:6:from selenium.webdriver.common.by import By
+docs\audit\python-imports.txt:106:auto_login\AutoLogin.py:7:from selenium.webdriver.common.keys import Keys
+docs\audit\python-imports.txt:107:auto_login\AutoLogin.py:8:from selenium.webdriver.support.ui import WebDriverWait
+docs\audit\python-imports.txt:108:auto_login\AutoLogin.py:9:from selenium.webdriver.support import expected_conditions as EC
+docs\audit\python-imports.txt:109:auto_login\AutoLogin.py:10:from selenium.common.exceptions import NoSuchElementException, TimeoutException
+docs\audit\python-imports.txt:118:rag\embedder.py:14:import ollama as ollama_client
+docs\audit\python-imports.txt:119:rag\embedder.py:15:from langchain_ollama import OllamaEmbeddings
+docs\audit\python-imports.txt:121:scripts\run_ragas_eval.py:1:import os
+docs\audit\python-imports.txt:122:scripts\run_ragas_eval.py:2:import re
+docs\audit\python-imports.txt:123:scripts\run_ragas_eval.py:3:import json
+docs\audit\python-imports.txt:124:scripts\run_ragas_eval.py:4:import time
+docs\audit\python-imports.txt:125:scripts\run_ragas_eval.py:5:import argparse
+docs\audit\python-imports.txt:126:scripts\run_ragas_eval.py:6:import asyncio
+docs\audit\python-imports.txt:127:scripts\run_ragas_eval.py:7:import logging
+docs\audit\python-imports.txt:128:scripts\run_ragas_eval.py:8:from typing import List, Dict, Any, Optional
+docs\audit\python-imports.txt:129:scripts\run_ragas_eval.py:11:from dotenv import load_dotenv
+docs\audit\python-imports.txt:130:scripts\run_ragas_eval.py:21:from rag.retriever import build_rag_context
+docs\audit\python-imports.txt:131:scripts\run_ragas_eval.py:22:from src.ollama_provider import chat_completion, chat_with_tools
+docs\audit\python-imports.txt:132:scripts\run_ragas_eval.py:23:from knowledge.manager import get_knowledge_manager
+docs\audit\python-imports.txt:198:knowledge\manager.py:23:from langchain_core.documents import Document
+docs\audit\python-imports.txt:242:src\art.py:3:from openai import AsyncOpenAI
+docs\audit\python-imports.txt:243:src\art.py:4:from g4f.client import AsyncClient
+docs\audit\python-imports.txt:244:src\art.py:5:from g4f.Provider import BingCreateImages, Gemini, OpenaiChat
+docs\audit\python-imports.txt:245:src\ollama_provider.py:6:import os
+docs\audit\python-imports.txt:246:src\ollama_provider.py:7:import json
+docs\audit\python-imports.txt:247:src\ollama_provider.py:8:import asyncio
+docs\audit\python-imports.txt:248:src\ollama_provider.py:9:import logging
+docs\audit\python-imports.txt:249:src\ollama_provider.py:10:from typing import List, Dict, Any, Optional, AsyncGenerator
+docs\audit\python-imports.txt:250:src\ollama_provider.py:12:import ollama
+docs\audit\python-imports.txt:251:src\ollama_provider.py:13:from dotenv import load_dotenv
+docs\audit\python-imports.txt:269:src\aclient.py:27:from src.ollama_provider import (
+docs\audit\python-imports.txt:311:src\providers.py:10:import g4f
+docs\audit\python-imports.txt:312:src\providers.py:11:from g4f.client import Client
+docs\audit\python-imports.txt:313:src\providers.py:12:from g4f.Provider import RetryProvider
+docs\audit\python-imports.txt:314:src\providers.py:13:from openai import AsyncOpenAI
+deploy\docker-compose.prod.yml:22:  redis:
+deploy\docker-compose.prod.yml:23:    image: redis:7-alpine
+deploy\docker-compose.prod.yml:24:    container_name: clct-redis
+deploy\docker-compose.prod.yml:26:    command: redis-server --save 60 1 --loglevel warning
+deploy\docker-compose.prod.yml:30:      - redis_data:/data
+deploy\docker-compose.prod.yml:32:      test: ["CMD", "redis-cli", "ping"]
+deploy\docker-compose.prod.yml:48:      - REDIS_URL=redis://redis:6379/0
+deploy\docker-compose.prod.yml:60:      redis:
+deploy\docker-compose.prod.yml:73:      - REDIS_URL=redis://redis:6379/0
+deploy\docker-compose.prod.yml:81:      redis:
+deploy\docker-compose.prod.yml:86:  redis_data:
+requirements.txt:7:ollama>=0.4.0
+requirements.txt:10:langchain-core>=0.3.0
+requirements.txt:11:langchain-community>=0.3.0
+requirements.txt:12:langchain-ollama>=0.3.0
+requirements.txt:17:asyncpg>=0.30.0
+requirements.txt:20:openai==1.66.2
+requirements.txt:21:g4f==0.3.2.9
+requirements.txt:22:g4f[all]
+requirements.txt:26:# ---- Hybrid RAG (E1: BM25 lexical search) ----
+requirements.txt:41:selenium==4.28.1
+requirements.txt:46:redis>=5.0.3
+requirements.txt:48:ragas>=0.1.3
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:7:**Architecture:** Keep Discord bot + FastAPI + PostgreSQL/pgvector + Redis + BM25/RRF RAG, but replace direct Ollama SDK usage with a provider abstraction that supports OpenAI, Gemini, and OpenAI-compatible endpoints such as vLLM. Treat local models as vLLM/OpenAI-compatible services, not direct Ollama runtime code.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:9:**Tech Stack:** Python, discord.py, FastAPI, asyncpg, PostgreSQL pgvector, LangChain PGVector, Redis, OpenAI-compatible chat/embeddings, Gemini API, vLLM OpenAI-compatible server, RAGAS, pytest, Docker Compose, optional Langfuse.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:18:- PostgreSQL pgvector through LangChain PGVector.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:20:- BM25 + RRF hybrid retrieval.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:28:- Broken `g4f` free provider path.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:50:- `src/llm/openai_compatible.py` - OpenAI-compatible chat/embedding client for OpenAI, vLLM, and Ollama `/v1` if kept as remote API only.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:51:- `src/llm/gemini_provider.py` - Gemini chat/embedding adapter.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:60:- `evaluation/ragas_runner.py` - official RAGAS evaluator wrapper.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:71:- `tests/llm/test_openai_compatible.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:73:- `tests/llm/test_gemini_provider.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:90:- `src/ollama_provider.py` - remove after migration or keep as deprecated shim that imports `src.llm.factory`.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:91:- `rag/db.py` - replace `langchain_ollama.OllamaEmbeddings` with provider-neutral embeddings.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:120:  "src/ollama_provider.py",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:143:rg -n "langchain|ollama|openai|gemini|redis|asyncpg|PGVector|BM25|ragas|g4f|selenium" -S --glob "!pgdata/**" --glob "!knowledge/docs/**" > docs\audit\tech-usage.txt
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:220:Expected: file contains the current failures from `g4f.Provider.Chatai`.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:311:clct-redis -> nomnom-redis
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:360:def test_supported_provider_types_do_not_include_free_g4f():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:361:    assert ProviderType.OPENAI.value == "openai"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:362:    assert ProviderType.GEMINI.value == "gemini"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:376:- [ ] **Step 3: Remove g4f runtime provider**
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:378:In `src/providers.py`, delete `FreeProvider`, remove `g4f` imports, and define:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:385:    OPENAI = "openai"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:386:    GEMINI = "gemini"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:387:    OPENAI_COMPATIBLE = "openai_compatible"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:393:raise RuntimeError("No LLM provider configured. Set LLM_PROVIDER=openai|gemini|openai_compatible.")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:401:g4f==0.3.2.9
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:402:g4f[all]
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:403:ollama>=0.4.0
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:404:langchain-ollama>=0.3.0
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:405:selenium==4.28.1
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:408:Keep `openai`, `google-generativeai`, `langchain-core`, `langchain-community`.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:426:git commit -m "refactor: remove broken g4f provider path"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:445:rg -n "OCR|ocr|auto.?login|selenium|cookie|browser" README.md deploy README.md requirements.txt auto_login
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:477:- [ ] **Step 4: Verify no OCR/selenium claims**
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:482:rg -n "OCR|ocr|selenium|auto.?login" README.md deploy requirements.txt src rag knowledge
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:523:    config = LLMConfig(provider="openai", model="gpt-4o-mini")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:524:    assert config.provider == "openai"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:611:- Create: `src/llm/openai_compatible.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:613:- Test: `tests/llm/test_openai_compatible.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:617:Create `tests/llm/test_openai_compatible.py`:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:623:from src.llm.openai_compatible import OpenAICompatibleClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:630:        provider="openai_compatible",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:653:        provider="openai_compatible",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:675:python -m pytest tests/llm/test_openai_compatible.py -q
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:692:    "ollama-openai-compatible": (0.0, 0.0),
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:707:Create `src/llm/openai_compatible.py`:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:712:from openai import AsyncOpenAI
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:771:python -m pytest tests/llm/test_openai_compatible.py -q
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:781:git add src/llm/openai_compatible.py src/llm/pricing.py tests/llm/test_openai_compatible.py
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:782:git commit -m "feat: add openai-compatible llm client"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:792:- Modify: `src/ollama_provider.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:812:def test_openai_compatible_config_for_vllm(monkeypatch):
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:813:    monkeypatch.setenv("LLM_PROVIDER", "openai_compatible")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:820:    assert config.provider == "openai_compatible"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:826:    monkeypatch.setenv("LLM_PROVIDER", "gemini")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:827:    monkeypatch.setenv("LLM_MODEL", "gemini-1.5-flash")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:828:    monkeypatch.setenv("EMBEDDING_PROVIDER", "openai_compatible")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:836:    assert config.provider == "openai_compatible"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:864:from src.llm.openai_compatible import OpenAICompatibleClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:868:SUPPORTED_PROVIDERS = {"openai", "gemini", "openai_compatible"}
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:874:        raise RuntimeError("LLM_PROVIDER is required: openai|gemini|openai_compatible")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:890:    if config.provider in {"openai", "openai_compatible"}:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:892:    if config.provider == "gemini":
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:893:        from src.llm.gemini_provider import GeminiClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:903:from langchain_openai import OpenAIEmbeddings
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:905:from src.llm.openai_compatible import OpenAICompatibleClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:909:SUPPORTED_EMBEDDING_PROVIDERS = {"openai", "openai_compatible", "gemini"}
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:915:        raise RuntimeError("EMBEDDING_PROVIDER is required: openai|openai_compatible|gemini")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:932:    if config.provider in {"openai", "openai_compatible"}:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:934:    if config.provider == "gemini":
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:935:        from src.llm.gemini_provider import GeminiClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:940:def get_langchain_embeddings():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:942:    if config.provider in {"openai", "openai_compatible"}:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:948:    if config.provider == "gemini":
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:949:        from langchain_google_genai import GoogleGenerativeAIEmbeddings
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:957:- [ ] **Step 4: Make `src/ollama_provider.py` a compatibility shim**
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1026:        from src.llm.embedding_factory import get_langchain_embeddings
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1027:        _embeddings = get_langchain_embeddings()
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1031:Add `langchain-openai>=0.2.0` and `langchain-google-genai>=2.0.0` to `requirements.txt`.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1048:git add src/llm src/ollama_provider.py src/aclient.py api/main.py rag/embedder.py rag/db.py requirements.txt tests/llm tests/test_aclient.py
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1057:- Create: `src/llm/gemini_provider.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1058:- Test: `tests/llm/test_gemini_provider.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1062:Create `tests/llm/test_gemini_provider.py`:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1067:from src.llm.gemini_provider import GeminiClient
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1071:def test_gemini_requires_api_key():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1072:    config = LLMConfig(provider="gemini", model="gemini-1.5-flash", api_key=None)
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1077:def test_gemini_default_embedding_model_is_documented():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1079:        provider="gemini",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1080:        model="gemini-1.5-flash",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1093:python -m pytest tests/llm/test_gemini_provider.py -q
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1096:Expected: FAIL because `src/llm/gemini_provider.py` does not exist.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1100:Create `src/llm/gemini_provider.py`:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1134:        return LLMResponse(content=text, usage=usage, raw={"provider": "gemini"})
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1157:python -m pytest tests/llm/test_gemini_provider.py tests/llm/test_factory.py -q
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1167:git add src/llm/gemini_provider.py tests/llm/test_gemini_provider.py
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1168:git commit -m "feat: add gemini llm provider"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1193:        provider="openai_compatible",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1199:        provider="openai_compatible",
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1347:    assert "asyncpg" in text
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1465:import asyncpg
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1473:    conn = await asyncpg.connect(postgres_url)
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1593:        DELETE FROM langchain_pg_embedding e
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:1594:        USING langchain_pg_collection c
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2080:- Modify: `scripts/run_ragas_eval.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2082:- Create: `evaluation/ragas_runner.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2096:def test_ragas_runner_imports_official_ragas_package():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2097:    text = Path("evaluation/ragas_runner.py").read_text(encoding="utf-8")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2105:    assert any(name == "ragas" or name.startswith("ragas.") for name in imports)
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2108:def test_run_ragas_eval_uses_ragas_runner():
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2109:    text = Path("scripts/run_ragas_eval.py").read_text(encoding="utf-8")
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2110:    assert "from evaluation.ragas_runner import run_ragas_evaluation" in text
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2121:Expected: FAIL because `evaluation/ragas_runner.py` does not exist.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2165:Create `evaluation/ragas_runner.py`:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2174:from ragas import evaluate
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2175:from ragas.metrics import (
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2206:def build_ragas_dataset(rows: List[Dict[str, Any]]) -> Dataset:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2220:def run_ragas_evaluation(rows: List[Dict[str, Any]]) -> Dict[str, Any]:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2222:    dataset = build_ragas_dataset(rows)
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2227:- [ ] **Step 5: Update `scripts/run_ragas_eval.py` to always use RAGAS**
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2232:from evaluation.ragas_runner import run_ragas_evaluation
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2251:ragas_scores = run_ragas_evaluation(comparison_rows)
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2254:Keep the naive-vs-optimized comparison only if it also records RAGAS scores for both paths. Do not leave `--use-ragas` as optional; official RAGAS is mandatory for release evaluation. Unit tests must mock `ragas.evaluate`; default CI may skip official RAGAS unless `RUN_RAGAS_RELEASE_EVAL=true` and all `EVAL_*` variables are present.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2328:- Unit tests: mock `ragas.evaluate` and validate dataset/report wiring.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2338:ragas>=0.1.3
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2357:git add scripts/run_ragas_eval.py scripts/generate_eval_dataset.py evaluation/ragas_runner.py evaluation/dataset_schema.py evaluation/README.md requirements.txt tests/test_eval_scripts.py
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2358:git commit -m "feat: add mandatory ragas evaluation"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2367:- Modify: `scripts/run_ragas_eval.py`
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2486:In `scripts/run_ragas_eval.py`, for each evaluated query, extract retrieved sources from the RAG context or structured retrieval debug output and compute:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2549:git add evaluation/retrieval_metrics.py evaluation/baselines/nomnom_rag_baseline.json scripts/run_ragas_eval.py tests/test_retrieval_metrics.py
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2701:LLM_PROVIDER=openai_compatible
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2706:EMBEDDING_PROVIDER=openai_compatible
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2719:REDIS_URL=redis://redis:6379/0
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2736:container_name: nomnom-redis
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2772:redis:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:2774:    test: ["CMD", "redis-cli", "ping"]
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3113:  ragas-release-eval:
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3132:        run: python scripts/run_ragas_eval.py --dataset evaluation/data/release_qa.json --limit 50 --output evaluation/reports/release_report.json
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3180:- PostgreSQL pgvector retrieval through LangChain PGVector
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3182:- BM25 + vector hybrid retrieval with Reciprocal Rank Fusion
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3219:rg -n "LangGraph|OCR|production-ready|Ollama local|g4f|free provider" README.md deploy README.md
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3254:rg -n "g4f|langchain_ollama|import ollama|selenium|AutoLogin" --glob "!tmp/**" --glob "!pgdata/**"
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3303:python scripts/run_ragas_eval.py --dataset evaluation/data/mock_qa.json --limit 2 --output evaluation/reports/mock_report.json
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3347:- No `CLCT`, `clct`, `g4f`, `langchain_ollama`, direct `import ollama`, Selenium auto-login, or OCR claims in runtime source/docs.
+docs\superpowers\plans\2026-06-23-production-ready-nomnom.md:3354:- RAGAS evaluation is implemented through official `ragas.evaluate`, not a placeholder flag.
+LICENSE:51:patents.  We wish to avoid the danger that redistributors of a free
+LICENSE:108:    a warranty) and that users may redistribute the program under
+LICENSE:189:  6. Each time you redistribute the Program (or any work based on the
+LICENSE:205:license would not permit royalty-free redistribution of the Program by
+LICENSE:286:free software which everyone can redistribute and change under these terms.
+LICENSE:296:    This program is free software; you can redistribute it and/or modify
+LICENSE:317:    This is free software, and you are welcome to redistribute it
+README.md:9:> - **5 AI Providers**: Free (g4f), OpenAI, Claude, Gemini, Grok
+README.md:63:1. Obtain your API key from https://platform.openai.com/api-keys
+README.md:87:- Use `/draw [prompt] openai`
+README.md:92:- Use `/draw [prompt] gemini`
+rag\db.py:2:PostgreSQL + pgvector database layer via LangChain PGVector.
+rag\db.py:5:- langchain_community.vectorstores.PGVector for vector storage & similarity search
+rag\db.py:6:- langchain_ollama.OllamaEmbeddings for embedding generation
+rag\db.py:7:- asyncpg for direct SQL operations (edges table, counts, custom queries)
+rag\db.py:10:- langchain_pg_collection / langchain_pg_embedding: LangChain PGVector tables
+rag\db.py:20:import asyncpg
+rag\db.py:21:from langchain_community.vectorstores import PGVector
+rag\db.py:22:from langchain_ollama import OllamaEmbeddings
+rag\db.py:23:from langchain_core.documents import Document
+rag\db.py:36:# LangChain PGVector needs the psycopg2/postgresql+psycopg URI scheme
+rag\db.py:37:# Convert asyncpg-style URL → SQLAlchemy-style if needed
+rag\db.py:67:# LangChain PGVector store (singleton)
+rag\db.py:69:_vectorstore: Optional[PGVector] = None
+rag\db.py:72:def get_vectorstore() -> PGVector:
+rag\db.py:74:    Return (and lazily create) the LangChain PGVector vector store.
+rag\db.py:79:        _vectorstore = PGVector(
+rag\db.py:85:        logger.info(f"PGVector store initialised: collection={COLLECTION_NAME}")
+rag\db.py:90:# asyncpg pool for custom SQL (edges, counts)
+rag\db.py:92:_pool: Optional[asyncpg.Pool] = None
+rag\db.py:95:async def get_pool() -> asyncpg.Pool:
+rag\db.py:96:    """Return (and lazily create) the asyncpg connection pool."""
+rag\db.py:99:        logger.info("Creating asyncpg connection pool …")
+rag\db.py:100:        _pool = await asyncpg.create_pool(
+rag\db.py:125:    LangChain PGVector creates its own tables automatically;
+rag\db.py:144:    # Trigger PGVector store creation (creates collection + embedding tables)
+rag\db.py:147:    logger.info("Database schema initialised (LangChain PGVector + edges table ready).")
+rag\db.py:184:    Add documents to the PGVector store (sync, calls LangChain).
+rag\db.py:248:    Search for similar documents using LangChain PGVector.
+rag\db.py:329:    """Return total number of documents in the PGVector collection."""
+rag\db.py:335:            FROM langchain_pg_embedding e
+rag\db.py:336:            JOIN langchain_pg_collection c ON e.collection_id = c.uuid
+rag\ingest.py:167:    3. Add to LangChain PGVector store (embedding handled by LangChain)
+rag\ingest.py:197:    # Insert documents via LangChain PGVector in batches
+rag\bm25_search.py:2:BM25 Lexical Search — In-memory BM25 index for Hybrid RAG.
+rag\bm25_search.py:5:using the Okapi BM25 algorithm. This is particularly effective for:
+rag\bm25_search.py:11:The index is built from documents stored in PGVector (PostgreSQL) and
+rag\bm25_search.py:15:- Uses `rank_bm25.BM25Okapi` for scoring
+rag\bm25_search.py:34:BM25_TOP_K: int = int(os.getenv("BM25_TOP_K", "15"))
+rag\bm25_search.py:35:BM25_MIN_SCORE: float = float(os.getenv("BM25_MIN_SCORE", "0.5"))
+rag\bm25_search.py:65:    Tokenize text for BM25 indexing / querying.
+rag\bm25_search.py:80:# BM25 Index
+rag\bm25_search.py:82:class BM25Index:
+rag\bm25_search.py:84:    In-memory BM25 index backed by documents from the PGVector store.
+rag\bm25_search.py:111:        Build the BM25 index from a list of document dicts.
+rag\bm25_search.py:116:        from rank_bm25 import BM25Okapi
+rag\bm25_search.py:119:            logger.warning("BM25: No documents to index.")
+rag\bm25_search.py:139:                    logger.warning("BM25: All documents produced empty tokens.")
+rag\bm25_search.py:142:                self._bm25 = BM25Okapi(tokens_list)
+rag\bm25_search.py:150:                    f"BM25 index built: {self._doc_count} docs, "
+rag\bm25_search.py:161:        Rebuild the BM25 index from PGVector / PostgreSQL.
+rag\bm25_search.py:162:        Fetches all documents from the langchain_pg_embedding table.
+rag\bm25_search.py:176:                    FROM langchain_pg_embedding e
+rag\bm25_search.py:177:                    JOIN langchain_pg_collection c ON e.collection_id = c.uuid
+rag\bm25_search.py:197:            logger.info(f"BM25: Fetched {len(documents)} documents from DB (collection={coll})")
+rag\bm25_search.py:207:            logger.error(f"BM25: Failed to refresh from DB: {e}")
+rag\bm25_search.py:212:        Rebuild the BM25 index from the Knowledge Base PGVector store.
+rag\bm25_search.py:224:                    FROM langchain_pg_embedding e
+rag\bm25_search.py:225:                    JOIN langchain_pg_collection c ON e.collection_id = c.uuid
+rag\bm25_search.py:245:            logger.info(f"BM25 KB: Fetched {len(documents)} KB documents")
+rag\bm25_search.py:254:            logger.debug("BM25: Knowledge base module not available for BM25 indexing")
+rag\bm25_search.py:257:            logger.error(f"BM25 KB: Failed to refresh: {e}")
+rag\bm25_search.py:263:        top_k: int = BM25_TOP_K,
+rag\bm25_search.py:264:        min_score: float = BM25_MIN_SCORE,
+rag\bm25_search.py:268:        Search the BM25 index for relevant documents.
+rag\bm25_search.py:273:            min_score: Minimum BM25 score to include.
+rag\bm25_search.py:280:            logger.debug("BM25: Index not ready, returning empty results")
+rag\bm25_search.py:334:_chat_bm25: Optional[BM25Index] = None
+rag\bm25_search.py:335:_kb_bm25: Optional[BM25Index] = None
+rag\bm25_search.py:338:def get_chat_bm25() -> BM25Index:
+rag\bm25_search.py:339:    """Return the singleton BM25 index for chat history."""
+rag\bm25_search.py:342:        _chat_bm25 = BM25Index()
+rag\bm25_search.py:346:def get_kb_bm25() -> BM25Index:
+rag\bm25_search.py:347:    """Return the singleton BM25 index for knowledge base."""
+rag\bm25_search.py:350:        _kb_bm25 = BM25Index()
+rag\bm25_search.py:356:    Initialize both BM25 indices from the database.
+rag\bm25_search.py:371:    logger.info(f"BM25 indices initialized: {results}")
+rag\retriever.py:7:- 🆕 E1: Hybrid RAG (BM25 lexical + Vector semantic via RRF)
+rag\retriever.py:13:        → D2: Knowledge Base search (hybrid: vector + BM25)
+rag\retriever.py:14:        → A4: Chat History search (hybrid: vector + BM25)
+rag\retriever.py:15:        → E1: Reciprocal Rank Fusion (merge BM25 + vector)
+rag\retriever.py:65:    Search for relevant historical messages via Hybrid RAG (BM25 + Vector).
+rag\retriever.py:66:    Falls back to vector-only if hybrid is disabled or BM25 index not ready.
+rag\retriever.py:74:            # E1: Use hybrid search (vector + BM25 via RRF)
+rag\retriever.py:155:    Search knowledge base using hybrid search (vector + BM25).
+rag\retriever.py:287:    - 🆕 E1: Hybrid RAG (BM25 + Vector via Reciprocal Rank Fusion)
+rag\hybrid_retriever.py:2:Hybrid Retriever — Combines BM25 lexical search + Vector semantic search
+rag\hybrid_retriever.py:7:- **BM25 search** excels at exact keyword matching (item names, commands, stats)
+rag\hybrid_retriever.py:33:BM25_WEIGHT: float = float(os.getenv("BM25_WEIGHT", "0.4"))  # relative weight for BM25
+rag\hybrid_retriever.py:142:    Execute a hybrid search combining vector and BM25 results.
+rag\hybrid_retriever.py:148:        bm25_top_k: Max results from BM25 search.
+rag\hybrid_retriever.py:151:        bm25_min_score: Min BM25 score.
+rag\hybrid_retriever.py:202:    # ---- 2. BM25 (lexical) search ----
+rag\hybrid_retriever.py:225:                    f"Hybrid: BM25 index not ready ({search_type}), "
+rag\hybrid_retriever.py:229:            logger.warning(f"Hybrid: BM25 search failed ({search_type}): {e}")
+rag\hybrid_retriever.py:238:        # No BM25 results → just return vector results
+rag\hybrid_retriever.py:241:        # No vector results → just return BM25 results
+rag\hybrid_retriever.py:247:            weights=[VECTOR_WEIGHT, BM25_WEIGHT],
+rag\__init__.py:9:- bm25_search.py: BM25 lexical search for hybrid RAG (E1)
+rag\__init__.py:10:- hybrid_retriever.py: Reciprocal Rank Fusion of BM25 + Vector (E1)
+rag\__init__.py:16:    Query → Preprocess → [Vector Search + BM25 Search] → RRF Fusion → Self-RAG Grading → Prompt
+rag\embedder.py:5:Wraps langchain_ollama.OllamaEmbeddings for consistent usage across
+rag\embedder.py:14:import ollama as ollama_client
+rag\embedder.py:15:from langchain_ollama import OllamaEmbeddings
+rag\embedder.py:121:# Model management (uses raw ollama client for pull/list)
+rag\embedder.py:127:        client = ollama_client.AsyncClient(host=OLLAMA_BASE_URL)
+rag\embedder.py:143:    client = ollama_client.AsyncClient(host=OLLAMA_BASE_URL)
+utils\context_manager.py:247:            (messages, temperature, query_intent) — ready for ollama.chat()
+rag\self_rag.py:279:        from src.ollama_provider import chat_completion
+rag\self_rag.py:312:    from src.ollama_provider import chat_completion
+utils\cache.py:15:REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+utils\cache.py:28:        self.redis = None
+utils\cache.py:32:            self._init_redis()
+utils\cache.py:34:    def _init_redis(self) -> None:
+utils\cache.py:35:        """Initialize the async redis client."""
+utils\cache.py:37:            import redis.asyncio as redis
+utils\cache.py:38:            self.redis = redis.from_url(
+utils\cache.py:62:        if not CACHE_ENABLED or not self.is_connected or not self.redis:
+utils\cache.py:67:            data = await self.redis.get(key)
+utils\cache.py:82:        if not CACHE_ENABLED or not self.is_connected or not self.redis:
+utils\cache.py:89:            await self.redis.set(key, serialized, ex=expire)
+utils\cache.py:99:        if not CACHE_ENABLED or not self.redis:
+utils\cache.py:106:                self._init_redis()
+utils\cache.py:112:            async for key in self.redis.scan_iter(pattern):
+utils\cache.py:113:                await self.redis.delete(key)
+utils\cache.py:126:        if not CACHE_ENABLED or not self.redis:
+utils\cache.py:129:            await self.redis.flushdb()
+scripts\run_ragas_eval.py:22:from src.ollama_provider import chat_completion, chat_with_tools
+scripts\run_ragas_eval.py:142:    import ollama
+scripts\run_ragas_eval.py:143:    client = ollama.AsyncClient(host=OLLAMA_BASE_URL)
+scripts\run_ragas_eval.py:230:    parser.add_argument("--use-ragas", action="store_true", help="Try using official Ragas package.")
+scripts\generate_eval_dataset.py:21:    import ollama
+scripts\generate_eval_dataset.py:22:    client = ollama.AsyncClient(host=OLLAMA_BASE_URL)
+src\art.py:3:from openai import AsyncOpenAI
+src\art.py:4:from g4f.client import AsyncClient
+src\art.py:5:from g4f.Provider import BingCreateImages, Gemini, OpenaiChat
+src\art.py:7:openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_KEY"))
+src\art.py:12:        "openai": OpenaiChat,
+src\art.py:20:        g4f_client = AsyncClient(image_provider=image_provider)
+src\art.py:21:        response = await g4f_client.images.generate(prompt=prompt)
+src\art.py:23:        response = await openai_client.images.generate(
+tests\test_verification_plan.py:34:# Supabase REST helper (used by Phase A & B instead of asyncpg)
+tests\test_verification_plan.py:71:        # We verify by checking if the vector type exists in langchain_pg_embedding
+tests\test_verification_plan.py:72:        result = client.table("langchain_pg_embedding").select("uuid").limit(0).execute()
+tests\test_verification_plan.py:77:        # the fact that langchain_pg_embedding has a vector column
+tests\test_verification_plan.py:79:        logger.info("pgvector verified (vector column exists in langchain_pg_embedding)")
+tests\test_verification_plan.py:174:        # 2. langchain_pg_collection
+tests\test_verification_plan.py:175:        result = client.table("langchain_pg_collection").select("uuid").limit(0).execute()
+tests\test_verification_plan.py:176:        assert result is not None, "langchain_pg_collection NOT accessible!"
+tests\test_verification_plan.py:178:        # 3. langchain_pg_embedding
+tests\test_verification_plan.py:179:        result = client.table("langchain_pg_embedding").select("uuid").limit(0).execute()
+tests\test_verification_plan.py:180:        assert result is not None, "langchain_pg_embedding NOT accessible!"
+tests\test_verification_plan.py:185:    def test_b2_langchain_schema_correct(self):
+tests\test_verification_plan.py:186:        """B2: Verify langchain_pg_embedding schema has vector column."""
+tests\test_verification_plan.py:189:        # langchain_pg_collection should accept name + cmetadata
+tests\test_verification_plan.py:191:        result = client.table("langchain_pg_collection").select(
+tests\test_verification_plan.py:194:        assert result is not None, "langchain_pg_collection columns mismatch"
+tests\test_verification_plan.py:196:        # langchain_pg_embedding should have uuid, collection_id, embedding, document, cmetadata
+tests\test_verification_plan.py:197:        result = client.table("langchain_pg_embedding").select(
+tests\test_verification_plan.py:200:        assert result is not None, "langchain_pg_embedding columns mismatch"
+tests\test_verification_plan.py:202:        logger.info("LangChain PGVector schema verified")
+tests\test_verification_plan.py:233:        """B4: Verify BM25 index can build from in-memory documents."""
+tests\test_verification_plan.py:234:        from rag.bm25_search import BM25Index
+tests\test_verification_plan.py:236:        index = BM25Index()
+tests\test_verification_plan.py:245:        assert count == 3, f"BM25 indexed {count} docs, expected 3"
+tests\test_verification_plan.py:249:        assert len(results) > 0, "BM25 search returned 0 results"
+tests\test_verification_plan.py:252:        logger.info(f"BM25 index: {count} docs, search OK")
+tests\test_verification_plan.py:583:        from rag.bm25_search import BM25Index
+tests\test_verification_plan.py:587:        assert BM25Index is not None
+src\aclient.py:27:from src.ollama_provider import (
+src\aclient.py:216:        # E1: Initialize BM25 indices for Hybrid RAG
+src\aclient.py:223:                    f"✅ BM25 indices initialized: {total_bm25} docs "
+src\aclient.py:228:                logger.warning(f"⚠️ BM25 index init failed (non-fatal, hybrid search degrades to vector-only): {e}")
+src\aclient.py:352:                # E1: Refresh BM25 index for hybrid search
+src\aclient.py:357:                    status_lines.append(f"🔍 **BM25 Index**: {bm25_count} docs reindexed")
+src\aclient.py:359:                    status_lines.append(f"⚠️ BM25 reindex skipped: {bm25_err}")
+src\aclient.py:682:                from src.ollama_provider import get_last_token_usage
+src\aclient.py:918:            "provider": "ollama",
+src\bot.py:190:        from src.ollama_provider import health_check, OLLAMA_MODEL
+src\bot.py:192:        ollama_ok = await health_check()
+src\bot.py:265:            color=discord.Color.green() if ollama_ok else discord.Color.red(),
+src\bot.py:269:            value=f"{'✅ Online' if ollama_ok else '❌ Offline'}",
+src\ollama_provider.py:12:import ollama
+src\ollama_provider.py:30:_client: Optional[ollama.AsyncClient] = None
+src\ollama_provider.py:92:def _get_client() -> ollama.AsyncClient:
+src\ollama_provider.py:95:        _client = ollama.AsyncClient(host=OLLAMA_BASE_URL)
+src\ollama_provider.py:133:                name="ollama-chat-completion",
+src\ollama_provider.py:137:                name="ollama-chat",
+src\ollama_provider.py:189:    except ollama.ResponseError as e:
+src\ollama_provider.py:248:                name="ollama-chat-with-tools",
+src\ollama_provider.py:262:                    name=f"ollama-chat-round-{round_num + 1}",
+src\ollama_provider.py:402:    except ollama.ResponseError as e:
+knowledge\manager.py:10:- PGVector storage for similarity search
+knowledge\manager.py:23:from langchain_core.documents import Document
+knowledge\manager.py:509:    Loads documents, chunks them, embeds into PGVector,
+knowledge\manager.py:531:        """Get or create the knowledge base PGVector store (separate collection)."""
+knowledge\manager.py:534:            from langchain_community.vectorstores import PGVector
+knowledge\manager.py:536:            self._vectorstore = PGVector(
+knowledge\manager.py:629:            # Note: PGVector doesn't have a great "delete by metadata" in all versions
+src\providers.py:10:import g4f
+src\providers.py:11:from g4f.client import Client
+src\providers.py:12:from g4f.Provider import RetryProvider
+src\providers.py:13:from openai import AsyncOpenAI
+src\providers.py:23:    OPENAI = "openai"
+src\providers.py:25:    GEMINI = "gemini"
+src\providers.py:67:    """Provider for free models via g4f - COMPLETELY AUTH-FREE"""
+src\providers.py:76:                'provider': g4f.Provider.Blackbox,
+src\providers.py:81:                'provider': g4f.Provider.Chatai, 
+src\providers.py:86:                'provider': g4f.Provider.CohereForAI_C4AI_Command,
+src\providers.py:328:                model = "gemini-2.0-flash-exp"
+src\providers.py:331:            gemini_model = genai.GenerativeModel(model)
+src\providers.py:334:            chat = gemini_model.start_chat(history=[])
+src\providers.py:376:            ModelInfo("gemini-2.0-flash-exp", ProviderType.GEMINI, "Latest experimental model", supports_vision=True),
+src\providers.py:377:            ModelInfo("gemini-1.5-pro", ProviderType.GEMINI, "Advanced reasoning", supports_vision=True),
+src\providers.py:378:            ModelInfo("gemini-1.5-flash", ProviderType.GEMINI, "Fast multimodal", supports_vision=True),
+knowledge\structured\pz_tools.py:10:These are designed to be passed directly to ollama.chat(tools=[...])
+knowledge\structured\pz_tools.py:15:    # PZ_TOOLS       — list of functions to pass to ollama tools= param
+knowledge\structured\pz_tools.py:489:# List of tool functions — pass to ollama.chat(tools=PZ_TOOLS)
