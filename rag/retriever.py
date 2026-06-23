@@ -26,6 +26,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from rag.db import search_similar, get_message_context
 from rag.query_preprocessor import get_preprocessor
 from rag.metrics import get_metrics_manager, RAGMetric
+from src.observability.prompts import current_prompt_cache_version
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,46 @@ HYBRID_ENABLED: bool = os.getenv("HYBRID_RAG_ENABLED", "true").lower() == "true"
 SELF_RAG_ENABLED: bool = os.getenv("SELF_RAG_ENABLED", "true").lower() == "true"
 
 
+def _record_hybrid_metadata(
+    metric: Optional[RAGMetric],
+    search_meta: Dict[str, Any],
+) -> None:
+    if not metric:
+        return
+    metric.vector_results += int(search_meta.get("vector_results", 0) or 0)
+    metric.bm25_results += int(search_meta.get("bm25_results", 0) or 0)
+    metric.hybrid_fused_results += int(search_meta.get("fused_results", 0) or 0)
+    metric.vector_time_ms += float(search_meta.get("vector_time_ms", 0.0) or 0.0)
+    metric.bm25_time_ms += float(search_meta.get("bm25_time_ms", 0.0) or 0.0)
+
+
+def _record_self_rag_metadata(metric: RAGMetric, rag_meta: Any) -> None:
+    metric.self_rag_enabled = True
+    metric.self_rag_graded += int(getattr(rag_meta, "total_graded", 0) or 0)
+    metric.self_rag_relevant += int(getattr(rag_meta, "relevant_count", 0) or 0)
+    metric.self_rag_relevant += int(getattr(rag_meta, "partial_count", 0) or 0)
+    metric.self_rag_irrelevant += int(getattr(rag_meta, "irrelevant_count", 0) or 0)
+    metric.self_rag_time_ms += float(getattr(rag_meta, "grading_time_ms", 0.0) or 0.0)
+    error = getattr(rag_meta, "error", None)
+    if error:
+        metric.llm_error = error
+
+
+def _citation_coverage(results: List[Dict[str, Any]]) -> float:
+    if not results:
+        return 0.0
+    cited = 0
+    for result in results:
+        if (
+            result.get("source")
+            or result.get("message_id")
+            or result.get("author_name")
+            or result.get("author_id")
+        ):
+            cited += 1
+    return cited / len(results)
+
+
 # ---------------------------------------------------------------------------
 # Core retrieval with A4 fallback + E1 hybrid search
 # ---------------------------------------------------------------------------
@@ -60,6 +101,7 @@ async def retrieve(
     top_k: int = RAG_TOP_K,
     threshold: float = RAG_SIMILARITY_THRESHOLD,
     include_context: bool = True,
+    metric: Optional[RAGMetric] = None,
 ) -> List[Dict[str, Any]]:
     """
     Search for relevant historical messages via Hybrid RAG (BM25 + Vector).
@@ -82,6 +124,7 @@ async def retrieve(
                 vector_threshold=threshold,
                 search_type="chat",
             )
+            _record_hybrid_metadata(metric, search_meta)
             logger.debug(
                 f"Hybrid chat search: vector={search_meta['vector_results']}, "
                 f"bm25={search_meta['bm25_results']}, fused={search_meta['fused_results']}"
@@ -105,7 +148,7 @@ async def retrieve(
             )
             if HYBRID_ENABLED:
                 from rag.hybrid_retriever import hybrid_search
-                results, _ = await hybrid_search(
+                results, fallback_meta = await hybrid_search(
                     query=query,
                     channel_id=channel_id,
                     vector_top_k=RAG_FALLBACK_TOP_K,
@@ -114,6 +157,7 @@ async def retrieve(
                     vector_threshold=RAG_FALLBACK_THRESHOLD,
                     search_type="chat",
                 )
+                _record_hybrid_metadata(metric, fallback_meta)
             else:
                 filter_dict = {"channel_id": channel_id} if channel_id else None
                 results = search_similar(
@@ -127,6 +171,8 @@ async def retrieve(
 
     except Exception as e:
         logger.error(f"RAG search failed: {e}")
+        if metric:
+            metric.retrieval_error = str(e)
         return []
 
     if include_context and results:
@@ -150,6 +196,7 @@ async def retrieve_knowledge(
     domains: Optional[List[str]] = None,
     top_k: int = KB_TOP_K,
     threshold: float = KB_THRESHOLD,
+    metric: Optional[RAGMetric] = None,
 ) -> Tuple[List[Dict[str, Any]], Optional[str]]:
     """
     Search knowledge base using hybrid search (vector + BM25).
@@ -172,6 +219,7 @@ async def retrieve_knowledge(
                 vector_threshold=threshold,
                 search_type="kb",
             )
+            _record_hybrid_metadata(metric, kb_meta)
 
             primary_domain = None
             if kb_results:
@@ -199,6 +247,8 @@ async def retrieve_knowledge(
         return [], None
     except Exception as e:
         logger.warning(f"Knowledge base search failed: {e}")
+        if metric:
+            metric.retrieval_error = str(e)
         return [], None
 
 
@@ -307,6 +357,7 @@ async def build_rag_context(
         "original_query": query[:500],
         "llm_model": os.getenv("LLM_MODEL", ""),
         "embedding_model": os.getenv("EMBEDDING_MODEL", ""),
+        "prompt_version": current_prompt_cache_version(),
         "retrieval_config_version": os.getenv("RETRIEVAL_CONFIG_VERSION", "v1"),
     }
     if request_context:
@@ -355,6 +406,7 @@ async def build_rag_context(
                 domains=domains_to_search,
                 top_k=KB_TOP_K,
                 threshold=KB_THRESHOLD,
+                metric=metric,
             )
             metric.kb_results = len(kb_results)
 
@@ -372,6 +424,7 @@ async def build_rag_context(
         query=search_text,
         channel_id=channel_id,
         top_k=top_k,
+        metric=metric,
     )
     metric.chat_history_results = len(chat_results)
 
@@ -390,6 +443,7 @@ async def build_rag_context(
                     query=processed_query,
                     results=kb_results,
                 )
+                _record_self_rag_metadata(metric, kb_rag_meta)
                 metric.kb_results = len(kb_results)
                 logger.debug(
                     f"Self-RAG KB: {kb_rag_meta.relevant_count} relevant, "
@@ -402,6 +456,7 @@ async def build_rag_context(
                     query=processed_query,
                     results=chat_results,
                 )
+                _record_self_rag_metadata(metric, chat_rag_meta)
                 metric.chat_history_results = len(chat_results)
                 self_rag_annotation = format_self_rag_annotation(chat_rag_meta)
                 logger.debug(
@@ -413,6 +468,7 @@ async def build_rag_context(
             logger.debug("Self-RAG module not available")
         except Exception as e:
             logger.warning(f"Self-RAG grading failed (non-fatal, using unfiltered): {e}")
+            metric.llm_error = str(e)
 
     # ---- Compute similarity stats for A3 ----
     all_similarities = [
@@ -425,6 +481,8 @@ async def build_rag_context(
         metric.max_similarity = max(all_similarities)
         metric.min_similarity = min(all_similarities)
     metric.num_results = len(chat_results) + metric.kb_results
+    metric.empty_retrieval = metric.num_results == 0
+    metric.citation_coverage = _citation_coverage(kb_results + chat_results)
 
     # ---- Format combined context ----
     if kb_results:
