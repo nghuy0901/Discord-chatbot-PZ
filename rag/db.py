@@ -173,6 +173,13 @@ def _msg_to_document(
         meta["thread_id"] = thread_id
     if metadata:
         meta.update(metadata)
+    meta.update(
+        {
+            "source_kind": "discord_chat",
+            "approval_status": "unapproved",
+            "trusted": False,
+        }
+    )
 
     return Document(page_content=content, metadata=meta)
 

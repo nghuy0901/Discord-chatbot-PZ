@@ -106,6 +106,16 @@ class BM25Index:
     def doc_count(self) -> int:
         return self._doc_count
 
+    def clear(self) -> None:
+        """Invalidate all in-memory BM25 state."""
+        with self._lock:
+            self._bm25 = None
+            self._corpus_tokens = []
+            self._documents = []
+            self._doc_count = 0
+            self._last_refresh = 0
+            self._is_building = False
+
     def refresh_from_documents(self, documents: List[Dict[str, Any]]) -> int:
         """
         Build the BM25 index from a list of document dicts.
@@ -156,7 +166,11 @@ class BM25Index:
             finally:
                 self._is_building = False
 
-    async def refresh_from_db(self, collection_name: Optional[str] = None) -> int:
+    async def refresh_from_db(
+        self,
+        collection_name: Optional[str] = None,
+        raise_on_error: bool = False,
+    ) -> int:
         """
         Rebuild the BM25 index from PGVector / PostgreSQL.
         Fetches all documents from the langchain_pg_embedding table.
@@ -205,6 +219,8 @@ class BM25Index:
 
         except Exception as e:
             logger.error(f"BM25: Failed to refresh from DB: {e}")
+            if raise_on_error:
+                raise
             return 0
 
     async def refresh_from_kb(self) -> int:

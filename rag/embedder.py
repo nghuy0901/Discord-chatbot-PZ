@@ -4,6 +4,7 @@ Provider-neutral embedding helpers for the RAG pipeline.
 
 import logging
 import os
+import asyncio
 from typing import List, Optional
 
 from dotenv import load_dotenv
@@ -27,6 +28,13 @@ async def embed_text(text: str, model: Optional[str] = None) -> List[float]:
         return await client.embed_query(text)
     vectors = await client.embed_texts([text])
     return vectors[0]
+
+
+async def embed_documents(texts: List[str]) -> List[List[float]]:
+    embeddings = get_embeddings()
+    if hasattr(embeddings, "aembed_documents"):
+        return await embeddings.aembed_documents(texts)
+    return await asyncio.to_thread(embeddings.embed_documents, texts)
 
 
 async def embed_texts(
