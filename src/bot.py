@@ -33,6 +33,15 @@ def run_discord_bot():
         await discordClient.tree.sync()
         loop = asyncio.get_event_loop()
         loop.create_task(discordClient.process_messages())
+
+        # Start admin background scheduler
+        try:
+            from admin.background import start_admin_background_tasks
+            await start_admin_background_tasks(discordClient)
+            logger.info("✅ Admin background scheduler started.")
+        except Exception as e:
+            logger.warning(f"⚠️ Admin scheduler failed to start (non-fatal): {e}")
+
         logger.info(f"✅ {discordClient.user} is now running! (NomNom mode)")
 
     # ------------------------------------------------------------------
@@ -110,6 +119,18 @@ def run_discord_bot():
             handled = await discordClient._handle_kb_command(message, kb_command)
             if handled:
                 return
+
+        # Admin agent: Check for admin agentic commands (schedule, announce, etc.)
+        try:
+            from admin.handler import AdminAgentHandler
+            _admin_handler = AdminAgentHandler()
+            admin_handled = await _admin_handler.handle(message, user_message)
+            if admin_handled:
+                return
+        except ImportError:
+            pass  # admin module not installed
+        except Exception as e:
+            logger.warning(f"Admin handler error (non-fatal): {e}")
 
         username = str(message.author.display_name)
         logger.info(
@@ -206,10 +227,36 @@ def run_discord_bot():
                     f"📊 Queries: {summary['total_queries']} total "
                     f"({summary['recent_queries']} recent)\n"
                     f"⏱️ Avg retrieval: {summary['avg_retrieval_time_ms']:.0f}ms\n"
+                )
+                # Percentile latency info
+                percentiles = summary.get("percentiles", {})
+                if percentiles and percentiles.get("retrieval", {}).get("count", 0) > 0:
+                    p = percentiles["retrieval"]
+                    metrics_info += (
+                        f"📈 Retrieval p50/p95/p99: "
+                        f"{p['p50']:.0f}ms / {p['p95']:.0f}ms / {p['p99']:.0f}ms\n"
+                    )
+                if percentiles and percentiles.get("response", {}).get("count", 0) > 0:
+                    pr = percentiles["response"]
+                    metrics_info += (
+                        f"⚡ Response p50/p95/p99: "
+                        f"{pr['p50']:.0f}ms / {pr['p95']:.0f}ms / {pr['p99']:.0f}ms\n"
+                    )
+                metrics_info += (
                     f"🎯 Avg similarity: {summary['avg_similarity']:.2%}\n"
                     f"👍 {summary['feedback_positive']} / "
                     f"👎 {summary['feedback_negative']}"
                 )
+                # Token usage & cost info
+                total_tokens = summary.get("total_tokens", 0)
+                if total_tokens > 0:
+                    cost = summary.get("total_estimated_cost_usd", 0)
+                    avg_tok = summary.get("avg_tokens_per_query", 0)
+                    metrics_info += (
+                        f"\n🔤 Tokens: {total_tokens:,} total "
+                        f"(~{avg_tok:.0f}/query)\n"
+                        f"💰 Est. cost (GPT-4o eq.): ${cost:.4f}"
+                    )
         except Exception:
             pass
 

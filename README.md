@@ -5,7 +5,7 @@ NomNom is a Discord-first RAG assistant with an optional FastAPI query API.
 Implemented runtime features:
 
 - Discord bot responses through mentions, replies, threads, and `/chat`
-- Provider-neutral LLM calls through OpenAI, Gemini, or OpenAI-compatible endpoints
+- Provider-neutral LLM calls through OpenAI, Gemini, Ollama Cloud, or OpenAI-compatible endpoints
 - Local model serving through vLLM's OpenAI-compatible API
 - PostgreSQL pgvector retrieval through LangChain PGVector
 - Markdown/text knowledge ingestion
@@ -50,8 +50,18 @@ Provider values:
 - `openai`
 - `gemini`
 - `openai_compatible`
+- `ollama`
 
 For self-hosted local models, serve the model through a vLLM OpenAI-compatible `/v1` endpoint and set `LLM_PROVIDER=openai_compatible`.
+
+For Ollama Cloud, use the native Ollama API and configure:
+
+```dotenv
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=qwen3-coder-next:cloud
+OLLAMA_BASE_URL=https://ollama.com
+OLLAMA_API_KEY=your_ollama_api_key
+```
 
 ## Run Locally
 

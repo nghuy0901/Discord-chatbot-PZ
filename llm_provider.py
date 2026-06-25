@@ -15,6 +15,7 @@ from llama_index.llms.ollama import Ollama
 from llama_index.llms.openai import OpenAI
 from llama_index.llms.deepseek import DeepSeek
 from llama_index.llms.anthropic import Anthropic
+from src.llm.ollama_auth import build_ollama_headers, validate_ollama_auth
 
 from llama_index.core import(
     StorageContext,
@@ -63,12 +64,18 @@ def get_query_engine() -> typing.Optional[BaseQueryEngine]:
     # Handle query engine.
     match config.LLM_PROVIDER:
         case "ollama":
+            ollama_api_key = getattr(
+                config, "OLLAMA_API_KEY", os.getenv("OLLAMA_API_KEY")
+            )
+            validate_ollama_auth(config.OLLAMA_BASE_URL, ollama_api_key)
+            headers = build_ollama_headers(ollama_api_key)
             query_engine = local_index.as_query_engine(
                 streaming = False,
                 llm = Ollama(
                     model = config.OLLAMA_MODEL,
                     base_url = config.OLLAMA_BASE_URL,
-                    request_timeout = 60.0))
+                    request_timeout = 60.0,
+                    headers = headers))
         case "openai":
             query_engine = local_index.as_query_engine(
                     streaming = False,

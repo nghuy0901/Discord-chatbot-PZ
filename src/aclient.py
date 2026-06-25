@@ -511,6 +511,76 @@ class NomNomClient(discord.Client):
 
         response_start = time.time()
 
+        # Check cache if RAG is enabled
+        cached_response = None
+        detected_domain = None
+        query_intent_str = None
+        if ENABLE_RAG:
+            try:
+                from rag.query_preprocessor import get_preprocessor
+                from utils.cache import get_query_cache
+                
+                preprocessor = get_preprocessor()
+                _, query_meta = preprocessor.preprocess(user_message, channel_name)
+                detected_domain = query_meta.get("domain")
+                query_intent = query_meta.get("query_intent")
+                query_intent_str = query_intent.value if hasattr(query_intent, 'value') else str(query_intent)
+                
+                if query_intent_str in ("analytical", "hybrid", "narrative"):
+                    cache = get_query_cache()
+                    cached_response = await cache.get(user_message, detected_domain)
+            except Exception as e:
+                logger.warning(f"Cache lookup failed: {e}")
+
+        if cached_response:
+            response_text = cached_response["response_text"]
+            # Send response to Discord
+            bot_msg = await self._send_response(message, response_text)
+            
+            # Record cache hit metric
+            response_time = (time.time() - response_start) * 1000
+            try:
+                from rag.metrics import get_metrics_manager, RAGMetric
+                metrics = get_metrics_manager()
+                metric = RAGMetric(
+                    channel_id=channel_id,
+                    user_id=str(message.author.id),
+                    original_query=user_message,
+                    processed_query=user_message,
+                    detected_domain=detected_domain,
+                    query_intent=query_intent_str,
+                    cache_hit=True,
+                    response_time_ms=response_time,
+                    response_length=len(response_text),
+                    prompt_tokens=cached_response.get("prompt_tokens", 0),
+                    completion_tokens=cached_response.get("completion_tokens", 0),
+                    total_tokens=cached_response.get("prompt_tokens", 0) + cached_response.get("completion_tokens", 0),
+                )
+                await metrics.record(metric)
+                self.context_manager.set_last_query_id(channel_id, metric.query_id)
+            except Exception as e:
+                logger.warning(f"Failed to record cache hit metric: {e}")
+                
+            # Track message in context window
+            self.context_manager.track_message(
+                channel_id=channel_id,
+                message_id=f"bot-{message.id}",
+                author_id=str(self.user.id),
+                author_name=str(self.user.display_name),
+                content=response_text,
+                is_bot=True,
+            )
+            
+            # Add feedback reactions
+            if ENABLE_FEEDBACK and bot_msg:
+                try:
+                    await bot_msg.add_reaction("👍")
+                    await bot_msg.add_reaction("👎")
+                    self.context_manager.set_last_bot_msg_id(channel_id, str(bot_msg.id))
+                except Exception as e:
+                    logger.debug(f"Failed to add feedback reactions for cached response: {e}")
+            return
+
         try:
             # Build prompt with RAG + context (now passes channel_name for D2)
             # Phase 4: build_prompt now returns query_intent as 3rd element
@@ -613,18 +683,46 @@ class NomNomClient(discord.Client):
                             response_text[:MAX_RESPONSE_LENGTH]
                             + "\n\n*…response truncated*"
                         )
-                    await self._send_response(message, response_text)
+                    bot_msg = await self._send_response(message, response_text)
 
-            # A3: Record response timing
+            # A3: Record response timing + token usage
             response_time = (time.time() - response_start) * 1000
             try:
                 from rag.metrics import get_metrics_manager
+                from src.ollama_provider import get_last_token_usage
                 metrics = get_metrics_manager()
                 # Update the most recent metric with response info
                 if metrics._recent:
                     last_metric = metrics._recent[-1]
                     last_metric.response_time_ms = response_time
                     last_metric.response_length = len(response_text)
+                    # Cost tracking: record token usage from LLM call
+                    token_usage = get_last_token_usage()
+                    if token_usage:
+                        last_metric.prompt_tokens = token_usage.get("prompt_tokens", 0)
+                        last_metric.completion_tokens = token_usage.get("completion_tokens", 0)
+                        last_metric.total_tokens = token_usage.get("total_tokens", 0)
+                        last_metric.estimated_cost_usd = token_usage.get("estimated_cost_usd", 0.0)
+
+                    # Redis caching: cache the response if it was a cache miss and is cacheable
+                    if not getattr(last_metric, "cache_hit", False) and last_metric.query_intent in ("analytical", "hybrid", "narrative") and response_text:
+                        try:
+                            from utils.cache import get_query_cache
+                            cache = get_query_cache()
+                            await cache.set(
+                                query=last_metric.original_query,
+                                domain=last_metric.detected_domain,
+                                result={
+                                    "response_text": response_text,
+                                    "prompt_tokens": last_metric.prompt_tokens,
+                                    "completion_tokens": last_metric.completion_tokens,
+                                }
+                            )
+                        except Exception as ce:
+                            logger.warning(f"Failed to cache response: {ce}")
+
+                    # Persist updated metrics (latency, tokens, cost) back to DB
+                    await metrics.update_db(last_metric)
             except Exception:
                 pass
 
@@ -725,7 +823,7 @@ class NomNomClient(discord.Client):
 
     async def _send_response(
         self, message, content: str
-    ) -> None:
+    ) -> Any:
         """Send a response, handling slash commands vs regular messages."""
         # Resolve @Username → real Discord mentions
         content = self._resolve_mentions(
@@ -733,13 +831,16 @@ class NomNomClient(discord.Client):
         )
         if hasattr(message, "followup"):
             await send_split_message(self, content, message)
+            return None
         else:
             if len(content) > 2000:
                 parts = [content[i : i + 1990] for i in range(0, len(content), 1990)]
+                msg = None
                 for part in parts:
-                    await message.channel.send(part)
+                    msg = await message.channel.send(part)
+                return msg
             else:
-                await message.reply(content, mention_author=False)
+                return await message.reply(content, mention_author=False)
 
     # ------------------------------------------------------------------
     # Slash command response (legacy compatibility)
