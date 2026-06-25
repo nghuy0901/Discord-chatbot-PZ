@@ -19,6 +19,7 @@ import time
 import uuid
 import logging
 import asyncio
+import json
 from collections import deque
 from dataclasses import dataclass, field, asdict
 from typing import Optional, List, Dict, Any, Deque
@@ -64,6 +65,12 @@ REQUIRED_RAG_METRIC_COLUMNS = {
     "self_rag_time_ms",
     "empty_retrieval",
     "citation_coverage",
+    "rag_decision",
+    "decision_reason",
+    "provenance",
+    "trusted_source_count",
+    "untrusted_source_count",
+    "evidence_score",
     "response_time_ms",
     "response_length",
     "error",
@@ -117,6 +124,12 @@ METRIC_INSERT_COLUMNS = [
     "self_rag_time_ms",
     "empty_retrieval",
     "citation_coverage",
+    "rag_decision",
+    "decision_reason",
+    "provenance",
+    "trusted_source_count",
+    "untrusted_source_count",
+    "evidence_score",
     "response_time_ms",
     "response_length",
     "error",
@@ -180,6 +193,12 @@ class RAGMetric:
     self_rag_time_ms: float = 0.0
     empty_retrieval: bool = False
     citation_coverage: float = 0.0
+    rag_decision: str = "unknown"
+    decision_reason: str = ""
+    provenance: List[Dict[str, Any]] = field(default_factory=list)
+    trusted_source_count: int = 0
+    untrusted_source_count: int = 0
+    evidence_score: float = 0.0
 
     # Response
     response_time_ms: float = 0.0
@@ -344,6 +363,8 @@ class MetricsManager:
             value = getattr(metric, column)
             if column in {"original_query", "processed_query"} and value:
                 value = value[:500]
+            if column == "provenance":
+                value = json.dumps(value, ensure_ascii=False)
             values.append(value)
         return values
 
