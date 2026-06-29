@@ -27,7 +27,9 @@ class _DummyVectorStore:
     def __init__(self):
         self.documents = []
 
-    def add_documents(self, documents):
+    def add_documents(self, documents, ids=None):
+        # Mirror PGVector.add_documents(documents, ids=...) so the manager's
+        # idempotent upsert path (audit C3) works against the double too.
         self.documents.extend(documents)
 
 
@@ -153,7 +155,7 @@ def mock_discord_message(monkeypatch):
         request_context=None,
     ):
         manager.set_last_query_id(channel_id, "e2e-query-id")
-        return [{"role": "user", "content": user_message}], 0.1, "conversation"
+        return [{"role": "user", "content": user_message}], 0.1, "conversation", None
 
     async def fake_chat_completion(**kwargs):
         return "Axe is a strong melee weapon."
