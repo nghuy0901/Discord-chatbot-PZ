@@ -137,7 +137,13 @@ async def run_example(example: GoldenExample, judge=None) -> EvaluationItemResul
             answer = decision_response(rag_result.metric.query_language, rag_result.decision)
 
         provenance = [item.to_dict() for item in rag_result.provenance]
-        source_ids = [item["source_id"] for item in provenance]
+        # Match the dataset's file-level expected_sources against the provenance
+        # file path (source), not the chunk-level doc_id, so recall/MRR/nDCG are
+        # actually measurable against an authored dataset.
+        source_ids = [
+            str(item.get("source") or item.get("source_id") or "")
+            for item in provenance
+        ]
         run_judge = judge or (judge_answer if judge_enabled() else None)
         contexts = [
             str(result.get("content", ""))
