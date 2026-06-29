@@ -120,6 +120,70 @@ async def close_pool() -> None:
 # ---------------------------------------------------------------------------
 # Schema initialisation
 # ---------------------------------------------------------------------------
+async def _verify_embedding_signature(conn) -> None:
+    """Pin the embedding model/dimension to the collection.
+
+    Records the current embedding signature on first run; on later runs, refuses
+    to serve if it changed without a reindex (which would make every stored
+    vector incomparable to freshly embedded queries — silent cosine garbage,
+    audit L4). Set ``EMBEDDING_ALLOW_SIGNATURE_RESET=true`` after an intentional
+    reindex to re-pin.
+    """
+    from rag.embedding_registry import (
+        current_embedding_signature,
+        validate_embedding_signature,
+        EmbeddingSignature,
+    )
+
+    await conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS rag_embedding_signature (
+            id                 INT PRIMARY KEY DEFAULT 1,
+            provider           TEXT NOT NULL,
+            model              TEXT NOT NULL,
+            dimension          INT  NOT NULL,
+            collection_version TEXT NOT NULL,
+            CONSTRAINT single_row CHECK (id = 1)
+        );
+        """
+    )
+    current = current_embedding_signature()
+    row = await conn.fetchrow(
+        "SELECT provider, model, dimension, collection_version "
+        "FROM rag_embedding_signature WHERE id = 1;"
+    )
+    if row is None:
+        await conn.execute(
+            "INSERT INTO rag_embedding_signature "
+            "(id, provider, model, dimension, collection_version) "
+            "VALUES (1, $1, $2, $3, $4);",
+            current.provider, current.model, current.dimension,
+            current.collection_version,
+        )
+        logger.info("Embedding signature recorded: %s", current)
+        return
+
+    stored = EmbeddingSignature(
+        provider=row["provider"],
+        model=row["model"],
+        dimension=row["dimension"],
+        collection_version=row["collection_version"],
+    )
+    if current != stored and os.getenv(
+        "EMBEDDING_ALLOW_SIGNATURE_RESET", "false"
+    ).lower() == "true":
+        await conn.execute(
+            "UPDATE rag_embedding_signature SET provider=$1, model=$2, "
+            "dimension=$3, collection_version=$4 WHERE id=1;",
+            current.provider, current.model, current.dimension,
+            current.collection_version,
+        )
+        logger.warning("Embedding signature re-pinned to %s (was %s)", current, stored)
+        return
+
+    validate_embedding_signature(current, stored)  # raises RuntimeError on mismatch
+
+
 async def init_db() -> None:
     """
     Ensure pgvector extension and custom tables exist.
@@ -141,6 +205,10 @@ async def init_db() -> None:
                 UNIQUE (parent_msg_id, child_msg_id, edge_type)
             );
         """)
+
+        # Pin the embedding signature so a model/dimension swap without a
+        # reindex is caught at startup, not served as garbage (audit L4).
+        await _verify_embedding_signature(conn)
 
     # Trigger PGVector store creation (creates collection + embedding tables)
     get_vectorstore()
@@ -168,6 +236,9 @@ def _msg_to_document(
         "author_id": author_id,
         "author_name": author_name or "",
         "timestamp": timestamp,
+        "approval_status": "unapproved",
+        "source_kind": "chat",
+        "trusted": False,
     }
     if thread_id:
         meta["thread_id"] = thread_id
@@ -242,7 +313,7 @@ def add_documents_batch(
 def search_similar(
     query: str,
     k: int = 15,
-    filter_dict: Optional[Dict[str, str]] = None,
+    filter_dict: Optional[Dict[str, Any]] = None,
     score_threshold: Optional[float] = None,
 ) -> List[Dict[str, Any]]:
     """
@@ -275,10 +346,15 @@ def search_similar(
 
     output = []
     for doc, score in results:
+        # pgvector cosine "relevance" is 1 - distance and can fall outside [0, 1]
+        # (even negative) for dissimilar vectors; LangChain warns but does not
+        # clamp it. Normalise to [0, 1] so every downstream threshold and the
+        # displayed "% match" are meaningful (audit H1).
+        similarity = max(0.0, min(1.0, float(score))) if score is not None else 0.0
         entry = {
             "content": doc.page_content,
-            "similarity": score,
             **doc.metadata,
+            "similarity": similarity,
         }
         output.append(entry)
 

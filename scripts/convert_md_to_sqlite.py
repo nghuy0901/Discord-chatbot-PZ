@@ -321,6 +321,23 @@ FIELD_MAP = {
 }
 
 
+# Markdown field labels that get mis-parsed as item *records* when a wiki
+# comparison table is scraped (audit C4) — e.g. a "Attack speed" / "Bite defense"
+# table-header row. No real PZ item is named after a stat label, so these are
+# dropped on insert.
+_FIELD_LABEL_NAMES = {k.strip().lower() for k in FIELD_MAP} | {
+    "attack speed", "name", "object", "business", "type", "coordinates",
+}
+
+
+def _is_junk_item_name(name: Optional[str]) -> bool:
+    """True if a parsed item name is empty/unknown or a scraped field label."""
+    if not name:
+        return True
+    n = name.strip().lower()
+    return n in ("", "unknown") or n in _FIELD_LABEL_NAMES
+
+
 def record_to_item_row(
     record: Dict[str, str],
     category: str,
@@ -567,6 +584,12 @@ class MDToSQLiteConverter:
         self._process_locations(conn)
         self._process_traits(conn)
 
+        # Collapse duplicate / multi-facet rows (audit C4).
+        self._dedup_and_merge_items(conn)
+        self._dedup_recipes(conn)
+        self._dedup_locations(conn)
+        self._finalize_constraints(conn)
+
         conn.commit()
         conn.close()
 
@@ -621,6 +644,10 @@ class MDToSQLiteConverter:
                 continue
 
             row = record_to_item_row(rec, cat_name, sub_category, source_file)
+            if _is_junk_item_name(row.get("name")):
+                self.stats.setdefault("items_skipped", 0)
+                self.stats["items_skipped"] += 1
+                continue
             self._insert_item(conn, row)
             count += 1
 
@@ -652,6 +679,125 @@ class MDToSQLiteConverter:
         col_str = ", ".join(columns)
         conn.execute(f"INSERT INTO items ({col_str}) VALUES ({placeholders})", values)
 
+    # ---- Dedup + merge items by item_id
+    def _dedup_and_merge_items(self, conn: sqlite3.Connection):
+        """Collapse duplicate and multi-facet item rows into one per item_id.
+
+        The PZ wiki describes the same item across several pages (e.g. an axe is
+        listed under both Equipment/Tools and Weapons/Axes) and sometimes repeats
+        the same record within one page. That produces:
+          - exact repeats of the same (item_id, source_file)
+          - one item_id spread across pages, each with only partial columns
+
+        We merge every row sharing an item_id into a single row, keeping the
+        richest facet as the base and coalescing any remaining NULLs from the
+        others. Rows without an item_id (e.g. traits) are de-duplicated only when
+        every data column is identical.
+        """
+        cur = conn.cursor()
+        cols = [r[1] for r in cur.execute("PRAGMA table_info(items)")]
+        data_cols = [c for c in cols if c not in ("id", "created_at")]
+
+        rows = [
+            dict(zip(cols, r))
+            for r in cur.execute(f"SELECT {', '.join(cols)} FROM items ORDER BY id")
+        ]
+
+        def richness(row: Dict[str, Any]) -> int:
+            return sum(1 for c in data_cols if row.get(c) not in (None, ""))
+
+        groups: Dict[Any, List[Dict[str, Any]]] = {}
+        order: List[Any] = []
+        for row in rows:
+            item_id = (row.get("item_id") or "").strip()
+            if item_id:
+                key: Any = ("id", item_id)
+            else:
+                # No item_id (furniture, traits, knowledge): collapse by logical
+                # identity, keeping the richest facet, instead of requiring a
+                # byte-identical full-row match — that left e.g. "Wooden Counter"
+                # duplicated 6× (audit C4).
+                key = (
+                    "noid",
+                    (row.get("name") or "").strip().lower(),
+                    (row.get("category") or "").strip().lower(),
+                    (row.get("sub_category") or "").strip().lower(),
+                )
+            if key not in groups:
+                groups[key] = []
+                order.append(key)
+            groups[key].append(row)
+
+        merged: List[Dict[str, Any]] = []
+        for key in order:
+            group = groups[key]
+            base = max(group, key=richness)  # richest facet wins category/stats
+            out = {c: base.get(c) for c in data_cols}
+            if len(group) > 1:
+                for row in group:
+                    for c in data_cols:
+                        if out.get(c) in (None, "") and row.get(c) not in (None, ""):
+                            out[c] = row.get(c)
+            merged.append(out)
+
+        before = len(rows)
+        cur.execute("DELETE FROM items")
+        cur.execute("DELETE FROM sqlite_sequence WHERE name='items'")
+        placeholders = ", ".join(["?"] * len(data_cols))
+        col_str = ", ".join(data_cols)
+        cur.executemany(
+            f"INSERT INTO items ({col_str}) VALUES ({placeholders})",
+            [[out.get(c) for c in data_cols] for out in merged],
+        )
+        conn.commit()
+        self.stats["items_merged_removed"] = before - len(merged)
+        logger.info(
+            f"🔗 Merged items: {before} → {len(merged)} rows "
+            f"({before - len(merged)} duplicates collapsed)"
+        )
+
+    # ---- Dedup recipes + locations by natural key, then add backstops
+    def _dedup_recipes(self, conn: sqlite3.Connection):
+        """Collapse exact-duplicate recipe rows (audit C4)."""
+        before = conn.execute("SELECT COUNT(*) FROM recipes").fetchone()[0]
+        conn.execute(
+            """
+            DELETE FROM recipes WHERE id NOT IN (
+                SELECT MIN(id) FROM recipes
+                GROUP BY name, IFNULL(product, ''), crafting_type,
+                         IFNULL(ingredients, ''), IFNULL(tools, '')
+            )
+            """
+        )
+        conn.commit()
+        after = conn.execute("SELECT COUNT(*) FROM recipes").fetchone()[0]
+        logger.info(f"🔗 Recipes dedup: {before} → {after} ({before - after} removed)")
+
+    def _dedup_locations(self, conn: sqlite3.Connection):
+        """Collapse exact-duplicate location rows (audit C4)."""
+        before = conn.execute("SELECT COUNT(*) FROM locations").fetchone()[0]
+        conn.execute(
+            """
+            DELETE FROM locations WHERE id NOT IN (
+                SELECT MIN(id) FROM locations
+                GROUP BY name, IFNULL(business_type, ''),
+                         IFNULL(coordinates, ''), IFNULL(area, '')
+            )
+            """
+        )
+        conn.commit()
+        after = conn.execute("SELECT COUNT(*) FROM locations").fetchone()[0]
+        logger.info(f"🔗 Locations dedup: {before} → {after} ({before - after} removed)")
+
+    def _finalize_constraints(self, conn: sqlite3.Connection):
+        """Add a partial-unique backstop so a future re-ingest cannot silently
+        re-duplicate item_ids (audit C4)."""
+        conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS idx_items_item_id_unique "
+            "ON items(item_id) WHERE item_id IS NOT NULL AND item_id != ''"
+        )
+        conn.commit()
+
     # ---- Recipes
     def _process_recipes(self, conn: sqlite3.Connection):
         """Process Crafting/*.md files."""
@@ -667,7 +813,19 @@ class MDToSQLiteConverter:
                 source_file = md_file.name
 
                 recipes = parse_recipes_from_md(body, crafting_type, source_file)
+                kept = 0
                 for recipe in recipes:
+                    name = (recipe.get("name") or "").strip()
+                    # Drop wiki entries the scraper could not name and that have
+                    # no product to fall back on — they surface as confusing
+                    # "Unknown Recipe" rows (audit C4).
+                    if (
+                        name.lower() in ("", "unknown", "unknown recipe")
+                        and not recipe.get("product")
+                    ):
+                        self.stats.setdefault("recipes_skipped", 0)
+                        self.stats["recipes_skipped"] += 1
+                        continue
                     conn.execute(
                         """INSERT INTO recipes (name, product, crafting_type, source_file,
                            ingredients, tools, skill_required, workstation, xp_gained)
@@ -684,11 +842,12 @@ class MDToSQLiteConverter:
                             recipe.get("xp_gained"),
                         ),
                     )
+                    kept += 1
 
                 self.stats["files_processed"] += 1
-                self.stats["recipes_inserted"] += len(recipes)
+                self.stats["recipes_inserted"] += kept
                 if self.verbose:
-                    logger.info(f"  📄 {md_file.name}: {len(recipes)} recipes")
+                    logger.info(f"  📄 {md_file.name}: {kept} recipes")
 
             except Exception as e:
                 self.stats["errors"].append(f"{md_file.name}: {e}")
@@ -746,6 +905,8 @@ class MDToSQLiteConverter:
             traits = parse_traits_from_md(body, "Trait.md")
 
             for row in traits:
+                if _is_junk_item_name(row.get("name")):
+                    continue
                 self._insert_item(conn, row)
 
             self.stats["files_processed"] += 1
@@ -798,6 +959,12 @@ def main():
         help="Print details for each file processed"
     )
     args = parser.parse_args()
+
+    # Windows consoles default to cp1252 and choke on the report's emoji.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
     # Setup logging
     logging.basicConfig(
