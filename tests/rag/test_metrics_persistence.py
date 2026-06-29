@@ -23,3 +23,23 @@ def test_metric_contains_hybrid_and_quality_fields():
     assert data["self_rag_relevant"] == 4
     assert data["citation_coverage"] == 0.75
     assert data["prompt_version"] == "abc123"
+
+
+def test_metric_contains_trust_decision_and_provenance_fields():
+    metric = RAGMetric(
+        rag_decision="answer",
+        decision_reason="trusted evidence met threshold",
+        provenance=[{"source_id": "pz:crafting:axe", "domain": "pz"}],
+        trusted_source_count=2,
+        untrusted_source_count=1,
+        evidence_score=0.82,
+    )
+
+    data = metric.to_dict()
+
+    assert data["rag_decision"] == "answer"
+    assert data["decision_reason"] == "trusted evidence met threshold"
+    assert data["provenance"] == [{"source_id": "pz:crafting:axe", "domain": "pz"}]
+    assert data["trusted_source_count"] == 2
+    assert data["untrusted_source_count"] == 1
+    assert data["evidence_score"] == 0.82

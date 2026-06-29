@@ -1,0 +1,1143 @@
+[
+  {
+    "source_id": "pz/Appliances/Communication_Appliances.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Appliances — Communication",
+    "excerpt": "--- title: \"Appliances — Communication\" category: Appliances type: Communication source_url: https://pzwiki.net/wiki/Appliances#Communication scraped_at: 2026-02-24 16:43:35 method: archived_wiki_markdown --- # Appliances — Communication ## Communication ### Premium Technologies Ham Radio - **Object:** Premium Technologies Ham Radio - **Encumbrance:** 15.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** No skill required - **Tool(s):** No tool required - **Skil"
+  },
+  {
+    "source_id": "pz/Appliances/Cooking_Appliances.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Appliances — Cooking appliances",
+    "excerpt": "--- title: \"Appliances — Cooking appliances\" category: Appliances type: Cooking appliances source_url: https://pzwiki.net/wiki/Appliances#Cooking_appliances scraped_at: 2026-02-24 16:43:39 method: archived_wiki_markdown --- # Appliances — Cooking appliances ## Cooking appliances ### Green Oven - **Object:** Green Oven - **Encumbrance:** 20.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** Electrical - **Tool(s):** Screwdriver - **Skill:** Welding - **Tool(s):**"
+  },
+  {
+    "source_id": "pz/Appliances/Fridges_Appliances.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Appliances — Fridges",
+    "excerpt": "--- title: \"Appliances — Fridges\" category: Appliances type: Fridges source_url: https://pzwiki.net/wiki/Appliances#Fridges scraped_at: 2026-02-24 16:43:46 method: archived_wiki_markdown --- # Appliances — Fridges ## Fridges ### White Fridge - **Object:** White Fridge - **Encumbrance:** 40.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Welding - **Tool(s):** Welding Torch WeldingMask (tag) Welder"
+  },
+  {
+    "source_id": "pz/Appliances/Generators.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Generator",
+    "excerpt": "--- title: \"Generator\" category: Appliances type: Generators source_url: https://pzwiki.net/wiki/Generator scraped_at: 2026-02-24 16:43:21 method: archived_wiki_markdown --- # Generator Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • T"
+  },
+  {
+    "source_id": "pz/Clothing/Accessories_Clothing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Clothing",
+    "excerpt": "--- title: \"Clothing\" category: Clothing type: Accessories source_url: https://pzwiki.net/wiki/Clothing#Accessories scraped_at: 2026-02-24 16:35:15 method: archived_wiki_markdown --- # Clothing Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sp"
+  },
+  {
+    "source_id": "pz/Clothing/Armor_Clothing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Clothing — Armor",
+    "excerpt": "--- title: \"Clothing — Armor\" category: Clothing type: Armor source_url: https://pzwiki.net/wiki/Clothing#Armor scraped_at: 2026-02-24 16:35:20 method: archived_wiki_markdown --- # Clothing — Armor ### Armor ### Articulated Metal Shin Armor - **Name:** Articulated Metal Shin Armor - **Encumbrance:** 2 - **Body location:** calf_left - **Movement speed:** -15% - **Attack speed:** - - **Body parts protected:** Left Shin - **Bite defense:** 80% - **Scratch defense:** 90% - **Bullet defense:** 20% - "
+  },
+  {
+    "source_id": "pz/Clothing/Clothing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Clothing — Clothing",
+    "excerpt": "--- title: \"Clothing — Clothing\" category: Clothing type: Clothing source_url: https://pzwiki.net/wiki/Clothing#Clothing scraped_at: 2026-02-24 16:35:10 method: archived_wiki_markdown --- # Clothing — Clothing ## Clothing ### Body location - **Encumbrance:** Body location - **Encumbrance of the item when it is not equipped.:** Location of the body that the container can be worn. ### Displays time - **Encumbrance:** Displays time - **Encumbrance:** Displays time - **Encumbrance of the item when i"
+  },
+  {
+    "source_id": "pz/Comfort/Beds_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Beds",
+    "excerpt": "--- title: \"Comfort — Beds\" category: Comfort type: Beds source_url: https://pzwiki.net/wiki/Comfort#Beds scraped_at: 2026-02-24 16:44:51 method: archived_wiki_markdown --- # Comfort — Beds ## Beds ### Fancy Bed - **Object:** Fancy Bed - **Encumbrance:** 20.0 - **Size (tiles):** 2 - **Crafting surface?:** Not a crafting surface - **Bed type:** Good - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer ### Large Fancy Bed - **Object:** Large Fancy Be"
+  },
+  {
+    "source_id": "pz/Comfort/Benches_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Benches",
+    "excerpt": "--- title: \"Comfort — Benches\" category: Comfort type: Benches source_url: https://pzwiki.net/wiki/Comfort#Benches scraped_at: 2026-02-24 16:45:10 method: archived_wiki_markdown --- # Comfort — Benches ## Benches ### Wooden Bench - **Object:** Wooden Bench - **Encumbrance:** 15.0 - **Size (tiles):** 2 - **Crafting surface?:** Not a crafting surface - **Bed type:** Bad - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Wooden Bench (va"
+  },
+  {
+    "source_id": "pz/Comfort/Camping_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Camping",
+    "excerpt": "--- title: \"Comfort — Camping\" category: Comfort type: Camping source_url: https://pzwiki.net/wiki/Comfort#Camping scraped_at: 2026-02-24 16:45:28 method: archived_wiki_markdown --- # Comfort — Camping ## Camping ### Red Plaid Sleeping Bag - **Object:** Red Plaid Sleeping Bag - **Encumbrance:** 5.0 - **Size (tiles):** 2 - **Crafting surface?:** Not a crafting surface - **Bed type:** Bad - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Can't be disassembled Can't be dis"
+  },
+  {
+    "source_id": "pz/Comfort/Chairs_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Chairs",
+    "excerpt": "--- title: \"Comfort — Chairs\" category: Comfort type: Chairs source_url: https://pzwiki.net/wiki/Comfort#Chairs scraped_at: 2026-02-24 16:45:05 method: archived_wiki_markdown --- # Comfort — Chairs ## Chairs ### Makeshift Chair - **Object:** Makeshift Chair - **Encumbrance:** 7.5 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Bed type:** Bad - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Can't be disassembled Can't be disassembled ### Poor quality Chai"
+  },
+  {
+    "source_id": "pz/Comfort/Couches_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Couches",
+    "excerpt": "--- title: \"Comfort — Couches\" category: Comfort type: Couches source_url: https://pzwiki.net/wiki/Comfort#Couches scraped_at: 2026-02-24 16:44:58 method: archived_wiki_markdown --- # Comfort — Couches ## Couches ### Red Comfy Couch - **Object:** Red Comfy Couch - **Encumbrance:** 15.0 - **Size (tiles):** 2 - **Crafting surface?:** Not a crafting surface - **Bed type:** Average - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Green "
+  },
+  {
+    "source_id": "pz/Comfort/Other_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Other",
+    "excerpt": "--- title: \"Comfort — Other\" category: Comfort type: Other source_url: https://pzwiki.net/wiki/Comfort#Other scraped_at: 2026-02-24 16:45:47 method: archived_wiki_markdown --- # Comfort — Other ## Other ### Church Pew - **Object:** Church Pew - **Encumbrance:** 10.0 - **Size (tiles):** 3 - **Crafting surface?:** Not a crafting surface - **Bed type:** Bad - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Orange Ottoman - **Object:** O"
+  },
+  {
+    "source_id": "pz/Comfort/Seats_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Seats",
+    "excerpt": "--- title: \"Comfort — Seats\" category: Comfort type: Seats source_url: https://pzwiki.net/wiki/Comfort#Seats scraped_at: 2026-02-24 16:45:22 method: archived_wiki_markdown --- # Comfort — Seats ## Seats ### Hanging Seat - **Object:** Hanging Seat - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Bed type:** N/A - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer ### Leather Bar Seating - **Object:** "
+  },
+  {
+    "source_id": "pz/Comfort/Stools_Comfort.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Comfort — Stools",
+    "excerpt": "--- title: \"Comfort — Stools\" category: Comfort type: Stools source_url: https://pzwiki.net/wiki/Comfort#Stools scraped_at: 2026-02-24 16:45:17 method: archived_wiki_markdown --- # Comfort — Stools ## Stools ### Low Stool - **Object:** Low Stool - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Bed type:** Bad - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Can't be disassembled Can't be disassembled ### Wooden Stool - *"
+  },
+  {
+    "source_id": "pz/Crafting/Armor(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Armor(crafting)",
+    "excerpt": "--- title: \"Armor(crafting)\" category: Crafting type: Armor source_url: https://pzwiki.net/wiki/Armor_(crafting) scraped_at: 2026-02-24 16:16:35 method: archived_wiki_markdown --- # Armor(crafting) ## Overview The armor crafting category contains mostly forged metal armor through blacksmithing . ## Recipes ### Recipe: Assemble Articulated Metal Shin Armor, Articulated Metal Shin Armor ×1 - **Ingredients:** Each of:, charcoal (tag) ×7, Steel Sheet - Small ×3, Leather Strips ×2, Buckle ×2, heavyth"
+  },
+  {
+    "source_id": "pz/Crafting/Assembly(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Assembly(crafting)",
+    "excerpt": "--- title: \"Assembly(crafting)\" category: Crafting type: Assembly source_url: https://pzwiki.net/wiki/Assembly_(crafting) scraped_at: 2026-02-24 16:16:45 method: archived_wiki_markdown --- # Assembly(crafting) ## Overview The assembly crafting category contains mostly recipes to assemble tools and weapons with preconstructed parts. ## Recipes ### Recipe: Assemble Bladed Item, (Products are dependent on inputs) One of:, Simple Shortsword ×1, Simple Sword ×1, Broken Simple Sword ×1, Hand Scythe ×1"
+  },
+  {
+    "source_id": "pz/Crafting/Blacksmithing(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Blacksmithing(crafting)",
+    "excerpt": "--- title: \"Blacksmithing(crafting)\" category: Crafting type: Blacksmithing source_url: https://pzwiki.net/wiki/Blacksmithing_(crafting) scraped_at: 2026-02-24 16:17:01 method: archived_wiki_markdown --- # Blacksmithing(crafting) ### Overview The blacksmithing crafting category contains some but not all of the recipes relating to blacksmithing . ## Recipes ### Recipe: Cast Blacksmith Anvil, Blacksmith Anvil ×1 - **Ingredients:** Each of:, Ceramic Blacksmith Anvil Mold ×1, charcoal (tag) ×10, One"
+  },
+  {
+    "source_id": "pz/Crafting/Blade(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Blade(crafting)",
+    "excerpt": "--- title: \"Blade(crafting)\" category: Crafting type: Blade source_url: https://pzwiki.net/wiki/Blade_(crafting) scraped_at: 2026-02-24 16:17:12 method: archived_wiki_markdown --- # Blade(crafting) ### Overview The blade crafting category contains recipes to create makeshift blade weapons. ## Recipes ### Recipe: Forge Handguard Dagger, Handguard Dagger ×1 - **Ingredients:** Each of:, charcoal (tag) ×4, Steel Bar Half ×1, Small Handle ×1, Steel Sheet - Small ×1 - **Tools:** Each of:, ballpeenhamm"
+  },
+  {
+    "source_id": "pz/Crafting/Carpentry(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Carpentry(crafting)",
+    "excerpt": "--- title: \"Carpentry(crafting)\" category: Crafting type: Carpentry source_url: https://pzwiki.net/wiki/Carpentry_(crafting) scraped_at: 2026-02-24 16:17:25 method: archived_wiki_markdown --- # Carpentry(crafting) ### Overview The carpentry crafting category contains recipes related to carpentry . ## Recipes ### Recipe: Make Advanced Framepack Frame, Pack Frame ×1 - **Ingredients:** Each of:, Plank ×1, Nails ×2 - **Tools:** Each of:, hammer (tag) ×1, One of:, saw (tag) ×1, smallsaw (tag) ×1, (ma"
+  },
+  {
+    "source_id": "pz/Crafting/Carving(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Carving(crafting)",
+    "excerpt": "--- title: \"Carving(crafting)\" category: Crafting type: Carving source_url: https://pzwiki.net/wiki/Carving_(crafting) scraped_at: 2026-02-24 16:17:39 method: archived_wiki_markdown --- # Carving(crafting) ### Overview The carving crafting category contains recipes related to carving . ## Recipes ### Recipe: Carve 2 Small Handles, Small Handle ×2 - **Ingredients:** One of:, Antlers ×1, Scrap Wood ×1, Broken Baseball Bat ×1, Broken Branch ×1, Firewood ×1, Broken Field Hockey Stick ×1, Broken Elec"
+  },
+  {
+    "source_id": "pz/Crafting/Cooking(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Cooking(crafting)",
+    "excerpt": "--- title: \"Cooking(crafting)\" category: Crafting type: Cooking source_url: https://pzwiki.net/wiki/Cooking_(crafting) scraped_at: 2026-02-24 16:18:02 method: archived_wiki_markdown --- # Cooking(crafting) ### Overview The cooking crafting category contains recipes related to cooking . ## Recipes ### Recipe: Butcher Small Animal, (Products are dependent on inputs) One of:, Frog Meat ×1, Small Bird Meat ×1, Skinned Mouse (Dead) ×1, Skinned Rat (Dead) ×1 - **Ingredients:** One of:, Dead Bird ×1, D"
+  },
+  {
+    "source_id": "pz/Crafting/Cookware(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Cookware(crafting)",
+    "excerpt": "--- title: \"Cookware(crafting)\" category: Crafting type: Cookware source_url: https://pzwiki.net/wiki/Cookware_(crafting) scraped_at: 2026-02-24 16:18:12 method: archived_wiki_markdown --- # Cookware(crafting) ### Overview The cookware crafting category contains recipes related to making cooking tools and equipment. ## Recipes ### Recipe: Forge Baking Pan, Baking Pan ×1 - **Ingredients:** Each of:, charcoal (tag) ×4, Steel Sheet ×1 - **Tools:** Each of:, ballpeenhammer (tag) ×1, (may degrade), O"
+  },
+  {
+    "source_id": "pz/Crafting/Electrical(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Electrical(crafting)",
+    "excerpt": "--- title: \"Electrical(crafting)\" category: Crafting type: Electrical source_url: https://pzwiki.net/wiki/Electrical_(crafting) scraped_at: 2026-02-24 16:18:26 method: archived_wiki_markdown --- # Electrical(crafting) ### Overview The electrical crafting category contains recipes related to the electrical skill. ## Recipes ### Recipe: Add Remote Trigger to Bomb, (Products are dependent on inputs) One of:, Remote Aerosol Bomb ×1, Remote Fire Bomb ×1, Remote Noise Generator ×1, Remote Pipe Bomb ×1"
+  },
+  {
+    "source_id": "pz/Crafting/Farming(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Farming(crafting)",
+    "excerpt": "--- title: \"Farming(crafting)\" category: Crafting type: Farming source_url: https://pzwiki.net/wiki/Farming_(crafting) scraped_at: 2026-02-24 16:18:44 method: archived_wiki_markdown --- # Farming(crafting) ### Overview The farming crafting category contains recipes related to agriculture , animal care , and leather working. ## Recipes ### Recipe: Collect Poppy Seeds, Poppy Seeds ×1 - **Ingredients:** Each of:, Poppy Pods (Dried) ×1 - **XP:** 0 ### Recipe: Collect Seeds, (Products are dependent o"
+  },
+  {
+    "source_id": "pz/Crafting/Fishing(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fishing(crafting)",
+    "excerpt": "--- title: \"Fishing(crafting)\" category: Crafting type: Fishing source_url: https://pzwiki.net/wiki/Fishing_(crafting) scraped_at: 2026-02-24 16:19:08 method: archived_wiki_markdown --- # Fishing(crafting) ### Overview The fishing crafting category contains recipes related to fishing . ## Recipes ### Recipe: Fix Fishing Rod, Fishing Rod ×1 - **Ingredients:** Each of:, Fishing Rod without Line ×1, fishingline (tag) ×1, One of:, Paperclip ×1, Nails ×1, Fishing Hook ×1, Forged Fishing Hook ×1, Bone"
+  },
+  {
+    "source_id": "pz/Crafting/Glassmaking(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Glassmaking(crafting)",
+    "excerpt": "--- title: \"Glassmaking(crafting)\" category: Crafting type: Glassmaking source_url: https://pzwiki.net/wiki/Glassmaking_(crafting) scraped_at: 2026-02-24 16:19:20 method: archived_wiki_markdown --- # Glassmaking(crafting) ### Overview The glassmaking crafting category contains recipes related to glassmaking . ## Recipes ### Recipe: Make Champagne Glass, Glass ×1 - **Ingredients:** Each of:, Small Ceramic Crucible with Molten Glass, 0.2 full items (1 unit) - **Tools:** Each of:, pliers (tag) ×1, "
+  },
+  {
+    "source_id": "pz/Crafting/Knapping(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Knapping(crafting)",
+    "excerpt": "--- title: \"Knapping(crafting)\" category: Crafting type: Knapping source_url: https://pzwiki.net/wiki/Knapping_(crafting) scraped_at: 2026-02-24 16:19:32 method: archived_wiki_markdown --- # Knapping(crafting) ### Overview The knapping crafting category contains recipes related to knapping . ## Recipes ### Recipe: Knap Large Stone Axe Head, Large Stone Axe Head ×1 - **Ingredients:** Each of:, Large Smooth Flat Stone ×1 - **Tools:** One of:, hammerstone (tag) ×1, mallet (tag) ×1, knappingtool (ta"
+  },
+  {
+    "source_id": "pz/Crafting/Masonry(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Masonry(crafting)",
+    "excerpt": "--- title: \"Masonry(crafting)\" category: Crafting type: Masonry source_url: https://pzwiki.net/wiki/Masonry_(crafting) scraped_at: 2026-02-24 16:19:41 method: archived_wiki_markdown --- # Masonry(crafting) ### Overview The masonry crafting category contains recipes related to masonry . ## Recipes ### Recipe: Mix Bucket of Clay Cement, (Products are dependent on inputs) One of:, Carved Bucket of Clay Cement ×1 - **Ingredients:** Each of:, Water ×10000mL, Clay ×2, Sack of Sand, 0.2 full items (1 u"
+  },
+  {
+    "source_id": "pz/Crafting/Medical(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Medical(crafting)",
+    "excerpt": "--- title: \"Medical(crafting)\" category: Crafting type: Medical source_url: https://pzwiki.net/wiki/Medical_(crafting) scraped_at: 2026-02-24 16:19:50 method: archived_wiki_markdown --- # Medical(crafting) ### Overview The medical crafting category contains recipes related to first aid . ## Recipes ### Recipe: Clean Bandage, (Products are dependent on inputs) One of:, Bandage ×1, Denim Strips ×1, Leather Strips ×1, Rag ×1 - **Ingredients:** One of:, Bandage (Dirty) ×1, Denim Strips (Dirty) ×1, L"
+  },
+  {
+    "source_id": "pz/Crafting/Metalworking(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Metalworking(crafting)",
+    "excerpt": "--- title: \"Metalworking(crafting)\" category: Crafting type: Metalworking source_url: https://pzwiki.net/wiki/Metalworking_(crafting) scraped_at: 2026-02-24 16:20:02 method: archived_wiki_markdown --- # Metalworking(crafting) ### Overview The metalworking crafting category contains recipes related to blacksmithing . ## Recipes ### Recipe: Cut Bar, (Products are dependent on inputs) One of:, Iron Bar Half ×2, Steel Bar Half ×2, Iron Bar Quarter ×2, Steel Bar Quarter ×2 - **Ingredients:** One of:,"
+  },
+  {
+    "source_id": "pz/Crafting/Miscellaneous(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Miscellaneous(crafting)",
+    "excerpt": "--- title: \"Miscellaneous(crafting)\" category: Crafting type: Miscellaneous source_url: https://pzwiki.net/wiki/Miscellaneous_(crafting) scraped_at: 2026-02-24 16:22:10 method: archived_wiki_markdown --- # Miscellaneous(crafting) ## Recipes ### Recipe: Unknown Recipe - **Ingredients:** Each of:, Cigarette ×1 - **Tools:** Each of:, Cigarette Pack, 0.1 full items (1 unit) - **XP:** 0 ### Recipe: Chop Large Branch Into Firewood, Each of:, Firewood ×4, Wood Splinters ×1 - **Ingredients:** Each of:, "
+  },
+  {
+    "source_id": "pz/Crafting/Other(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Other(crafting)",
+    "excerpt": "--- title: \"Other(crafting)\" category: Crafting type: Other source_url: https://pzwiki.net/wiki/Other_(crafting) scraped_at: 2026-02-24 16:21:58 method: archived_wiki_markdown --- # Other(crafting) ## Recipes ### Recipe: Break Glass, Broken Glass ×1 - **Ingredients:** Each of:, glass (tag) ×1 - **XP:** 0 ### Recipe: Close Umbrella, (Products are dependent on inputs) One of:, Umbrella (Closed) ×1, Umbrella (Closed) ×1, Umbrella (Closed) ×1, Umbrella (Closed) ×1, Umbrella (Closed) ×1 - **Ingredien"
+  },
+  {
+    "source_id": "pz/Crafting/Packing(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Packing(crafting)",
+    "excerpt": "--- title: \"Packing(crafting)\" category: Crafting type: Packing source_url: https://pzwiki.net/wiki/Packing_(crafting) scraped_at: 2026-02-24 16:20:13 method: archived_wiki_markdown --- # Packing(crafting) ### Overview The packing crafting category contains recipes related to adding and removing items from containers. ## Recipes ### Recipe: Empty Sack (Destroy Contents), Sack ×1 - **Ingredients:** One of:, Sack of Dirt, 0.2 full items (1 unit), Sack of Gravel, 0.2 full items (1 unit), Sack of Sa"
+  },
+  {
+    "source_id": "pz/Crafting/Pottery(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Pottery(crafting)",
+    "excerpt": "--- title: \"Pottery(crafting)\" category: Crafting type: Pottery source_url: https://pzwiki.net/wiki/Pottery_(crafting) scraped_at: 2026-02-24 16:20:24 method: archived_wiki_markdown --- # Pottery(crafting) ### Overview The pottery crafting category contains recipes related to pottery . ## Recipes ### Recipe: Fire 3 Bricks, Brick ×3 - **Ingredients:** Each of:, Clay Brick (Unfired) ×3, startfire (tag) ×1, log (tag) ×1, charcoal (tag) ×1 - **Workstation:** Primitive Kiln - **XP:** 0 ### Recipe: Fi"
+  },
+  {
+    "source_id": "pz/Crafting/Repair(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Repair(crafting)",
+    "excerpt": "--- title: \"Repair(crafting)\" category: Crafting type: Repair source_url: https://pzwiki.net/wiki/Repair_(crafting) scraped_at: 2026-02-24 16:20:38 method: archived_wiki_markdown --- # Repair(crafting) ### Overview The repair crafting category contains recipes related to repairing items , weapons , and tools. ## Recipes ### Recipe: Fix Saw, Sharpened Blade - **Tools:** One of:, saw (tag) ×1, metalsaw (tag) ×1, smallsaw (tag) ×1, repairablesawblade (tag) ×1, (damaged), Each of:, file (tag) ×1, (m"
+  },
+  {
+    "source_id": "pz/Crafting/Tailoring(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Tailoring(crafting)",
+    "excerpt": "--- title: \"Tailoring(crafting)\" category: Crafting type: Tailoring source_url: https://pzwiki.net/wiki/Tailoring_(crafting) scraped_at: 2026-02-24 16:21:07 method: archived_wiki_markdown --- # Tailoring(crafting) ### Overview The tailoring crafting category contains recipes related to tailoring . ## Recipes ### Recipe: Assemble Framepack, Framepack ×1 - **Ingredients:** Each of:, leathercrudetannedlarge (tag) ×1, heavythread (tag) ×4, Leather Strips ×6, Pack Frame ×1 - **Tools:** One of:, sciss"
+  },
+  {
+    "source_id": "pz/Crafting/Tools(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Tools(crafting)",
+    "excerpt": "--- title: \"Tools(crafting)\" category: Crafting type: Tools source_url: https://pzwiki.net/wiki/Tools_(crafting) scraped_at: 2026-02-24 16:21:31 method: archived_wiki_markdown --- # Tools(crafting) ### Overview The tools crafting category contains recipes related to forging new tools primarily with the blacksmithing skill . ## Recipes ### Recipe: Forge Ball-peen Hammer Head, Ball Peen Hammer Head ×1 - **Ingredients:** Each of:, charcoal (tag) ×4, Steel Chunk (Pierced) ×1 - **Tools:** Each of:, s"
+  },
+  {
+    "source_id": "pz/Crafting/Weaponry(crafting).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weaponry(crafting)",
+    "excerpt": "--- title: \"Weaponry(crafting)\" category: Crafting type: Weaponry source_url: https://pzwiki.net/wiki/Weaponry_(crafting) scraped_at: 2026-02-24 16:21:45 method: archived_wiki_markdown --- # Weaponry(crafting) ### Overview The weaponry crafting category contains recipes related to crafting makeshift weapons. ## Recipes ### Recipe: Assemble Spear, (Products are dependent on inputs) One of:, Spear with Long Metal Head ×1, Spear with Metal Head ×1 - **Ingredients:** One of:, Long Metal Spearhead ×1"
+  },
+  {
+    "source_id": "pz/Environment/Electricity.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Electricity",
+    "excerpt": "--- title: \"Electricity\" category: Environment type: Electricity source_url: https://pzwiki.net/wiki/Electricity scraped_at: 2026-02-24 16:26:17 method: archived_wiki_markdown --- # Electricity Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Electricity , also called power , is a fuel type used to power various electrical appliances in Project Zomboid . ## Usage Electricity can power electrical appliances includin"
+  },
+  {
+    "source_id": "pz/Environment/Erosion.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Erosion",
+    "excerpt": "--- title: \"Erosion\" category: Environment type: Erosion source_url: https://pzwiki.net/wiki/Erosion scraped_at: 2026-02-24 16:25:46 method: archived_wiki_markdown --- # Erosion Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Erosion is a game mechanic which simulates the takeover of nature after the apocalypse by causing the growth of plants and the deterioration of walls and buildings in full. In the default set"
+  },
+  {
+    "source_id": "pz/Environment/Fire.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fire",
+    "excerpt": "--- title: \"Fire\" category: Environment type: Fire source_url: https://pzwiki.net/wiki/Fire scraped_at: 2026-02-24 16:25:57 method: archived_wiki_markdown --- # Fire Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Fire is a damaging mechanic in Project Zomboid , that can be created via various means. ## Mechanics Once a fire is set, it is very likely that the fire will start spreading and will do so if there is so"
+  },
+  {
+    "source_id": "pz/Environment/Noise.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Noise",
+    "excerpt": "--- title: \"Noise\" category: Environment type: Noise source_url: https://pzwiki.net/wiki/Noise scraped_at: 2026-02-24 16:26:05 method: archived_wiki_markdown --- # Noise Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Noise attracts all zombies in a general proximity in the general direction of the player's presence. The level of hearing zombies possesses can be changed in the sandbox settings before starting the "
+  },
+  {
+    "source_id": "pz/Environment/Vehicle.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Vehicle",
+    "excerpt": "--- title: \"Vehicle\" category: Environment type: Vehicle source_url: https://pzwiki.net/wiki/Vehicle scraped_at: 2026-02-24 16:25:06 method: archived_wiki_markdown --- # Vehicle Vehicle Ambulance • Chevalier Cerise Wagon • Chevalier Cossette • Chevalier D6 • Chevalier Dart • Chevalier Nyala • Chevalier Primani • Chevalier Step Van • Dash Bulldriver • Dash Elite • Dash Rancher • Franklin All-Terrain • Franklin Valuline • Franklin Valuline (6-seater) • LBMW Radio Van • Masterson Horizon • Mercia L"
+  },
+  {
+    "source_id": "pz/Environment/Weather.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weather",
+    "excerpt": "--- title: \"Weather\" category: Environment type: Weather source_url: https://pzwiki.net/wiki/Weather scraped_at: 2026-02-24 16:25:35 method: archived_wiki_markdown --- # Weather Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Weather affects various systems, including agriculture , foraging , player health and more. Project Zomboid uses a randomized realistic climate system, based off Kentucky's humid subtropical "
+  },
+  {
+    "source_id": "pz/Equipment/Camping.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Camping",
+    "excerpt": "--- title: \"Camping\" category: Equipment type: Camping source_url: https://pzwiki.net/wiki/Camping scraped_at: 2026-02-24 16:38:39 method: archived_wiki_markdown --- # Camping Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap"
+  },
+  {
+    "source_id": "pz/Equipment/Communication.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Communication",
+    "excerpt": "--- title: \"Communication\" category: Equipment type: Communication source_url: https://pzwiki.net/wiki/Communication scraped_at: 2026-02-24 16:37:35 method: archived_wiki_markdown --- # Communication Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Securit"
+  },
+  {
+    "source_id": "pz/Equipment/Containers_Container(tile).md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Container(tile)",
+    "excerpt": "--- title: \"Container(tile)\" category: Equipment type: Containers source_url: https://pzwiki.net/wiki/Containers scraped_at: 2026-02-24 16:37:07 method: archived_wiki_markdown --- # Container(tile) Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous This article contains outdated/low-quality images . Reason: Images should be updated to the latest version Please help the PZwiki by uploading an improved/updated"
+  },
+  {
+    "source_id": "pz/Equipment/Cooking.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Cooking",
+    "excerpt": "--- title: \"Cooking\" category: Equipment type: Cooking source_url: https://pzwiki.net/wiki/Cooking scraped_at: 2026-02-24 16:38:16 method: archived_wiki_markdown --- # Cooking Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Cooking Cooking General Type Crafting Modifies Increases nutrition of evolved recipes Decreases ingredient consumption by evolved recipes Poison detection Technical Skill ID Cooking Cooking is a crafting skill ."
+  },
+  {
+    "source_id": "pz/Equipment/Fire source.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fire source",
+    "excerpt": "--- title: \"Fire source\" category: Equipment type: Fire source source_url: https://pzwiki.net/wiki/Fire_source scraped_at: 2026-02-24 16:38:48 method: archived_wiki_markdown --- # Fire source Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Spor"
+  },
+  {
+    "source_id": "pz/Equipment/Fishing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fishing",
+    "excerpt": "--- title: \"Fishing\" category: Equipment type: Fishing source_url: https://pzwiki.net/wiki/Fishing scraped_at: 2026-02-24 16:38:28 method: archived_wiki_markdown --- # Fishing Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Fishing Fishing General Type Survivalist Modifies Time to catch fish Technical Skill ID Fishing Fishing is a survivalist skill and an activity that allows characters to use a fishing rod combined with bait to ca"
+  },
+  {
+    "source_id": "pz/Equipment/Fluid containers.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fluid container",
+    "excerpt": "--- title: \"Fluid container\" category: Equipment type: Fluid containers source_url: https://pzwiki.net/wiki/Fluid_containers scraped_at: 2026-02-24 16:37:17 method: archived_wiki_markdown --- # Fluid container Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento"
+  },
+  {
+    "source_id": "pz/Equipment/Household.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Household",
+    "excerpt": "--- title: \"Household\" category: Equipment type: Household source_url: https://pzwiki.net/wiki/Household scraped_at: 2026-02-24 16:38:01 method: archived_wiki_markdown --- # Household Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Too"
+  },
+  {
+    "source_id": "pz/Equipment/Light source.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Light source",
+    "excerpt": "--- title: \"Light source\" category: Equipment type: Light source source_url: https://pzwiki.net/wiki/Light_source scraped_at: 2026-02-24 16:39:00 method: archived_wiki_markdown --- # Light source Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • "
+  },
+  {
+    "source_id": "pz/Equipment/Medical.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Medical",
+    "excerpt": "--- title: \"Medical\" category: Equipment type: Medical source_url: https://pzwiki.net/wiki/Medical scraped_at: 2026-02-24 16:36:31 method: archived_wiki_markdown --- # Medical Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap"
+  },
+  {
+    "source_id": "pz/Equipment/Security.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Security",
+    "excerpt": "--- title: \"Security\" category: Equipment type: Security source_url: https://pzwiki.net/wiki/Security scraped_at: 2026-02-24 16:39:09 method: archived_wiki_markdown --- # Security Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • "
+  },
+  {
+    "source_id": "pz/Equipment/Tools.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Tool",
+    "excerpt": "--- title: \"Tool\" category: Equipment type: Tools source_url: https://pzwiki.net/wiki/Tools scraped_at: 2026-02-24 16:36:55 method: archived_wiki_markdown --- # Tool Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle"
+  },
+  {
+    "source_id": "pz/Equipment/Traps.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Trap",
+    "excerpt": "--- title: \"Trap\" category: Equipment type: Traps source_url: https://pzwiki.net/wiki/Traps scraped_at: 2026-02-24 16:37:25 method: archived_wiki_markdown --- # Trap Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle"
+  },
+  {
+    "source_id": "pz/Food/Canned food_Food.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Food — Canned food",
+    "excerpt": "--- title: \"Food — Canned food\" category: Food type: Canned food source_url: https://pzwiki.net/wiki/Food#Canned_food scraped_at: 2026-02-24 16:35:41 method: archived_wiki_markdown --- # Food — Canned food ### Canned food ### Canned Beans - **Name:** Canned Beans - **Encumbrance:** 0.8 - **Hunger:** - - **Hunger / Encumbrance:** - - **Thirst:** - - **Unhappiness:** - - **Fresh (days):** ∞ - **Rotten (days):** ∞ - **Cooked (mins):** - - **Burned (mins):** - - **Spice:** Used as ingredient in cook"
+  },
+  {
+    "source_id": "pz/Food/Evolved recipes_Food.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Food — Evolved recipes",
+    "excerpt": "--- title: \"Food — Evolved recipes\" category: Food type: Evolved recipes source_url: https://pzwiki.net/wiki/Food#Evolved_recipes scraped_at: 2026-02-24 16:36:21 method: archived_wiki_markdown --- # Food — Evolved recipes ### Evolved recipes #### Base items ### Bagel - **Name:** Bagel - **Encumbrance:** 0.1 - **Hunger:** -10 - **Hunger / Encumbrance:** -100 - **Thirst:** - - **Unhappiness:** - - **Boredom:** - - **Food Sickness:** - - **Fresh (days):** 1 - **Rotten (days):** 6 - **Cooked (mins):"
+  },
+  {
+    "source_id": "pz/Food/Fruits_Food.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Food — Fruits",
+    "excerpt": "--- title: \"Food — Fruits\" category: Food type: Fruits source_url: https://pzwiki.net/wiki/Food#Fruits scraped_at: 2026-02-24 16:36:11 method: archived_wiki_markdown --- # Food — Fruits ### Fruits ### Apple - **Name:** Apple - **Encumbrance:** 0.2 - **Hunger:** -16 - **Hunger / Encumbrance:** -80 - **Thirst:** -7 - **Unhappiness:** - - **Fresh (days):** 5 - **Rotten (days):** 8 - **Spice:** Used as ingredient in cooking - **Item ID:** Base.Apple ### Apricots (Dried) - **Name:** Apricots (Dried) "
+  },
+  {
+    "source_id": "pz/Food/Protein_Food.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Food — Protein",
+    "excerpt": "--- title: \"Food — Protein\" category: Food type: Protein source_url: https://pzwiki.net/wiki/Food#Protein scraped_at: 2026-02-24 16:36:03 method: archived_wiki_markdown --- # Food — Protein ### Protein #### Meat ### Bacon - **Name:** Bacon - **Encumbrance:** 0.3 - **Hunger:** -12 - **Hunger / Encumbrance:** -40 - **Food Sickness:** ? - **Fresh (days):** 3 - **Rotten (days):** 5 - **Cooked (mins):** 20 - **Burned (mins):** 50 - **Spice:** Used as ingredient in cooking - **Item ID:** Base.Bacon ##"
+  },
+  {
+    "source_id": "pz/Food/Vegetables_Food.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Food — Vegetables",
+    "excerpt": "--- title: \"Food — Vegetables\" category: Food type: Vegetables source_url: https://pzwiki.net/wiki/Food#Vegetables scraped_at: 2026-02-24 16:36:15 method: archived_wiki_markdown --- # Food — Vegetables ### Vegetables ### Avocado - **Name:** Avocado - **Encumbrance:** 0.3 - **Hunger:** -16 - **Hunger / Encumbrance:** -53 - **Thirst:** -7 - **Unhappiness:** - - **Fresh (days):** 6 - **Rotten (days):** 14 - **Cooked (mins):** 20 - **Burned (mins):** 40 - **Spice:** Used as ingredient in cooking - *"
+  },
+  {
+    "source_id": "pz/list_md.txt#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "list md",
+    "excerpt": ""
+  },
+  {
+    "source_id": "pz/Locations/Abandoned town.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Abandoned town",
+    "excerpt": "--- title: \"Abandoned town\" category: Locations type: Abandoned town source_url: https://pzwiki.net/wiki/Abandoned_town scraped_at: 2026-02-24 16:30:15 method: archived_wiki_markdown --- # Abandoned town Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile "
+  },
+  {
+    "source_id": "pz/Locations/Basements.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Basement",
+    "excerpt": "--- title: \"Basement\" category: Locations type: Basements source_url: https://pzwiki.net/wiki/Basements scraped_at: 2026-02-24 16:31:27 method: archived_wiki_markdown --- # Basement Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter This article contains outdated/low-quality images . Reason: Finish adding images and replace existing images once official tools are available. Please help the PZwiki by uploading an impr"
+  },
+  {
+    "source_id": "pz/Locations/Brandenburg.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Brandenburg",
+    "excerpt": "--- title: \"Brandenburg\" category: Locations type: Brandenburg source_url: https://pzwiki.net/wiki/Brandenburg scraped_at: 2026-02-24 16:30:44 method: archived_wiki_markdown --- # Brandenburg Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • "
+  },
+  {
+    "source_id": "pz/Locations/Coalfield.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Coalfield",
+    "excerpt": "--- title: \"Coalfield\" category: Locations type: Coalfield source_url: https://pzwiki.net/wiki/Coalfield scraped_at: 2026-02-24 16:30:35 method: archived_wiki_markdown --- # Coalfield Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley S"
+  },
+  {
+    "source_id": "pz/Locations/Doe Valley.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Doe Valley",
+    "excerpt": "--- title: \"Doe Valley\" category: Locations type: Doe Valley source_url: https://pzwiki.net/wiki/Doe_Valley scraped_at: 2026-02-24 16:29:56 method: archived_wiki_markdown --- # Doe Valley Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Vall"
+  },
+  {
+    "source_id": "pz/Locations/Echo Creek.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Echo Creek",
+    "excerpt": "--- title: \"Echo Creek\" category: Locations type: Echo Creek source_url: https://pzwiki.net/wiki/Echo_Creek scraped_at: 2026-02-24 16:30:24 method: archived_wiki_markdown --- # Echo Creek Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Vall"
+  },
+  {
+    "source_id": "pz/Locations/Fallas Lake.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fallas Lake",
+    "excerpt": "--- title: \"Fallas Lake\" category: Locations type: Fallas Lake source_url: https://pzwiki.net/wiki/Fallas_Lake scraped_at: 2026-02-24 16:30:05 method: archived_wiki_markdown --- # Fallas Lake Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • "
+  },
+  {
+    "source_id": "pz/Locations/Fort Knox.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fort Knox",
+    "excerpt": "--- title: \"Fort Knox\" category: Locations type: Fort Knox source_url: https://pzwiki.net/wiki/Fort_Knox scraped_at: 2026-02-24 16:31:05 method: archived_wiki_markdown --- # Fort Knox Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley S"
+  },
+  {
+    "source_id": "pz/Locations/House In The Woods.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "House In The Woods",
+    "excerpt": "--- title: \"House In The Woods\" category: Locations type: House In The Woods source_url: https://pzwiki.net/wiki/House_In_The_Woods scraped_at: 2026-02-24 16:32:01 method: archived_wiki_markdown --- # House In The Woods Challenges A Really CD DA • A Storm Is Coming • House In The Woods • Kingsmouth • Opening Hours • Studio • The Descending Fog • Winter Is Coming • You Have One Day House in the Woods is a map in Project Zomboid used for the last stand and last stand accumulator challenges . ## Ov"
+  },
+  {
+    "source_id": "pz/Locations/Irvington.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Irvington",
+    "excerpt": "--- title: \"Irvington\" category: Locations type: Irvington source_url: https://pzwiki.net/wiki/Irvington scraped_at: 2026-02-24 16:30:54 method: archived_wiki_markdown --- # Irvington Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley S"
+  },
+  {
+    "source_id": "pz/Locations/Kingsmouth.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Kingsmouth",
+    "excerpt": "--- title: \"Kingsmouth\" category: Locations type: Kingsmouth source_url: https://pzwiki.net/wiki/Kingsmouth scraped_at: 2026-02-24 16:32:23 method: archived_wiki_markdown --- # Kingsmouth Challenges A Really CD DA • A Storm Is Coming • House In The Woods • Kingsmouth • Opening Hours • Studio • The Descending Fog • Winter Is Coming • You Have One Day Kingsmouth is a challenge map that was added in Build 41 . It is a 'paradise island' vacation resort in the Caribbean, which has unfortunately succu"
+  },
+  {
+    "source_id": "pz/Locations/Knox County remake.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Knox County remake",
+    "excerpt": "--- title: \"Knox County remake\" category: Locations type: Knox County remake source_url: https://pzwiki.net/wiki/Knox_County_remake scraped_at: 2026-02-24 16:32:13 method: archived_wiki_markdown --- # Knox County remake There is currently no text in this page. You can search for this page title in other pages, or search the related logs , but you do not have permission to create this page."
+  },
+  {
+    "source_id": "pz/Locations/Louisville.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Louisville",
+    "excerpt": "--- title: \"Louisville\" category: Locations type: Louisville source_url: https://pzwiki.net/wiki/Louisville scraped_at: 2026-02-24 16:29:44 method: archived_wiki_markdown --- # Louisville Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Vall"
+  },
+  {
+    "source_id": "pz/Locations/March Ridge.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "March Ridge",
+    "excerpt": "--- title: \"March Ridge\" category: Locations type: March Ridge source_url: https://pzwiki.net/wiki/March_Ridge scraped_at: 2026-02-24 16:28:52 method: archived_wiki_markdown --- # March Ridge Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • "
+  },
+  {
+    "source_id": "pz/Locations/Muldraugh.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Muldraugh",
+    "excerpt": "--- title: \"Muldraugh\" category: Locations type: Muldraugh source_url: https://pzwiki.net/wiki/Muldraugh scraped_at: 2026-02-24 16:28:23 method: archived_wiki_markdown --- # Muldraugh Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley S"
+  },
+  {
+    "source_id": "pz/Locations/Riverside.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Riverside",
+    "excerpt": "--- title: \"Riverside\" category: Locations type: Riverside source_url: https://pzwiki.net/wiki/Riverside scraped_at: 2026-02-24 16:29:01 method: archived_wiki_markdown --- # Riverside Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley S"
+  },
+  {
+    "source_id": "pz/Locations/Rosewood.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Rosewood",
+    "excerpt": "--- title: \"Rosewood\" category: Locations type: Rosewood source_url: https://pzwiki.net/wiki/Rosewood scraped_at: 2026-02-24 16:29:13 method: archived_wiki_markdown --- # Rosewood Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Valley Stati"
+  },
+  {
+    "source_id": "pz/Locations/Studio.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Studio",
+    "excerpt": "--- title: \"Studio\" category: Locations type: Studio source_url: https://pzwiki.net/wiki/Studio scraped_at: 2026-02-24 16:32:34 method: archived_wiki_markdown --- # Studio Challenges A Really CD DA • A Storm Is Coming • House In The Woods • Kingsmouth • Opening Hours • Studio • The Descending Fog • Winter Is Coming • You Have One Day Studio is a challenge map that was added in Build 41 . It is a 'Hollywood Film Studio', with which has unfortunately succumbed to the Knox Event infection . It take"
+  },
+  {
+    "source_id": "pz/Locations/Tutorial.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Tutorial",
+    "excerpt": "--- title: \"Tutorial\" category: Locations type: Tutorial source_url: https://pzwiki.net/wiki/Tutorial scraped_at: 2026-02-24 16:31:53 method: archived_wiki_markdown --- # Tutorial Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Spoiler warning! The following contains unhidden spoilers pertaining to the story of Project Zomboid . Proceed at your own risk. “ Let's get a bird's eye view of the lonely place where you'"
+  },
+  {
+    "source_id": "pz/Locations/Valley Station.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Valley Station",
+    "excerpt": "--- title: \"Valley Station\" category: Locations type: Valley Station source_url: https://pzwiki.net/wiki/Valley_Station scraped_at: 2026-02-24 16:28:43 method: archived_wiki_markdown --- # Valley Station Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile "
+  },
+  {
+    "source_id": "pz/Locations/West Point.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "West Point",
+    "excerpt": "--- title: \"West Point\" category: Locations type: West Point source_url: https://pzwiki.net/wiki/West_Point scraped_at: 2026-02-24 16:28:32 method: archived_wiki_markdown --- # West Point Locations Knox Country • Abandoned town • Brandenburg • Bright Valley Trailer Park • Coalfield • Dixie Mobile Park • Doe Valley • Echo Creek • Ekron • Exclusion Zone border • Fallas Lake • Irvington • Louisville • March Ridge • Muldraugh • Ohio River • Riverside • Rosewood • Scenic Grove Mobile Home Park • Vall"
+  },
+  {
+    "source_id": "pz/Lore/Adverts.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Adverts",
+    "excerpt": "--- title: \"Adverts\" category: Lore type: Adverts source_url: https://pzwiki.net/wiki/Adverts scraped_at: 2026-02-24 16:27:37 method: archived_wiki_markdown --- # Adverts Entertainment Life and Living TV • Adverts • CD • VHS • Television • Radio Adverts are advertisements that play before and after many programs on both TVs and radios . Unlike many programs, adverts are randomized and can be viewed multiple times. As the name implies, they're not considered useful and serve primarily immersive p"
+  },
+  {
+    "source_id": "pz/Lore/Broadcasts.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Broadcasts",
+    "excerpt": "--- title: \"Broadcasts\" category: Lore type: Broadcasts source_url: https://pzwiki.net/wiki/Broadcasts scraped_at: 2026-02-24 16:27:45 method: archived_wiki_markdown --- # Broadcasts Entertainment Life and Living TV • Adverts • CD • VHS • Television • Radio Broadcasts , also called channels or frequencies , are pre-scripted broadcasts that affect moodles , provide the player with some lore , skill experience, or emergency information, such as weather or metagame information. Devices will usually"
+  },
+  {
+    "source_id": "pz/Lore/Easter eggs.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Easter eggs",
+    "excerpt": "--- title: \"Easter eggs\" category: Lore type: Easter eggs source_url: https://pzwiki.net/wiki/Easter_eggs scraped_at: 2026-02-24 16:26:47 method: archived_wiki_markdown --- # Easter eggs Meta Controls • Multiplayer • Survival Guide • Game modes • Frequently Asked Questions • Dedicated server • Server settings • Custom Sandbox • Discord During your time exploring Knox Country , various Easter eggs can be found throughout the area, referencing other games, media, developers etc. Many of these refe"
+  },
+  {
+    "source_id": "pz/Lore/Knox Event.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Knox Event",
+    "excerpt": "--- title: \"Knox Event\" category: Lore type: Knox Event source_url: https://pzwiki.net/wiki/Knox_Event scraped_at: 2026-02-24 16:26:26 method: archived_wiki_markdown --- # Knox Event Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories Spoiler warning! The following contains unhidden spoilers pertaining to the story of Project Zomboid . Proceed at your own risk. “ This thing, let's call it 'The Knox Event', feels like a powder keg. "
+  },
+  {
+    "source_id": "pz/Lore/Phone numbers.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Phone numbers",
+    "excerpt": "--- title: \"Phone numbers\" category: Lore type: Phone numbers source_url: https://pzwiki.net/wiki/Phone_numbers scraped_at: 2026-02-24 16:27:08 method: archived_wiki_markdown --- # Phone numbers Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories The intent of this page is to gather information about the fictional phone numbers in Project Zomboid. These serve no purpose, other than lore. It seems that in Project Zomboid , 943 is an"
+  },
+  {
+    "source_id": "pz/Lore/Radio.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Radio",
+    "excerpt": "--- title: \"Radio\" category: Lore type: Radio source_url: https://pzwiki.net/wiki/Radio scraped_at: 2026-02-24 16:27:57 method: archived_wiki_markdown --- # Radio Entertainment Life and Living TV • Adverts • CD • VHS • Television • Radio Radio Premium Technologies Radio ValuTech Radio Makeshift Radio General Category Communication A radio is an interactive item added in Build 33 . It allows the player to listen to radio broadcasts, including music stations, talk-back stations, news reports, mili"
+  },
+  {
+    "source_id": "pz/Lore/Raleigh Outbreak.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Raleigh Outbreak",
+    "excerpt": "--- title: \"Raleigh Outbreak\" category: Lore type: Raleigh Outbreak source_url: https://pzwiki.net/wiki/Raleigh_Outbreak scraped_at: 2026-02-24 16:26:37 method: archived_wiki_markdown --- # Raleigh Outbreak Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories Spoiler warning! The following contains unhidden spoilers pertaining to the story of Project Zomboid . Proceed at your own risk. The Raleigh Outbreak was a fictional outbreak t"
+  },
+  {
+    "source_id": "pz/Lore/Street names.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Street names",
+    "excerpt": "--- title: \"Street names\" category: Lore type: Street names source_url: https://pzwiki.net/wiki/Street_names scraped_at: 2026-02-24 16:26:59 method: archived_wiki_markdown --- # Street names Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories This page lists all the street names found in the map . Many of these names were first introduced in the fliers and brochures of Build 42 , before a proper support was added in Build 42.10.0 a"
+  },
+  {
+    "source_id": "pz/Lore/Television.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Television",
+    "excerpt": "--- title: \"Television\" category: Lore type: Television source_url: https://pzwiki.net/wiki/Television scraped_at: 2026-02-24 16:28:10 method: archived_wiki_markdown --- # Television Entertainment Life and Living TV • Adverts • CD • VHS • Television • Radio Television Antique Television ValuTech Television Premium Technologies Television A television is an interactable piece of furniture . ## Variants The television has three variants. Only the old television is unable to play VHS tapes. Premium"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Decorations.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Decorations",
+    "excerpt": "--- title: \"Decorations\" category: Miscellaneous type: Decorations source_url: https://pzwiki.net/wiki/Decorations scraped_at: 2026-02-24 16:48:03 method: archived_wiki_markdown --- # Decorations Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ## Overview ## Curtains Curtains are draped on many windows inside the game worl"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Floors.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Floors",
+    "excerpt": "--- title: \"Floors\" category: Miscellaneous type: Floors source_url: https://pzwiki.net/wiki/Floors scraped_at: 2026-02-24 16:47:48 method: archived_wiki_markdown --- # Floors Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ## Tiles ### Grey Diagonal Tiles - **Object:** Grey Diagonal Tiles - **Encumbrance:** 3.0 - **Size ("
+  },
+  {
+    "source_id": "pz/Miscellaneous/Plants.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Plants",
+    "excerpt": "--- title: \"Plants\" category: Miscellaneous type: Plants source_url: https://pzwiki.net/wiki/Plants scraped_at: 2026-02-24 16:48:25 method: archived_wiki_markdown --- # Plants Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ## Plants ### Streetname Sign - **Object:** Streetname Sign - **Encumbrance:** 5.0 - **Size (tiles):"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Signs.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Signs",
+    "excerpt": "--- title: \"Signs\" category: Miscellaneous type: Signs source_url: https://pzwiki.net/wiki/Signs scraped_at: 2026-02-24 16:48:12 method: archived_wiki_markdown --- # Signs Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ### Laundromat Sign - **Object:** Laundromat Sign - **Encumbrance:** 6.0 - **Size (tiles):** 4 - **Craft"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Tables.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Tables",
+    "excerpt": "--- title: \"Tables\" category: Miscellaneous type: Tables source_url: https://pzwiki.net/wiki/Tables scraped_at: 2026-02-24 16:47:24 method: archived_wiki_markdown --- # Tables Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ### Picknic Table - **Object:** Picknic Table - **Encumbrance:** 20.0 - **Size (tiles):** 4 - **Craf"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Trash.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Trash",
+    "excerpt": "--- title: \"Trash\" category: Miscellaneous type: Trash source_url: https://pzwiki.net/wiki/Trash scraped_at: 2026-02-24 16:48:36 method: archived_wiki_markdown --- # Trash Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Trash [[File:{{{icon2}}}|Trash|128px|class=pixelart]] [[File:{{{icon3}}}|Trash|128px|class=pixelart]] [[File:{{{icon4}}}|Trash|128px|class=pixelart]] [[File:{{{icon5}}}|Trash|128px|class=p"
+  },
+  {
+    "source_id": "pz/Miscellaneous/Workstations.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Workstations",
+    "excerpt": "--- title: \"Workstations\" category: Miscellaneous type: Workstations source_url: https://pzwiki.net/wiki/Workstations scraped_at: 2026-02-24 16:47:36 method: archived_wiki_markdown --- # Workstations Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ### Mortar Grinder - **Object:** Mortar Grinder - **Encumbrance:** 15.0 - **"
+  },
+  {
+    "source_id": "pz/Other/Animal parts.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Animal parts",
+    "excerpt": "--- title: \"Animal parts\" category: Other type: Animal parts source_url: https://pzwiki.net/wiki/Animal_parts scraped_at: 2026-02-24 16:39:30 method: archived_wiki_markdown --- # Animal parts There is currently no text in this page. You can search for this page title in other pages, or search the related logs , but you do not have permission to create this page."
+  },
+  {
+    "source_id": "pz/Other/Appearance.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Appearance",
+    "excerpt": "--- title: \"Appearance\" category: Other type: Appearance source_url: https://pzwiki.net/wiki/Appearance scraped_at: 2026-02-24 16:39:41 method: archived_wiki_markdown --- # Appearance Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Too"
+  },
+  {
+    "source_id": "pz/Other/Controls.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Controls",
+    "excerpt": "--- title: \"Controls\" category: Other type: Controls source_url: https://pzwiki.net/wiki/Controls scraped_at: 2026-02-24 16:42:28 method: archived_wiki_markdown --- # Controls Meta Controls • Multiplayer • Survival Guide • Game modes • Frequently Asked Questions • Dedicated server • Server settings • Custom Sandbox • Discord The default controls are displayed below; most (not all) key bindings can be customized in the game options along with gamepad/controller configuration. In order to customiz"
+  },
+  {
+    "source_id": "pz/Other/Corpse.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Corpse",
+    "excerpt": "--- title: \"Corpse\" category: Other type: Corpse source_url: https://pzwiki.net/wiki/Corpse scraped_at: 2026-02-24 16:41:29 method: archived_wiki_markdown --- # Corpse Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehic"
+  },
+  {
+    "source_id": "pz/Other/Debug.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Debug",
+    "excerpt": "--- title: \"Debug\" category: Other type: Debug source_url: https://pzwiki.net/wiki/Debug scraped_at: 2026-02-24 16:41:58 method: archived_wiki_markdown --- # Debug Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle m"
+  },
+  {
+    "source_id": "pz/Other/Easter eggs.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Easter eggs",
+    "excerpt": "--- title: \"Easter eggs\" category: Other type: Easter eggs source_url: https://pzwiki.net/wiki/Easter_eggs scraped_at: 2026-02-24 16:42:46 method: archived_wiki_markdown --- # Easter eggs Meta Controls • Multiplayer • Survival Guide • Game modes • Frequently Asked Questions • Dedicated server • Server settings • Custom Sandbox • Discord During your time exploring Knox Country , various Easter eggs can be found throughout the area, referencing other games, media, developers etc. Many of these ref"
+  },
+  {
+    "source_id": "pz/Other/Electronics.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Electronics",
+    "excerpt": "--- title: \"Electronics\" category: Other type: Electronics source_url: https://pzwiki.net/wiki/Electronics scraped_at: 2026-02-24 16:40:21 method: archived_wiki_markdown --- # Electronics Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports •"
+  },
+  {
+    "source_id": "pz/Other/Fuel.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Fuel",
+    "excerpt": "--- title: \"Fuel\" category: Other type: Fuel source_url: https://pzwiki.net/wiki/Fuel scraped_at: 2026-02-24 16:40:59 method: archived_wiki_markdown --- # Fuel Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle maint"
+  },
+  {
+    "source_id": "pz/Other/Game modes.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Game modes",
+    "excerpt": "--- title: \"Game modes\" category: Other type: Game modes source_url: https://pzwiki.net/wiki/Game_modes scraped_at: 2026-02-24 16:42:37 method: archived_wiki_markdown --- # Game modes Meta Controls • Multiplayer • Survival Guide • Game modes • Frequently Asked Questions • Dedicated server • Server settings • Custom Sandbox • Discord There are a number of different games modes available in Project Zomboid . The list of game modes below is correct as of the release of Build 41 . In all modes, deat"
+  },
+  {
+    "source_id": "pz/Other/Gardening.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Gardening",
+    "excerpt": "--- title: \"Gardening\" category: Other type: Gardening source_url: https://pzwiki.net/wiki/Gardening scraped_at: 2026-02-24 16:40:37 method: archived_wiki_markdown --- # Gardening Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • "
+  },
+  {
+    "source_id": "pz/Other/Instruments.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Instruments",
+    "excerpt": "--- title: \"Instruments\" category: Other type: Instruments source_url: https://pzwiki.net/wiki/Instruments scraped_at: 2026-02-24 16:41:37 method: archived_wiki_markdown --- # Instruments There is currently no text in this page. You can search for this page title in other pages, or search the related logs , but you do not have permission to create this page."
+  },
+  {
+    "source_id": "pz/Other/Junk.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Junk",
+    "excerpt": "--- title: \"Junk\" category: Other type: Junk source_url: https://pzwiki.net/wiki/Junk scraped_at: 2026-02-24 16:41:08 method: archived_wiki_markdown --- # Junk Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle maint"
+  },
+  {
+    "source_id": "pz/Other/Material.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Material",
+    "excerpt": "--- title: \"Material\" category: Other type: Material source_url: https://pzwiki.net/wiki/Material scraped_at: 2026-02-24 16:40:12 method: archived_wiki_markdown --- # Material Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap"
+  },
+  {
+    "source_id": "pz/Other/Memento.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Memento",
+    "excerpt": "--- title: \"Memento\" category: Other type: Memento source_url: https://pzwiki.net/wiki/Memento scraped_at: 2026-02-24 16:41:21 method: archived_wiki_markdown --- # Memento Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • V"
+  },
+  {
+    "source_id": "pz/Other/Phone numbers.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Phone numbers",
+    "excerpt": "--- title: \"Phone numbers\" category: Other type: Phone numbers source_url: https://pzwiki.net/wiki/Phone_numbers scraped_at: 2026-02-24 16:43:10 method: archived_wiki_markdown --- # Phone numbers Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories The intent of this page is to gather information about the fictional phone numbers in Project Zomboid. These serve no purpose, other than lore. It seems that in Project Zomboid , 943 is a"
+  },
+  {
+    "source_id": "pz/Other/Sports.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Sports",
+    "excerpt": "--- title: \"Sports\" category: Other type: Sports source_url: https://pzwiki.net/wiki/Sports scraped_at: 2026-02-24 16:41:48 method: archived_wiki_markdown --- # Sports Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehic"
+  },
+  {
+    "source_id": "pz/Other/Street names.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Street names",
+    "excerpt": "--- title: \"Street names\" category: Other type: Street names source_url: https://pzwiki.net/wiki/Street_names scraped_at: 2026-02-24 16:42:58 method: archived_wiki_markdown --- # Street names Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories This page lists all the street names found in the map . Many of these names were first introduced in the fliers and brochures of Build 42 , before a proper support was added in Build 42.10.0 "
+  },
+  {
+    "source_id": "pz/Other/Vehicle maintenance.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Vehicle maintenance",
+    "excerpt": "--- title: \"Vehicle maintenance\" category: Other type: Vehicle maintenance source_url: https://pzwiki.net/wiki/Vehicle_maintenance scraped_at: 2026-02-24 16:39:21 method: archived_wiki_markdown --- # Vehicle maintenance Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical"
+  },
+  {
+    "source_id": "pz/Player/Condition.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Condition",
+    "excerpt": "--- title: \"Condition\" category: Player type: Condition source_url: https://pzwiki.net/wiki/Condition scraped_at: 2026-02-24 16:24:29 method: archived_wiki_markdown --- # Condition Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Condition (also known as durability) is a property of various items which tells how much the item has been used. In case of weapons and clothing , condition tells how much more the item can be used before i"
+  },
+  {
+    "source_id": "pz/Player/Exercise.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Exercise",
+    "excerpt": "--- title: \"Exercise\" category: Player type: Exercise source_url: https://pzwiki.net/wiki/Exercise scraped_at: 2026-02-24 16:23:50 method: archived_wiki_markdown --- # Exercise Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter Exercise is a gameplay mechanic in which the player can raise their passive skills, fitness , and strength . Players open the Exercise menu in the Health Tab to choose what exercises to do. Ex"
+  },
+  {
+    "source_id": "pz/Player/Health.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Health",
+    "excerpt": "--- title: \"Health\" category: Player type: Health source_url: https://pzwiki.net/wiki/Health scraped_at: 2026-02-24 16:23:32 method: archived_wiki_markdown --- # Health Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Health is a basic character statistic, representing the overall physical well-being and integrity. One's health is displayed both as a discrete bar in the Health Panel, or as a moodle on the right side of the screen. R"
+  },
+  {
+    "source_id": "pz/Player/Inventory.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Inventory",
+    "excerpt": "--- title: \"Inventory\" category: Player type: Inventory source_url: https://pzwiki.net/wiki/Inventory scraped_at: 2026-02-24 16:22:30 method: archived_wiki_markdown --- # Inventory Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection The inventory is a collection of items either worn on the player , kept as possessions, or stored in a container in the game world. The player's inventory can be used to equip, wear, inspect or consume item"
+  },
+  {
+    "source_id": "pz/Player/Knox Infection.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Knox Infection",
+    "excerpt": "--- title: \"Knox Infection\" category: Player type: Knox Infection source_url: https://pzwiki.net/wiki/Knox_Infection scraped_at: 2026-02-24 16:24:21 method: archived_wiki_markdown --- # Knox Infection Lore Businesses • Metagame • Outfit • Survivor • Knox Event • Knox Infection • Raleigh Outbreak • Randomized stories Spoiler warning! The following contains unhidden spoilers pertaining to the story of Project Zomboid . Proceed at your own risk. “ The Knox Infection's final stage is one of violence"
+  },
+  {
+    "source_id": "pz/Player/Map.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Map",
+    "excerpt": "--- title: \"Map\" category: Player type: Map source_url: https://pzwiki.net/wiki/Map scraped_at: 2026-02-24 16:24:12 method: archived_wiki_markdown --- # Map Game mechanics Zombie • Health • Crafting • Building • Fire • AI • Noise • Weather • Erosion • Electricity • Metagame • Helicopter The world map can be accessed by pressing M . By default, it only shows the places the player has already been to or found a map or a flier of, but enabling the All Known On Start setting in the In-game Map secti"
+  },
+  {
+    "source_id": "pz/Player/Moodle.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Moodle",
+    "excerpt": "--- title: \"Moodle\" category: Player type: Moodle source_url: https://pzwiki.net/wiki/Moodle scraped_at: 2026-02-24 16:22:49 method: archived_wiki_markdown --- # Moodle Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection A moodle is an indicator of the current emotional and physical state of the player , similar to status effects in role-playing games . Moodles are displayed in the top right-hand corner of the screen, and hovering the "
+  },
+  {
+    "source_id": "pz/Player/Nutrition.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Nutrition",
+    "excerpt": "--- title: \"Nutrition\" category: Player type: Nutrition source_url: https://pzwiki.net/wiki/Nutrition scraped_at: 2026-02-24 16:23:41 method: archived_wiki_markdown --- # Nutrition Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Nutrition is a game mechanic in Project Zomboid redesigned and implemented in Build 34 . Each item of food has a quality known as nutritional value which is defined by four variables: carbohydrates , protei"
+  },
+  {
+    "source_id": "pz/Player/Occupation.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Occupation",
+    "excerpt": "--- title: \"Occupation\" category: Player type: Occupation source_url: https://pzwiki.net/wiki/Occupation scraped_at: 2026-02-24 16:22:58 method: archived_wiki_markdown --- # Occupation Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Occupation , previously known as profession , is the player 's line of work prior to the beginning of the Knox Event and is chosen during character creation — choosing a name, occupation and traits, whi"
+  },
+  {
+    "source_id": "pz/Player/Player.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Player",
+    "excerpt": "--- title: \"Player\" category: Player type: Player source_url: https://pzwiki.net/wiki/Player scraped_at: 2026-02-24 16:22:18 method: archived_wiki_markdown --- # Player Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Player General Sex Male or female (player's choice) Occupation Player's choice, see occupation Traits Player's choice, see trait Location Muldraugh Riverside Rosewood West Point The player , also referred to as the sur"
+  },
+  {
+    "source_id": "pz/Player/Quick tips.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Quick tips",
+    "excerpt": "--- title: \"Quick tips\" category: Player type: Quick tips source_url: https://pzwiki.net/wiki/Quick_tips scraped_at: 2026-02-24 16:24:54 method: archived_wiki_markdown --- # Quick tips Quick tips are small notes that appear while a save is being loaded. They were added with Build 42.13.0 . There are currently 53 regular tips and 27 marked as jokes, and they appear randomly. ## Tips - You can shoot from inside a vehicle if your window is open. - Keep accidentally Shouting? You can change the keyb"
+  },
+  {
+    "source_id": "pz/Player/Skill.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Skill",
+    "excerpt": "--- title: \"Skill\" category: Player type: Skill source_url: https://pzwiki.net/wiki/Skill scraped_at: 2026-02-24 16:22:40 method: archived_wiki_markdown --- # Skill Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Skills are abilities the player can advance in over time, with their proficiency at that skill quantified by its skill level . ## Overview Each skill’s level can be increased by gaining a sufficient amount of experience po"
+  },
+  {
+    "source_id": "pz/Player/Sleep.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Sleep",
+    "excerpt": "--- title: \"Sleep\" category: Player type: Sleep source_url: https://pzwiki.net/wiki/Sleep scraped_at: 2026-02-24 16:24:01 method: archived_wiki_markdown --- # Sleep Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Unlike zombies , the player needs to sleep . When the player needs to sleep, the tired moodle will show up on the screen. To sleep, the player needs to find a bed, sofa, or other chair . Or, if the player is tired enough, "
+  },
+  {
+    "source_id": "pz/Player/Starting location.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Starting location",
+    "excerpt": "--- title: \"Starting location\" category: Player type: Starting location source_url: https://pzwiki.net/wiki/Starting_location scraped_at: 2026-02-24 16:24:45 method: archived_wiki_markdown --- # Starting location Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection The player 's starting location is determined by their chosen occupation and their selection from the five starting towns ( Echo Creek , Muldraugh , Riverside , Rosewood , or"
+  },
+  {
+    "source_id": "pz/Player/Trait.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Trait",
+    "excerpt": "--- title: \"Trait\" category: Player type: Trait source_url: https://pzwiki.net/wiki/Trait scraped_at: 2026-02-24 16:23:11 method: archived_wiki_markdown --- # Trait Player Moodle • Skill • Trait • Occupation • Inventory • Nutrition • Sleep • Condition • Health • Knox Infection Trait is a modifier, positive or negative, that is available to the player through direct choice when creating a character, occupation, or gameplay decisions. ## Overview A variety of traits can be chosen during character "
+  },
+  {
+    "source_id": "pz/Plumbing/Baths and showers_Plumbing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Plumbing — Baths and showers",
+    "excerpt": "--- title: \"Plumbing — Baths and showers\" category: Plumbing type: Baths and showers source_url: https://pzwiki.net/wiki/Plumbing#Baths_and_showers scraped_at: 2026-02-24 16:44:25 method: archived_wiki_markdown --- # Plumbing — Baths and showers ## Baths and showers ### Wall Shower - **Object:** Wall Shower - **Encumbrance:** 5.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Welding - **Tool(s):** Welding Tor"
+  },
+  {
+    "source_id": "pz/Plumbing/Other_Plumbing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Plumbing — Other",
+    "excerpt": "--- title: \"Plumbing — Other\" category: Plumbing type: Other source_url: https://pzwiki.net/wiki/Plumbing#Other scraped_at: 2026-02-24 16:44:39 method: archived_wiki_markdown --- # Plumbing — Other ## Other ### Blue Combo Washer Dryer - **Object:** Blue Combo Washer Dryer - **Encumbrance:** 20.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** Electrical - **Tool(s):** Screwdriver - **Skill:** Welding - **Tool(s):** Welding Torch WeldingMask (tag) Welder Mask ##"
+  },
+  {
+    "source_id": "pz/Plumbing/Sinks_Plumbing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Plumbing — Sinks",
+    "excerpt": "--- title: \"Plumbing — Sinks\" category: Plumbing type: Sinks source_url: https://pzwiki.net/wiki/Plumbing#Sinks scraped_at: 2026-02-24 16:43:58 method: archived_wiki_markdown --- # Plumbing — Sinks ## Sinks ### White Sink - **Object:** White Sink - **Encumbrance:** 5.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** No skill required - **Tool(s):** Wrench - **Skill:** Welding - **Tool(s):** Welding Torch WeldingMask (tag) Welder Mask ### Industrial Sink - **Obj"
+  },
+  {
+    "source_id": "pz/Plumbing/Toilets_Plumbing.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Plumbing — Toilets",
+    "excerpt": "--- title: \"Plumbing — Toilets\" category: Plumbing type: Toilets source_url: https://pzwiki.net/wiki/Plumbing#Toilets scraped_at: 2026-02-24 16:44:32 method: archived_wiki_markdown --- # Plumbing — Toilets ## Toilets ### White Toilet - **Object:** White Toilet - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Skill:** No skill required - **Tool(s):** Wrench - **Skill:** Welding - **Tool(s):** Welding Torch WeldingMask (tag) Welder Mask ### Low Toil"
+  },
+  {
+    "source_id": "pz/Storage/Bins_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Bins",
+    "excerpt": "--- title: \"Storage — Bins\" category: Storage type: Bins source_url: https://pzwiki.net/wiki/Storage#Bins scraped_at: 2026-02-24 16:47:08 method: archived_wiki_markdown --- # Storage — Bins ## Bins ### Garbage Bin - **Object:** Garbage Bin - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 50 - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Garbage Bin (variant 2"
+  },
+  {
+    "source_id": "pz/Storage/Cabinets_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Cabinets",
+    "excerpt": "--- title: \"Storage — Cabinets\" category: Storage type: Cabinets source_url: https://pzwiki.net/wiki/Storage#Cabinets scraped_at: 2026-02-24 16:46:12 method: archived_wiki_markdown --- # Storage — Cabinets ## Cabinets ### Medicine Cabinet - **Object:** Medicine Cabinet - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 10 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Chin"
+  },
+  {
+    "source_id": "pz/Storage/Counters_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Counters",
+    "excerpt": "--- title: \"Storage — Counters\" category: Storage type: Counters source_url: https://pzwiki.net/wiki/Storage#Counters scraped_at: 2026-02-24 16:45:59 method: archived_wiki_markdown --- # Storage — Counters ## Counters ### Wooden Counter - **Object:** Wooden Counter - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Can be used as a surface - **Capacity:** 50 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Wooden"
+  },
+  {
+    "source_id": "pz/Storage/Crates_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Crates",
+    "excerpt": "--- title: \"Storage — Crates\" category: Storage type: Crates source_url: https://pzwiki.net/wiki/Storage#Crates scraped_at: 2026-02-24 16:46:32 method: archived_wiki_markdown --- # Storage — Crates ## Crates ### Wooden Crate - **Object:** Wooden Crate - **Encumbrance:** 7.5 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 60 - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Crate (vari"
+  },
+  {
+    "source_id": "pz/Storage/Desks_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Desks",
+    "excerpt": "--- title: \"Storage — Desks\" category: Storage type: Desks source_url: https://pzwiki.net/wiki/Storage#Desks scraped_at: 2026-02-24 16:46:17 method: archived_wiki_markdown --- # Storage — Desks ## Desks ### Office Desk - **Object:** Office Desk - **Encumbrance:** 10.0 - **Size (tiles):** 8 - **Crafting surface?:** Not a crafting surface - **Capacity:** 20 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer ### Office Desk (variant 2) - **Object:**"
+  },
+  {
+    "source_id": "pz/Storage/Displays_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Displays",
+    "excerpt": "--- title: \"Storage — Displays\" category: Storage type: Displays source_url: https://pzwiki.net/wiki/Storage#Displays scraped_at: 2026-02-24 16:46:38 method: archived_wiki_markdown --- # Storage — Displays ## Displays ### Glass Display Stand - **Object:** Glass Display Stand - **Encumbrance:** 10.0 - **Size (tiles):** 2 - **Crafting surface?:** Not a crafting surface - **Capacity:** 20 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ##"
+  },
+  {
+    "source_id": "pz/Storage/Dressers_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Dressers",
+    "excerpt": "--- title: \"Storage — Dressers\" category: Storage type: Dressers source_url: https://pzwiki.net/wiki/Storage#Dressers scraped_at: 2026-02-24 16:46:22 method: archived_wiki_markdown --- # Storage — Dressers ## Dressers ### White Drawers - **Object:** White Drawers - **Encumbrance:** 10.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 20 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Mahogany D"
+  },
+  {
+    "source_id": "pz/Storage/Locker_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage",
+    "excerpt": "--- title: \"Storage\" category: Storage type: Locker source_url: https://pzwiki.net/wiki/Storage#Locker scraped_at: 2026-02-24 16:46:26 method: archived_wiki_markdown --- # Storage Furniture Appliances • Plumbing • Comfort • Tables • Storage • Workstations • Floors • Decorations • Signs • Plants • Trash • Miscellaneous Some tiles have been intentionally removed from this list during Build 42 unstable. ## Counters ### Wooden Counter - **Object:** Wooden Counter - **Encumbrance:** 10.0 - **Size (ti"
+  },
+  {
+    "source_id": "pz/Storage/Mail boxes_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Mail boxes",
+    "excerpt": "--- title: \"Storage — Mail boxes\" category: Storage type: Mail boxes source_url: https://pzwiki.net/wiki/Storage#Mail_boxes scraped_at: 2026-02-24 16:46:45 method: archived_wiki_markdown --- # Storage — Mail boxes ## Mail boxes ### Public Mail Box - **Object:** Public Mail Box - **Encumbrance:** 15.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 15 - **Skill:** Carpentry - **Tool(s):** Crowbar - **Skill:** No skill required - **Tool(s):** No tool required "
+  },
+  {
+    "source_id": "pz/Storage/Mannequins_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Mannequins",
+    "excerpt": "--- title: \"Storage — Mannequins\" category: Storage type: Mannequins source_url: https://pzwiki.net/wiki/Storage#Mannequins scraped_at: 2026-02-24 16:47:03 method: archived_wiki_markdown --- # Storage — Mannequins ## Mannequins ### Scarecrow - **Object:** Scarecrow - **Encumbrance:** 15.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** N/A - **Skill:** No skill required - **Tool(s):** No tool required - **Skill:** Can't be disassembled Can't be disassembled "
+  },
+  {
+    "source_id": "pz/Storage/Other_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Other",
+    "excerpt": "--- title: \"Storage — Other\" category: Storage type: Other source_url: https://pzwiki.net/wiki/Storage#Other scraped_at: 2026-02-24 16:47:13 method: archived_wiki_markdown --- # Storage — Other ## Other ### Composter (variant 2) - **Object:** Composter (variant 2) - **Encumbrance:** 5.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 20 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Composter_"
+  },
+  {
+    "source_id": "pz/Storage/Shelves_Storage.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Storage — Shelves",
+    "excerpt": "--- title: \"Storage — Shelves\" category: Storage type: Shelves source_url: https://pzwiki.net/wiki/Storage#Shelves scraped_at: 2026-02-24 16:46:07 method: archived_wiki_markdown --- # Storage — Shelves ## Shelves ### Wooden Shelf - **Object:** Wooden Shelf - **Encumbrance:** 20.0 - **Size (tiles):** 1 - **Crafting surface?:** Not a crafting surface - **Capacity:** 30 - **Skill:** Carpentry - **Tool(s):** Hammer (tag) - **Skill:** Carpentry - **Tool(s):** Claw Hammer Hacksaw ### Crafted Wall Shel"
+  },
+  {
+    "source_id": "pz/Weapons/Ammo.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Ammo",
+    "excerpt": "--- title: \"Ammo\" category: Weapons type: Ammo source_url: https://pzwiki.net/wiki/Ammo scraped_at: 2026-02-24 16:34:04 method: archived_wiki_markdown --- # Ammo Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap • Vehicle mai"
+  },
+  {
+    "source_id": "pz/Weapons/Axes_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Axes",
+    "excerpt": "--- title: \"Weapon — Axes\" category: Weapons type: Axes source_url: https://pzwiki.net/wiki/Weapon#Axes scraped_at: 2026-02-24 16:32:47 method: archived_wiki_markdown --- # Weapon — Axes ### Axes Axe weapons are typically two-handed weapons that can be used to cut down trees for logs effectively. They usually also provide very high base damage numbers, and are therefore also a very effective choice of weapon to fight with, especially with the Ax-pert trait from the lumberjack occupation, and a \""
+  },
+  {
+    "source_id": "pz/Weapons/Explosives.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Explosive",
+    "excerpt": "--- title: \"Explosive\" category: Weapons type: Explosives source_url: https://pzwiki.net/wiki/Explosives scraped_at: 2026-02-24 16:34:26 method: archived_wiki_markdown --- # Explosive Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Too"
+  },
+  {
+    "source_id": "pz/Weapons/Firearms.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Firearm",
+    "excerpt": "--- title: \"Firearm\" category: Weapons type: Firearms source_url: https://pzwiki.net/wiki/Firearm scraped_at: 2026-02-24 16:33:53 method: archived_wiki_markdown --- # Firearm Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Sports • Tool • Trap "
+  },
+  {
+    "source_id": "pz/Weapons/Improvised_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Improvised",
+    "excerpt": "--- title: \"Weapon — Improvised\" category: Weapons type: Improvised source_url: https://pzwiki.net/wiki/Weapon#Improvised scraped_at: 2026-02-24 16:33:42 method: archived_wiki_markdown --- # Weapon — Improvised ### Improvised Improvised weapons behave similar to short blade weapons, but they lack jaw stab attack and do not have a corresponding skill. Therefore, their damage cannot be improved and condition lower chance only takes maintenance skill into effect. They cannot knockback, and while th"
+  },
+  {
+    "source_id": "pz/Weapons/Long blades_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Long blades",
+    "excerpt": "--- title: \"Weapon — Long blades\" category: Weapons type: Long blades source_url: https://pzwiki.net/wiki/Weapon#Long_blades scraped_at: 2026-02-24 16:33:05 method: archived_wiki_markdown --- # Weapon — Long blades ### Long blades Long blade weapons are strong weapons, especially valuable end-game. They both deal damage to clothing, which can be beneficial in reducing zombie armor, but results in damaged clothing. ### Broken Katana - **Name:** Broken Katana - **Encumbrance:** 1.5 - **Equipped:**"
+  },
+  {
+    "source_id": "pz/Weapons/Long blunts_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Long blunts",
+    "excerpt": "--- title: \"Weapon — Long blunts\" category: Weapons type: Long blunts source_url: https://pzwiki.net/wiki/Weapon#Long_blunts scraped_at: 2026-02-24 16:32:53 method: archived_wiki_markdown --- # Weapon — Long blunts ### Long blunts Long blunt weapons have wider variety than long blade weapons and are easier to find and therefore level up. They receive a \"bruiser\" bonus at level 3 and 7, getting a 10% damage increase at and 20% damage increase respectively. They also do not damage the clothing of "
+  },
+  {
+    "source_id": "pz/Weapons/Short blades_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Short blades",
+    "excerpt": "--- title: \"Weapon — Short blades\" category: Weapons type: Short blades source_url: https://pzwiki.net/wiki/Weapon#Short_blades scraped_at: 2026-02-24 16:33:11 method: archived_wiki_markdown --- # Weapon — Short blades ### Short blades Most short blade weapons have a unique instant-kill jaw stab attack, indicated by the raised hand of the player when in aim mode. Performing this action requires the player to be stationary and to have good timing, ideally with a combination of a high short blade "
+  },
+  {
+    "source_id": "pz/Weapons/Short blunts_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Short blunts",
+    "excerpt": "--- title: \"Weapon — Short blunts\" category: Weapons type: Short blunts source_url: https://pzwiki.net/wiki/Weapon#Short_blunts scraped_at: 2026-02-24 16:32:58 method: archived_wiki_markdown --- # Weapon — Short blunts ### Short blunts Short blunt weapons are one of the most versatile one-handed weapons, being able to critically hit without the jaw stab bonus, making a good all-rounder weapons. They are also easy to find and do not damage the clothing of zombies or players on hit. ### Animal Bon"
+  },
+  {
+    "source_id": "pz/Weapons/Spears_Weapon.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon — Spears",
+    "excerpt": "--- title: \"Weapon — Spears\" category: Weapons type: Spears source_url: https://pzwiki.net/wiki/Weapon#Spears scraped_at: 2026-02-24 16:33:35 method: archived_wiki_markdown --- # Weapon — Spears ### Spears Spear weapons are two-handed. They receive a \"bruiser\" bonus at level 3 and 7, getting a 10% damage increase at and 20% damage increase respectively. They have two different special insta-kill attacks when held in both hands: - When zombies are 1.7 tiles or more away from any other zombie, req"
+  },
+  {
+    "source_id": "pz/Weapons/Weapon part.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "pz",
+    "title": "Weapon part",
+    "excerpt": "--- title: \"Weapon part\" category: Weapons type: Weapon parts source_url: https://pzwiki.net/wiki/Weapon_parts scraped_at: 2026-02-24 16:34:14 method: archived_wiki_markdown --- # Weapon part Items Ammo • Animal part • Appearance • Camping • Clothing • Communication • Container • Cooking • Corpse • Electronics • Explosive • Fire source • Fishing • Fluid container • Food • Fuel • Gardening • Household • Instrument • Junk • Light source • Literature • Material • Medical • Memento • Security • Spor"
+  },
+  {
+    "source_id": "server_rules/chanthuongtamly_server_rule.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "server_rules",
+    "title": "chanthuongtamly server rule",
+    "excerpt": ""
+  },
+  {
+    "source_id": "server_rules/pz_server_rule.md#0",
+    "source_kind": "knowledge_base",
+    "domain": "server_rules",
+    "title": "pz server rule",
+    "excerpt": ""
+  }
+]

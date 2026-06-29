@@ -10,6 +10,7 @@ import logging
 from typing import Optional, List, Dict, Any, Tuple
 
 from knowledge.manager import get_knowledge_manager
+from rag.trust import trusted_domains_from
 from rag.query_preprocessor import get_preprocessor
 
 logger = logging.getLogger(__name__)
@@ -56,12 +57,14 @@ class DomainRouter:
         domains = []
 
         # 1. Use preprocessor-detected domain
-        if detected_domain and detected_domain in self.kb_manager.domains:
+        trusted_loaded_domains = trusted_domains_from(self.kb_manager.domains.keys())
+
+        if detected_domain and detected_domain in trusted_loaded_domains:
             domains.append(detected_domain)
 
         # 2. If no specific domain detected, search all loaded domains
-        if not domains and self.kb_manager.domains:
-            domains = list(self.kb_manager.domains.keys())
+        if not domains and trusted_loaded_domains:
+            domains = trusted_loaded_domains
 
         return domains
 
@@ -86,6 +89,8 @@ class DomainRouter:
         """
         all_results = []
         primary_domain = None
+
+        domains = trusted_domains_from(domains)
 
         if not domains:
             # Search all domains

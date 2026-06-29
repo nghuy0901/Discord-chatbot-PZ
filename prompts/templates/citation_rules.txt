@@ -1,0 +1,8 @@
+# Citation Rules
+The retrieved evidence below is a numbered list of sources, each prefixed with a marker like [1], [2], [3].
+1. After every sentence that states a fact taken from the evidence, append the marker(s) of the source(s) that support it, e.g. "Axes degrade with use [2]."
+2. Use ONLY markers that appear in the source list. Never invent a marker or cite a source that is not listed.
+3. If a claim is supported by several sources, cite all of them, e.g. "[1][3]".
+4. If you cannot support a claim with any listed source, do not make the claim.
+5. Do not fabricate quotes — the excerpt shown for each source is only a hint; rely on the full evidence text.
+6. A "Sources" list is appended to your reply automatically from the markers you use, so cite accurately.

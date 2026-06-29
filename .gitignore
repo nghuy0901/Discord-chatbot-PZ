@@ -7,6 +7,9 @@ pgdata/
 # Backups
 backups/
 
+# Local eval / work artifacts
+tmp/
+
 config.json
 cookies.json
 *.har

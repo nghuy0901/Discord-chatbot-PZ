@@ -169,8 +169,15 @@ class QueryCache:
         try:
             data = await self.redis.get(key)
             if data:
+                result = json.loads(data)
+                if (
+                    result.get("decision") != "answer"
+                    or not result.get("provenance")
+                ):
+                    logger.debug("Ignoring stale or unsafe cache entry for key=%s", key)
+                    return None
                 logger.info(f"🚀 Cache HIT for query='{query[:40]}...' in domain='{domain}'")
-                return json.loads(data)
+                return result
         except Exception as e:
             logger.warning(f"⚠️ Redis GET error: {e}")
             # Try to reconnect on failure
@@ -194,6 +201,9 @@ class QueryCache:
         key = self._make_key(query, domain, version, request_context)
         expire = ttl if ttl is not None else self.default_ttl
         try:
+            if result.get("decision") != "answer" or not result.get("provenance"):
+                logger.debug("Skipping non-answer or provenance-free cache payload")
+                return False
             serialized = json.dumps(result, ensure_ascii=False)
             await self.redis.set(key, serialized, ex=expire)
             logger.debug(f"💾 Cached result for key={key} (TTL={expire}s)")

@@ -1,4 +1,5 @@
 from evaluation.retrieval_metrics import (
+    behavior_confusion,
     keyword_coverage,
     mean_reciprocal_rank,
     ndcg_at_k,
@@ -31,3 +32,14 @@ def test_ndcg_at_k_rewards_early_relevant_results():
 def test_source_hit_and_keyword_coverage():
     assert source_hit_rate(["a.md"], {"a.md"}) == 1.0
     assert keyword_coverage("Axe requires carpentry skill", ["axe", "skill"]) == 1.0
+
+
+def test_behavior_confusion_counts_answer_abstain_clarify():
+    result = behavior_confusion(
+        expected=["answer", "abstain", "clarify", "answer"],
+        actual=["answer", "answer", "clarify", "abstain"],
+    )
+    assert result["correct_abstention_rate"] == 0.0
+    assert result["false_answer_rate"] == 1.0
+    assert result["false_abstention_rate"] == 0.5
+    assert result["clarification_accuracy"] == 1.0

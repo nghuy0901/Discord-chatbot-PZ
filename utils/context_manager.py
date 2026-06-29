@@ -17,7 +17,8 @@ import logging
 from collections import defaultdict, deque
 from typing import List, Dict, Any, Optional, Deque, Tuple
 
-from rag.retriever import build_rag_context
+from rag.retriever import build_rag_result
+from rag.result import RAGBuildResult
 from rag.embedder import embed_text
 from prompts.system_prompt import build_system_prompt
 
@@ -125,6 +126,7 @@ class ContextManager:
         self._last_query_ids: Dict[str, str] = {}
         # Track last bot message_id per channel for feedback (B2)
         self._last_bot_msg_ids: Dict[str, str] = {}
+        self._query_ids_by_bot_message: Dict[str, str] = {}
 
     # ----- message tracking -----
 
@@ -183,6 +185,12 @@ class ContextManager:
     def get_last_bot_msg_id(self, channel_id: str) -> Optional[str]:
         return self._last_bot_msg_ids.get(channel_id)
 
+    def set_query_id_for_bot_message(self, bot_message_id: str, query_id: str) -> None:
+        self._query_ids_by_bot_message[bot_message_id] = query_id
+
+    def get_query_id_for_bot_message(self, bot_message_id: str) -> Optional[str]:
+        return self._query_ids_by_bot_message.get(bot_message_id)
+
     # ----- implicit reply detection -----
 
     async def detect_implicit_reply(
@@ -240,24 +248,25 @@ class ContextManager:
         channel_name: Optional[str] = None,
         user_id: Optional[str] = None,
         request_context: Optional[Any] = None,
-    ) -> Tuple[List[Dict[str, str]], float, Optional[str]]:
+    ) -> Tuple[List[Dict[str, str]], float, Optional[str], Optional[RAGBuildResult]]:
         """
         Build the complete message list for an Ollama chat call.
 
         Returns:
-            (messages, temperature, query_intent) — ready for ollama.chat()
+            (messages, temperature, query_intent, rag_result) — ready for chat()
             query_intent: "analytical" | "narrative" | "hybrid" | "conversation" | None
         """
         # 1. Retrieve RAG context (now returns 3-tuple with domain prompt + metric)
         rag_context = ""
         domain_prompt = ""
         query_intent = None
+        rag_result = None
         if enable_rag:
             try:
                 recent_texts = [
                     m.content for m in self._contexts[channel_id].get_recent(5)
                 ]
-                rag_context, domain_prompt_text, metric = await build_rag_context(
+                rag_result = await build_rag_result(
                     query=user_message,
                     recent_messages=recent_texts,
                     channel_id=channel_id,
@@ -265,6 +274,9 @@ class ContextManager:
                     user_id=user_id,
                     request_context=request_context,
                 )
+                rag_context = rag_result.context
+                domain_prompt_text = rag_result.domain_prompt
+                metric = rag_result.metric
                 if domain_prompt_text:
                     domain_prompt = f"\n# 🎯 Domain-Specific Instructions\n{domain_prompt_text}\n"
 
@@ -299,7 +311,7 @@ class ContextManager:
         if not history or history[-1].content != user_message:
             messages.append({"role": "user", "content": f"@{user_name}: {user_message}"})
 
-        return messages, PERSONALITY_TEMPERATURE, query_intent
+        return messages, PERSONALITY_TEMPERATURE, query_intent, rag_result
 
     # ----- housekeeping -----
 
