@@ -10,11 +10,12 @@ class TestPersonas:
         assert "standard" in PERSONAS
         assert PERSONAS["standard"] == "You are a helpful assistant."
     
-    def test_jailbreak_personas_exist(self):
-        jailbreak_personas = ["jailbreak-v1", "jailbreak-v2", "jailbreak-v3"]
-        for persona in jailbreak_personas:
-            assert persona in PERSONAS
-            assert len(PERSONAS[persona]) > 100  # Jailbreaks are typically long
+    def test_jailbreak_personas_removed(self):
+        # Jailbreak personas were removed — they instructed the model to
+        # fabricate ("make up answers… make them sound plausible"), which
+        # contradicts NomNom's grounded, no-fabrication design (audit L1).
+        for persona in ("jailbreak-v1", "jailbreak-v2", "jailbreak-v3"):
+            assert persona not in PERSONAS
     
     def test_other_personas_exist(self):
         other_personas = ["creative", "technical", "casual"]
@@ -52,8 +53,10 @@ class TestPersonas:
         importlib.reload(src.personas)
         
         personas_admin = src.personas.get_available_personas("123456789")
-        assert "jailbreak-v1" in personas_admin
-        
+        # Even admins no longer get jailbreak personas — they were removed (L1).
+        assert "standard" in personas_admin
+        assert not any(p.startswith("jailbreak") for p in personas_admin)
+
         # Restore original environment
         os.environ["ADMIN_USER_IDS"] = original_admin_ids
     
@@ -73,19 +76,17 @@ class TestPersonas:
         assert is_jailbreak_persona("jailbreak") is True
         assert is_jailbreak_persona("not-jailbreak") is False
     
-    def test_jailbreak_content(self):
-        # Verify jailbreak prompts contain expected patterns
-        jailbreak_v1 = PERSONAS["jailbreak-v1"]
-        assert "BYPASS" in jailbreak_v1
-        assert "restrictions" in jailbreak_v1.lower()
-        
-        jailbreak_v2 = PERSONAS["jailbreak-v2"]
-        assert "SAM" in jailbreak_v2
-        assert "uncensored" in jailbreak_v2.lower()
-        
-        jailbreak_v3 = PERSONAS["jailbreak-v3"]
-        assert "Developer Mode Plus" in jailbreak_v3
-        assert "safety guidelines" in jailbreak_v3.lower()
+    def test_no_jailbreak_content_ships(self):
+        # No shipped persona may contain jailbreak / fabrication language (L1).
+        blob = " ".join(PERSONAS.values()).lower()
+        for banned in (
+            "bypass",
+            "developer mode plus",
+            "uncensored",
+            "make up answers",
+            "ignore all safety",
+        ):
+            assert banned not in blob
     
     def test_persona_prompt_structure(self):
         # Ensure all personas have proper structure

@@ -1,18 +1,21 @@
 """
 PZ Tools — SQLite-backed tool functions for LLM tool calling.
 
-Provides 4 tools that query the Project Zomboid SQLite database:
-  1. search_items   — Find and rank items (weapons, food, clothing, etc.)
-  2. compare_items  — Side-by-side comparison of specific items
-  3. get_recipe     — Look up crafting recipes
+Provides 5 tools that query the Project Zomboid SQLite database:
+  1. search_items     — Find and rank items (weapons, food, clothing, etc.)
+  2. compare_items    — Side-by-side comparison of specific items
+  3. get_recipe       — Look up crafting recipes
   4. get_item_details — Full details for a single item
+  5. find_location    — Find map locations / businesses
 
-These are designed to be passed directly to ollama.chat(tools=[...])
-via their Google-style docstrings for automatic schema generation.
+Each tool is a bare callable with a Google-style docstring. For OpenAI /
+OpenAI-compatible / Gemini providers they are converted to JSON tool schemas by
+``src.llm.tool_schema`` before being sent (passing raw functions is not
+JSON-serializable); native Ollama can also accept the generated schemas.
 
 Usage:
     from knowledge.structured.pz_tools import PZ_TOOLS, PZ_TOOL_FUNCTIONS
-    # PZ_TOOLS       — list of functions to pass to ollama tools= param
+    # PZ_TOOLS          — list of tool callables (see src.llm.tool_schema)
     # PZ_TOOL_FUNCTIONS — dict mapping name→callable for executing tool calls
 """
 
@@ -53,6 +56,24 @@ def _rows_to_dicts(rows: list) -> List[dict]:
             except (json.JSONDecodeError, TypeError):
                 pass
         results.append(d)
+    return results
+
+
+def _disambiguate_names(results: List[dict]) -> List[dict]:
+    """Disambiguate results that share a display name.
+
+    Different items can share a name (e.g. ``Base.WoodAxe`` and
+    ``Base.WoodAxeForged`` are both "Wood Axe"). When that happens within one
+    result set, append a short item_id suffix so the user can tell them apart.
+    """
+    from collections import Counter
+
+    counts = Counter(r.get("name") for r in results if r.get("name"))
+    for r in results:
+        name = r.get("name")
+        if name and counts[name] > 1 and r.get("item_id"):
+            suffix = str(r["item_id"]).split(".")[-1]
+            r["name"] = f"{name} ({suffix})"
     return results
 
 
@@ -179,7 +200,7 @@ def search_items(
         rows = conn.execute(query, params).fetchall()
         conn.close()
 
-        results = _rows_to_dicts(rows)
+        results = _disambiguate_names(_rows_to_dicts(rows))
         return json.dumps({
             "count": len(results),
             "items": results,
@@ -261,6 +282,7 @@ def compare_items(
                 for item in results
             ]
 
+        results = _disambiguate_names(results)
         return json.dumps({
             "count": len(results),
             "comparison": results,
@@ -379,7 +401,7 @@ def get_item_details(
             return json.dumps({"error": "Please provide either 'name' or 'item_id'"})
 
         conn.close()
-        results = _rows_to_dicts(rows)
+        results = _disambiguate_names(_rows_to_dicts(rows))
 
         # Also look up associated recipes
         if results:

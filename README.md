@@ -2,18 +2,31 @@
 
 NomNom is a Discord-first RAG assistant with an optional FastAPI query API.
 
+> ℹ️ **Status (2026-06-29):** this build underwent a full source-verified audit **and
+> remediation** — all P0/P1/P2 findings (the two answer-fabrication paths, KB duplication,
+> Vietnamese↔English retrieval, error leakage, the never-failing quality gate) are fixed across
+> staged commits and the test suite is green. Before opening to end users, complete the
+> data/infra items in the hand-off: **[`docs/audit/remediation-handoff-2026-06-29.md`](docs/audit/remediation-handoff-2026-06-29.md)**
+> (built on the [audit](docs/audit/rag-system-audit-2026-06-29.md) and
+> [fix playbook](docs/audit/rag-bug-fix-playbook-2026-06-29.md)). Treat the older docs in
+> `docs/superpowers/` as historical plans.
+
 Implemented runtime features:
 
 - Discord bot responses through mentions, replies, threads, and `/chat`
-- Provider-neutral LLM calls through OpenAI, Gemini, or OpenAI-compatible endpoints
+- Provider-neutral LLM calls through OpenAI, Gemini, Ollama Cloud, or OpenAI-compatible endpoints
 - Local model serving through vLLM's OpenAI-compatible API
 - PostgreSQL pgvector retrieval through LangChain PGVector
 - Markdown/text knowledge ingestion
 - BM25 + vector hybrid retrieval with Reciprocal Rank Fusion
 - Redis response caching
 - Basic developer metrics for latency, retrieval count, token usage, cache hit rate, and feedback
-- Official RAGAS evaluation for faithfulness, answer relevancy, context precision, context recall, and answer correctness
-- Deterministic retrieval accuracy metrics including Recall@k, Precision@k, MRR, nDCG@k, source hit rate, and keyword coverage
+- RAGAS and deterministic retrieval metric *code* (faithfulness, answer relevancy, context precision/recall, Recall@k, Precision@k, MRR, nDCG@k, source hit rate, keyword coverage)
+
+> ℹ️ The release gate is now **enforced** (`scripts/run_release_eval.py` exits non-zero on gate
+> failure) and the LLM-judge is wired in (calibration-gated). The remaining gap before it can fully
+> gate a release is a real 300-row human-reviewed dataset + judge calibration (the seed currently
+> has 20 rows). See [`docs/evaluation/eval-dataset-and-judge-pipeline.md`](docs/evaluation/eval-dataset-and-judge-pipeline.md).
 
 Not implemented:
 
@@ -50,8 +63,18 @@ Provider values:
 - `openai`
 - `gemini`
 - `openai_compatible`
+- `ollama`
 
 For self-hosted local models, serve the model through a vLLM OpenAI-compatible `/v1` endpoint and set `LLM_PROVIDER=openai_compatible`.
+
+For Ollama Cloud, use the native Ollama API and configure:
+
+```dotenv
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=qwen3-coder-next:cloud
+OLLAMA_BASE_URL=https://ollama.com
+OLLAMA_API_KEY=your_ollama_api_key
+```
 
 ## Run Locally
 
@@ -108,6 +131,7 @@ python scripts/run_ragas_eval.py --dataset evaluation/data/release_qa.json --lim
 
 ## Production Checklist
 
+- **Follow the production checklist in [`docs/audit/remediation-handoff-2026-06-29.md`](docs/audit/remediation-handoff-2026-06-29.md)** — set `APP_ENV=production`, configure real secrets, run a one-time KB reload so the dedup ingest applies, then complete the dataset/judge-calibration items.
 - Set `API_KEY` to a non-default value of at least 32 characters.
 - Set `LLM_PROVIDER`, `LLM_MODEL`, and provider credentials.
 - Use vLLM for self-hosted local models through `/v1`.

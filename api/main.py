@@ -7,7 +7,7 @@ from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel
 from api.auth import require_configured_api_key
 from api.rate_limit import InMemoryRateLimiter
-from api.schemas import MetricsSummary
+from api.schemas import MetricsSummary, QueryResponse
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -21,7 +21,9 @@ logging.basicConfig(level=logging.INFO)
 from rag.db import init_db, close_pool, get_pool
 from rag.metrics import get_metrics_manager, RAGMetric
 from rag.query_preprocessor import get_preprocessor
-from rag.retriever import build_rag_context
+from rag.retriever import build_rag_result
+from rag.result import RAGDecision
+from rag.responses import decision_response
 from src.observability.prompts import prompt_version
 from src.observability.request_context import RequestContext
 from src.ollama_provider import (
@@ -67,6 +69,7 @@ class QueryRequest(BaseModel):
     domain: Optional[str] = None
     user_id: Optional[str] = "api_user"
     channel_id: Optional[str] = "api_channel"
+    include_sources: bool = False
 
 # App definition
 app = FastAPI(
@@ -78,6 +81,15 @@ app = FastAPI(
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting up RAG REST API server...")
+    # Validate config at boot: hard-fail in production (audit H9), warn in dev.
+    from src.startup import validate_runtime_config, is_production
+
+    try:
+        validate_runtime_config(require_api=True)
+    except Exception as e:
+        if is_production():
+            raise
+        logger.warning(f"Startup config validation (non-fatal in dev): {e}")
     try:
         await init_db()
         await get_metrics_manager().init_db()
@@ -135,7 +147,7 @@ async def health_check():
         }
     }
 
-@app.post("/api/query", tags=["Query"])
+@app.post("/api/query", tags=["Query"], response_model=QueryResponse)
 async def execute_rag_query(
     payload: QueryRequest,
     api_key: str = Depends(get_api_key),
@@ -176,6 +188,21 @@ async def execute_rag_query(
     if cached_response:
         response_text = cached_response["response_text"]
         latency = (time.time() - query_start) * 1000
+        provenance = cached_response.get("provenance", [])
+        # Re-attach the chunk-level citation footer (stored raw in cache).
+        if os.getenv("RAG_SHOW_CITATIONS", "true").lower() == "true":
+            try:
+                from rag.citations import render_sources_footer_from_dicts
+
+                _footer = render_sources_footer_from_dicts(
+                    response_text,
+                    provenance,
+                    language=(cached_response.get("language") or "vi"),
+                )
+                if _footer:
+                    response_text = f"{response_text}\n\n{_footer}"
+            except Exception:
+                pass
 
         # Record cache hit metric
         try:
@@ -196,6 +223,9 @@ async def execute_rag_query(
                 prompt_tokens=cached_response.get("prompt_tokens", 0),
                 completion_tokens=cached_response.get("completion_tokens", 0),
                 total_tokens=cached_response.get("prompt_tokens", 0) + cached_response.get("completion_tokens", 0),
+                rag_decision="answer",
+                provenance=provenance,
+                trusted_source_count=len(provenance),
             )
             await metrics.record(metric)
             # Update metric in db since it has response details
@@ -207,8 +237,28 @@ async def execute_rag_query(
             "query": query,
             "query_id": request_context.query_id,
             "response": response_text,
+            "decision": "answer",
             "cache_hit": True,
             "latency_ms": round(latency, 2),
+            "source_count": len(provenance),
+            "sources": [
+                item.get("source_id", "")
+                for item in provenance
+                if payload.include_sources and item.get("source_id")
+            ],
+            "citations": [
+                {
+                    "label": item.get("label", ""),
+                    "locator": item.get("locator", ""),
+                    "source": item.get("source", ""),
+                    "heading_path": item.get("heading_path", ""),
+                    "excerpt": item.get("excerpt", ""),
+                    "url": item.get("url", ""),
+                    "similarity": item.get("similarity", 0.0),
+                }
+                for item in provenance
+                if payload.include_sources
+            ],
             "metrics": {
                 "prompt_tokens": cached_response.get("prompt_tokens", 0),
                 "completion_tokens": cached_response.get("completion_tokens", 0),
@@ -221,6 +271,7 @@ async def execute_rag_query(
 
     # Cache miss
     try:
+        rag_result = None
         rag_context = ""
         domain_prompt = ""
         metric = RAGMetric(
@@ -233,7 +284,7 @@ async def execute_rag_query(
         )
 
         if ENABLE_RAG:
-            rag_context, domain_prompt_text, metric = await build_rag_context(
+            rag_result = await build_rag_result(
                 query=query,
                 recent_messages=None,
                 channel_id=payload.channel_id,
@@ -241,10 +292,41 @@ async def execute_rag_query(
                 user_id=payload.user_id,
                 request_context=request_context,
             )
+            rag_context = rag_result.context
+            domain_prompt_text = rag_result.domain_prompt
+            metric = rag_result.metric
             if domain_prompt_text:
                 domain_prompt = f"\n# 🎯 Domain-Specific Instructions\n{domain_prompt_text}\n"
             if metric and metric.query_intent:
                 query_intent_str = metric.query_intent
+            detected_domain = metric.detected_domain
+
+            if rag_result.decision is not RAGDecision.ANSWER:
+                response_text = decision_response(
+                    rag_result.metric.query_language,
+                    rag_result.decision,
+                )
+                latency = (time.time() - query_start) * 1000
+                metric.response_time_ms = latency
+                metric.response_length = len(response_text)
+                metrics = get_metrics_manager()
+                await metrics.update_db(metric)
+                return {
+                    "query": query,
+                    "query_id": request_context.query_id,
+                    "response": response_text,
+                    "decision": rag_result.decision.value,
+                    "cache_hit": False,
+                    "latency_ms": round(latency, 2),
+                    "source_count": 0,
+                    "sources": [],
+                    "metrics": {
+                        "detected_domain": rag_result.metric.detected_domain,
+                        "query_intent": rag_result.metric.query_intent,
+                        "evidence_score": rag_result.evidence_score,
+                        "decision_reason": rag_result.decision_reason,
+                    },
+                }
 
         # Build prompt messages
         from prompts.system_prompt import build_system_prompt
@@ -306,19 +388,70 @@ async def execute_rag_query(
             metric.total_tokens = total_tokens
             metric.estimated_cost_usd = estimated_cost_usd
 
+        # ---- Groundedness gate + chunk-level citations ----
+        # Token usage was already captured above, so the extra judge call inside
+        # finalize_rag_answer does not corrupt this turn's accounting.
+        # `raw_answer` (no footer) is what gets cached; the footer is re-rendered
+        # at display time so the API and Discord paths stay consistent.
+        # Tool answers come from the authoritative SQLite DB, which is not in the
+        # vector provenance the groundedness gate checks — skip the gate for them.
+        decision_value = "answer"
+        raw_answer = response_text
+        if (
+            rag_result
+            and rag_result.decision is RAGDecision.ANSWER
+            and response_text
+            and not use_tools_for_query
+        ):
+            from rag.answer_finalize import finalize_rag_answer
+
+            finalized = await finalize_rag_answer(rag_result, query, response_text)
+            response_text = finalized.text
+            decision_value = finalized.decision.value
+            metric.response_length = len(response_text)
+        elif use_tools_for_query and response_text:
+            # C2: verify tool-calling answers against the actual tool outputs,
+            # since they are not part of the vector provenance.
+            from rag.answer_finalize import finalize_tool_answer
+            from src.ollama_provider import get_last_tool_results
+
+            lang = rag_result.metric.query_language if rag_result else "vi"
+            finalized = await finalize_tool_answer(
+                query, response_text, get_last_tool_results(), language=lang
+            )
+            response_text = finalized.text
+            decision_value = finalized.decision.value
+            metric.response_length = len(response_text)
+
         # Re-save metrics to ensure SQL database write
         metrics = get_metrics_manager()
         await metrics.update_db(metric)
 
         # Save cache
-        if query_intent_str in ("analytical", "hybrid", "narrative") and response_text:
+        provenance = []
+        if rag_result:
+            provenance = [item.to_dict() for item in rag_result.provenance]
+
+        answered = decision_value == "answer"
+        # Vector provenance is only meaningful for non-tool answers.
+        cite_ok = answered and not use_tools_for_query
+        if (
+            rag_result
+            and answered
+            and query_intent_str in ("analytical", "hybrid", "narrative")
+            and response_text
+            and provenance
+        ):
             try:
                 cache = get_query_cache()
                 await cache.set(
                     query=query,
                     domain=detected_domain,
                     result={
-                        "response_text": response_text,
+                        "response_text": raw_answer,
+                        "decision": decision_value,
+                        "provenance": provenance,
+                        "language": rag_result.metric.query_language,
                         "prompt_tokens": prompt_tokens,
                         "completion_tokens": completion_tokens,
                     }
@@ -330,8 +463,28 @@ async def execute_rag_query(
             "query": query,
             "query_id": request_context.query_id,
             "response": response_text,
+            "decision": decision_value,
             "cache_hit": False,
             "latency_ms": round(latency, 2),
+            "source_count": len(provenance) if cite_ok else 0,
+            "sources": [
+                item.get("source_id", "")
+                for item in provenance
+                if cite_ok and payload.include_sources and item.get("source_id")
+            ],
+            "citations": [
+                {
+                    "label": item.get("label", ""),
+                    "locator": item.get("locator", ""),
+                    "source": item.get("source", ""),
+                    "heading_path": item.get("heading_path", ""),
+                    "excerpt": item.get("excerpt", ""),
+                    "url": item.get("url", ""),
+                    "similarity": item.get("similarity", 0.0),
+                }
+                for item in provenance
+                if cite_ok and payload.include_sources
+            ],
             "metrics": {
                 "prompt_tokens": prompt_tokens,
                 "completion_tokens": completion_tokens,
@@ -343,7 +496,11 @@ async def execute_rag_query(
         }
     except Exception as e:
         logger.exception(f"Error handling query: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        # Never leak internal exception text (DSNs, hosts, SQL) to callers (H8).
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal error (ref: {request_context.request_id[:8]})",
+        )
 
 def _build_metrics_summary(raw: Dict[str, Any]) -> MetricsSummary:
     total_queries = int(raw.get("total_queries", raw.get("recent_queries", 0)) or 0)
@@ -390,7 +547,7 @@ async def get_metrics() -> MetricsSummary:
         return _build_metrics_summary(raw)
     except Exception as e:
         logger.error(f"Error retrieving metrics: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="Internal error retrieving metrics")
 
 @app.post("/api/admin/reload", tags=["Admin"], dependencies=[Depends(get_api_key)])
 async def reload_knowledge_base():
@@ -400,4 +557,4 @@ async def reload_knowledge_base():
         return {"status": "success", "message": "Knowledge base reload and cache invalidation completed."}
     except Exception as e:
         logger.error(f"Error reloading knowledge base: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="Internal error reloading knowledge base")

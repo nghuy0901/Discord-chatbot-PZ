@@ -32,6 +32,8 @@ from src.ollama_provider import (
     ensure_model,
     health_check,
 )
+from rag.responses import decision_response
+from rag.result import RAGDecision
 from utils.context_manager import ContextManager
 from utils.message_utils import send_split_message
 
@@ -424,8 +426,10 @@ class NomNomClient(discord.Client):
         message_id = str(reaction.message.id)
         user_id = str(user.id)
 
-        # Get the query_id associated with this bot message
-        query_id = self.context_manager.get_last_query_id(channel_id)
+        # Get the query_id associated with this exact bot message.
+        query_id = self.context_manager.get_query_id_for_bot_message(message_id)
+        if not query_id:
+            query_id = self.context_manager.get_last_query_id(channel_id)
         if not query_id:
             logger.debug("No query_id found for feedback — skipping")
             return
@@ -477,6 +481,23 @@ class NomNomClient(discord.Client):
     # Core response generation (enhanced with A3 metrics timing)
     # ------------------------------------------------------------------
 
+    def _abstain_language(self, text: str) -> str:
+        """Best-effort language for canned refusals when no RAG metric exists."""
+        try:
+            from rag.query_preprocessor import get_preprocessor
+
+            return get_preprocessor()._detect_language(text)
+        except Exception:
+            return "vi"
+
+    @staticmethod
+    def _safe_error_message(request_context: Optional[RequestContext] = None) -> str:
+        """User-facing error text that never leaks internal exception details
+        (DSNs, hosts, paths, SQL) — the full error is logged server-side (H8)."""
+        rid = getattr(request_context, "request_id", "") if request_context else ""
+        ref = f" (mã lỗi: {str(rid)[:8]})" if rid else ""
+        return f"❌ Xin lỗi, mình gặp sự cố nội bộ{ref}. Bạn thử lại sau nhé."
+
     async def _generate_and_send(
         self, message: discord.Message, user_message: str
     ) -> None:
@@ -511,10 +532,98 @@ class NomNomClient(discord.Client):
 
         response_start = time.time()
 
+        # Check cache if RAG is enabled
+        cached_response = None
+        detected_domain = None
+        query_intent_str = None
+        if ENABLE_RAG:
+            try:
+                from rag.query_preprocessor import get_preprocessor
+                from utils.cache import get_query_cache
+                
+                preprocessor = get_preprocessor()
+                _, query_meta = preprocessor.preprocess(user_message, channel_name)
+                detected_domain = query_meta.get("domain")
+                query_intent = query_meta.get("query_intent")
+                query_intent_str = query_intent.value if hasattr(query_intent, 'value') else str(query_intent)
+                
+                if query_intent_str in ("analytical", "hybrid", "narrative"):
+                    cache = get_query_cache()
+                    cached_response = await cache.get(user_message, detected_domain)
+            except Exception as e:
+                logger.warning(f"Cache lookup failed: {e}")
+
+        if cached_response:
+            response_text = cached_response["response_text"]
+            # Re-attach the chunk-level citation footer for cached answers
+            # (it is stored separately from the raw answer text).
+            if os.getenv("RAG_SHOW_CITATIONS", "true").lower() == "true":
+                try:
+                    from rag.citations import render_sources_footer_from_dicts
+
+                    _footer = render_sources_footer_from_dicts(
+                        response_text,
+                        cached_response.get("provenance", []),
+                        language=(cached_response.get("language") or "vi"),
+                    )
+                    if _footer:
+                        response_text = f"{response_text}\n\n{_footer}"
+                except Exception:
+                    pass
+            # Send response to Discord
+            bot_msg = await self._send_response(message, response_text)
+            
+            # Record cache hit metric
+            response_time = (time.time() - response_start) * 1000
+            try:
+                from rag.metrics import get_metrics_manager, RAGMetric
+                metrics = get_metrics_manager()
+                metric = RAGMetric(
+                    channel_id=channel_id,
+                    user_id=str(message.author.id),
+                    original_query=user_message,
+                    processed_query=user_message,
+                    detected_domain=detected_domain,
+                    query_intent=query_intent_str,
+                    cache_hit=True,
+                    response_time_ms=response_time,
+                    response_length=len(response_text),
+                    prompt_tokens=cached_response.get("prompt_tokens", 0),
+                    completion_tokens=cached_response.get("completion_tokens", 0),
+                    total_tokens=cached_response.get("prompt_tokens", 0) + cached_response.get("completion_tokens", 0),
+                    rag_decision="answer",
+                    provenance=cached_response.get("provenance", []),
+                    trusted_source_count=len(cached_response.get("provenance", [])),
+                )
+                await metrics.record(metric)
+                self.context_manager.set_last_query_id(channel_id, metric.query_id)
+            except Exception as e:
+                logger.warning(f"Failed to record cache hit metric: {e}")
+                
+            # Track message in context window
+            self.context_manager.track_message(
+                channel_id=channel_id,
+                message_id=f"bot-{message.id}",
+                author_id=str(self.user.id),
+                author_name=str(self.user.display_name),
+                content=response_text,
+                is_bot=True,
+            )
+            
+            # Add feedback reactions
+            if ENABLE_FEEDBACK and bot_msg:
+                try:
+                    await bot_msg.add_reaction("👍")
+                    await bot_msg.add_reaction("👎")
+                    self.context_manager.set_last_bot_msg_id(channel_id, str(bot_msg.id))
+                    self.context_manager.set_query_id_for_bot_message(str(bot_msg.id), metric.query_id)
+                except Exception as e:
+                    logger.debug(f"Failed to add feedback reactions for cached response: {e}")
+            return
+
         try:
             # Build prompt with RAG + context (now passes channel_name for D2)
-            # Phase 4: build_prompt now returns query_intent as 3rd element
-            prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
+            prompt_messages, temperature, query_intent, rag_result = await self.context_manager.build_prompt(
                 channel_id=channel_id,
                 user_message=user_message,
                 user_name=author_name,
@@ -526,6 +635,63 @@ class NomNomClient(discord.Client):
 
             response_text = ""
             bot_msg = None
+            answered_with_tools = False
+
+            # C1: RAG was enabled but the build returned nothing (the exception
+            # was swallowed inside build_prompt). Do NOT fall through to a
+            # free-form LLM answer — that is exactly how the bot used to
+            # fabricate game facts on a transient DB/embedding error. Abstain.
+            if ENABLE_RAG and rag_result is None:
+                response_text = decision_response(
+                    self._abstain_language(user_message), RAGDecision.ABSTAIN
+                )
+                bot_msg = await self._send_response(message, response_text)
+                self.context_manager.track_message(
+                    channel_id=channel_id,
+                    message_id=f"bot-{message.id}",
+                    author_id=str(self.user.id),
+                    author_name=str(self.user.display_name),
+                    content=response_text,
+                    is_bot=True,
+                )
+                return
+
+            if rag_result and rag_result.decision is not RAGDecision.ANSWER:
+                response_text = decision_response(
+                    rag_result.metric.query_language,
+                    rag_result.decision,
+                )
+                bot_msg = await self._send_response(message, response_text)
+                response_time = (time.time() - response_start) * 1000
+                rag_result.metric.response_time_ms = response_time
+                rag_result.metric.response_length = len(response_text)
+                try:
+                    from rag.metrics import get_metrics_manager
+
+                    await get_metrics_manager().update_db(rag_result.metric)
+                except Exception:
+                    pass
+                self.context_manager.set_last_query_id(channel_id, rag_result.metric.query_id)
+                self.context_manager.track_message(
+                    channel_id=channel_id,
+                    message_id=f"bot-{message.id}",
+                    author_id=str(self.user.id),
+                    author_name=str(self.user.display_name),
+                    content=response_text,
+                    is_bot=True,
+                )
+                if ENABLE_FEEDBACK and bot_msg:
+                    try:
+                        await bot_msg.add_reaction("👍")
+                        await bot_msg.add_reaction("👎")
+                        self.context_manager.set_last_bot_msg_id(channel_id, str(bot_msg.id))
+                        self.context_manager.set_query_id_for_bot_message(
+                            str(bot_msg.id),
+                            rag_result.metric.query_id,
+                        )
+                    except Exception as e:
+                        logger.debug(f"Failed to add feedback reactions: {e}")
+                return
 
             # Phase 4: Intent-based routing
             # Determine if tool calling should be attempted based on query intent
@@ -566,6 +732,7 @@ class NomNomClient(discord.Client):
 
                     if response_text:
                         # Tool calling produced a response — send directly
+                        answered_with_tools = True
                         if len(response_text) > MAX_RESPONSE_LENGTH:
                             response_text = (
                                 response_text[:MAX_RESPONSE_LENGTH]
@@ -602,6 +769,7 @@ class NomNomClient(discord.Client):
                             temperature=temperature,
                             request_context=request_context,
                         )
+                        answered_with_tools = bool(response_text)
                     else:
                         response_text = await chat_completion(
                             messages=prompt_messages,
@@ -613,18 +781,133 @@ class NomNomClient(discord.Client):
                             response_text[:MAX_RESPONSE_LENGTH]
                             + "\n\n*…response truncated*"
                         )
-                    await self._send_response(message, response_text)
+                    bot_msg = await self._send_response(message, response_text)
 
-            # A3: Record response timing
+            # ---- Groundedness gate + chunk-level citations (answered turns) ----
+            # Capture this turn's token usage BEFORE the groundedness judge call
+            # (which would otherwise clobber the provider's last-usage snapshot).
+            main_token_usage = None
+            if (
+                rag_result
+                and rag_result.decision is RAGDecision.ANSWER
+                and response_text
+                and not answered_with_tools  # tool answers come from the SQLite DB,
+                # which isn't in the vector provenance the groundedness gate checks
+            ):
+                try:
+                    from src.ollama_provider import get_last_token_usage as _gltu
+                    main_token_usage = _gltu()
+                except Exception:
+                    main_token_usage = None
+                try:
+                    from rag.answer_finalize import finalize_rag_answer
+
+                    finalized = await finalize_rag_answer(
+                        rag_result, user_message, response_text
+                    )
+                    if finalized.overridden:
+                        # Ungrounded answer → replace what the user already saw.
+                        response_text = finalized.text
+                        if bot_msg:
+                            try:
+                                await bot_msg.edit(content=response_text[:2000])
+                            except Exception:
+                                pass
+                    elif finalized.footer and bot_msg:
+                        # Chunk-level "Sources" footer as a follow-up message.
+                        try:
+                            await message.channel.send(finalized.footer[:2000])
+                        except Exception:
+                            pass
+                except Exception as fe:
+                    logger.warning(f"Answer finalize failed (non-fatal): {fe}")
+            elif answered_with_tools and response_text:
+                # C2: tool answers skip the vector-provenance gate above, so
+                # verify them against the actual tool outputs instead.
+                try:
+                    from src.ollama_provider import get_last_token_usage as _gltu
+
+                    main_token_usage = _gltu()
+                except Exception:
+                    main_token_usage = None
+                try:
+                    from rag.answer_finalize import finalize_tool_answer
+                    from src.ollama_provider import get_last_tool_results
+
+                    lang = (
+                        rag_result.metric.query_language
+                        if rag_result
+                        else self._abstain_language(user_message)
+                    )
+                    finalized = await finalize_tool_answer(
+                        user_message,
+                        response_text,
+                        get_last_tool_results(),
+                        language=lang,
+                    )
+                    if finalized.overridden:
+                        response_text = finalized.text
+                        if bot_msg:
+                            try:
+                                await bot_msg.edit(content=response_text[:2000])
+                            except Exception:
+                                pass
+                except Exception as fe:
+                    logger.warning(f"Tool answer finalize failed (non-fatal): {fe}")
+
+            # A3: Record response timing + token usage
             response_time = (time.time() - response_start) * 1000
             try:
                 from rag.metrics import get_metrics_manager
+                from src.ollama_provider import get_last_token_usage
                 metrics = get_metrics_manager()
                 # Update the most recent metric with response info
                 if metrics._recent:
                     last_metric = metrics._recent[-1]
                     last_metric.response_time_ms = response_time
                     last_metric.response_length = len(response_text)
+                    # Cost tracking: record token usage from LLM call.
+                    # Prefer the snapshot taken before the groundedness judge call.
+                    token_usage = main_token_usage or get_last_token_usage()
+                    if token_usage:
+                        last_metric.prompt_tokens = token_usage.get("prompt_tokens", 0)
+                        last_metric.completion_tokens = token_usage.get("completion_tokens", 0)
+                        last_metric.total_tokens = token_usage.get("total_tokens", 0)
+                        last_metric.estimated_cost_usd = token_usage.get("estimated_cost_usd", 0.0)
+
+                    # Redis caching: cache the response if it was a cache miss and is cacheable
+                    provenance = (
+                        [item.to_dict() for item in rag_result.provenance]
+                        if rag_result
+                        else []
+                    )
+                    if (
+                        not getattr(last_metric, "cache_hit", False)
+                        and last_metric.rag_decision == "answer"
+                        and last_metric.query_intent in ("analytical", "hybrid", "narrative")
+                        and response_text
+                        and provenance
+                    ):
+                        try:
+                            from utils.cache import get_query_cache
+                            cache = get_query_cache()
+                            await cache.set(
+                                query=last_metric.original_query,
+                                domain=last_metric.detected_domain,
+                                result={
+                                    "response_text": response_text,
+                                    "decision": "answer",
+                                    "provenance": provenance,
+                                    "language": last_metric.query_language,
+                                    "prompt_tokens": last_metric.prompt_tokens,
+                                    "completion_tokens": last_metric.completion_tokens,
+                                }
+                            )
+                        except Exception as ce:
+                            logger.warning(f"Failed to cache response: {ce}")
+
+                    # Persist updated metrics (latency, tokens, cost) back to DB
+                    await metrics.update_db(last_metric)
             except Exception:
                 pass
 
@@ -646,12 +929,22 @@ class NomNomClient(discord.Client):
                     await bot_msg.add_reaction("👎")
                     # Track the bot message ID for feedback mapping
                     self.context_manager.set_last_bot_msg_id(channel_id, str(bot_msg.id))
+                    mapped_query_id = (
+                        rag_result.metric.query_id
+                        if rag_result
+                        else self.context_manager.get_last_query_id(channel_id)
+                    )
+                    if mapped_query_id:
+                        self.context_manager.set_query_id_for_bot_message(
+                            str(bot_msg.id),
+                            mapped_query_id,
+                        )
                 except Exception as e:
                     logger.debug(f"Failed to add feedback reactions: {e}")
 
         except Exception as e:
             logger.exception(f"Response generation failed: {e}")
-            error_msg = f"❌ Sorry, I ran into an issue: {str(e)[:200]}"
+            error_msg = self._safe_error_message(request_context)
             try:
                 await self._send_response(message, error_msg)
             except Exception:
@@ -716,7 +1009,7 @@ class NomNomClient(discord.Client):
         except Exception as e:
             logger.error(f"Stream response error: {e}")
             try:
-                await bot_msg.edit(content=f"❌ Streaming error: {str(e)[:300]}")
+                await bot_msg.edit(content=self._safe_error_message(request_context))
             except Exception:
                 pass
             final_text = ""
@@ -725,7 +1018,7 @@ class NomNomClient(discord.Client):
 
     async def _send_response(
         self, message, content: str
-    ) -> None:
+    ) -> Any:
         """Send a response, handling slash commands vs regular messages."""
         # Resolve @Username → real Discord mentions
         content = self._resolve_mentions(
@@ -733,13 +1026,16 @@ class NomNomClient(discord.Client):
         )
         if hasattr(message, "followup"):
             await send_split_message(self, content, message)
+            return None
         else:
             if len(content) > 2000:
                 parts = [content[i : i + 1990] for i in range(0, len(content), 1990)]
+                msg = None
                 for part in parts:
-                    await message.channel.send(part)
+                    msg = await message.channel.send(part)
+                return msg
             else:
-                await message.reply(content, mention_author=False)
+                return await message.reply(content, mention_author=False)
 
     # ------------------------------------------------------------------
     # Slash command response (legacy compatibility)
@@ -752,13 +1048,20 @@ class NomNomClient(discord.Client):
             user_id="api_user",
             source="discord_slash",
         )
-        prompt_messages, temperature, query_intent = await self.context_manager.build_prompt(
+        prompt_messages, temperature, query_intent, rag_result = await self.context_manager.build_prompt(
             channel_id="slash-command",
             user_message=user_message,
             user_name="User",
             enable_rag=ENABLE_RAG,
             request_context=request_context,
         )
+        if rag_result and rag_result.decision is not RAGDecision.ANSWER:
+            response = decision_response(
+                rag_result.metric.query_language,
+                rag_result.decision,
+            )
+            self.context_manager.set_last_query_id("slash-command", rag_result.metric.query_id)
+            return response
         # Phase 4: Intent-based routing for slash commands
         use_tools = (
             ENABLE_TOOL_CALLING
@@ -779,6 +1082,30 @@ class NomNomClient(discord.Client):
                 temperature=temperature,
                 request_context=request_context,
             )
+
+        # L2: route /chat answers through the same finalize gate as @mentions
+        # (groundedness + citations for vector answers, tool-output verification
+        # for tool answers) so /chat can't ship an ungrounded answer either.
+        try:
+            if response and use_tools:
+                from rag.answer_finalize import finalize_tool_answer
+                from src.ollama_provider import get_last_tool_results
+
+                finalized = await finalize_tool_answer(
+                    user_message,
+                    response,
+                    get_last_tool_results(),
+                    language=(rag_result.metric.query_language if rag_result else "vi"),
+                )
+                response = finalized.text
+            elif response and rag_result and rag_result.decision is RAGDecision.ANSWER:
+                from rag.answer_finalize import finalize_rag_answer
+
+                finalized = await finalize_rag_answer(rag_result, user_message, response)
+                response = finalized.text
+        except Exception as fe:
+            logger.warning(f"/chat finalize failed (non-fatal): {fe}")
+
         self.context_manager.track_message(
             channel_id="slash-command",
             message_id=f"slash-{id(user_message)}",
@@ -809,7 +1136,7 @@ class NomNomClient(discord.Client):
             await send_split_message(self, response_content, message)
         except Exception as e:
             logger.exception(f"Error sending: {e}")
-            error_msg = f"❌ Error: {str(e)}"
+            error_msg = self._safe_error_message()
             if hasattr(message, "followup"):
                 await message.followup.send(error_msg)
             else:

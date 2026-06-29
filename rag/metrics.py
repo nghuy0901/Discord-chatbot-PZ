@@ -14,6 +14,7 @@ Storage: PostgreSQL table `rag_metrics` + in-memory rolling window for
 real-time /status dashboard data.
 """
 
+import json
 import os
 import time
 import uuid
@@ -64,6 +65,12 @@ REQUIRED_RAG_METRIC_COLUMNS = {
     "self_rag_time_ms",
     "empty_retrieval",
     "citation_coverage",
+    "rag_decision",
+    "decision_reason",
+    "provenance",
+    "trusted_source_count",
+    "untrusted_source_count",
+    "evidence_score",
     "response_time_ms",
     "response_length",
     "error",
@@ -117,6 +124,12 @@ METRIC_INSERT_COLUMNS = [
     "self_rag_time_ms",
     "empty_retrieval",
     "citation_coverage",
+    "rag_decision",
+    "decision_reason",
+    "provenance",
+    "trusted_source_count",
+    "untrusted_source_count",
+    "evidence_score",
     "response_time_ms",
     "response_length",
     "error",
@@ -155,7 +168,8 @@ class RAGMetric:
     retrieval_config_version: str = ""
 
     # Retrieval performance
-    retrieval_time_ms: float = 0.0
+    retrieval_time_ms: float = 0.0   # retrieval phase only
+    total_time_ms: float = 0.0       # whole RAG-build latency (not persisted, M7)
     num_results: int = 0
     avg_similarity: float = 0.0
     max_similarity: float = 0.0
@@ -180,6 +194,13 @@ class RAGMetric:
     self_rag_time_ms: float = 0.0
     empty_retrieval: bool = False
     citation_coverage: float = 0.0
+    rag_decision: str = "unknown"
+    decision_reason: str = ""
+    provenance: List[Dict[str, Any]] = field(default_factory=list)
+    trusted_source_count: int = 0
+    untrusted_source_count: int = 0
+    evidence_score: float = 0.0
+    groundedness_score: float = 1.0  # post-generation faithfulness (not persisted)
 
     # Response
     response_time_ms: float = 0.0
@@ -221,6 +242,7 @@ class MetricsManager:
         self._total_queries: int = 0
         self._total_errors: int = 0
         self._db_initialized: bool = False
+        self._persist_tasks: set = set()
 
     async def init_db(self) -> None:
         """Verify migration-managed metrics tables exist."""
@@ -271,9 +293,12 @@ class MetricsManager:
         if metric.error:
             self._total_errors += 1
 
-        # Async DB persist (fire-and-forget)
+        # Async DB persist. Retain the task reference so it cannot be garbage
+        # collected mid-flight, and drop it on completion (audit L7).
         if self._db_initialized:
-            asyncio.create_task(self._persist_metric(metric))
+            task = asyncio.create_task(self._persist_metric(metric))
+            self._persist_tasks.add(task)
+            task.add_done_callback(self._persist_tasks.discard)
 
     async def record_feedback(
         self, message_id: str, query_id: str, user_id: str, score: int
@@ -312,7 +337,7 @@ class MetricsManager:
                     *self._metric_values(metric, METRIC_INSERT_COLUMNS),
                 )
         except Exception as e:
-            logger.debug(f"Metric persist failed: {e}")
+            logger.warning(f"Metric persist failed: {e}")
 
     async def update_db(self, metric: RAGMetric) -> None:
         """Update mutable details of an already-recorded metric in DB."""
@@ -336,7 +361,7 @@ class MetricsManager:
                     *self._metric_values(metric, update_columns),
                 )
         except Exception as e:
-            logger.debug(f"Metric update failed: {e}")
+            logger.warning(f"Metric update failed: {e}")
 
     def _metric_values(self, metric: RAGMetric, columns: List[str]) -> List[Any]:
         values: List[Any] = []
@@ -344,6 +369,8 @@ class MetricsManager:
             value = getattr(metric, column)
             if column in {"original_query", "processed_query"} and value:
                 value = value[:500]
+            if column == "provenance":
+                value = json.dumps(value, ensure_ascii=False)
             values.append(value)
         return values
 
@@ -469,16 +496,16 @@ class MetricsManager:
                         PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY response_time_ms) as p95_response,
                         PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY response_time_ms) as p99_response
                     FROM rag_metrics
-                    WHERE timestamp > NOW() - INTERVAL '%s hours';
-                """ % hours)
+                    WHERE timestamp > NOW() - make_interval(hours => $1);
+                """, hours)
 
                 feedback_row = await conn.fetchrow("""
                     SELECT
                         COUNT(CASE WHEN feedback_score > 0 THEN 1 END) as positive,
                         COUNT(CASE WHEN feedback_score < 0 THEN 1 END) as negative
                     FROM rag_feedback
-                    WHERE timestamp > NOW() - INTERVAL '%s hours';
-                """ % hours)
+                    WHERE timestamp > NOW() - make_interval(hours => $1);
+                """, hours)
 
                 return {
                     "period_hours": hours,

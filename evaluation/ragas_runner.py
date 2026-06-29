@@ -4,7 +4,10 @@ import os
 from typing import Any, Dict, List
 
 from datasets import Dataset
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from ragas import evaluate
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.llms import LangchainLLMWrapper
 from ragas.metrics import (
     answer_correctness,
     answer_relevancy,
@@ -27,8 +30,10 @@ def require_eval_config() -> Dict[str, str]:
     required = [
         "EVAL_LLM_PROVIDER",
         "EVAL_LLM_MODEL",
+        "EVAL_LLM_BASE_URL",
         "EVAL_EMBEDDING_PROVIDER",
         "EVAL_EMBEDDING_MODEL",
+        "EVAL_EMBEDDING_BASE_URL",
     ]
     missing = [name for name in required if not os.getenv(name)]
     if missing:
@@ -53,5 +58,20 @@ def build_ragas_dataset(rows: List[Dict[str, Any]]) -> Dataset:
 def run_ragas_evaluation(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     require_eval_config()
     dataset = build_ragas_dataset(rows)
-    result = evaluate(dataset, metrics=RAGAS_METRICS)
+    llm = LangchainLLMWrapper(
+        ChatOpenAI(
+            model=os.environ["EVAL_LLM_MODEL"],
+            base_url=os.environ["EVAL_LLM_BASE_URL"],
+            api_key=os.getenv("EVAL_LLM_API_KEY", "local"),
+            temperature=0,
+        )
+    )
+    embeddings = LangchainEmbeddingsWrapper(
+        OpenAIEmbeddings(
+            model=os.environ["EVAL_EMBEDDING_MODEL"],
+            base_url=os.environ["EVAL_EMBEDDING_BASE_URL"],
+            api_key=os.getenv("EVAL_EMBEDDING_API_KEY", "local"),
+        )
+    )
+    result = evaluate(dataset, metrics=RAGAS_METRICS, llm=llm, embeddings=embeddings)
     return result.to_pandas().to_dict(orient="records")

@@ -109,13 +109,6 @@ async def execute_optimized_rag(query: str, domain: Optional[str] = None) -> Dic
         ]
         answer = await chat_completion(messages, temperature=0.8)
 
-        if metric.query_intent in ("analytical", "hybrid", "narrative"):
-            await cache.set(
-                query=query,
-                domain=metric.detected_domain,
-                result={"response_text": answer, "prompt_tokens": 0, "completion_tokens": 0},
-            )
-
         return {
             "answer": answer,
             "contexts": [rag_context] if rag_context else [],
@@ -187,7 +180,12 @@ def _aggregate_deterministic(rows: List[Dict[str, Any]]) -> Dict[str, float]:
 
 
 async def main() -> None:
-    parser = argparse.ArgumentParser(description="Run mandatory official RAGAS evaluation.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Run optional RAGAS experiments. Use scripts/run_release_eval.py "
+            "for production-path release gates."
+        )
+    )
     parser.add_argument("--dataset", default="evaluation/data/qa_dataset.json")
     parser.add_argument("--limit", type=int, default=10)
     parser.add_argument("--output", default="evaluation/reports/comparison_report.json")

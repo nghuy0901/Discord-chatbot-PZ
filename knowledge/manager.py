@@ -21,6 +21,7 @@ from typing import Optional, List, Dict, Any, Tuple
 from enum import Enum
 
 from langchain_core.documents import Document
+from rag.trust import trusted_kb_domains
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +51,24 @@ def _stable_doc_id(domain: str, source: str, chunk_index: int, text: str) -> str
     normalized_source = source.replace(os.sep, "/")
     digest = hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
     return f"{domain}:{normalized_source}:{chunk_index}:{digest}"
+
+
+def _dedupe_chunks_by_content(chunks: List["Document"]) -> List["Document"]:
+    """Collapse byte-identical chunk texts so each unique text is embedded once.
+
+    The markdown KB repeats some sections verbatim across many item pages (e.g. a
+    "Trash — can be used as fuel" block appearing ~30×), which previously produced
+    hundreds of identical embeddings that crowded out diverse results (audit C3).
+    """
+    seen: set = set()
+    unique: List["Document"] = []
+    for chunk in chunks:
+        digest = hashlib.sha256(chunk.page_content.encode("utf-8")).hexdigest()
+        if digest in seen:
+            continue
+        seen.add(digest)
+        unique.append(chunk)
+    return unique
 
 
 # ---------------------------------------------------------------------------
@@ -627,16 +646,25 @@ class KnowledgeManager:
             except Exception as e:
                 logger.warning(f"Failed to process {filepath}: {e}")
 
+        # Collapse byte-identical chunks before embedding (audit C3).
+        all_chunks = _dedupe_chunks_by_content(all_chunks)
+
         domain.doc_count = len(files)
         domain.chunk_count = len(all_chunks)
         domain.file_hashes = file_hashes
         domain.last_loaded = time.time()
 
-        # Delete old domain docs and insert new ones
+        # Upsert new chunks by stable doc_id, THEN prune chunks that no longer
+        # exist. Insert-before-delete means the domain is never emptied mid-reload
+        # on a partial failure, and add_documents(ids=…) makes re-inserts
+        # idempotent so repeated @reload cannot multiply rows (audit C3/M9).
         if all_chunks:
             store = self._get_vectorstore()
             try:
                 from rag.db import get_pool
+
+                ids = [c.metadata["doc_id"] for c in all_chunks]
+                store.add_documents(all_chunks, ids=ids)
 
                 pool = await get_pool()
                 async with pool.acquire() as conn:
@@ -646,15 +674,16 @@ class KnowledgeManager:
                         USING langchain_pg_collection c
                         WHERE e.collection_id = c.uuid
                           AND c.name = $1
-                          AND e.cmetadata->>'domain' = $2;
+                          AND e.cmetadata->>'domain' = $2
+                          AND NOT (e.cmetadata->>'doc_id' = ANY($3::text[]));
                         """,
                         KB_COLLECTION,
                         domain_name,
+                        ids,
                     )
-                store.add_documents(all_chunks)
                 logger.info(
                     f"Domain '{domain_name}': loaded {len(files)} files → "
-                    f"{len(all_chunks)} chunks"
+                    f"{len(all_chunks)} unique chunks (upserted by doc_id)"
                 )
             except Exception as e:
                 logger.error(f"Failed to store chunks for '{domain_name}': {e}")
@@ -686,6 +715,8 @@ class KnowledgeManager:
             List of result dicts with content, metadata, and similarity.
         """
         store = self._get_vectorstore()
+        if domain and domain not in trusted_kb_domains():
+            return []
         filter_dict = {"domain": domain} if domain else None
 
         try:
@@ -701,6 +732,9 @@ class KnowledgeManager:
 
         output = []
         for doc, score in results:
+            doc_domain = doc.metadata.get("domain", "")
+            if doc_domain not in trusted_kb_domains():
+                continue
             output.append({
                 "content": doc.page_content,
                 "similarity": score,
@@ -737,12 +771,26 @@ class KnowledgeManager:
             count = await self.load_domain(domain, force=True)
             if cache:
                 await cache.invalidate_domain(domain, kb_version=old_kb_version)
+            await self._refresh_kb_bm25()
             return {domain: count}
         else:
             res = await self.load_all()
             if cache:
                 await cache.invalidate_domain("all", kb_version=old_kb_version)
+            await self._refresh_kb_bm25()
             return res
+
+    async def _refresh_kb_bm25(self) -> None:
+        """Keep the KB BM25 index in sync with the vector store after a reload,
+        so hybrid search never runs the lexical and semantic arms over divergent
+        corpora (audit H4). Non-fatal — a BM25 refresh failure must not break the
+        reload itself."""
+        try:
+            from rag.bm25_search import get_kb_bm25
+
+            await get_kb_bm25().refresh_from_kb()
+        except Exception as e:
+            logger.warning(f"KB BM25 refresh after reload failed (non-fatal): {e}")
 
     def get_status(self) -> Dict[str, Any]:
         """Get knowledge base status for admin commands."""
@@ -855,6 +903,8 @@ class KnowledgeManager:
                             "domain": domain,
                             "source": rel_path,
                             "doc_id": _stable_doc_id(domain, rel_path, i, chunk_text),
+                            "trusted": domain in trusted_kb_domains(),
+                            "source_kind": "knowledge_base",
                             "chunk_index": i,
                             "total_chunks": len(md_chunks),
                             "file_name": os.path.basename(filepath),
@@ -889,6 +939,8 @@ class KnowledgeManager:
                     "domain": domain,
                     "source": rel_path,
                     "doc_id": _stable_doc_id(domain, rel_path, i, chunk_text),
+                    "trusted": domain in trusted_kb_domains(),
+                    "source_kind": "knowledge_base",
                     "chunk_index": i,
                     "total_chunks": len(chunks),
                     "file_name": os.path.basename(rel_path),

@@ -3,7 +3,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKED_EXTENSIONS = {".py", ".md", ".yml", ".yaml", ".txt"}
-IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache", "pgdata", "tmp"}
+IGNORED_PARTS = {".git", ".worktrees", "__pycache__", ".pytest_cache", "pgdata", "tmp"}
 IGNORED_PREFIXES = {
     ("docs", "audit"),
     ("docs", "superpowers", "plans"),

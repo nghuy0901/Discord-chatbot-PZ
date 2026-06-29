@@ -27,6 +27,10 @@ from typing import List, Dict, Any, Optional, Tuple
 from rag.db import search_similar, get_message_context
 from rag.query_preprocessor import get_preprocessor
 from rag.metrics import get_metrics_manager, RAGMetric
+from rag.trust import trusted_chat_filter
+from rag.evidence import EvidencePolicy
+from rag.result import RAGBuildResult, RAGDecision, ProvenanceItem
+from rag.citations import build_citation_context
 from src.observability.prompts import current_prompt_cache_version
 
 logger = logging.getLogger(__name__)
@@ -121,6 +125,35 @@ def _citation_coverage(results: List[Dict[str, Any]]) -> float:
     return cited / len(results)
 
 
+def _source_id(result: Dict[str, Any]) -> str:
+    if result.get("doc_id"):
+        return str(result["doc_id"])
+    if result.get("message_id"):
+        return str(result["message_id"])
+    source = result.get("source", "unknown")
+    chunk_index = result.get("chunk_index", 0)
+    return f"{source}#{chunk_index}"
+
+
+def _build_provenance(results: List[Dict[str, Any]]) -> List[ProvenanceItem]:
+    provenance = []
+    for rank, result in enumerate(results, start=1):
+        similarity = float(
+            result.get("similarity", result.get("rrf_score", 0.0)) or 0.0
+        )
+        provenance.append(
+            ProvenanceItem(
+                source_id=_source_id(result),
+                source_kind=str(result.get("source_kind") or result.get("content_type") or ""),
+                domain=str(result.get("domain") or ""),
+                trusted=bool(result.get("trusted")),
+                rank=rank,
+                similarity=similarity,
+            )
+        )
+    return provenance
+
+
 # ---------------------------------------------------------------------------
 # Core retrieval with A4 fallback + E1 hybrid search
 # ---------------------------------------------------------------------------
@@ -160,7 +193,7 @@ async def retrieve(
             )
         else:
             # Fallback: vector-only search
-            filter_dict = {"channel_id": channel_id} if channel_id else None
+            filter_dict = trusted_chat_filter(channel_id)
             results = search_similar(
                 query=query,
                 k=top_k,
@@ -188,7 +221,7 @@ async def retrieve(
                 )
                 _record_hybrid_metadata(metric, fallback_meta)
             else:
-                filter_dict = {"channel_id": channel_id} if channel_id else None
+                filter_dict = trusted_chat_filter(channel_id)
                 results = search_similar(
                     query=query,
                     k=RAG_FALLBACK_TOP_K,
@@ -242,6 +275,7 @@ async def retrieve_knowledge(
 
             kb_results, kb_meta = await hybrid_search(
                 query=query,
+                domains=domains,
                 vector_top_k=top_k,
                 bm25_top_k=top_k,
                 final_top_k=top_k,
@@ -328,11 +362,17 @@ def format_retrieved_for_prompt(
         if thread_ctx:
             ctx_lines = []
             for ctx_msg in thread_ctx[:3]:
-                ctx_author = ctx_msg.get("author_name") or ctx_msg.get("author_id", "?")
                 ctx_content = sanitize_retrieved_context(str(ctx_msg.get("content", "")))[:200]
+                if not ctx_content.strip():
+                    # message_edges rows carry only ids/edge_type — no content.
+                    # Skip empty lines instead of emitting "↳ [reply] @?:" noise
+                    # into the prompt (audit M5).
+                    continue
+                ctx_author = ctx_msg.get("author_name") or ctx_msg.get("author_id", "?")
                 edge = ctx_msg.get("edge_type", "related")
                 ctx_lines.append(f"    ↳ [{edge}] @{ctx_author}: {ctx_content}")
-            citation += "\n" + "\n".join(ctx_lines)
+            if ctx_lines:
+                citation += "\n" + "\n".join(ctx_lines)
 
         if total_chars + len(citation) > max_chars:
             lines.append(f"... ({len(results) - i + 1} more results omitted for brevity)")
@@ -347,7 +387,7 @@ def format_retrieved_for_prompt(
 # ---------------------------------------------------------------------------
 # Enhanced RAG context builder with all features
 # ---------------------------------------------------------------------------
-async def build_rag_context(
+async def build_rag_result(
     query: str,
     recent_messages: Optional[List[str]] = None,
     channel_id: Optional[str] = None,
@@ -355,7 +395,7 @@ async def build_rag_context(
     user_id: Optional[str] = None,
     request_context: Optional[Any] = None,
     top_k: int = RAG_TOP_K,
-) -> Tuple[str, Optional[str], RAGMetric]:
+) -> RAGBuildResult:
     """
     High-level helper: build the RAG context block for prompt construction.
 
@@ -376,7 +416,7 @@ async def build_rag_context(
         top_k: Max results.
 
     Returns:
-        Tuple of (formatted_context_string, domain_prompt, metric)
+        Structured RAG build result with decision, context, metric, and provenance.
     """
     metric_kwargs = {
         "channel_id": channel_id or "",
@@ -407,11 +447,11 @@ async def build_rag_context(
     if query_intent:
         metric.query_intent = query_intent.value if hasattr(query_intent, 'value') else str(query_intent)
 
-    # Enrich query with recent context
+    # Use the cleaned query directly for retrieval. Recent messages still drive
+    # clarification detection in EvidencePolicy, but are NOT folded into the
+    # embedded / BM25 query — doing so diluted the embedding centroid and
+    # injected spurious lexical matches from off-topic chatter (audit M2).
     search_text = processed_query
-    if recent_messages:
-        context_snippet = " | ".join(recent_messages[-5:])
-        search_text = f"{processed_query} [context: {context_snippet}]"
 
     retrieval_start = time.time()
 
@@ -500,11 +540,10 @@ async def build_rag_context(
             metric.llm_error = str(e)
 
     # ---- Compute similarity stats for A3 ----
-    all_similarities = [
-        r.get("similarity", r.get("rrf_score", 0))
-        for r in chat_results
-        if r.get("similarity") or r.get("rrf_score")
-    ]
+    from rag.scoring import relevance_score
+
+    all_similarities = [relevance_score(r) for r in chat_results]
+    all_similarities = [s for s in all_similarities if s > 0]
     if all_similarities:
         metric.avg_similarity = sum(all_similarities) / len(all_similarities)
         metric.max_similarity = max(all_similarities)
@@ -513,27 +552,86 @@ async def build_rag_context(
     metric.empty_retrieval = metric.num_results == 0
     metric.citation_coverage = _citation_coverage(kb_results + chat_results)
 
-    # ---- Format combined context ----
-    if kb_results:
-        from knowledge.domain_router import format_kb_results_for_prompt
-        kb_context = format_kb_results_for_prompt(_sanitize_result_content(kb_results))
+    all_results = kb_results + chat_results
+    assessment = EvidencePolicy().assess(
+        query=processed_query,
+        results=all_results,
+        recent_messages=recent_messages or [],
+        query_intent=metric.query_intent,
+    )
+    trusted_results = assessment.trusted_results
+    trusted_kb_results = [
+        result for result in trusted_results
+        if result.get("content_type") == "knowledge_base"
+        or result.get("source_kind") == "knowledge_base"
+        or result.get("source_type") == "knowledge_base"
+    ]
+    trusted_chat_results = [
+        result for result in trusted_results
+        if result not in trusted_kb_results
+    ]
 
-    chat_context = format_retrieved_for_prompt(_sanitize_result_content(chat_results))
+    # Unified, chunk-level citation context + provenance. Markers [n] in the
+    # context match the labels in `provenance` so the answer can cite passages.
+    citation_context, provenance = build_citation_context(
+        trusted_kb_results,
+        trusted_chat_results,
+        sanitize=sanitize_retrieved_context,
+    )
 
+    metric.rag_decision = assessment.decision.value
+    metric.decision_reason = assessment.reason
+    metric.evidence_score = assessment.score
+    metric.trusted_source_count = len(assessment.trusted_results)
+    metric.untrusted_source_count = len(assessment.rejected_results)
+    metric.provenance = [item.to_dict() for item in provenance]
+
+    # ---- Format combined context (only when we have decided to answer) ----
     combined_parts = []
-    if self_rag_annotation:
-        combined_parts.append(self_rag_annotation)
-    if kb_context:
-        combined_parts.append(kb_context)
-    if chat_context:
-        combined_parts.append(chat_context)
+    if assessment.decision is RAGDecision.ANSWER:
+        if self_rag_annotation:
+            combined_parts.append(self_rag_annotation)
+        if citation_context:
+            combined_parts.append(citation_context)
 
     combined_context = "\n\n".join(combined_parts)
 
     # ---- A3: Record metric ----
-    total_time = (time.time() - start_time) * 1000
-    metric.retrieval_time_ms = total_time
+    # retrieval_time_ms already holds the retrieval-phase latency; record the
+    # whole-build latency in its own field instead of overwriting it (audit M7).
+    metric.total_time_ms = (time.time() - start_time) * 1000
     metrics_manager = get_metrics_manager()
     await metrics_manager.record(metric)
 
-    return combined_context, domain_prompt, metric
+    return RAGBuildResult(
+        context=combined_context,
+        domain_prompt=domain_prompt or "",
+        metric=metric,
+        decision=assessment.decision,
+        decision_reason=assessment.reason,
+        evidence_score=assessment.score,
+        provenance=provenance,
+        retrieved_results=trusted_results,
+        primary_domain=metric.detected_domain,
+    )
+
+
+async def build_rag_context(
+    query: str,
+    recent_messages: Optional[List[str]] = None,
+    channel_id: Optional[str] = None,
+    channel_name: Optional[str] = None,
+    user_id: Optional[str] = None,
+    request_context: Optional[Any] = None,
+    top_k: int = RAG_TOP_K,
+) -> Tuple[str, Optional[str], RAGMetric]:
+    result = await build_rag_result(
+        query=query,
+        recent_messages=recent_messages,
+        channel_id=channel_id,
+        channel_name=channel_name,
+        user_id=user_id,
+        request_context=request_context,
+        top_k=top_k,
+    )
+    return result.context, result.domain_prompt or None, result.metric

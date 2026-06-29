@@ -72,23 +72,22 @@ jobs:
       - name: Run deterministic retrieval metric tests
         run: python -m pytest tests/test_retrieval_metrics.py -q
 
-  ragas-release-eval:
+  rag-quality-unit:
     runs-on: ubuntu-latest
-    if: ${{ vars.RUN_RAGAS_RELEASE_EVAL == 'true' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Run official RAGAS release eval
-        env:
-          EVAL_LLM_PROVIDER: ${{ secrets.EVAL_LLM_PROVIDER }}
-          EVAL_LLM_MODEL: ${{ secrets.EVAL_LLM_MODEL }}
-          EVAL_EMBEDDING_PROVIDER: ${{ secrets.EVAL_EMBEDDING_PROVIDER }}
-          EVAL_EMBEDDING_MODEL: ${{ secrets.EVAL_EMBEDDING_MODEL }}
-          LLM_PROVIDER: ${{ secrets.LLM_PROVIDER }}
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-        run: python scripts/run_ragas_eval.py --dataset evaluation/data/release_qa.json --limit 50 --output evaluation/reports/release_report.json
+      - run: pip install -r requirements.txt
+      - run: python scripts/validate_eval_dataset.py --dataset evaluation/data/release_qa.v1.jsonl
+      - run: python -m pytest tests/evaluation tests/rag tests/knowledge tests/admin -q
+
+  rag-release-eval:
+    if: ${{ vars.RUN_RAG_RELEASE_EVAL == 'true' }}
+    runs-on: [self-hosted, rag-eval]
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -r requirements.txt
+      - run: python scripts/validate_eval_dataset.py --dataset evaluation/data/release_qa.v1.jsonl --require-release-quota
+      - run: python scripts/run_release_eval.py --dataset evaluation/data/release_qa.v1.jsonl --split holdout --repeat 3 --output-dir evaluation/reports/holdout

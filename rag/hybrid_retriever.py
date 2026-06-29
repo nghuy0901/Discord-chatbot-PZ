@@ -19,6 +19,7 @@ RRF is preferred over linear combination because:
 """
 
 import os
+import hashlib
 import logging
 from typing import List, Dict, Any, Optional, Set, Tuple
 
@@ -32,6 +33,10 @@ RRF_K: int = int(os.getenv("RRF_K", "60"))  # RRF constant, higher = less aggres
 VECTOR_WEIGHT: float = float(os.getenv("VECTOR_WEIGHT", "0.6"))  # relative weight for vector
 BM25_WEIGHT: float = float(os.getenv("BM25_WEIGHT", "0.4"))  # relative weight for BM25
 HYBRID_TOP_K: int = int(os.getenv("HYBRID_TOP_K", "15"))
+# Max chunks sharing the same record/heading kept in a KB result set, so that
+# near-identical same-name records (e.g. 21 "Glass Bottle" variants) cannot
+# flood the top-k and crowd out diverse facts (audit M1).
+RAG_MAX_PER_RECORD: int = int(os.getenv("RAG_MAX_PER_RECORD", "2"))
 
 
 # ---------------------------------------------------------------------------
@@ -107,22 +112,69 @@ def reciprocal_rank_fusion(
 
 def _make_doc_id(result: Dict[str, Any], id_key: str = "content") -> str:
     """
-    Create a unique identifier for deduplication.
-    Uses message_id if available, otherwise falls back to content hash.
+    Create a unique identifier for deduplication / cross-arm merging.
+
+    Prefers stable explicit IDs so the vector copy and the BM25 copy of the same
+    document merge into one fused entry: message_id → doc_id → full-content hash.
+    The previous 100-char content *prefix* could both collide distinct chunks
+    (same boilerplate header) and fail to merge identical ones (audit H2/H4).
     """
-    # Prefer explicit IDs
     msg_id = result.get("message_id")
     if msg_id:
         return f"msg:{msg_id}"
 
-    # Fallback: content-based fingerprint
-    content = result.get(id_key, "")
+    doc_id = result.get("doc_id")
+    if doc_id:
+        return f"doc:{doc_id}"
+
+    # Fallback: full-content fingerprint (hash, not a truncated prefix).
+    content = result.get(id_key, "") or ""
     source = result.get("source", "")
     domain = result.get("domain", "")
+    digest = hashlib.sha256(str(content).encode("utf-8")).hexdigest()[:16]
+    return f"{domain}:{source}:{digest}"
 
-    # Use first 100 chars of content + source for ID
-    fingerprint = f"{domain}:{source}:{content[:100]}"
-    return fingerprint
+
+def _ensure_methods(results: List[Dict[str, Any]], method: str) -> List[Dict[str, Any]]:
+    """Tag single-arm results with a ``retrieval_methods`` list.
+
+    The RRF path sets ``retrieval_methods``; the vector-only / BM25-only
+    short-circuits bypass it, so downstream scoring/provenance would see no
+    method tag. Ensure it is always present (audit H2).
+    """
+    for r in results:
+        if not r.get("retrieval_methods"):
+            r["retrieval_methods"] = [method]
+    return results
+
+
+def _record_key(result: Dict[str, Any]) -> str:
+    return str(
+        result.get("record_name")
+        or result.get("heading_path")
+        or result.get("source")
+        or result.get("doc_id")
+        or ""
+    )
+
+
+def _cap_per_record(
+    results: List[Dict[str, Any]], limit: int
+) -> List[Dict[str, Any]]:
+    """Keep at most ``limit`` results per record/heading group (audit M1)."""
+    if limit <= 0:
+        return results
+    seen: Dict[str, int] = {}
+    capped: List[Dict[str, Any]] = []
+    for r in results:
+        key = _record_key(r)
+        if not key:
+            capped.append(r)
+            continue
+        if seen.get(key, 0) < limit:
+            seen[key] = seen.get(key, 0) + 1
+            capped.append(r)
+    return capped
 
 
 # ---------------------------------------------------------------------------
@@ -131,6 +183,7 @@ def _make_doc_id(result: Dict[str, Any], id_key: str = "content") -> str:
 async def hybrid_search(
     query: str,
     channel_id: Optional[str] = None,
+    domains: Optional[List[str]] = None,
     vector_top_k: int = 15,
     bm25_top_k: int = 15,
     final_top_k: int = HYBRID_TOP_K,
@@ -144,6 +197,7 @@ async def hybrid_search(
     Args:
         query: Search query text.
         channel_id: Optional channel filter (for chat history).
+        domains: Optional allowed knowledge domains for KB search.
         vector_top_k: Max results from vector search.
         bm25_top_k: Max results from BM25 search.
         final_top_k: Max final fused results.
@@ -155,6 +209,7 @@ async def hybrid_search(
         Tuple of (fused_results, search_metadata).
     """
     import time
+    from rag.trust import filter_trusted_results, trusted_chat_filter
 
     metadata = {
         "search_type": search_type,
@@ -173,7 +228,7 @@ async def hybrid_search(
     try:
         if search_type == "chat":
             from rag.db import search_similar
-            filter_dict = {"channel_id": channel_id} if channel_id else None
+            filter_dict = trusted_chat_filter(channel_id)
             vector_results = search_similar(
                 query=query,
                 k=vector_top_k,
@@ -185,14 +240,31 @@ async def hybrid_search(
                 r["retrieval_method"] = "vector"
         elif search_type == "kb":
             from knowledge.manager import get_knowledge_manager
+            from rag.trust import trusted_domains_from
+
             kb = get_knowledge_manager()
-            vector_results = kb.search(
-                query=query,
-                k=vector_top_k,
-                score_threshold=vector_threshold,
-            )
+            search_domains = trusted_domains_from(domains)
+            if search_domains:
+                for domain in search_domains:
+                    vector_results.extend(
+                        kb.search(
+                            query=query,
+                            domain=domain,
+                            k=vector_top_k,
+                            score_threshold=vector_threshold,
+                        )
+                    )
+            else:
+                vector_results = kb.search(
+                    query=query,
+                    k=vector_top_k,
+                    score_threshold=vector_threshold,
+                )
+            vector_results.sort(key=lambda x: x.get("similarity", 0), reverse=True)
+            vector_results = vector_results[:vector_top_k]
             for r in vector_results:
                 r["retrieval_method"] = "vector"
+        vector_results = filter_trusted_results(vector_results)
     except Exception as e:
         logger.warning(f"Hybrid: Vector search failed ({search_type}): {e}")
 
@@ -213,13 +285,26 @@ async def hybrid_search(
                 bm25_idx = get_kb_bm25()
 
             if bm25_idx.is_ready:
-                filter_dict = {"channel_id": channel_id} if channel_id and search_type == "chat" else None
+                if search_type == "chat":
+                    filter_dict = trusted_chat_filter(channel_id)
+                elif domains:
+                    search_domains = set(domains)
+                    filter_dict = None
+                else:
+                    search_domains = set()
+                    filter_dict = None
                 bm25_results = bm25_idx.search(
                     query=query,
                     top_k=bm25_top_k,
                     min_score=bm25_min_score,
                     filter_dict=filter_dict,
                 )
+                if search_type == "kb" and search_domains:
+                    bm25_results = [
+                        item for item in bm25_results
+                        if item.get("domain") in search_domains
+                    ]
+                bm25_results = filter_trusted_results(bm25_results)
             else:
                 logger.debug(
                     f"Hybrid: BM25 index not ready ({search_type}), "
@@ -235,19 +320,25 @@ async def hybrid_search(
     fusion_start = time.time()
 
     if not HYBRID_ENABLED or not bm25_results:
-        # No BM25 results → just return vector results
-        fused = vector_results[:final_top_k]
+        # No BM25 results → vector only. Tag the method so downstream scoring
+        # and provenance still see a retrieval_methods list (audit H2).
+        fused = _ensure_methods(list(vector_results), "vector")
     elif not vector_results:
-        # No vector results → just return BM25 results
-        fused = bm25_results[:final_top_k]
+        # No vector results → BM25 only (common for VN queries before H3).
+        fused = _ensure_methods(list(bm25_results), "bm25")
     else:
-        # Fuse with RRF
+        # Fuse with RRF (merges cross-arm copies by stable id, see _make_doc_id).
         fused = reciprocal_rank_fusion(
             result_lists=[vector_results, bm25_results],
             weights=[VECTOR_WEIGHT, BM25_WEIGHT],
             k=RRF_K,
         )
-        fused = fused[:final_top_k]
+
+    # KB diversity: cap near-identical same-record chunks before the final cut
+    # so the cap cannot silently shrink the result set below final_top_k (M1).
+    if search_type == "kb":
+        fused = _cap_per_record(fused, RAG_MAX_PER_RECORD)
+    fused = fused[:final_top_k]
 
     metadata["fusion_time_ms"] = (time.time() - fusion_start) * 1000
     metadata["fused_results"] = len(fused)

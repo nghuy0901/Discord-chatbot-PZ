@@ -35,7 +35,8 @@ def validate_environment() -> bool:
     if os.getenv("ENABLE_RAG", "true").lower() == "true":
         pg_url = os.getenv("POSTGRES_URL", "")
         if pg_url:
-            logger.info(f"RAG: enabled (PostgreSQL configured)")
+            is_supabase = "supabase" in pg_url
+            logger.info(f"RAG: enabled ({'Supabase' if is_supabase else 'local'} PostgreSQL)")
         else:
             logger.warning("RAG: enabled but POSTGRES_URL not set — will use default")
     else:

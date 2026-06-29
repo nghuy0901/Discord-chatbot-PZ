@@ -177,7 +177,9 @@ class BM25Index:
                     JOIN langchain_pg_collection c ON e.collection_id = c.uuid
                     WHERE c.name = $1
                     AND e.document IS NOT NULL
-                    AND LENGTH(e.document) > 5;
+                    AND LENGTH(e.document) > 5
+                    AND e.cmetadata->>'approval_status' = 'approved'
+                    AND e.cmetadata->>'trusted' = 'true';
                 """, coll)
 
             documents = []
@@ -214,6 +216,7 @@ class BM25Index:
         try:
             from rag.db import get_pool
             from knowledge.manager import KB_COLLECTION
+            from rag.trust import trusted_kb_domains
 
             pool = await get_pool()
             async with pool.acquire() as conn:
@@ -225,8 +228,10 @@ class BM25Index:
                     JOIN langchain_pg_collection c ON e.collection_id = c.uuid
                     WHERE c.name = $1
                     AND e.document IS NOT NULL
-                    AND LENGTH(e.document) > 5;
-                """, KB_COLLECTION)
+                    AND LENGTH(e.document) > 5
+                    AND e.cmetadata->>'domain' = ANY($2::text[])
+                    AND COALESCE(e.cmetadata->>'trusted', 'false') = 'true';
+                """, KB_COLLECTION, sorted(trusted_kb_domains()))
 
             documents = []
             for row in rows:
@@ -262,7 +267,7 @@ class BM25Index:
         query: str,
         top_k: int = BM25_TOP_K,
         min_score: float = BM25_MIN_SCORE,
-        filter_dict: Optional[Dict[str, str]] = None,
+        filter_dict: Optional[Dict[str, Any]] = None,
     ) -> List[Dict[str, Any]]:
         """
         Search the BM25 index for relevant documents.

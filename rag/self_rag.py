@@ -28,6 +28,8 @@ import asyncio
 from typing import List, Dict, Any, Optional, Tuple
 from dataclasses import dataclass, field
 
+from rag.scoring import relevance_score, has_semantic_score
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -38,6 +40,9 @@ SELF_RAG_MAX_GRADE: int = int(os.getenv("SELF_RAG_MAX_GRADE", "10"))
 SELF_RAG_MIN_RELEVANT: float = float(os.getenv("SELF_RAG_MIN_RELEVANT", "0.5"))
 SELF_RAG_SKIP_THRESHOLD: float = float(os.getenv("SELF_RAG_SKIP_THRESHOLD", "0.7"))
 SELF_RAG_TIMEOUT: int = int(os.getenv("SELF_RAG_TIMEOUT", "30"))  # seconds
+# Never let grading wipe out a non-empty retrieval set: if the grader marks
+# everything irrelevant, keep at least this many top-ranked docs (audit H5).
+SELF_RAG_MIN_KEEP: int = int(os.getenv("SELF_RAG_MIN_KEEP", "1"))
 
 # Grading mode: "batch" (one LLM call) or "individual" (N calls)
 SELF_RAG_MODE: str = os.getenv("SELF_RAG_MODE", "batch")
@@ -212,6 +217,28 @@ async def grade_relevance(
                 # Ungraded → include by default
                 filtered.append(result)
 
+        # H5: never let grading reduce a non-empty retrieval set to nothing. If
+        # the grader marked every graded doc irrelevant, keep the top-N by
+        # original retrieval rank — a flaky local grader must not turn a good
+        # retrieval into a false "I don't have enough information".
+        graded_any_relevant = any(
+            i < len(grades) and grades[i].is_relevant
+            for i in range(len(to_grade))
+        )
+        if to_grade and not graded_any_relevant:
+            keep_n = min(SELF_RAG_MIN_KEEP, len(to_grade))
+            forced = to_grade[:keep_n]
+            filtered = forced + [r for r in filtered if r not in forced]
+            metadata.skip_reason = (
+                f"{metadata.skip_reason};min_keep_floor"
+                if metadata.skip_reason
+                else "min_keep_floor"
+            )
+            logger.info(
+                f"Self-RAG: grader dropped all {len(to_grade)} docs; "
+                f"kept top {keep_n} by rank (min-keep floor)"
+            )
+
         # Add remaining (ungraded) results at the end
         filtered.extend(remaining)
 
@@ -239,14 +266,14 @@ def _should_skip_grading(results: List[Dict[str, Any]]) -> bool:
     if len(results) <= 2:
         return False  # Always grade when few results
 
-    # Check if all results have high similarity scores
-    similarities = [
-        r.get("similarity", r.get("rrf_score", 0)) for r in results
-    ]
-    if not similarities:
-        return False
+    # Only skip when the *semantic* (vector) scores are uniformly high. Averaging
+    # in tiny RRF / lexical values used to make this branch effectively never
+    # trigger after fusion (audit H2/H3).
+    semantic = [relevance_score(r) for r in results if has_semantic_score(r)]
+    if not semantic:
+        return False  # purely lexical results → always grade
 
-    avg_sim = sum(similarities) / len(similarities)
+    avg_sim = sum(semantic) / len(semantic)
     return avg_sim >= SELF_RAG_SKIP_THRESHOLD
 
 
@@ -262,9 +289,9 @@ async def _grade_batch(
     for i, r in enumerate(results, 1):
         content = r.get("content", "")[:500]
         source = r.get("source", r.get("author_name", "unknown"))
-        similarity = r.get("similarity", r.get("rrf_score", 0))
+        similarity = relevance_score(r)
         doc_lines.append(
-            f"[Document {i}] (similarity: {similarity:.2f}, source: {source})\n{content}"
+            f"[Document {i}] (relevance: {similarity:.2f}, source: {source})\n{content}"
         )
 
     documents_text = "\n\n".join(doc_lines)
@@ -476,8 +503,10 @@ def format_self_rag_annotation(metadata: SelfRAGMetadata) -> str:
 
     if relevant_pct < 50:
         lines.append(
-            "[⚠️ Low retrieval confidence — retrieved data may not fully answer the query. "
-            "Use your general knowledge as supplement and clearly indicate when doing so.]"
+            "[⚠️ Low retrieval confidence — the approved sources may not fully answer "
+            "the query. Answer ONLY from the approved sources above; if they are "
+            "insufficient, say so explicitly. Do NOT fill gaps with general "
+            "knowledge or assumptions.]"
         )
 
     return "\n".join(lines)

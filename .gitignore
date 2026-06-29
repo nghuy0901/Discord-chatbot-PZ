@@ -7,6 +7,9 @@ pgdata/
 # Backups
 backups/
 
+# Local eval / work artifacts
+tmp/
+
 config.json
 cookies.json
 *.har
@@ -174,3 +177,6 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 Pipfile*
+
+# Local isolated git worktrees
+.worktrees/

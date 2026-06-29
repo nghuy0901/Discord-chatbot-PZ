@@ -1,4 +1,30 @@
+from typing import List, Literal
+
 from pydantic import BaseModel
+
+
+class Citation(BaseModel):
+    """A chunk-level citation that a [n] marker in the answer resolves to."""
+    label: str = ""
+    locator: str = ""
+    source: str = ""
+    heading_path: str = ""
+    excerpt: str = ""
+    url: str = ""
+    similarity: float = 0.0
+
+
+class QueryResponse(BaseModel):
+    query: str
+    query_id: str
+    response: str
+    decision: Literal["answer", "clarify", "abstain"]
+    cache_hit: bool
+    latency_ms: float
+    source_count: int
+    sources: List[str] = []
+    citations: List[Citation] = []
+    metrics: dict
 
 
 class MetricsSummary(BaseModel):

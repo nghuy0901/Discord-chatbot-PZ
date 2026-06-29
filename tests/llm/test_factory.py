@@ -37,3 +37,30 @@ def test_factory_rejects_missing_provider(monkeypatch):
     monkeypatch.delenv("LLM_PROVIDER", raising=False)
     with pytest.raises(RuntimeError, match="LLM_PROVIDER"):
         build_llm_config()
+
+
+def test_ollama_config_uses_compatibility_environment(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
+    monkeypatch.delenv("LLM_MODEL", raising=False)
+    monkeypatch.delenv("LLM_BASE_URL", raising=False)
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
+    monkeypatch.setenv("OLLAMA_MODEL", "qwen3-coder-next:cloud")
+    monkeypatch.setenv("OLLAMA_BASE_URL", "https://ollama.com")
+    monkeypatch.setenv("OLLAMA_API_KEY", "ollama-test-key")
+
+    config = build_llm_config()
+
+    assert config.provider == "ollama"
+    assert config.model == "qwen3-coder-next:cloud"
+    assert config.base_url == "https://ollama.com"
+    assert config.api_key == "ollama-test-key"
+
+
+def test_ollama_cloud_requires_api_key(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
+    monkeypatch.setenv("OLLAMA_BASE_URL", "https://ollama.com")
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
+    monkeypatch.delenv("OLLAMA_API_KEY", raising=False)
+
+    with pytest.raises(RuntimeError, match="OLLAMA_API_KEY"):
+        build_llm_config()

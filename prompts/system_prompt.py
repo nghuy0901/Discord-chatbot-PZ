@@ -30,6 +30,7 @@ SECTION_ORDER: List[str] = [
     "identity_rules",
     "game_domain_rules",
     "rag_instructions",
+    "citation_rules",
     "formatting_rules",
 ]
 
