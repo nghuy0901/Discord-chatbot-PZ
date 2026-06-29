@@ -362,11 +362,17 @@ def format_retrieved_for_prompt(
         if thread_ctx:
             ctx_lines = []
             for ctx_msg in thread_ctx[:3]:
-                ctx_author = ctx_msg.get("author_name") or ctx_msg.get("author_id", "?")
                 ctx_content = sanitize_retrieved_context(str(ctx_msg.get("content", "")))[:200]
+                if not ctx_content.strip():
+                    # message_edges rows carry only ids/edge_type — no content.
+                    # Skip empty lines instead of emitting "↳ [reply] @?:" noise
+                    # into the prompt (audit M5).
+                    continue
+                ctx_author = ctx_msg.get("author_name") or ctx_msg.get("author_id", "?")
                 edge = ctx_msg.get("edge_type", "related")
                 ctx_lines.append(f"    ↳ [{edge}] @{ctx_author}: {ctx_content}")
-            citation += "\n" + "\n".join(ctx_lines)
+            if ctx_lines:
+                citation += "\n" + "\n".join(ctx_lines)
 
         if total_chars + len(citation) > max_chars:
             lines.append(f"... ({len(results) - i + 1} more results omitted for brevity)")

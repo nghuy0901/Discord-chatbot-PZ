@@ -304,6 +304,16 @@ def add_documents_batch(
                     except Exception as inner_e:
                         logger.warning(f"Single add failed: {inner_e}")
 
+    attempted = len(messages)
+    if count < attempted:
+        # Surface partial ingestion instead of silently undercounting the corpus
+        # (audit M6) — a systematic embedding failure must not look like success.
+        logger.warning(
+            "add_documents_batch ingested only %d/%d documents (%d failed); "
+            "the searchable corpus may be incomplete.",
+            count, attempted, attempted - count,
+        )
+
     return count
 
 

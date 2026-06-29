@@ -771,12 +771,26 @@ class KnowledgeManager:
             count = await self.load_domain(domain, force=True)
             if cache:
                 await cache.invalidate_domain(domain, kb_version=old_kb_version)
+            await self._refresh_kb_bm25()
             return {domain: count}
         else:
             res = await self.load_all()
             if cache:
                 await cache.invalidate_domain("all", kb_version=old_kb_version)
+            await self._refresh_kb_bm25()
             return res
+
+    async def _refresh_kb_bm25(self) -> None:
+        """Keep the KB BM25 index in sync with the vector store after a reload,
+        so hybrid search never runs the lexical and semantic arms over divergent
+        corpora (audit H4). Non-fatal — a BM25 refresh failure must not break the
+        reload itself."""
+        try:
+            from rag.bm25_search import get_kb_bm25
+
+            await get_kb_bm25().refresh_from_kb()
+        except Exception as e:
+            logger.warning(f"KB BM25 refresh after reload failed (non-fatal): {e}")
 
     def get_status(self) -> Dict[str, Any]:
         """Get knowledge base status for admin commands."""

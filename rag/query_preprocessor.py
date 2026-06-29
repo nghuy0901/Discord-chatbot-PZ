@@ -74,6 +74,38 @@ ABBREVIATIONS = {
     "mc": "Minecraft",
 }
 
+# Vietnamese → English game-term glossary (audit H3). Vietnamese users query an
+# English knowledge base, so the BM25 (lexical) arm never matches and hybrid
+# search collapses to vector-only. Appending the English equivalent gives the
+# lexical arm something to hit and anchors the embedding cross-lingually. The
+# original Vietnamese text is always preserved.
+GAME_GLOSSARY_VI_EN = {
+    "rìu": "axe", "búa": "hammer", "dao": "knife", "kiếm": "sword",
+    "súng": "gun", "đạn": "ammo bullet", "vũ khí": "weapon",
+    "giáp": "armor", "áo giáp": "armor", "quần áo": "clothing", "mũ": "hat helmet",
+    "băng gạc": "bandage", "băng": "bandage", "thuốc giảm đau": "painkillers",
+    "thuốc": "medicine pills", "vết thương": "wound injury",
+    "sơ cứu": "first aid", "nhiễm trùng": "infection", "nhiễm": "infection",
+    "thức ăn": "food", "đồ ăn": "food", "nước": "water",
+    "xăng": "gasoline fuel petrol", "nhiên liệu": "fuel",
+    "máy phát điện": "generator", "máy phát": "generator",
+    "xe cộ": "vehicle car", "xe": "vehicle car",
+    "gỗ": "wood plank", "cây": "tree wood", "đinh": "nails",
+    "lửa": "fire", "nấu ăn": "cooking", "câu cá": "fishing",
+    "trồng trọt": "farming", "nông nghiệp": "farming",
+    "mộc": "carpentry", "rèn": "metalworking blacksmith",
+    "may vá": "tailoring", "kỹ năng": "skill",
+    "công thức": "recipe", "chế tạo": "crafting",
+    "địa điểm": "location", "bản đồ": "map",
+    "thây ma": "zombie", "đói": "hunger", "khát": "thirst",
+    "mệt": "fatigue", "ngủ": "sleep",
+    "trạm xăng": "gas station", "bệnh viện": "hospital",
+    "đồn cảnh sát": "police station", "siêu thị": "supermarket grocery store",
+    "kho": "storage warehouse", "ba lô": "backpack bag", "túi": "bag",
+    "cửa": "door", "tường": "wall", "khóa": "lock",
+    "pin": "battery", "đèn pin": "flashlight",
+}
+
 # Discord formatting patterns
 DISCORD_MENTION_PATTERN = re.compile(r"<@!?\d+>")
 DISCORD_CHANNEL_PATTERN = re.compile(r"<#\d+>")
@@ -140,6 +172,10 @@ class QueryPreprocessor:
         if metadata["domain"]:
             cleaned = self._add_domain_context(cleaned, metadata["domain"])
 
+        # Step 6.5: Cross-lingual augmentation — append English game terms for
+        # Vietnamese queries so the lexical arm can match the English KB (H3).
+        cleaned = self._augment_cross_lingual(cleaned, metadata["language"])
+
         # Step 7 (Phase 4): Classify query intent for routing
         metadata["query_intent"] = self.classify_query(
             cleaned, detected_domain=metadata["domain"]
@@ -162,14 +198,42 @@ class QueryPreprocessor:
         text = URL_PATTERN.sub("[link]", text)
         return text
 
+    # Distinctive Vietnamese function words for ASCII-typed (no-diacritic) text.
+    # Kept narrow to avoid misflagging English.
+    _ASCII_VI_MARKERS = {
+        "khong", "duoc", "nhieu", "minh", "biet", "muon", "vay",
+        "roi", "chua", "bao nhieu", "nhung", "lam sao", "the nao",
+    }
+
     def _detect_language(self, text: str) -> str:
-        """Simple language detection based on Vietnamese diacritics."""
-        # Vietnamese diacritics: ắằẳẵặấầẩẫậéèẻẽẹêếềểễệ...
+        """Detect Vietnamese via diacritics, with an ASCII-Vietnamese fallback."""
         viet_chars = set("àáảãạăắằẳẵặâấầẩẫậèéẻẽẹêếềểễệìíỉĩịòóỏõọôốồổỗộơớờởỡợùúủũụưứừửữựỳýỷỹỵđ")
-        viet_count = sum(1 for c in text.lower() if c in viet_chars)
+        low = text.lower()
+        viet_count = sum(1 for c in low if c in viet_chars)
         if viet_count >= 2 or (viet_count >= 1 and len(text) < 20):
             return "vi"
+        # ASCII Vietnamese (typed without diacritics) is common in chat (L5).
+        hits = sum(1 for m in self._ASCII_VI_MARKERS if m in low)
+        if hits >= 2:
+            return "vi"
         return "en"
+
+    def _augment_cross_lingual(self, text: str, language: str) -> str:
+        """Append English game-term equivalents for Vietnamese queries (H3).
+
+        The original text is preserved; English synonyms are appended only when
+        not already present, so the lexical (BM25) arm can match the English KB.
+        """
+        if language != "vi":
+            return text
+        low = text.lower()
+        extra: list = []
+        for vi_term, en_term in GAME_GLOSSARY_VI_EN.items():
+            if vi_term in low:
+                for en in en_term.split():
+                    if en not in low and en not in extra:
+                        extra.append(en)
+        return f"{text} {' '.join(extra)}" if extra else text
 
     def _expand_abbreviations(self, text: str) -> str:
         """Expand known abbreviations/slang."""
@@ -193,7 +257,8 @@ class QueryPreprocessor:
         text_lower = text.lower()
         channel = (channel_name or "").lower()
 
-        # Domain keyword maps
+        # Domain keyword maps (bilingual — Vietnamese users rarely type the
+        # English wiki terms, audit M4)
         domain_keywords = {
             "pz": [
                 "project zomboid", "zomboid", "pz", "zombie",
@@ -202,6 +267,16 @@ class QueryPreprocessor:
                 "crafting", "metalwork", "tailoring",
                 "first aid", "farming", "fishing",
                 "barricade", "generator", "vehicle",
+                # Vietnamese
+                "thây ma", "sinh tồn", "chế tạo", "nấu ăn", "câu cá",
+                "trồng trọt", "mộc", "rèn", "may vá", "sơ cứu",
+                "vết thương", "máy phát", "xe cộ", "vũ khí", "rìu",
+                "công thức", "kỹ năng", "đói", "khát", "nhiễm",
+            ],
+            "server_rules": [
+                "server rule", "server rules", "rules of", "regulation",
+                "quy định", "quy tắc", "nội quy", "luật server", "luật chơi",
+                "vi phạm", "hình phạt",
             ],
         }
 
