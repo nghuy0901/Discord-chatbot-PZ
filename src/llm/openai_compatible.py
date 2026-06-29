@@ -12,6 +12,9 @@ class OpenAICompatibleClient:
     def __init__(self, config: LLMConfig):
         self.config = config
         self._client = AsyncOpenAI(
+            # Local OpenAI-compatible servers (vLLM) ignore the key; the
+            # "local-dev-key" fallback is dev-only and is rejected at startup in
+            # production by src.startup.validate_runtime_config (audit M10).
             api_key=config.api_key or "local-dev-key",
             base_url=config.base_url,
             timeout=config.timeout_seconds,

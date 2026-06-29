@@ -439,4 +439,10 @@ def run_discord_bot():
     # ------------------------------------------------------------------
     # Run
     # ------------------------------------------------------------------
+    # Fail fast on misconfiguration instead of booting "fine" and then failing
+    # on every message (and leaking the misconfig to users) — audit H9.
+    from src.startup import validate_runtime_config
+
+    validate_runtime_config(require_discord=True)
+
     discordClient.run(os.getenv("DISCORD_BOT_TOKEN"))

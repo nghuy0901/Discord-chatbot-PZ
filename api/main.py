@@ -81,6 +81,15 @@ app = FastAPI(
 @app.on_event("startup")
 async def startup_event():
     logger.info("Starting up RAG REST API server...")
+    # Validate config at boot: hard-fail in production (audit H9), warn in dev.
+    from src.startup import validate_runtime_config, is_production
+
+    try:
+        validate_runtime_config(require_api=True)
+    except Exception as e:
+        if is_production():
+            raise
+        logger.warning(f"Startup config validation (non-fatal in dev): {e}")
     try:
         await init_db()
         await get_metrics_manager().init_db()
