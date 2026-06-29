@@ -597,8 +597,9 @@ async def build_rag_result(
     combined_context = "\n\n".join(combined_parts)
 
     # ---- A3: Record metric ----
-    total_time = (time.time() - start_time) * 1000
-    metric.retrieval_time_ms = total_time
+    # retrieval_time_ms already holds the retrieval-phase latency; record the
+    # whole-build latency in its own field instead of overwriting it (audit M7).
+    metric.total_time_ms = (time.time() - start_time) * 1000
     metrics_manager = get_metrics_manager()
     await metrics_manager.record(metric)
 
