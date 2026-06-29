@@ -17,6 +17,7 @@ os.environ["REDIS_CACHE_ENABLED"] = "false"
 from evaluation.dataset_schema import GoldenExample, validate_dataset
 from evaluation.reporting import EvaluationItemResult, EvaluationReport
 from evaluation.gates import evaluate_gates
+from evaluation.local_judge import judge_answer
 from evaluation.retrieval_metrics import (
     behavior_confusion,
     keyword_coverage,
@@ -65,7 +66,45 @@ def deterministic_scores(example: GoldenExample, source_ids: List[str], context:
     }
 
 
-async def run_example(example: GoldenExample) -> EvaluationItemResult:
+# Judge-produced metrics that may be promoted into the enforced gate, but only
+# once the judge is calibrated against human review (audit C5/C6).
+JUDGE_PRODUCED_METRICS = {"faithfulness", "unsupported_claim_rate", "critical_error_count"}
+
+
+def judge_enabled() -> bool:
+    """The LLM judge runs only when an eval LLM is configured."""
+    return bool(os.getenv("EVAL_LLM_MODEL") and os.getenv("EVAL_LLM_BASE_URL"))
+
+
+async def _judge_item(
+    example: GoldenExample, answer: str, contexts: List[str], judge
+) -> Dict[str, Any]:
+    """Score one answered item with the LLM judge; return {} if not judged.
+
+    Resilient: a judge failure must never crash the eval — the item is simply
+    left unjudged (and excluded from judge aggregates).
+    """
+    if judge is None or not example.ground_truth.strip():
+        return {}
+    try:
+        score = await judge(
+            question=example.question,
+            answer=answer,
+            ground_truth=example.ground_truth,
+            contexts=contexts,
+        )
+    except Exception as exc:
+        print(f"judge failed for {example.id}: {exc}", file=sys.stderr)
+        return {}
+    return {
+        "correctness": float(score.correctness),
+        "faithfulness": float(score.faithfulness),
+        "unsupported_claim": bool(score.unsupported_claim),
+        "critical_error": bool(score.critical_error),
+    }
+
+
+async def run_example(example: GoldenExample, judge=None) -> EvaluationItemResult:
     start = time.time()
     try:
         from prompts.system_prompt import build_system_prompt
@@ -99,6 +138,16 @@ async def run_example(example: GoldenExample) -> EvaluationItemResult:
 
         provenance = [item.to_dict() for item in rag_result.provenance]
         source_ids = [item["source_id"] for item in provenance]
+        run_judge = judge or (judge_answer if judge_enabled() else None)
+        contexts = [
+            str(result.get("content", ""))
+            for result in (rag_result.retrieved_results or [])
+        ][:8]
+        judge_scores = (
+            await _judge_item(example, answer, contexts, run_judge)
+            if rag_result.decision is RAGDecision.ANSWER
+            else {}
+        )
         latency_ms = (time.time() - start) * 1000
         return EvaluationItemResult(
             example_id=example.id,
@@ -108,7 +157,7 @@ async def run_example(example: GoldenExample) -> EvaluationItemResult:
             retrieved_source_ids=source_ids,
             provenance=provenance,
             deterministic_scores=deterministic_scores(example, source_ids, rag_result.context),
-            judge_scores={},
+            judge_scores=judge_scores,
             latency_ms=latency_ms,
         )
     except Exception as exc:
@@ -147,6 +196,25 @@ def summarize(items: List[EvaluationItemResult]) -> Dict[str, float]:
         [item.provenance for item in items],
     )
     summary["runtime_error_rate"] = runtime_error_rate([item.error for item in items])
+
+    # LLM-judge aggregates, computed only over items the judge actually scored
+    # (audit C5). These feed the gate only when the judge is calibrated.
+    judged = [item for item in items if item.judge_scores]
+    if judged:
+        summary["judged_count"] = len(judged)
+        summary["answer_correctness"] = sum(
+            i.judge_scores.get("correctness", 0.0) for i in judged
+        ) / len(judged)
+        summary["faithfulness"] = sum(
+            i.judge_scores.get("faithfulness", 0.0) for i in judged
+        ) / len(judged)
+        summary["unsupported_claim_rate"] = sum(
+            1 for i in judged if i.judge_scores.get("unsupported_claim")
+        ) / len(judged)
+        summary["critical_error_count"] = sum(
+            1 for i in judged if i.judge_scores.get("critical_error")
+        )
+
     return {key: round(value, 4) for key, value in summary.items()}
 
 
@@ -155,21 +223,66 @@ def load_gate_config() -> Dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def judge_is_calibrated() -> bool:
+    """True only if a judge calibration report marks the judge release-eligible.
+
+    Until the judge demonstrably agrees with human review (see
+    scripts/calibrate_local_judge.py), its metrics must not gate a release
+    (audit C5/C6). Point JUDGE_CALIBRATION_REPORT at the calibration JSON.
+    """
+    path = os.getenv("JUDGE_CALIBRATION_REPORT")
+    if not path:
+        return False
+    try:
+        report = json.loads(Path(path).read_text(encoding="utf-8"))
+    except Exception:
+        return False
+    return bool(report.get("eligible_for_release_gate"))
+
+
+def effective_gate_config(
+    config: Dict[str, Any], summary: Dict[str, float], calibrated: bool
+) -> "tuple[Dict[str, Any], List[str]]":
+    """Promote judge-produced thresholds from deferred_* into the enforced gate,
+    but only when the judge is calibrated AND the metric was actually produced."""
+    minimums = dict(config.get("minimums", {}))
+    maximums = dict(config.get("maximums", {}))
+    promoted: List[str] = []
+    if calibrated:
+        for name, threshold in config.get("deferred_minimums", {}).items():
+            if name in JUDGE_PRODUCED_METRICS and name in summary:
+                minimums[name] = threshold
+                promoted.append(name)
+        for name, threshold in config.get("deferred_maximums", {}).items():
+            if name in JUDGE_PRODUCED_METRICS and name in summary:
+                maximums[name] = threshold
+                promoted.append(name)
+    return {"minimums": minimums, "maximums": maximums}, promoted
+
+
 def apply_gate_verdict(report: EvaluationReport) -> None:
-    gate_result = evaluate_gates(report.summary, load_gate_config())
+    calibrated = judge_is_calibrated()
+    eff_config, promoted = effective_gate_config(
+        load_gate_config(), report.summary, calibrated
+    )
+    gate_result = evaluate_gates(report.summary, eff_config)
     report.summary["gate_status"] = "pass" if gate_result.passed else "fail"
     report.summary["product_ready"] = False
     report.summary["gate_failure_count"] = len(gate_result.failures)
     report.summary["gate_failures"] = gate_result.failures
+    report.summary["judge_calibrated"] = calibrated
+    report.summary["judge_metrics_enforced"] = promoted
 
 
-async def run_once(rows: List[Dict[str, Any]], split: str, repeat_index: int) -> EvaluationReport:
+async def run_once(
+    rows: List[Dict[str, Any]], split: str, repeat_index: int, judge=None
+) -> EvaluationReport:
     examples = [
         GoldenExample.from_dict(row)
         for row in rows
         if row.get("split") == split
     ]
-    items = [await run_example(example) for example in examples]
+    items = [await run_example(example, judge=judge) for example in examples]
     dataset_version = examples[0].dataset_version if examples else "unknown"
     return EvaluationReport(
         run_id=f"release-{split}-{repeat_index}-{uuid.uuid4().hex[:8]}",
