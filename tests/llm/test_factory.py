@@ -1,7 +1,33 @@
 import pytest
 
 from src.llm.embedding_factory import build_embedding_config
-from src.llm.factory import build_llm_config
+from src.llm.factory import build_llm_config, get_chat_client
+
+
+def test_ollama_cloud_config_and_client(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
+    monkeypatch.delenv("LLM_MODEL", raising=False)
+    monkeypatch.setenv("OLLAMA_MODEL", "qwen3-coder-next:cloud")
+    monkeypatch.setenv("OLLAMA_BASE_URL", "https://ollama.com")
+    monkeypatch.setenv("OLLAMA_API_KEY", "cloud-key")
+
+    config = build_llm_config()
+    assert config.provider == "ollama"
+    assert config.model == "qwen3-coder-next:cloud"
+    assert config.base_url == "https://ollama.com"
+
+    from src.llm.ollama_client import OllamaClient
+
+    assert isinstance(get_chat_client(), OllamaClient)
+
+
+def test_ollama_cloud_requires_api_key(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
+    monkeypatch.setenv("OLLAMA_BASE_URL", "https://ollama.com")
+    monkeypatch.delenv("OLLAMA_API_KEY", raising=False)
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="Ollama Cloud"):
+        build_llm_config()
 
 
 def test_openai_compatible_config_for_vllm(monkeypatch):
