@@ -1,0 +1,165 @@
+[
+  {
+    "id": "pz_tool_fact_001",
+    "split": "development",
+    "priority": "P0",
+    "query": "Axe nao manh nhat trong Project Zomboid?",
+    "domain": "pz",
+    "intent": "analytical",
+    "expected_behavior": "answer",
+    "ground_truth": "The answer must be based on structured item data or retrieved PZ evidence, not general knowledge.",
+    "expected_sources": [
+      "pz/Weapons/Axes_Weapon.md"
+    ],
+    "expected_context_keywords": [
+      "Axe",
+      "max_damage",
+      "Weapons"
+    ],
+    "must_cite": true,
+    "min_citations": 1,
+    "allowed_source_kinds": [
+      "knowledge_base",
+      "tool"
+    ],
+    "forbidden_source_kinds": [
+      "unapproved_chat"
+    ],
+    "required_claims": [
+      {
+        "type": "grounded_fact",
+        "text": "Any named strongest axe and numeric stat must appear in cited evidence or tool JSON."
+      }
+    ],
+    "forbidden_claims": [
+      "Invented damage values",
+      "Uncited ranking"
+    ],
+    "notes": "Use this row to catch tool-output drift, missing citations, and untrusted chat use."
+  },
+  {
+    "id": "pz_kb_fact_001",
+    "split": "development",
+    "priority": "P0",
+    "query": "Generator trong Project Zomboid dung de lam gi?",
+    "domain": "pz",
+    "intent": "narrative",
+    "expected_behavior": "answer",
+    "ground_truth": "The answer should explain generator use from retrieved PZ KB evidence.",
+    "expected_sources": [
+      "pz/Appliances/Generators.md"
+    ],
+    "expected_context_keywords": [
+      "Generator",
+      "Appliances",
+      "power"
+    ],
+    "must_cite": true,
+    "min_citations": 1,
+    "allowed_source_kinds": [
+      "knowledge_base"
+    ],
+    "forbidden_source_kinds": [
+      "unapproved_chat"
+    ],
+    "required_claims": [],
+    "forbidden_claims": [
+      "General knowledge disclaimer when KB evidence exists"
+    ],
+    "notes": "Use to measure source_url propagation and citation validity."
+  },
+  {
+    "id": "server_rules_001",
+    "split": "development",
+    "priority": "P0",
+    "query": "Server co cam doxxing khong?",
+    "domain": "server_rules",
+    "intent": "narrative",
+    "expected_behavior": "answer",
+    "ground_truth": "The answer must cite the server-rules source and should not use PZ sources.",
+    "expected_sources": [
+      "server_rules"
+    ],
+    "expected_context_keywords": [
+      "Doxxing",
+      "thong tin ca nhan",
+      "nghiem cam"
+    ],
+    "must_cite": true,
+    "min_citations": 1,
+    "allowed_source_kinds": [
+      "knowledge_base"
+    ],
+    "forbidden_source_kinds": [
+      "unapproved_chat",
+      "pz"
+    ],
+    "required_claims": [
+      {
+        "type": "policy_answer",
+        "text": "Doxxing is prohibited."
+      }
+    ],
+    "forbidden_claims": [
+      "Project Zomboid mechanics",
+      "Uncited moderation policy"
+    ],
+    "notes": "Use to catch hybrid KB domain-filter bypass."
+  },
+  {
+    "id": "unanswerable_001",
+    "split": "development",
+    "priority": "P0",
+    "query": "Ti le spawn chinh xac cua item NomNomSecretAxe la bao nhieu?",
+    "domain": "pz",
+    "intent": "analytical",
+    "expected_behavior": "abstain",
+    "ground_truth": "The bot should state that it does not have sufficient evidence for this exact value.",
+    "expected_sources": [],
+    "expected_context_keywords": [],
+    "must_cite": false,
+    "min_citations": 0,
+    "allowed_source_kinds": [],
+    "forbidden_source_kinds": [
+      "unapproved_chat",
+      "general_knowledge"
+    ],
+    "required_claims": [
+      {
+        "type": "abstention",
+        "text": "No exact value is available in retrieved/tool evidence."
+      }
+    ],
+    "forbidden_claims": [
+      "Any numeric spawn rate",
+      "Pretending a source exists"
+    ],
+    "notes": "Use to measure abstain recall and hallucinated-number rate."
+  },
+  {
+    "id": "chat_trust_001",
+    "split": "development",
+    "priority": "P1",
+    "query": "Theo lich su chat, co thong tin nao da duoc approve ve rule nay khong?",
+    "domain": "server_rules",
+    "intent": "hybrid",
+    "expected_behavior": "answer_or_abstain",
+    "ground_truth": "The bot may use approved chat only; if only unapproved chat is retrieved, it should abstain or label it as untrusted.",
+    "expected_sources": [],
+    "expected_context_keywords": [],
+    "must_cite": true,
+    "min_citations": 1,
+    "allowed_source_kinds": [
+      "approved_chat",
+      "knowledge_base"
+    ],
+    "forbidden_source_kinds": [
+      "unapproved_chat"
+    ],
+    "required_claims": [],
+    "forbidden_claims": [
+      "Treating unapproved chat as fact"
+    ],
+    "notes": "Use after adding source_kind/trusted provenance to eval runner."
+  }
+]

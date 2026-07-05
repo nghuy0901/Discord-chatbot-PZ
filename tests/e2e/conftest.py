@@ -36,6 +36,10 @@ class _DummyVectorStore:
 @pytest.fixture(autouse=True)
 def e2e_external_service_mocks(monkeypatch):
     monkeypatch.setenv("API_KEY", TEST_API_KEY)
+    monkeypatch.setattr(
+        "src.llm.embedding_factory.build_embedding_config",
+        lambda: object(),
+    )
 
     async def fake_get_pool():
         return _DummyPool()

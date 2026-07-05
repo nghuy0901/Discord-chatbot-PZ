@@ -45,6 +45,7 @@ except ImportError:
     STRUCTURED_TOOLS_AVAILABLE = False
 
 ENABLE_RAG: bool = os.getenv("ENABLE_RAG", "True").lower() == "true"
+ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "True").lower() == "true"
 ENABLE_TOOL_CALLING: bool = os.getenv("ENABLE_TOOL_CALLING", "True").lower() == "true"
 API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "60"))
 API_RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("API_RATE_LIMIT_WINDOW_SECONDS", "60"))
@@ -62,6 +63,18 @@ async def get_api_key(api_key: str = Depends(api_key_header)):
     if not api_key or api_key != expected_key:
         raise HTTPException(status_code=403, detail="Invalid or missing API Key")
     return api_key
+
+
+def get_embedding_config_error() -> Optional[str]:
+    if not ENABLE_RAG:
+        return None
+    try:
+        from src.llm.embedding_factory import build_embedding_config
+
+        build_embedding_config()
+        return None
+    except Exception as e:
+        return str(e)
 
 # Request body schemas
 class QueryRequest(BaseModel):
@@ -96,6 +109,20 @@ async def startup_event():
         logger.info("Database and metrics storage initialized.")
     except Exception as e:
         logger.error(f"Database initialization failed: {e}")
+    if ENABLE_KNOWLEDGE_BASE:
+        try:
+            result = await get_knowledge_manager().load_all()
+            logger.info("Knowledge base loaded for API: %s", result)
+        except Exception as e:
+            logger.error(f"Knowledge base initialization failed: {e}")
+    if ENABLE_RAG:
+        try:
+            from rag.bm25_search import init_bm25_indices
+
+            result = await init_bm25_indices()
+            logger.info("BM25 indices initialized for API: %s", result)
+        except Exception as e:
+            logger.error(f"BM25 initialization failed: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -110,6 +137,7 @@ async def shutdown_event():
 async def health_check():
     postgres_ok = False
     llm_ok = False
+    embedding_ok = False
     redis_ok = False
 
     # Check Postgres
@@ -127,6 +155,12 @@ async def health_check():
     except Exception as e:
         logger.warning(f"LLM health check failed: {e}")
 
+    # Check configured embedding provider
+    embedding_error = get_embedding_config_error()
+    embedding_ok = embedding_error is None
+    if embedding_error:
+        logger.warning(f"Embedding health check failed: {embedding_error}")
+
     # Check Redis
     try:
         cache = get_query_cache()
@@ -136,13 +170,14 @@ async def health_check():
     except Exception as e:
         logger.warning(f"Redis health check failed: {e}")
 
-    overall_status = "healthy" if (postgres_ok and llm_ok) else "degraded"
+    overall_status = "healthy" if (postgres_ok and llm_ok and embedding_ok) else "degraded"
 
     return {
         "status": overall_status,
         "services": {
             "postgres": "connected" if postgres_ok else "disconnected",
             "llm": "configured" if llm_ok else "not_configured",
+            "embedding": "configured" if embedding_ok else "not_configured",
             "redis_cache": "connected" if redis_ok else "disconnected (caching disabled)",
         }
     }
@@ -163,6 +198,12 @@ async def execute_rag_query(
         user_id=payload.user_id or "api_user",
         source="api",
     )
+    embedding_error = get_embedding_config_error()
+    if embedding_error:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Embedding provider is not configured: {embedding_error}",
+        )
 
     cached_response = None
     detected_domain = None
@@ -494,6 +535,8 @@ async def execute_rag_query(
                 "query_intent": query_intent_str
             }
         }
+    except HTTPException:
+        raise
     except Exception as e:
         logger.exception(f"Error handling query: {e}")
         # Never leak internal exception text (DSNs, hosts, SQL) to callers (H8).
