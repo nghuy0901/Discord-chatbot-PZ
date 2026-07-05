@@ -43,7 +43,9 @@ except ImportError:
     STRUCTURED_TOOLS_AVAILABLE = False
 
 ENABLE_RAG: bool = os.getenv("ENABLE_RAG", "True").lower() == "true"
+ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "True").lower() == "true"
 ENABLE_TOOL_CALLING: bool = os.getenv("ENABLE_TOOL_CALLING", "True").lower() == "true"
+ENFORCE_RAG_CITATIONS: bool = os.getenv("ENFORCE_RAG_CITATIONS", "True").lower() == "true"
 API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "60"))
 API_RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("API_RATE_LIMIT_WINDOW_SECONDS", "60"))
 api_rate_limiter = InMemoryRateLimiter(
@@ -60,6 +62,18 @@ async def get_api_key(api_key: str = Depends(api_key_header)):
     if not api_key or api_key != expected_key:
         raise HTTPException(status_code=403, detail="Invalid or missing API Key")
     return api_key
+
+
+def get_embedding_config_error() -> Optional[str]:
+    if not ENABLE_RAG:
+        return None
+    try:
+        from src.llm.embedding_factory import build_embedding_config
+
+        build_embedding_config()
+        return None
+    except Exception as e:
+        return str(e)
 
 # Request body schemas
 class QueryRequest(BaseModel):
@@ -84,6 +98,20 @@ async def startup_event():
         logger.info("Database and metrics storage initialized.")
     except Exception as e:
         logger.error(f"Database initialization failed: {e}")
+    if ENABLE_KNOWLEDGE_BASE:
+        try:
+            result = await get_knowledge_manager().load_all()
+            logger.info("Knowledge base loaded for API: %s", result)
+        except Exception as e:
+            logger.error(f"Knowledge base initialization failed: {e}")
+    if ENABLE_RAG:
+        try:
+            from rag.bm25_search import init_bm25_indices
+
+            result = await init_bm25_indices()
+            logger.info("BM25 indices initialized for API: %s", result)
+        except Exception as e:
+            logger.error(f"BM25 initialization failed: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -98,6 +126,7 @@ async def shutdown_event():
 async def health_check():
     postgres_ok = False
     llm_ok = False
+    embedding_ok = False
     redis_ok = False
 
     # Check Postgres
@@ -115,6 +144,12 @@ async def health_check():
     except Exception as e:
         logger.warning(f"LLM health check failed: {e}")
 
+    # Check configured embedding provider
+    embedding_error = get_embedding_config_error()
+    embedding_ok = embedding_error is None
+    if embedding_error:
+        logger.warning(f"Embedding health check failed: {embedding_error}")
+
     # Check Redis
     try:
         cache = get_query_cache()
@@ -124,13 +159,14 @@ async def health_check():
     except Exception as e:
         logger.warning(f"Redis health check failed: {e}")
 
-    overall_status = "healthy" if (postgres_ok and llm_ok) else "degraded"
+    overall_status = "healthy" if (postgres_ok and llm_ok and embedding_ok) else "degraded"
 
     return {
         "status": overall_status,
         "services": {
             "postgres": "connected" if postgres_ok else "disconnected",
             "llm": "configured" if llm_ok else "not_configured",
+            "embedding": "configured" if embedding_ok else "not_configured",
             "redis_cache": "connected" if redis_ok else "disconnected (caching disabled)",
         }
     }
@@ -151,6 +187,12 @@ async def execute_rag_query(
         user_id=payload.user_id or "api_user",
         source="api",
     )
+    embedding_error = get_embedding_config_error()
+    if embedding_error:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Embedding provider is not configured: {embedding_error}",
+        )
 
     cached_response = None
     detected_domain = None
@@ -173,6 +215,10 @@ async def execute_rag_query(
             logger.warning(f"Cache check failed: {e}")
 
     # Cache hit
+    if cached_response and ENABLE_RAG and not cached_response.get("citation_validation"):
+        logger.info("Ignoring cached RAG response without citation validation metadata.")
+        cached_response = None
+
     if cached_response:
         response_text = cached_response["response_text"]
         latency = (time.time() - query_start) * 1000
@@ -209,6 +255,7 @@ async def execute_rag_query(
             "response": response_text,
             "cache_hit": True,
             "latency_ms": round(latency, 2),
+            "citation_validation": cached_response.get("citation_validation"),
             "metrics": {
                 "prompt_tokens": cached_response.get("prompt_tokens", 0),
                 "completion_tokens": cached_response.get("completion_tokens", 0),
@@ -284,6 +331,41 @@ async def execute_rag_query(
 
         latency = (time.time() - query_start) * 1000
 
+        citation_validation = None
+        if ENABLE_RAG and ENFORCE_RAG_CITATIONS and rag_context:
+            from rag.citations import extract_citation_ids, validate_citations
+
+            evidence_ids = extract_citation_ids(rag_context)
+            if evidence_ids:
+                citation_result = validate_citations(
+                    response_text,
+                    evidence_ids,
+                    require_citation=True,
+                )
+                citation_validation = citation_result.to_dict()
+                metric.provenance = [
+                    {"citation_id": evidence_id} for evidence_id in evidence_ids
+                ]
+                metric.evidence_score = (
+                    len(citation_result.valid_ids) / len(citation_result.citation_ids)
+                    if citation_result.citation_ids
+                    else 0.0
+                )
+                if not citation_result.is_valid:
+                    metric.rag_decision = "abstain"
+                    metric.decision_reason = citation_result.error or "invalid_citation"
+                    metric.llm_error = metric.decision_reason
+                    await get_metrics_manager().update_db(metric)
+                    raise HTTPException(
+                        status_code=502,
+                        detail=(
+                            "LLM response failed citation validation: "
+                            f"{metric.decision_reason}"
+                        ),
+                    )
+                metric.rag_decision = "answer"
+                metric.decision_reason = "citation_validated"
+
         # Update metric with final run details
         metric.response_time_ms = latency
         metric.response_length = len(response_text)
@@ -321,6 +403,7 @@ async def execute_rag_query(
                         "response_text": response_text,
                         "prompt_tokens": prompt_tokens,
                         "completion_tokens": completion_tokens,
+                        "citation_validation": citation_validation,
                     }
                 )
             except Exception as ce:
@@ -332,6 +415,7 @@ async def execute_rag_query(
             "response": response_text,
             "cache_hit": False,
             "latency_ms": round(latency, 2),
+            "citation_validation": citation_validation,
             "metrics": {
                 "prompt_tokens": prompt_tokens,
                 "completion_tokens": completion_tokens,
@@ -341,6 +425,8 @@ async def execute_rag_query(
                 "query_intent": query_intent_str
             }
         }
+    except HTTPException:
+        raise
     except Exception as e:
         logger.exception(f"Error handling query: {e}")
         raise HTTPException(status_code=500, detail=str(e))

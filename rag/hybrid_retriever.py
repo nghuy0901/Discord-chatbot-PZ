@@ -131,6 +131,7 @@ def _make_doc_id(result: Dict[str, Any], id_key: str = "content") -> str:
 async def hybrid_search(
     query: str,
     channel_id: Optional[str] = None,
+    domains: Optional[List[str]] = None,
     vector_top_k: int = 15,
     bm25_top_k: int = 15,
     final_top_k: int = HYBRID_TOP_K,
@@ -144,6 +145,7 @@ async def hybrid_search(
     Args:
         query: Search query text.
         channel_id: Optional channel filter (for chat history).
+        domains: Optional knowledge-base domain filter.
         vector_top_k: Max results from vector search.
         bm25_top_k: Max results from BM25 search.
         final_top_k: Max final fused results.
@@ -165,6 +167,7 @@ async def hybrid_search(
         "vector_time_ms": 0,
         "bm25_time_ms": 0,
         "fusion_time_ms": 0,
+        "domains": domains or [],
     }
 
     # ---- 1. Vector (semantic) search ----
@@ -186,11 +189,28 @@ async def hybrid_search(
         elif search_type == "kb":
             from knowledge.manager import get_knowledge_manager
             kb = get_knowledge_manager()
-            vector_results = kb.search(
-                query=query,
-                k=vector_top_k,
-                score_threshold=vector_threshold,
-            )
+            if domains:
+                per_domain_k = max(vector_top_k, 1)
+                for domain in domains:
+                    vector_results.extend(
+                        kb.search(
+                            query=query,
+                            domain=domain,
+                            k=per_domain_k,
+                            score_threshold=vector_threshold,
+                        )
+                    )
+                vector_results.sort(
+                    key=lambda item: item.get("similarity", 0),
+                    reverse=True,
+                )
+                vector_results = vector_results[:vector_top_k]
+            else:
+                vector_results = kb.search(
+                    query=query,
+                    k=vector_top_k,
+                    score_threshold=vector_threshold,
+                )
             for r in vector_results:
                 r["retrieval_method"] = "vector"
     except Exception as e:
@@ -213,7 +233,11 @@ async def hybrid_search(
                 bm25_idx = get_kb_bm25()
 
             if bm25_idx.is_ready:
-                filter_dict = {"channel_id": channel_id} if channel_id and search_type == "chat" else None
+                filter_dict = None
+                if channel_id and search_type == "chat":
+                    filter_dict = {"channel_id": channel_id}
+                elif domains and search_type == "kb":
+                    filter_dict = {"domain": domains[0] if len(domains) == 1 else domains}
                 bm25_results = bm25_idx.search(
                     query=query,
                     top_k=bm25_top_k,

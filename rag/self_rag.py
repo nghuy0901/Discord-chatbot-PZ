@@ -124,6 +124,13 @@ class SelfRAGMetadata:
     grades: List[Dict[str, Any]] = field(default_factory=list)
 
 
+def _unknown_grades(count: int, reason: str) -> List[GradingResult]:
+    return [
+        GradingResult(index=i, relevance="UNKNOWN", score=0.0, reason=reason)
+        for i in range(count)
+    ]
+
+
 # ---------------------------------------------------------------------------
 # Grading logic
 # ---------------------------------------------------------------------------
@@ -293,12 +300,10 @@ async def _grade_batch(
 
     except asyncio.TimeoutError:
         logger.warning(f"Self-RAG batch grading timed out after {SELF_RAG_TIMEOUT}s")
-        return [GradingResult(index=i, relevance="RELEVANT", score=0.5, reason="Grading timed out")
-                for i in range(len(results))]
+        return _unknown_grades(len(results), "Grading timed out")
     except Exception as e:
         logger.warning(f"Self-RAG batch grading error: {e}")
-        return [GradingResult(index=i, relevance="RELEVANT", score=0.5, reason="Grading error")
-                for i in range(len(results))]
+        return _unknown_grades(len(results), "Grading error")
 
 
 async def _grade_individual(
@@ -330,7 +335,7 @@ async def _grade_individual(
             return _parse_individual_response(response, idx)
         except Exception as e:
             logger.debug(f"Individual grading failed for doc {idx}: {e}")
-            return GradingResult(index=idx, relevance="RELEVANT", score=0.5, reason="Grading failed")
+            return GradingResult(index=idx, relevance="UNKNOWN", score=0.0, reason="Grading failed")
 
     # Run all gradings concurrently
     tasks = [_grade_one(i, r) for i, r in enumerate(results)]
@@ -365,15 +370,9 @@ def _parse_batch_response(response: str, expected_count: int) -> List[GradingRes
                 grades_data = json.loads(match.group())
             except json.JSONDecodeError:
                 logger.warning("Self-RAG: Could not parse batch grading response")
-                return [
-                    GradingResult(index=i, relevance="RELEVANT", score=0.5, reason="Parse failed")
-                    for i in range(expected_count)
-                ]
+                return _unknown_grades(expected_count, "Parse failed")
         else:
-            return [
-                GradingResult(index=i, relevance="RELEVANT", score=0.5, reason="Parse failed")
-                for i in range(expected_count)
-            ]
+            return _unknown_grades(expected_count, "Parse failed")
 
     if not isinstance(grades_data, list):
         grades_data = [grades_data]
@@ -384,7 +383,7 @@ def _parse_batch_response(response: str, expected_count: int) -> List[GradingRes
             g = grades_data[i]
             relevance = str(g.get("relevance", "RELEVANT")).upper()
             if relevance not in ("RELEVANT", "PARTIALLY_RELEVANT", "IRRELEVANT"):
-                relevance = "RELEVANT"
+                relevance = "UNKNOWN"
             score = float(g.get("score", 0.5))
             score = max(0.0, min(1.0, score))
             reason = str(g.get("reason", ""))[:200]
@@ -397,8 +396,8 @@ def _parse_batch_response(response: str, expected_count: int) -> List[GradingRes
         else:
             results.append(GradingResult(
                 index=i,
-                relevance="RELEVANT",
-                score=0.5,
+                relevance="UNKNOWN",
+                score=0.0,
                 reason="Not graded (missing in response)",
             ))
 
@@ -425,13 +424,13 @@ def _parse_individual_response(response: str, index: int) -> GradingResult:
             try:
                 data = json.loads(match.group())
             except json.JSONDecodeError:
-                return GradingResult(index=index, relevance="RELEVANT", score=0.5, reason="Parse failed")
+                return GradingResult(index=index, relevance="UNKNOWN", score=0.0, reason="Parse failed")
         else:
-            return GradingResult(index=index, relevance="RELEVANT", score=0.5, reason="Parse failed")
+            return GradingResult(index=index, relevance="UNKNOWN", score=0.0, reason="Parse failed")
 
     relevance = str(data.get("relevance", "RELEVANT")).upper()
     if relevance not in ("RELEVANT", "PARTIALLY_RELEVANT", "IRRELEVANT"):
-        relevance = "RELEVANT"
+        relevance = "UNKNOWN"
 
     score = float(data.get("score", 0.5))
     score = max(0.0, min(1.0, score))

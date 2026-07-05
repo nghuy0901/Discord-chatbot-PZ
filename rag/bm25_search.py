@@ -313,9 +313,16 @@ class BM25Index:
 
             # Apply metadata filter
             if filter_dict:
-                match = all(
-                    doc.get(k) == v for k, v in filter_dict.items()
-                )
+                match = True
+                for key, expected in filter_dict.items():
+                    actual = doc.get(key)
+                    if isinstance(expected, (list, tuple, set)):
+                        if actual not in expected:
+                            match = False
+                            break
+                    elif actual != expected:
+                        match = False
+                        break
                 if not match:
                     continue
 

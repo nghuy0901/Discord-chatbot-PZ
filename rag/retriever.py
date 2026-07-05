@@ -242,6 +242,7 @@ async def retrieve_knowledge(
 
             kb_results, kb_meta = await hybrid_search(
                 query=query,
+                domains=domains,
                 vector_top_k=top_k,
                 bm25_top_k=top_k,
                 final_top_k=top_k,
