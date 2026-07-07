@@ -41,6 +41,12 @@ logger = logging.getLogger(__name__)
 RAG_TOP_K: int = int(os.getenv("RAG_TOP_K", "15"))
 RAG_SIMILARITY_THRESHOLD: float = float(os.getenv("RAG_SIMILARITY_THRESHOLD", "0.3"))
 
+# Candidate pool settings. `RAG_TOP_K` / `KB_TOP_K` remain the final caps after
+# Self-RAG relevance filtering; these values control the wider pre-rerank pool.
+RAG_VECTOR_TOP_K: int = int(os.getenv("RAG_VECTOR_TOP_K", str(RAG_TOP_K)))
+RAG_BM25_TOP_K: int = int(os.getenv("RAG_BM25_TOP_K", str(RAG_TOP_K)))
+RAG_FUSED_TOP_K: int = int(os.getenv("RAG_FUSED_TOP_K", str(RAG_TOP_K)))
+
 # A4: Fallback thresholds
 RAG_HIGH_THRESHOLD: float = float(os.getenv("RAG_HIGH_THRESHOLD", "0.5"))
 RAG_FALLBACK_THRESHOLD: float = float(os.getenv("RAG_FALLBACK_THRESHOLD", "0.2"))
@@ -49,6 +55,9 @@ RAG_FALLBACK_TOP_K: int = int(os.getenv("RAG_FALLBACK_TOP_K", "5"))
 # Knowledge base settings
 KB_TOP_K: int = int(os.getenv("KB_TOP_K", "5"))
 KB_THRESHOLD: float = float(os.getenv("KB_THRESHOLD", "0.35"))
+KB_VECTOR_TOP_K: int = int(os.getenv("KB_VECTOR_TOP_K", str(KB_TOP_K)))
+KB_BM25_TOP_K: int = int(os.getenv("KB_BM25_TOP_K", str(KB_TOP_K)))
+KB_FUSED_TOP_K: int = int(os.getenv("KB_FUSED_TOP_K", str(KB_TOP_K)))
 
 # E1: Hybrid RAG settings
 HYBRID_ENABLED: bool = os.getenv("HYBRID_RAG_ENABLED", "true").lower() == "true"
@@ -180,9 +189,9 @@ async def retrieve(
             results, search_meta = await hybrid_search(
                 query=query,
                 channel_id=channel_id,
-                vector_top_k=top_k,
-                bm25_top_k=top_k,
-                final_top_k=top_k,
+                vector_top_k=RAG_VECTOR_TOP_K,
+                bm25_top_k=RAG_BM25_TOP_K,
+                final_top_k=RAG_FUSED_TOP_K,
                 vector_threshold=threshold,
                 search_type="chat",
             )
@@ -276,9 +285,9 @@ async def retrieve_knowledge(
             kb_results, kb_meta = await hybrid_search(
                 query=query,
                 domains=domains,
-                vector_top_k=top_k,
-                bm25_top_k=top_k,
-                final_top_k=top_k,
+                vector_top_k=KB_VECTOR_TOP_K,
+                bm25_top_k=KB_BM25_TOP_K,
+                final_top_k=KB_FUSED_TOP_K,
                 vector_threshold=threshold,
                 search_type="kb",
             )
@@ -538,6 +547,16 @@ async def build_rag_result(
         except Exception as e:
             logger.warning(f"Self-RAG grading failed (non-fatal, using unfiltered): {e}")
             metric.llm_error = str(e)
+
+    # Final cap after the wider candidate pool and optional Self-RAG filtering.
+    # This keeps the prompt small while still letting retrieval recall more
+    # candidates before the relevance filter has a chance to remove noise.
+    if kb_results:
+        kb_results = kb_results[:KB_TOP_K]
+        metric.kb_results = len(kb_results)
+    if chat_results:
+        chat_results = chat_results[:top_k]
+        metric.chat_history_results = len(chat_results)
 
     # ---- Compute similarity stats for A3 ----
     from rag.scoring import relevance_score

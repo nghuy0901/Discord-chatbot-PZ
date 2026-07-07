@@ -69,6 +69,12 @@ class EvidencePolicy:
         self.separation_weight = float(
             os.getenv("RAG_EVIDENCE_SEPARATION_WEIGHT", "0.05")
         )
+        self.analytical_confidence_bonus = float(
+            os.getenv("RAG_ANALYTICAL_CONFIDENCE_BONUS", "0.05")
+        )
+        self.conversation_confidence_discount = float(
+            os.getenv("RAG_CONVERSATION_CONFIDENCE_DISCOUNT", "0.10")
+        )
 
     def assess(
         self,
@@ -185,9 +191,9 @@ class EvidencePolicy:
         clarify_min = self.clarify_min_confidence
         intent = (query_intent or "").lower()
         if intent == "analytical":
-            answer_min = _clamp(answer_min + 0.10)
+            answer_min = _clamp(answer_min + self.analytical_confidence_bonus)
         elif intent == "conversation":
-            answer_min = _clamp(answer_min - 0.10)
+            answer_min = _clamp(answer_min - self.conversation_confidence_discount)
         clarify_min = min(clarify_min, answer_min)
         return answer_min, clarify_min
 

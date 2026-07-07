@@ -46,7 +46,7 @@ def test_borderline_single_source_clarifies():
     assert a.decision is RAGDecision.CLARIFY
 
 
-def test_analytical_intent_is_stricter():
+def test_analytical_intent_accepts_strong_single_source():
     source = chunk(similarity=0.60, retrieval_methods=["vector"])
     base = EvidencePolicy().assess(
         query="So sánh rìu và búa",
@@ -61,7 +61,7 @@ def test_analytical_intent_is_stricter():
         query_intent="analytical",
     )
     assert base.decision is RAGDecision.ANSWER
-    assert strict.decision is RAGDecision.CLARIFY
+    assert strict.decision is RAGDecision.ANSWER
 
 
 def test_corroboration_raises_confidence():

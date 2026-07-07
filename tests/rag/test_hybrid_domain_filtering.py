@@ -16,16 +16,50 @@ async def test_retrieve_knowledge_passes_domains_to_hybrid_search(monkeypatch):
         )
 
     monkeypatch.setattr(retriever, "HYBRID_ENABLED", True)
+    monkeypatch.setattr(retriever, "KB_VECTOR_TOP_K", 30, raising=False)
+    monkeypatch.setattr(retriever, "KB_BM25_TOP_K", 40, raising=False)
+    monkeypatch.setattr(retriever, "KB_FUSED_TOP_K", 40, raising=False)
     monkeypatch.setattr(hybrid_retriever, "hybrid_search", fake_hybrid_search)
 
     results, primary_domain = await retriever.retrieve_knowledge(
         "generator",
         domains=["pz"],
+        top_k=7,
     )
 
     assert captured["domains"] == ["pz"]
+    assert captured["vector_top_k"] == 30
+    assert captured["bm25_top_k"] == 40
+    assert captured["final_top_k"] == 40
     assert results[0]["domain"] == "pz"
     assert primary_domain == "pz"
+
+
+@pytest.mark.asyncio
+async def test_retrieve_chat_uses_candidate_pool_before_final_cap(monkeypatch):
+    import rag.hybrid_retriever as hybrid_retriever
+    import rag.retriever as retriever
+
+    captured = {}
+
+    async def fake_hybrid_search(**kwargs):
+        captured.update(kwargs)
+        return (
+            [{"content": "chat result", "trusted": True, "approval_status": "approved"}],
+            {"vector_results": 1, "bm25_results": 0, "fused_results": 1},
+        )
+
+    monkeypatch.setattr(retriever, "HYBRID_ENABLED", True)
+    monkeypatch.setattr(retriever, "RAG_VECTOR_TOP_K", 20, raising=False)
+    monkeypatch.setattr(retriever, "RAG_BM25_TOP_K", 20, raising=False)
+    monkeypatch.setattr(retriever, "RAG_FUSED_TOP_K", 25, raising=False)
+    monkeypatch.setattr(hybrid_retriever, "hybrid_search", fake_hybrid_search)
+
+    await retriever.retrieve("axe", channel_id="c1", top_k=5, include_context=False)
+
+    assert captured["vector_top_k"] == 20
+    assert captured["bm25_top_k"] == 20
+    assert captured["final_top_k"] == 25
 
 
 @pytest.mark.asyncio
