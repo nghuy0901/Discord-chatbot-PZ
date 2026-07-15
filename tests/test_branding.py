@@ -7,6 +7,7 @@ IGNORED_PARTS = {".git", ".worktrees", "__pycache__", ".pytest_cache", "pgdata",
 IGNORED_PREFIXES = {
     ("docs", "audit"),
     ("docs", "superpowers", "plans"),
+    ("docs", "architecture"),
 }
 LEGACY_ALIAS_FILE = ROOT / "src" / "config" / "legacy_env.py"
 LEGACY_UPPER = "CL" "CT"

@@ -8,6 +8,8 @@ def test_migrations_are_numbered_and_non_empty():
         "002_add_rag_quality_metrics.sql",
         "003_add_eval_runs.sql",
         "004_add_rag_trust_and_quality.sql",
+        "005_add_embedding_collection_signatures.sql",
+        "006_add_groundedness_metrics.sql",
     ]
     assert all(path.read_text(encoding="utf-8").strip() for path in paths)
 

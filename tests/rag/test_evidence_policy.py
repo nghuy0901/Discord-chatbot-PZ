@@ -44,6 +44,16 @@ def test_clarifies_referential_query_without_history():
     assert assessment.decision is RAGDecision.CLARIFY
 
 
+def test_explicit_subject_with_pronoun_does_not_clarify():
+    assessment = EvidencePolicy().assess(
+        query="What is an axe and what damage does it do?",
+        results=[trusted_chunk()],
+        recent_messages=[],
+    )
+
+    assert assessment.decision is RAGDecision.ANSWER
+
+
 def test_unapproved_source_never_enables_answer():
     assessment = EvidencePolicy().assess(
         query="Luật generator là gì?",

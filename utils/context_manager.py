@@ -33,6 +33,7 @@ IMPLICIT_SIMILARITY_THRESHOLD: float = float(
     os.getenv("IMPLICIT_SIMILARITY_THRESHOLD", "0.75")
 )
 PERSONALITY_TEMPERATURE: float = float(os.getenv("PERSONALITY_TEMPERATURE", "0.8"))
+FACTUAL_TEMPERATURE: float = float(os.getenv("RAG_FACTUAL_TEMPERATURE", "0.1"))
 
 
 
@@ -311,7 +312,12 @@ class ContextManager:
         if not history or history[-1].content != user_message:
             messages.append({"role": "user", "content": f"@{user_name}: {user_message}"})
 
-        return messages, PERSONALITY_TEMPERATURE, query_intent, rag_result
+        temperature = (
+            PERSONALITY_TEMPERATURE
+            if query_intent == "conversation"
+            else FACTUAL_TEMPERATURE
+        )
+        return messages, temperature, query_intent, rag_result
 
     # ----- housekeeping -----
 

@@ -168,6 +168,7 @@ def _build_provenance(results: List[Dict[str, Any]]) -> List[ProvenanceItem]:
 # ---------------------------------------------------------------------------
 async def retrieve(
     query: str,
+    lexical_query: Optional[str] = None,
     channel_id: Optional[str] = None,
     top_k: int = RAG_TOP_K,
     threshold: float = RAG_SIMILARITY_THRESHOLD,
@@ -188,6 +189,7 @@ async def retrieve(
             from rag.hybrid_retriever import hybrid_search
             results, search_meta = await hybrid_search(
                 query=query,
+                bm25_query=lexical_query,
                 channel_id=channel_id,
                 vector_top_k=RAG_VECTOR_TOP_K,
                 bm25_top_k=RAG_BM25_TOP_K,
@@ -221,6 +223,7 @@ async def retrieve(
                 from rag.hybrid_retriever import hybrid_search
                 results, fallback_meta = await hybrid_search(
                     query=query,
+                    bm25_query=lexical_query,
                     channel_id=channel_id,
                     vector_top_k=RAG_FALLBACK_TOP_K,
                     bm25_top_k=RAG_FALLBACK_TOP_K,
@@ -264,6 +267,7 @@ async def retrieve(
 # ---------------------------------------------------------------------------
 async def retrieve_knowledge(
     query: str,
+    lexical_query: Optional[str] = None,
     domains: Optional[List[str]] = None,
     top_k: int = KB_TOP_K,
     threshold: float = KB_THRESHOLD,
@@ -284,6 +288,7 @@ async def retrieve_knowledge(
 
             kb_results, kb_meta = await hybrid_search(
                 query=query,
+                bm25_query=lexical_query,
                 domains=domains,
                 vector_top_k=KB_VECTOR_TOP_K,
                 bm25_top_k=KB_BM25_TOP_K,
@@ -447,6 +452,7 @@ async def build_rag_result(
     # ---- A2: Preprocess query ----
     preprocessor = get_preprocessor()
     processed_query, query_meta = preprocessor.preprocess(query, channel_name)
+    lexical_query = query_meta.get("lexical_query") or processed_query
     metric.processed_query = processed_query[:500]
     metric.query_language = query_meta.get("language", "unknown")
     metric.detected_domain = query_meta.get("domain")
@@ -455,6 +461,25 @@ async def build_rag_result(
     query_intent = query_meta.get("query_intent")
     if query_intent:
         metric.query_intent = query_intent.value if hasattr(query_intent, 'value') else str(query_intent)
+
+    if metric.query_intent == "conversation":
+        metric.rag_decision = RAGDecision.ANSWER.value
+        metric.decision_reason = "conversation_no_rag_required"
+        metric.evidence_score = 0.0
+        metric.empty_retrieval = True
+        metric.num_results = 0
+        metric.total_time_ms = (time.time() - start_time) * 1000
+        return RAGBuildResult(
+            context="",
+            domain_prompt="",
+            metric=metric,
+            decision=RAGDecision.ANSWER,
+            decision_reason="conversation_no_rag_required",
+            evidence_score=0.0,
+            provenance=[],
+            retrieved_results=[],
+            primary_domain=metric.detected_domain,
+        )
 
     # Use the cleaned query directly for retrieval. Recent messages still drive
     # clarification detection in EvidencePolicy, but are NOT folded into the
@@ -481,6 +506,7 @@ async def build_rag_result(
         if domains_to_search:
             kb_results, primary_domain = await retrieve_knowledge(
                 query=processed_query,
+                lexical_query=lexical_query,
                 domains=domains_to_search,
                 top_k=KB_TOP_K,
                 threshold=KB_THRESHOLD,
@@ -500,6 +526,7 @@ async def build_rag_result(
     # ---- E1: Chat history hybrid retrieval (with A4 fallback) ----
     chat_results = await retrieve(
         query=search_text,
+        lexical_query=lexical_query,
         channel_id=channel_id,
         top_k=top_k,
         metric=metric,
@@ -573,7 +600,7 @@ async def build_rag_result(
 
     all_results = kb_results + chat_results
     assessment = EvidencePolicy().assess(
-        query=processed_query,
+        query=lexical_query,
         results=all_results,
         recent_messages=recent_messages or [],
         query_intent=metric.query_intent,
@@ -615,12 +642,9 @@ async def build_rag_result(
 
     combined_context = "\n\n".join(combined_parts)
 
-    # ---- A3: Record metric ----
-    # retrieval_time_ms already holds the retrieval-phase latency; record the
-    # whole-build latency in its own field instead of overwriting it (audit M7).
+    # retrieval_time_ms already holds the retrieval-phase latency; keep the
+    # whole-build latency separate. The caller persists only after finalization.
     metric.total_time_ms = (time.time() - start_time) * 1000
-    metrics_manager = get_metrics_manager()
-    await metrics_manager.record(metric)
 
     return RAGBuildResult(
         context=combined_context,

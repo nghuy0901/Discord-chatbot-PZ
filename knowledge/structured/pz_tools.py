@@ -23,6 +23,8 @@ import os
 import json
 import sqlite3
 import logging
+import re
+from pathlib import Path
 from typing import List, Optional
 
 logger = logging.getLogger(__name__)
@@ -33,6 +35,7 @@ logger = logging.getLogger(__name__)
 DB_PATH = os.path.join(
     os.path.dirname(__file__), "pz_data.db"
 )
+PZ_DOCS_PATH = Path(__file__).resolve().parents[1] / "docs" / "pz"
 
 
 def _get_connection() -> sqlite3.Connection:
@@ -106,6 +109,293 @@ def _validate_column(col: str, allowed: set) -> str:
     return col
 
 
+def _normalize_alias_text(value: Optional[str]) -> str:
+    return (value or "").strip().lower()
+
+
+ITEM_FILTER_ALIASES = [
+    (
+        {
+            "gun", "guns", "firearm", "firearms", "sung", "súng",
+            "rifle", "rifles", "shotgun", "shotguns", "pistol", "pistols",
+        },
+        "Weapons",
+        "Firearms",
+    ),
+    (
+        {"ammo", "ammunition", "bullet", "bullets", "dan", "đạn", "bang dan", "băng đạn"},
+        "Weapons",
+        "Ammo",
+    ),
+    (
+        {"tool", "tools", "cong cu", "công cụ", "dung cu", "dụng cụ"},
+        "Equipment",
+        "Tools",
+    ),
+    (
+        {"medical", "medicine", "meds", "first aid", "thuoc", "thuốc", "y te", "y tế"},
+        "Equipment",
+        "Medical",
+    ),
+    (
+        {"food", "foods", "do an", "đồ ăn", "thuc an", "thức ăn"},
+        "Food",
+        None,
+    ),
+    (
+        {"armor", "armour", "giap", "giáp", "ao giap", "áo giáp", "protection"},
+        "Clothing",
+        None,
+    ),
+    (
+        {"trait", "traits", "perk", "perks", "dac tinh", "đặc tính"},
+        "Player",
+        "Trait",
+    ),
+    (
+        {"storage", "container", "containers", "crate", "crates", "tu do", "tủ đồ"},
+        "Storage",
+        None,
+    ),
+    (
+        {"fishing", "fish", "cau ca", "câu cá"},
+        "Equipment",
+        "Fishing",
+    ),
+    (
+        {"camping", "cam trai", "cắm trại"},
+        "Equipment",
+        "Camping",
+    ),
+    (
+        {"trap", "traps", "bay", "bẫy"},
+        "Equipment",
+        "Traps",
+    ),
+]
+
+
+CRAFTING_TYPE_ALIASES = {
+    "armor": "Armor",
+    "armour": "Armor",
+    "giap": "Armor",
+    "giáp": "Armor",
+    "assembly": "Assembly",
+    "assemble": "Assembly",
+    "lap rap": "Assembly",
+    "lắp ráp": "Assembly",
+    "blacksmith": "Blacksmithing",
+    "blacksmithing": "Blacksmithing",
+    "ren": "Blacksmithing",
+    "rèn": "Blacksmithing",
+    "blade": "Blade",
+    "carpentry": "Carpentry",
+    "moc": "Carpentry",
+    "mộc": "Carpentry",
+    "woodwork": "Carpentry",
+    "carving": "Carving",
+    "khac": "Carving",
+    "khắc": "Carving",
+    "cooking": "Cooking",
+    "cook": "Cooking",
+    "nau an": "Cooking",
+    "nấu ăn": "Cooking",
+    "cong thuc nau an": "Cooking",
+    "công thức nấu ăn": "Cooking",
+    "electrical": "Electrical",
+    "electricity": "Electrical",
+    "dien": "Electrical",
+    "điện": "Electrical",
+    "farming": "Farming",
+    "farm": "Farming",
+    "nong nghiep": "Farming",
+    "nông nghiệp": "Farming",
+    "fishing": "Fishing",
+    "cau ca": "Fishing",
+    "câu cá": "Fishing",
+    "medical": "Medical",
+    "first aid": "Medical",
+    "y te": "Medical",
+    "y tế": "Medical",
+    "metalworking": "Metalworking",
+    "metal": "Metalworking",
+    "co khi": "Metalworking",
+    "cơ khí": "Metalworking",
+    "repair": "Repair",
+    "sua chua": "Repair",
+    "sửa chữa": "Repair",
+    "tailoring": "Tailoring",
+    "may va": "Tailoring",
+    "may vá": "Tailoring",
+    "tools": "Tools",
+    "tool": "Tools",
+    "dung cu": "Tools",
+    "dụng cụ": "Tools",
+    "cong cu": "Tools",
+    "công cụ": "Tools",
+    "weapon": "Weaponry",
+    "weapons": "Weaponry",
+    "weaponry": "Weaponry",
+    "vu khi": "Weaponry",
+    "vũ khí": "Weaponry",
+}
+
+LITERATURE_MARKERS = {
+    "book",
+    "magazine",
+    "manual",
+    "notebook",
+    "journal",
+    "newspaper",
+    "flier",
+    "flyer",
+}
+
+LITERATURE_GENERIC_TERMS = {
+    "a",
+    "an",
+    "and",
+    "for",
+    "how",
+    "of",
+    "the",
+    "to",
+    "use",
+    "book",
+    "books",
+    "sach",
+    "skill",
+    "skills",
+    "magazine",
+    "magazines",
+    "manual",
+    "manuals",
+    "literature",
+    "nomnom",
+    "dung",
+    "dùng",
+    "lam",
+    "làm",
+    "gi",
+    "gì",
+}
+
+
+def _normalize_item_filters(
+    category: Optional[str],
+    sub_category: Optional[str],
+    name_contains: Optional[str],
+) -> tuple[Optional[str], Optional[str], Optional[str]]:
+    """Normalize common user/LLM aliases to database categories.
+
+    Tool-calling models often pass natural labels such as "Guns" or Vietnamese
+    "súng" even though the shipped DB stores guns as Weapons / Firearms.
+    """
+    category_text = _normalize_alias_text(category)
+    sub_category_text = _normalize_alias_text(sub_category)
+    name_text = _normalize_alias_text(name_contains)
+
+    for aliases, normalized_category, normalized_sub_category in ITEM_FILTER_ALIASES:
+        if (
+            category_text in aliases
+            or sub_category_text in aliases
+            or name_text in aliases
+        ):
+            category = normalized_category
+            sub_category = normalized_sub_category
+            if name_text in aliases:
+                name_contains = None
+            break
+
+    return category, sub_category, name_contains
+
+
+def _normalize_crafting_type(crafting_type: Optional[str]) -> Optional[str]:
+    key = _normalize_alias_text(crafting_type)
+    return CRAFTING_TYPE_ALIASES.get(key, crafting_type)
+
+
+def _normalize_literature_query(query: Optional[str]) -> str:
+    text = _normalize_alias_text(query)
+    replacements = {
+        "sách": "book",
+        "sach": "book",
+        "tạp chí": "magazine",
+        "tap chi": "magazine",
+        "cẩm nang": "manual",
+        "cam nang": "manual",
+    }
+    for src, dst in replacements.items():
+        text = text.replace(src, dst)
+    return text
+
+
+def _extract_markdown_field(body: str, field_name: str) -> Optional[str]:
+    match = re.search(
+        rf"^\s*-\s+\*\*{re.escape(field_name)}:\*\*\s*(.+)$",
+        body,
+        re.MULTILINE,
+    )
+    return match.group(1).strip() if match else None
+
+
+def _iter_markdown_sections():
+    if not PZ_DOCS_PATH.exists():
+        return
+    heading_re = re.compile(r"^(#{2,4})\s+(.+)$", re.MULTILINE)
+    for path in PZ_DOCS_PATH.rglob("*.md"):
+        try:
+            text = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        matches = list(heading_re.finditer(text))
+        for idx, match in enumerate(matches):
+            heading = match.group(2).strip()
+            start = match.end()
+            end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
+            body = text[start:end].strip()
+            yield path, heading, body
+
+
+def _is_literature_record(heading: str, body: str, item_id: str) -> bool:
+    if heading.lower().startswith("recipe:"):
+        return False
+    name = _extract_markdown_field(body, "Name") or ""
+    haystack = f"{heading} {name} {item_id}".lower()
+    return any(marker in haystack for marker in LITERATURE_MARKERS)
+
+
+def _score_literature_record(query: str, record: dict) -> int:
+    if not query:
+        return 1
+    searchable = " ".join(
+        str(record.get(key, ""))
+        for key in ("name", "item_id", "summary", "source")
+    ).lower()
+    name = str(record.get("name", "")).lower()
+    item_id = str(record.get("item_id", "")).lower()
+
+    score = 0
+    if query in name:
+        score += 100
+    elif query in searchable:
+        score += 50
+
+    tokens = [
+        token
+        for token in re.findall(r"[\w']+", query, flags=re.UNICODE)
+        if token not in LITERATURE_GENERIC_TERMS and len(token) > 1
+    ]
+    for token in tokens:
+        if token in name:
+            score += 10
+        if token in item_id:
+            score += 5
+        if token in searchable:
+            score += 2
+    return score
+
+
 # ---------------------------------------------------------------------------
 # Tool 1: search_items
 # ---------------------------------------------------------------------------
@@ -123,13 +413,16 @@ def search_items(
     """
     Search and rank items from the Project Zomboid database.
 
-    Use this for questions like "axe nào mạnh nhất?", "food giảm hunger nhiều nhất?",
-    "armor nào có bite defense cao nhất?", "vũ khí nhẹ nhất?".
+    Use this for item/stat/ranking questions like "axe nào mạnh nhất?",
+    "food giảm hunger nhiều nhất?", "armor nào có bite defense cao nhất?",
+    "tool nào nhẹ nhất?", "ammo nào?", "trait nào tốn nhiều points?".
 
     Args:
         category: Filter by category. Options: "Weapons", "Food", "Clothing",
             "Equipment", "Storage", "Comfort", "Appliances", "Plumbing",
-            "Miscellaneous", "Player"
+            "Miscellaneous", "Player". Common aliases like "guns"/"súng",
+            "ammo"/"đạn", "tools"/"dụng cụ", "medical"/"thuốc",
+            "armor"/"giáp", and "traits"/"đặc tính" are normalized.
         sub_category: Filter by sub-category. Examples: "Axes", "Canned food",
             "Armor", "Cooking", "Electricity", "Positive", "Negative"
         name_contains: Search items whose name contains this text (partial match)
@@ -146,6 +439,9 @@ def search_items(
         str: JSON string with matching items and their stats
     """
     try:
+        category, sub_category, name_contains = _normalize_item_filters(
+            category, sub_category, name_contains
+        )
         conn = _get_connection()
         conditions = []
         params = []
@@ -305,15 +601,18 @@ def get_recipe(
     """
     Find crafting recipes from the Project Zomboid database.
 
-    Use this for questions like "craft Baguette cần gì?", "recipe Axe",
-    "những recipe nào cần flour?", "recipe Cooking nào có?".
+    Use this for crafting/recipe questions like "craft Baguette cần gì?",
+    "recipe Axe", "những recipe nào cần flour?", "công thức nấu ăn nào có?",
+    "dụng cụ craft được gì?".
 
     Args:
         product_name: Search by product name (partial match).
             Example: "Baguette", "Axe", "Bandage"
         crafting_type: Filter by crafting category.
             Options: "Cooking", "Carpentry", "Tailoring", "Metalworking",
-            "Mechanics", "Electricity", "Blacksmith", "Medical"
+            "Electrical", "Blacksmithing", "Medical", "Repair", "Tools",
+            "Weaponry". Common aliases like "Blacksmith", "rèn", "nấu ăn",
+            "sửa chữa", "may vá", and "dụng cụ" are normalized.
         ingredient: Search for recipes that use this ingredient (partial match).
             Example: "flour", "nails", "Sheet"
         limit: Maximum results to return (default: 10, max: 25)
@@ -322,6 +621,7 @@ def get_recipe(
         str: JSON string with matching recipes including ingredients, tools, and workstation
     """
     try:
+        crafting_type = _normalize_crafting_type(crafting_type)
         conn = _get_connection()
         conditions = []
         params = []
@@ -372,8 +672,9 @@ def get_item_details(
     """
     Get full details for a specific item from the Project Zomboid database.
 
-    Use this for questions like "thông tin chi tiết về Firefighter Axe",
-    "stats của Wood Axe", "Base.Axe_Old là gì?".
+    Use this for item detail/use questions like "thông tin chi tiết về
+    Firefighter Axe", "stats của Wood Axe", "Base.Axe_Old là gì?",
+    "Hammer dùng làm gì?", "tác dụng của Needle là gì?".
 
     Args:
         name: The item name to look up. Example: "Firefighter Axe", "Turkey (Whole)"
@@ -505,6 +806,66 @@ def find_location(
 
 
 # ---------------------------------------------------------------------------
+# Tool 6: search_literature
+# ---------------------------------------------------------------------------
+def search_literature(
+    query: str = None,
+    limit: int = 10,
+) -> str:
+    """
+    Search Project Zomboid literature records from the markdown knowledge docs.
+
+    Use this for books, skill books, recipe magazines, magazines, manuals, and
+    questions like "sách skill Carpentry là gì?", "How to Use Generators
+    magazine dùng làm gì?", "manual nào cho Mechanics?", "tạp chí nào mở recipe?".
+
+    Args:
+        query: Search text for a book/magazine/manual name, skill, or purpose.
+            Vietnamese aliases like "sách" and "tạp chí" are normalized.
+        limit: Maximum results to return (default: 10, max: 25)
+
+    Returns:
+        str: JSON string with matching literature records and source snippets.
+    """
+    try:
+        normalized_query = _normalize_literature_query(query)
+        limit = min(max(1, limit), 25)
+
+        records = []
+        for path, heading, body in _iter_markdown_sections() or []:
+            item_id = _extract_markdown_field(body, "Item ID") or ""
+            if not _is_literature_record(heading, body, item_id):
+                continue
+
+            name = _extract_markdown_field(body, "Name") or heading
+            record = {
+                "name": name,
+                "item_id": item_id,
+                "encumbrance": _extract_markdown_field(body, "Encumbrance"),
+                "burn_time": _extract_markdown_field(body, "Burn time"),
+                "source": str(path.relative_to(PZ_DOCS_PATH)).replace(os.sep, "/"),
+                "summary": " ".join(body.split())[:700],
+            }
+            score = _score_literature_record(normalized_query, record)
+            if normalized_query and score <= 0:
+                continue
+            record["_score"] = score
+            records.append(record)
+
+        records.sort(key=lambda item: (-item.pop("_score", 0), item["name"]))
+        return json.dumps(
+            {
+                "count": min(len(records), limit),
+                "records": records[:limit],
+            },
+            ensure_ascii=False,
+        )
+    except Exception as e:
+        logger.error(f"search_literature failed: {e}")
+        return json.dumps({"error": str(e)})
+
+
+# ---------------------------------------------------------------------------
 # Registry — exported for use in LLM integration
 # ---------------------------------------------------------------------------
 
@@ -515,6 +876,7 @@ PZ_TOOLS = [
     get_recipe,
     get_item_details,
     find_location,
+    search_literature,
 ]
 
 # Map of function name → callable — for executing tool calls
@@ -524,4 +886,5 @@ PZ_TOOL_FUNCTIONS = {
     "get_recipe": get_recipe,
     "get_item_details": get_item_details,
     "find_location": find_location,
+    "search_literature": search_literature,
 }

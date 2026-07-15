@@ -43,8 +43,12 @@ CHUNK_OVERLAP: int = int(os.getenv("KB_CHUNK_OVERLAP", "50"))
 
 # Knowledge collection name (separate from chat history)
 KB_COLLECTION = os.getenv("KB_COLLECTION", "knowledge_base")
+KB_VECTOR_FILTER_OVERFETCH_MULTIPLIER: int = int(
+    os.getenv("KB_VECTOR_FILTER_OVERFETCH_MULTIPLIER", "5")
+)
 
 SUPPORTED_EXTENSIONS = {".md", ".txt", ".rst"}
+IGNORED_KNOWLEDGE_FILES = {"list_md.txt"}
 
 
 def _stable_doc_id(domain: str, source: str, chunk_index: int, text: str) -> str:
@@ -63,7 +67,9 @@ def _dedupe_chunks_by_content(chunks: List["Document"]) -> List["Document"]:
     seen: set = set()
     unique: List["Document"] = []
     for chunk in chunks:
-        digest = hashlib.sha256(chunk.page_content.encode("utf-8")).hexdigest()
+        canonical = re.sub(r"^\[[^\]]+\]\s*", "", chunk.page_content)
+        canonical = re.sub(r"\s+", " ", canonical).strip().casefold()
+        digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
         if digest in seen:
             continue
         seen.add(digest)
@@ -242,6 +248,10 @@ class MarkdownSemanticChunker:
         """
         # 1. Parse and strip YAML frontmatter
         frontmatter, body = self._parse_frontmatter(text)
+        body = "\n".join(
+            line for line in body.splitlines()
+            if not self._is_navigation_line(line)
+        )
 
         # 2. Split into heading-delimited sections
         sections = self._split_into_sections(body)
@@ -259,7 +269,29 @@ class MarkdownSemanticChunker:
             )
             chunks.extend(section_chunks)
 
+        if not chunks:
+            headings = [heading for _, heading, _ in sections if heading]
+            if headings:
+                chunks.append((
+                    "\n".join(headings),
+                    {
+                        "heading_path": " > ".join(headings),
+                        "content_mode": "headings",
+                        "category": frontmatter.get("category", ""),
+                        "type": frontmatter.get("type", ""),
+                        "source_url": frontmatter.get("source_url", ""),
+                        "scraped_at": str(frontmatter.get("scraped_at", "")),
+                        "method": frontmatter.get("method", ""),
+                    },
+                ))
         return chunks
+
+    @staticmethod
+    def _is_navigation_line(line: str) -> bool:
+        low = line.strip().lower()
+        return line.count("•") >= 5 and low.startswith(
+            ("items ", "player ", "game mechanics ", "lore ", "locations ", "vehicle ")
+        )
 
     # ------------------------------------------------------------------ #
     #  Frontmatter
@@ -378,6 +410,9 @@ class MarkdownSemanticChunker:
             "content_mode": mode.value,
             "category": frontmatter.get("category", ""),
             "type": frontmatter.get("type", ""),
+            "source_url": frontmatter.get("source_url", ""),
+            "scraped_at": str(frontmatter.get("scraped_at", "")),
+            "method": frontmatter.get("method", ""),
         }
 
         if mode == ContentMode.RECIPE:
@@ -425,7 +460,7 @@ class MarkdownSemanticChunker:
         recipe_text = self._clean_markdown_bold(recipe_text)
 
         meta = {**base_meta, "record_name": heading}
-        return [(recipe_text, meta)]
+        return self._split_atomic(recipe_text, meta)
 
     def _chunk_record_item(
         self,
@@ -443,7 +478,30 @@ class MarkdownSemanticChunker:
         item_text = self._clean_markdown_bold(item_text)
 
         meta = {**base_meta, "record_name": heading}
-        return [(item_text, meta)]
+        return self._split_atomic(item_text, meta)
+
+    def _split_atomic(
+        self, text: str, metadata: Dict[str, Any]
+    ) -> List[Tuple[str, Dict[str, Any]]]:
+        if len(text) <= self.chunk_size * 2:
+            return [(text, metadata)]
+        parts = self.sentence_chunker.chunk(text)
+        label_match = re.match(r"^(\[[^\]]+\])", text)
+        label = label_match.group(1) if label_match else ""
+        record = str(metadata.get("record_name") or "").split(",", 1)[0]
+        output = []
+        for index, part in enumerate(parts):
+            if index:
+                part = " ".join(value for value in (label, record, part) if value)
+            output.append((
+                part,
+                {
+                    **metadata,
+                    "record_part_index": index,
+                    "record_total_parts": len(parts),
+                },
+            ))
+        return output
 
     def _chunk_prose(
         self,
@@ -581,6 +639,31 @@ class KnowledgeManager:
 
         return domains
 
+    async def initialize_catalog(self) -> Dict[str, int]:
+        """Register local KB domains without embedding any document.
+
+        A query service must never re-embed an entire corpus during startup.
+        Apart from causing a cold-start stampede, a temporary embedding outage
+        used to leave ``self.domains`` empty and made the router skip an already
+        indexed KB altogether.  The explicit indexer owns vector writes;
+        startup only needs domain names and prompts for safe routing.
+        """
+        result: Dict[str, int] = {}
+        for domain_name in self.discover_domains():
+            docs_path = os.path.join(self.docs_dir, domain_name)
+            prompt_path = os.path.join(self.prompts_dir, f"{domain_name}.txt")
+            domain = self.domains.get(domain_name) or KnowledgeDomain(
+                domain_name, docs_path, prompt_path
+            )
+            domain.load_prompt()
+            domain.doc_count = len(self._scan_files(docs_path))
+            self.domains[domain_name] = domain
+            result[domain_name] = domain.doc_count
+
+        self._initialized = True
+        logger.info("Knowledge catalog initialized without indexing: %s", result)
+        return result
+
     async def load_all(self) -> Dict[str, int]:
         """
         Load all domains from the docs directory.
@@ -619,6 +702,7 @@ class KnowledgeManager:
             logger.warning(f"Domain docs path not found: {docs_path}")
             return 0
 
+        existing = self.domains.get(domain_name)
         domain = KnowledgeDomain(domain_name, docs_path, prompt_path)
         domain.load_prompt()
 
@@ -632,10 +716,14 @@ class KnowledgeManager:
 
         # Check if files changed (skip reload if not forced and unchanged)
         file_hashes = {f: self._file_hash(f) for f in files}
-        existing = self.domains.get(domain_name)
         if not force and existing and existing.file_hashes == file_hashes:
             logger.info(f"Domain '{domain_name}' unchanged, skipping reload.")
             return existing.chunk_count
+
+        # Keep routing available even if a subsequent embedding/upsert fails.
+        # The existing collection may still be valid, and a failed index attempt
+        # must surface as an indexer error rather than as a fake "no KB domain".
+        self.domains[domain_name] = domain
 
         # Load and chunk all files
         all_chunks: List[Document] = []
@@ -661,7 +749,12 @@ class KnowledgeManager:
         if all_chunks:
             store = self._get_vectorstore()
             try:
-                from rag.db import get_pool
+                from rag.db import get_pool, ensure_embedding_collection_signature
+
+                # Indexing is the single writer for a KB collection.  Record the
+                # actual embedding input mode here so a raw-text v2 index can
+                # coexist with the legacy tokenized v1 collection.
+                await ensure_embedding_collection_signature(KB_COLLECTION)
 
                 ids = [c.metadata["doc_id"] for c in all_chunks]
                 store.add_documents(all_chunks, ids=ids)
@@ -717,13 +810,14 @@ class KnowledgeManager:
         store = self._get_vectorstore()
         if domain and domain not in trusted_kb_domains():
             return []
-        filter_dict = {"domain": domain} if domain else None
+        search_k = k
+        if domain:
+            search_k = max(k, k * KB_VECTOR_FILTER_OVERFETCH_MULTIPLIER)
 
         try:
             results = store.similarity_search_with_relevance_scores(
                 query=query,
-                k=k,
-                filter=filter_dict,
+                k=search_k,
                 score_threshold=score_threshold,
             )
         except Exception as e:
@@ -733,6 +827,8 @@ class KnowledgeManager:
         output = []
         for doc, score in results:
             doc_domain = doc.metadata.get("domain", "")
+            if domain and doc_domain != domain:
+                continue
             if doc_domain not in trusted_kb_domains():
                 continue
             output.append({
@@ -743,6 +839,8 @@ class KnowledgeManager:
                 "chunk_index": doc.metadata.get("chunk_index", 0),
                 **doc.metadata,
             })
+            if len(output) >= k:
+                break
 
         return output
 
@@ -824,6 +922,8 @@ class KnowledgeManager:
         files = []
         for root, _, filenames in os.walk(directory):
             for fname in sorted(filenames):
+                if fname.lower() in IGNORED_KNOWLEDGE_FILES:
+                    continue
                 ext = os.path.splitext(fname)[1].lower()
                 if ext in SUPPORTED_EXTENSIONS:
                     files.append(os.path.join(root, fname))

@@ -32,6 +32,9 @@ from evaluation.retrieval_metrics import (
 )
 from rag.result import RAGDecision
 from rag.responses import decision_response
+from rag.db import init_db
+from rag.bm25_search import init_bm25_indices
+from knowledge.manager import get_knowledge_manager
 from src.observability.request_context import RequestContext
 
 
@@ -108,15 +111,21 @@ async def run_example(example: GoldenExample, judge=None) -> EvaluationItemResul
     start = time.time()
     try:
         from prompts.system_prompt import build_system_prompt
+        from rag.answer_finalize import finalize_rag_answer
         from rag.retriever import build_rag_result
         from src.ollama_provider import chat_completion
 
-        request_context = RequestContext.new(source="release_eval")
+        request_context = RequestContext.new(
+            channel_id="release_eval",
+            user_id="release_eval",
+            source="release_eval",
+        )
         rag_result = await build_rag_result(
             query=example.question,
             recent_messages=[],
             request_context=request_context,
         )
+        actual_decision = rag_result.decision
         if rag_result.decision is RAGDecision.ANSWER:
             messages = [
                 {
@@ -133,6 +142,11 @@ async def run_example(example: GoldenExample, judge=None) -> EvaluationItemResul
                 temperature=0.1,
                 request_context=request_context,
             )
+            finalized = await finalize_rag_answer(
+                rag_result, example.question, answer
+            )
+            answer = finalized.text
+            actual_decision = finalized.decision
         else:
             answer = decision_response(rag_result.metric.query_language, rag_result.decision)
 
@@ -151,14 +165,14 @@ async def run_example(example: GoldenExample, judge=None) -> EvaluationItemResul
         ][:8]
         judge_scores = (
             await _judge_item(example, answer, contexts, run_judge)
-            if rag_result.decision is RAGDecision.ANSWER
+            if actual_decision is RAGDecision.ANSWER
             else {}
         )
         latency_ms = (time.time() - start) * 1000
         return EvaluationItemResult(
             example_id=example.id,
             expected_behavior=example.expected_behavior.value,
-            actual_behavior=rag_result.decision.value,
+            actual_behavior=actual_decision.value,
             answer=answer,
             retrieved_source_ids=source_ids,
             provenance=provenance,
@@ -185,8 +199,24 @@ def summarize(items: List[EvaluationItemResult]) -> Dict[str, float]:
     if not items:
         return {}
     summary: Dict[str, float] = {}
+
+    # Retrieval relevance is defined only for questions expected to be answered.
+    # Abstain/clarify examples deliberately have no expected source, so averaging
+    # their forced zeroes into Recall/MRR/nDCG makes a perfect retriever appear
+    # to fail (the seed set was capped at 0.35). Their quality is evaluated by
+    # the behavior confusion metrics below instead.
+    answerable_items = [
+        item for item in items if item.expected_behavior == RAGDecision.ANSWER.value
+    ]
+    retrieval_denominator = answerable_items or []
+    summary["answerable_retrieval_count"] = len(retrieval_denominator)
     for key in ("recall_at_5", "mrr", "ndcg_at_5", "source_hit_rate", "keyword_coverage"):
-        summary[key] = sum(item.deterministic_scores.get(key, 0.0) for item in items) / len(items)
+        summary[key] = (
+            sum(item.deterministic_scores.get(key, 0.0) for item in retrieval_denominator)
+            / len(retrieval_denominator)
+            if retrieval_denominator
+            else 0.0
+        )
     summary.update(
         behavior_confusion(
             [item.expected_behavior for item in items],
@@ -316,6 +346,10 @@ async def main() -> int:
         for error in errors:
             print(error, file=sys.stderr)
         return 1
+
+    await init_db()
+    await get_knowledge_manager().initialize_catalog()
+    await init_bm25_indices()
 
     reports = []
     for repeat_index in range(1, args.repeat + 1):

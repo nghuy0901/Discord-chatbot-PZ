@@ -34,6 +34,7 @@ from src.ollama_provider import (
 )
 from rag.responses import decision_response
 from rag.result import RAGDecision
+from rag.query_preprocessor import requires_structured_tools
 from utils.context_manager import ContextManager
 from utils.message_utils import send_split_message
 
@@ -210,11 +211,13 @@ class NomNomClient(discord.Client):
             try:
                 from knowledge.manager import get_knowledge_manager
                 kb = get_knowledge_manager()
-                result = await kb.load_all()
+                result = await kb.initialize_catalog()
                 total = sum(result.values())
-                logger.info(f"✅ Knowledge base loaded: {total} chunks across {len(result)} domains")
+                logger.info(
+                    f"✅ Knowledge catalog initialized: {total} files across {len(result)} domains"
+                )
             except Exception as e:
-                logger.warning(f"⚠️ Knowledge base init failed (non-fatal): {e}")
+                logger.warning(f"⚠️ Knowledge catalog init failed (non-fatal): {e}")
 
         # E1: Initialize BM25 indices for Hybrid RAG
         if ENABLE_RAG:
@@ -636,6 +639,14 @@ class NomNomClient(discord.Client):
             response_text = ""
             bot_msg = None
             answered_with_tools = False
+            tool_results = []
+            finalized = None
+            tools_available = (
+                ENABLE_TOOL_CALLING
+                and STRUCTURED_TOOLS_AVAILABLE
+                and PZ_TOOLS
+            )
+            use_tools_for_query = tools_available and requires_structured_tools(query_intent)
 
             # C1: RAG was enabled but the build returned nothing (the exception
             # was swallowed inside build_prompt). Do NOT fall through to a
@@ -643,7 +654,13 @@ class NomNomClient(discord.Client):
             # fabricate game facts on a transient DB/embedding error. Abstain.
             if ENABLE_RAG and rag_result is None:
                 response_text = decision_response(
-                    self._abstain_language(user_message), RAGDecision.ABSTAIN
+                    self._abstain_language(user_message),
+                    RAGDecision.ABSTAIN,
+                    event="discord_rag_build_failed",
+                    query=user_message,
+                    reason="rag_result_missing_after_build_prompt",
+                    channel_id=channel_id,
+                    user_id=str(message.author.id),
                 )
                 bot_msg = await self._send_response(message, response_text)
                 self.context_manager.track_message(
@@ -656,19 +673,29 @@ class NomNomClient(discord.Client):
                 )
                 return
 
-            if rag_result and rag_result.decision is not RAGDecision.ANSWER:
+            if (
+                rag_result
+                and rag_result.decision is not RAGDecision.ANSWER
+                and not use_tools_for_query
+            ):
                 response_text = decision_response(
                     rag_result.metric.query_language,
                     rag_result.decision,
+                    event="discord_pre_generation_decision",
+                    query=user_message,
+                    rag_result=rag_result,
+                    channel_id=channel_id,
+                    user_id=str(message.author.id),
                 )
                 bot_msg = await self._send_response(message, response_text)
                 response_time = (time.time() - response_start) * 1000
                 rag_result.metric.response_time_ms = response_time
                 rag_result.metric.response_length = len(response_text)
+                rag_result.metric.citation_coverage = 0.0
                 try:
                     from rag.metrics import get_metrics_manager
 
-                    await get_metrics_manager().update_db(rag_result.metric)
+                    await get_metrics_manager().record(rag_result.metric)
                 except Exception:
                     pass
                 self.context_manager.set_last_query_id(channel_id, rag_result.metric.query_id)
@@ -694,22 +721,12 @@ class NomNomClient(discord.Client):
                 return
 
             # Phase 4: Intent-based routing
-            # Determine if tool calling should be attempted based on query intent
-            tools_available = (
-                ENABLE_TOOL_CALLING
-                and STRUCTURED_TOOLS_AVAILABLE
-                and PZ_TOOLS
-            )
-
             # Route decision based on query_intent:
             #   ANALYTICAL → always use tools (no streaming — need full response for tool detection)
             #   HYBRID     → try tools first, fallback to streaming if no tools triggered
             #   NARRATIVE  → skip tools entirely, go straight to streaming
             #   CONVERSATION → skip tools entirely, go straight to streaming
             #   None       → hybrid behavior (backward compat)
-            use_tools_for_query = tools_available and query_intent in (
-                "analytical", "hybrid", None
-            )
 
             logger.info(
                 f"🔀 Routing: intent={query_intent}, "
@@ -729,10 +746,28 @@ class NomNomClient(discord.Client):
                             temperature=temperature,
                             request_context=request_context,
                         )
+                        from src.ollama_provider import get_last_tool_results
+                        from rag.groundedness import sources_from_tool_results
+
+                        tool_results = get_last_tool_results()
+                        answered_with_tools = bool(sources_from_tool_results(tool_results))
 
                     if response_text:
+                        if (
+                            rag_result
+                            and rag_result.decision is not RAGDecision.ANSWER
+                            and not answered_with_tools
+                        ):
+                            response_text = decision_response(
+                                rag_result.metric.query_language,
+                                rag_result.decision,
+                                event="discord_tool_response_without_tool_evidence",
+                                query=user_message,
+                                rag_result=rag_result,
+                                channel_id=channel_id,
+                                user_id=str(message.author.id),
+                            )
                         # Tool calling produced a response — send directly
-                        answered_with_tools = True
                         if len(response_text) > MAX_RESPONSE_LENGTH:
                             response_text = (
                                 response_text[:MAX_RESPONSE_LENGTH]
@@ -749,10 +784,22 @@ class NomNomClient(discord.Client):
                             await message.channel.send(remaining[:2000])
                             remaining = remaining[2000:]
                     else:
-                        # Empty/no-tool response — fallback to streaming
-                        response_text, bot_msg = await self._stream_response(
-                            message, prompt_messages, temperature, request_context
-                        )
+                        if rag_result and rag_result.decision is not RAGDecision.ANSWER:
+                            response_text = decision_response(
+                                rag_result.metric.query_language,
+                                rag_result.decision,
+                                event="discord_empty_tool_response_decision",
+                                query=user_message,
+                                rag_result=rag_result,
+                                channel_id=channel_id,
+                                user_id=str(message.author.id),
+                            )
+                            bot_msg = await self._send_response(message, response_text)
+                        else:
+                            # Empty/no-tool response — fallback to streaming
+                            response_text, bot_msg = await self._stream_response(
+                                message, prompt_messages, temperature, request_context
+                            )
                 else:
                     # NARRATIVE or CONVERSATION: Pure streaming (skip tool overhead)
                     response_text, bot_msg = await self._stream_response(
@@ -769,7 +816,25 @@ class NomNomClient(discord.Client):
                             temperature=temperature,
                             request_context=request_context,
                         )
-                        answered_with_tools = bool(response_text)
+                        from src.ollama_provider import get_last_tool_results
+                        from rag.groundedness import sources_from_tool_results
+
+                        tool_results = get_last_tool_results()
+                        answered_with_tools = bool(sources_from_tool_results(tool_results))
+                        if (
+                            rag_result
+                            and rag_result.decision is not RAGDecision.ANSWER
+                            and not answered_with_tools
+                        ):
+                            response_text = decision_response(
+                                rag_result.metric.query_language,
+                                rag_result.decision,
+                                event="discord_nonstream_tool_response_without_tool_evidence",
+                                query=user_message,
+                                rag_result=rag_result,
+                                channel_id=channel_id,
+                                user_id=str(message.author.id),
+                            )
                     else:
                         response_text = await chat_completion(
                             messages=prompt_messages,
@@ -790,7 +855,6 @@ class NomNomClient(discord.Client):
             if (
                 rag_result
                 and rag_result.decision is RAGDecision.ANSWER
-                and response_text
                 and not answered_with_tools  # tool answers come from the SQLite DB,
                 # which isn't in the vector provenance the groundedness gate checks
             ):
@@ -821,7 +885,7 @@ class NomNomClient(discord.Client):
                             pass
                 except Exception as fe:
                     logger.warning(f"Answer finalize failed (non-fatal): {fe}")
-            elif answered_with_tools and response_text:
+            elif answered_with_tools:
                 # C2: tool answers skip the vector-provenance gate above, so
                 # verify them against the actual tool outputs instead.
                 try:
@@ -842,7 +906,7 @@ class NomNomClient(discord.Client):
                     finalized = await finalize_tool_answer(
                         user_message,
                         response_text,
-                        get_last_tool_results(),
+                        tool_results,
                         language=lang,
                     )
                     if finalized.overridden:
@@ -861,9 +925,23 @@ class NomNomClient(discord.Client):
                 from rag.metrics import get_metrics_manager
                 from src.ollama_provider import get_last_token_usage
                 metrics = get_metrics_manager()
-                # Update the most recent metric with response info
-                if metrics._recent:
-                    last_metric = metrics._recent[-1]
+                last_metric = rag_result.metric if rag_result else None
+                if last_metric:
+                    if finalized is not None:
+                        last_metric.rag_decision = finalized.decision.value
+                        if answered_with_tools:
+                            last_metric.decision_reason = (
+                                "tool_answer_ungrounded"
+                                if finalized.overridden
+                                else "tool_answer_grounded"
+                            )
+                            if finalized.groundedness is not None:
+                                last_metric.groundedness_score = finalized.groundedness.score
+                                last_metric.groundedness_reason = finalized.groundedness.reason
+                                last_metric.groundedness_unsupported_count = len(
+                                    finalized.groundedness.unsupported
+                                )
+                                last_metric.groundedness_error = finalized.groundedness.error
                     last_metric.response_time_ms = response_time
                     last_metric.response_length = len(response_text)
                     # Cost tracking: record token usage from LLM call.
@@ -881,9 +959,15 @@ class NomNomClient(discord.Client):
                         if rag_result
                         else []
                     )
+                    from rag.citations import referenced_labels
+
+                    last_metric.citation_coverage = 1.0 if (
+                        provenance and referenced_labels(response_text)
+                    ) else 0.0
                     if (
                         not getattr(last_metric, "cache_hit", False)
                         and last_metric.rag_decision == "answer"
+                        and not answered_with_tools
                         and last_metric.query_intent in ("analytical", "hybrid", "narrative")
                         and response_text
                         and provenance
@@ -906,8 +990,7 @@ class NomNomClient(discord.Client):
                         except Exception as ce:
                             logger.warning(f"Failed to cache response: {ce}")
 
-                    # Persist updated metrics (latency, tokens, cost) back to DB
-                    await metrics.update_db(last_metric)
+                    await metrics.record(last_metric)
             except Exception:
                 pass
 
@@ -1043,6 +1126,7 @@ class NomNomClient(discord.Client):
 
     async def handle_response(self, user_message: str) -> str:
         """Legacy handle_response for /chat command."""
+        response_start = time.time()
         request_context = RequestContext.new(
             channel_id="slash-command",
             user_id="api_user",
@@ -1059,14 +1143,28 @@ class NomNomClient(discord.Client):
             response = decision_response(
                 rag_result.metric.query_language,
                 rag_result.decision,
+                event="discord_slash_pre_generation_decision",
+                query=user_message,
+                rag_result=rag_result,
+                channel_id="slash-command",
+                user_id="api_user",
             )
+            rag_result.metric.response_time_ms = (time.time() - response_start) * 1000
+            rag_result.metric.response_length = len(response)
+            rag_result.metric.citation_coverage = 0.0
+            try:
+                from rag.metrics import get_metrics_manager
+
+                await get_metrics_manager().record(rag_result.metric)
+            except Exception:
+                pass
             self.context_manager.set_last_query_id("slash-command", rag_result.metric.query_id)
             return response
         # Phase 4: Intent-based routing for slash commands
         use_tools = (
             ENABLE_TOOL_CALLING
             and STRUCTURED_TOOLS_AVAILABLE
-            and query_intent in ("analytical", "hybrid", None)
+            and requires_structured_tools(query_intent)
         )
         if use_tools:
             response = await chat_with_tools(
@@ -1083,18 +1181,30 @@ class NomNomClient(discord.Client):
                 request_context=request_context,
             )
 
+        from src.ollama_provider import get_last_token_usage
+
+        main_token_usage = get_last_token_usage()
+        finalized = None
+        answered_with_tools = False
+        tool_results = []
+        if use_tools:
+            from src.ollama_provider import get_last_tool_results
+            from rag.groundedness import sources_from_tool_results
+
+            tool_results = get_last_tool_results()
+            answered_with_tools = bool(sources_from_tool_results(tool_results))
+
         # L2: route /chat answers through the same finalize gate as @mentions
         # (groundedness + citations for vector answers, tool-output verification
         # for tool answers) so /chat can't ship an ungrounded answer either.
         try:
-            if response and use_tools:
+            if response and answered_with_tools:
                 from rag.answer_finalize import finalize_tool_answer
-                from src.ollama_provider import get_last_tool_results
 
                 finalized = await finalize_tool_answer(
                     user_message,
                     response,
-                    get_last_tool_results(),
+                    tool_results,
                     language=(rag_result.metric.query_language if rag_result else "vi"),
                 )
                 response = finalized.text
@@ -1105,6 +1215,47 @@ class NomNomClient(discord.Client):
                 response = finalized.text
         except Exception as fe:
             logger.warning(f"/chat finalize failed (non-fatal): {fe}")
+
+        if rag_result:
+            metric = rag_result.metric
+            if finalized is not None:
+                metric.rag_decision = finalized.decision.value
+                if answered_with_tools:
+                    metric.decision_reason = (
+                        "tool_answer_ungrounded"
+                        if finalized.overridden
+                        else "tool_answer_grounded"
+                    )
+                    if finalized.groundedness is not None:
+                        metric.groundedness_score = finalized.groundedness.score
+                        metric.groundedness_reason = finalized.groundedness.reason
+                        metric.groundedness_unsupported_count = len(
+                            finalized.groundedness.unsupported
+                        )
+                        metric.groundedness_error = finalized.groundedness.error
+            metric.response_time_ms = (time.time() - response_start) * 1000
+            metric.response_length = len(response)
+            if main_token_usage:
+                metric.prompt_tokens = main_token_usage.get("prompt_tokens", 0)
+                metric.completion_tokens = main_token_usage.get("completion_tokens", 0)
+                metric.total_tokens = main_token_usage.get("total_tokens", 0)
+                metric.estimated_cost_usd = main_token_usage.get(
+                    "estimated_cost_usd", 0.0
+                )
+            from rag.citations import referenced_labels
+
+            metric.citation_coverage = 1.0 if (
+                not answered_with_tools
+                and rag_result.provenance
+                and referenced_labels(response)
+            ) else 0.0
+            try:
+                from rag.metrics import get_metrics_manager
+
+                await get_metrics_manager().record(metric)
+            except Exception:
+                pass
+            self.context_manager.set_last_query_id("slash-command", metric.query_id)
 
         self.context_manager.track_message(
             channel_id="slash-command",

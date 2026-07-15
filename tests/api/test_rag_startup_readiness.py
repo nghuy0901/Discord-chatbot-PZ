@@ -3,7 +3,7 @@ from fastapi import HTTPException
 
 
 @pytest.mark.asyncio
-async def test_startup_loads_knowledge_base_and_bm25_when_rag_enabled(monkeypatch):
+async def test_startup_initializes_knowledge_catalog_and_bm25_when_rag_enabled(monkeypatch):
     import api.main as api_main
 
     calls = []
@@ -16,7 +16,7 @@ async def test_startup_loads_knowledge_base_and_bm25_when_rag_enabled(monkeypatc
             calls.append("metrics")
 
     class FakeKnowledgeManager:
-        async def load_all(self):
+        async def initialize_catalog(self):
             calls.append("kb")
             return {"pz": 10}
 

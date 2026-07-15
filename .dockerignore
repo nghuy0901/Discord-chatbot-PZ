@@ -15,3 +15,7 @@ docker-compose.yml
 Dockerfile
 tests/
 docs/
+pgdata/
+tmp/
+hardir/
+/*.json

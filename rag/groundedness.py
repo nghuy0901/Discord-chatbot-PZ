@@ -47,6 +47,12 @@ Judge = Callable[[str], Awaitable[str]]
 
 GROUNDEDNESS_PROMPT = """You are a strict fact-checking assistant. Decide whether the ANSWER is fully supported by the SOURCES. An answer is grounded only if every factual claim it makes can be verified from the sources. General conversational filler is fine, but specific facts must be supported.
 
+Apply these rules strictly:
+- A claim carrying marker [n] must be explicitly supported by source [n], not merely by some other source.
+- Missing, blank, "-", or unspecified source fields are NOT evidence that a property is absent or that the opposite is true.
+- Do not accept plausible game knowledge, common sense, or an inference as support.
+- If even one material factual claim is not explicit in its cited source, set grounded=false and list it.
+
 ## User Query
 {query}
 
@@ -108,6 +114,12 @@ def sources_from_tool_results(
             if isinstance(output, str)
             else json.dumps(output, ensure_ascii=False, default=str)
         )
+        try:
+            parsed = json.loads(content)
+        except (json.JSONDecodeError, TypeError):
+            parsed = None
+        if isinstance(parsed, dict) and parsed.get("error"):
+            continue
         sources.append(
             {"content": content, "source": f"tool:{name}", "source_kind": "tool"}
         )

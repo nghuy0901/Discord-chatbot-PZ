@@ -29,6 +29,10 @@ class OllamaClient:
             "stream": False,
             "options": options,
         }
+        if "tools" in kwargs:
+            from .tool_schema import functions_to_openai_tools
+
+            kwargs["tools"] = functions_to_openai_tools(kwargs["tools"])
         request.update(kwargs)
 
         base_url = (self.config.base_url or "http://localhost:11434").rstrip("/")

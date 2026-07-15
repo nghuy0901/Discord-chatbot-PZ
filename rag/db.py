@@ -41,6 +41,9 @@ PGVECTOR_CONNECTION: str = POSTGRES_URL.replace(
 EMBEDDING_DIM: int = int(os.getenv("EMBEDDING_DIMENSION", os.getenv("EMBEDDING_DIM", "768")))
 EMBED_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 COLLECTION_NAME: str = os.getenv("PGVECTOR_COLLECTION", "discord_messages")
+VECTOR_FILTER_OVERFETCH_MULTIPLIER: int = int(
+    os.getenv("VECTOR_FILTER_OVERFETCH_MULTIPLIER", "5")
+)
 
 
 # ---------------------------------------------------------------------------
@@ -120,68 +123,90 @@ async def close_pool() -> None:
 # ---------------------------------------------------------------------------
 # Schema initialisation
 # ---------------------------------------------------------------------------
-async def _verify_embedding_signature(conn) -> None:
-    """Pin the embedding model/dimension to the collection.
+async def _verify_embedding_signature(conn, collection_name: str) -> None:
+    """Pin a full embedding signature to one vector collection.
 
-    Records the current embedding signature on first run; on later runs, refuses
-    to serve if it changed without a reindex (which would make every stored
-    vector incomparable to freshly embedded queries — silent cosine garbage,
-    audit L4). Set ``EMBEDDING_ALLOW_SIGNATURE_RESET=true`` after an intentional
-    reindex to re-pin.
+    Signatures used to be global, so a blue/green KB reindex could not coexist
+    with its previous collection.  This collection-scoped registry lets a
+    candidate collection use a corrected embedding input mode while the old
+    collection remains recoverable until promotion.
     """
     from rag.embedding_registry import (
         current_embedding_signature,
         validate_embedding_signature,
-        EmbeddingSignature,
     )
 
     await conn.execute(
         """
-        CREATE TABLE IF NOT EXISTS rag_embedding_signature (
-            id                 INT PRIMARY KEY DEFAULT 1,
+        CREATE TABLE IF NOT EXISTS rag_embedding_collection_signatures (
+            collection_name    TEXT PRIMARY KEY,
             provider           TEXT NOT NULL,
             model              TEXT NOT NULL,
             dimension          INT  NOT NULL,
             collection_version TEXT NOT NULL,
-            CONSTRAINT single_row CHECK (id = 1)
+            input_mode         TEXT NOT NULL
         );
         """
     )
     current = current_embedding_signature()
     row = await conn.fetchrow(
-        "SELECT provider, model, dimension, collection_version "
-        "FROM rag_embedding_signature WHERE id = 1;"
+        "SELECT provider, model, dimension, collection_version, input_mode "
+        "FROM rag_embedding_collection_signatures WHERE collection_name = $1;",
+        collection_name,
     )
     if row is None:
         await conn.execute(
-            "INSERT INTO rag_embedding_signature "
-            "(id, provider, model, dimension, collection_version) "
-            "VALUES (1, $1, $2, $3, $4);",
+            "INSERT INTO rag_embedding_collection_signatures "
+            "(collection_name, provider, model, dimension, collection_version, input_mode) "
+            "VALUES ($1, $2, $3, $4, $5, $6);",
+            collection_name,
             current.provider, current.model, current.dimension,
             current.collection_version,
+            current.input_mode,
         )
-        logger.info("Embedding signature recorded: %s", current)
+        logger.info(
+            "Embedding signature recorded for collection %s: %s",
+            collection_name,
+            current,
+        )
         return
+
+    from rag.embedding_registry import EmbeddingSignature
 
     stored = EmbeddingSignature(
         provider=row["provider"],
         model=row["model"],
         dimension=row["dimension"],
         collection_version=row["collection_version"],
+        input_mode=row["input_mode"],
     )
     if current != stored and os.getenv(
         "EMBEDDING_ALLOW_SIGNATURE_RESET", "false"
     ).lower() == "true":
         await conn.execute(
-            "UPDATE rag_embedding_signature SET provider=$1, model=$2, "
-            "dimension=$3, collection_version=$4 WHERE id=1;",
+            "UPDATE rag_embedding_collection_signatures SET provider=$2, model=$3, "
+            "dimension=$4, collection_version=$5, input_mode=$6 WHERE collection_name=$1;",
+            collection_name,
             current.provider, current.model, current.dimension,
             current.collection_version,
+            current.input_mode,
         )
-        logger.warning("Embedding signature re-pinned to %s (was %s)", current, stored)
+        logger.warning(
+            "Embedding signature re-pinned for collection %s to %s (was %s)",
+            collection_name,
+            current,
+            stored,
+        )
         return
 
     validate_embedding_signature(current, stored)  # raises RuntimeError on mismatch
+
+
+async def ensure_embedding_collection_signature(collection_name: str) -> None:
+    """Create or validate the signature for ``collection_name``."""
+    pool = await get_pool()
+    async with pool.acquire() as conn:
+        await _verify_embedding_signature(conn, collection_name)
 
 
 async def init_db() -> None:
@@ -206,9 +231,10 @@ async def init_db() -> None:
             );
         """)
 
-        # Pin the embedding signature so a model/dimension swap without a
-        # reindex is caught at startup, not served as garbage (audit L4).
-        await _verify_embedding_signature(conn)
+        # Chat history was written through the legacy tokenized embedding path.
+        # Do not silently label that collection as raw-text compatible here.
+        # It is not trusted for RAG until a separately reviewed chat reindex;
+        # KB collections are pinned by the explicit indexer instead.
 
     # Trigger PGVector store creation (creates collection + embedding tables)
     get_vectorstore()
@@ -339,23 +365,22 @@ def search_similar(
         List of dicts with document content, metadata, and similarity score.
     """
     store = get_vectorstore()
+    search_k = k
+    if filter_dict:
+        search_k = max(k, k * VECTOR_FILTER_OVERFETCH_MULTIPLIER)
 
+    search_kwargs = {
+        "query": query,
+        "k": search_k,
+    }
     if score_threshold is not None:
-        results = store.similarity_search_with_relevance_scores(
-            query=query,
-            k=k,
-            filter=filter_dict,
-            score_threshold=score_threshold,
-        )
-    else:
-        results = store.similarity_search_with_relevance_scores(
-            query=query,
-            k=k,
-            filter=filter_dict,
-        )
+        search_kwargs["score_threshold"] = score_threshold
+    results = store.similarity_search_with_relevance_scores(**search_kwargs)
 
     output = []
     for doc, score in results:
+        if filter_dict and not _metadata_matches_filter(doc.metadata, filter_dict):
+            continue
         # pgvector cosine "relevance" is 1 - distance and can fall outside [0, 1]
         # (even negative) for dissimilar vectors; LangChain warns but does not
         # clamp it. Normalise to [0, 1] so every downstream threshold and the
@@ -367,8 +392,18 @@ def search_similar(
             "similarity": similarity,
         }
         output.append(entry)
+        if len(output) >= k:
+            break
 
     return output
+
+
+def _metadata_matches_filter(metadata: Dict[str, Any], filter_dict: Dict[str, Any]) -> bool:
+    """Apply simple equality metadata filters without LangChain JSONB SQL."""
+    for key, expected in filter_dict.items():
+        if metadata.get(key) != expected:
+            return False
+    return True
 
 
 # ---------------------------------------------------------------------------

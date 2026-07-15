@@ -18,7 +18,7 @@ def build_llm_config() -> LLMConfig:
 
     if provider == "ollama":
         model = os.getenv("LLM_MODEL") or os.getenv(
-            "OLLAMA_MODEL", "qwen3-coder-next:cloud"
+            "OLLAMA_MODEL", "gpt-oss:20b"
         )
         api_key = os.getenv("LLM_API_KEY") or os.getenv("OLLAMA_API_KEY")
         base_url = os.getenv("LLM_BASE_URL") or os.getenv(

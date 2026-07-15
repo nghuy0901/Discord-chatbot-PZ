@@ -82,11 +82,21 @@ def build_system_prompt(
         The fully formatted system prompt string ready for LLM consumption.
     """
     template = _load_template()
-    return template.format(
+    prompt = template.format(
         current_date=datetime.now(tz=timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         rag_context=rag_context,
         domain_prompt=domain_prompt,
     )
+    if rag_context:
+        prompt += (
+            "\n\n# Required evidence-backed answer form\n"
+            "- Answer the exact question in at most 3 short bullets.\n"
+            "- Every factual bullet must end with one or more valid [n] source markers.\n"
+            "- Omit any claim that is not explicit in its cited source.\n"
+            "- Do not infer comparisons, recommendations, negative claims, or missing effects.\n"
+            "- Do not add an introduction, conclusion, tip, or follow-up offer."
+        )
+    return prompt
 
 
 def reload_templates() -> None:

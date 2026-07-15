@@ -3,6 +3,7 @@ import pytest
 
 from src.llm.ollama_client import OllamaClient
 from src.llm.types import LLMConfig
+from knowledge.structured.pz_tools import search_items
 
 
 @pytest.mark.asyncio
@@ -82,3 +83,46 @@ async def test_chat_error_does_not_expose_api_key(unused_tcp_port):
 
     assert "status 403" in str(exc_info.value)
     assert "secret-ollama-key" not in str(exc_info.value)
+
+
+@pytest.mark.asyncio
+async def test_chat_converts_callable_tools_before_serializing(unused_tcp_port):
+    captured = {}
+
+    async def chat_handler(request):
+        captured["body"] = await request.json()
+        return web.json_response(
+            {
+                "message": {"role": "assistant", "content": "tool-ready"},
+                "prompt_eval_count": 1,
+                "eval_count": 1,
+            }
+        )
+
+    app = web.Application()
+    app.router.add_post("/api/chat", chat_handler)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "127.0.0.1", unused_tcp_port)
+    await site.start()
+
+    try:
+        client = OllamaClient(
+            LLMConfig(
+                provider="ollama",
+                model="qwen3-coder-next:cloud",
+                api_key="ollama-test-key",
+                base_url=f"http://127.0.0.1:{unused_tcp_port}",
+            )
+        )
+
+        response = await client.chat(
+            [{"role": "user", "content": "which axe is strong?"}],
+            tools=[search_items],
+        )
+    finally:
+        await runner.cleanup()
+
+    assert response.content == "tool-ready"
+    assert captured["body"]["tools"][0]["type"] == "function"
+    assert captured["body"]["tools"][0]["function"]["name"] == "search_items"

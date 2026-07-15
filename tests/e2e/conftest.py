@@ -17,6 +17,9 @@ class _DummyAcquire:
     async def execute(self, *args, **kwargs):
         return None
 
+    async def fetchrow(self, *args, **kwargs):
+        return None
+
 
 class _DummyPool:
     def acquire(self):

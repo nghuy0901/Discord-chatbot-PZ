@@ -71,6 +71,10 @@ REQUIRED_RAG_METRIC_COLUMNS = {
     "trusted_source_count",
     "untrusted_source_count",
     "evidence_score",
+    "groundedness_score",
+    "groundedness_reason",
+    "groundedness_unsupported_count",
+    "groundedness_error",
     "response_time_ms",
     "response_length",
     "error",
@@ -130,6 +134,10 @@ METRIC_INSERT_COLUMNS = [
     "trusted_source_count",
     "untrusted_source_count",
     "evidence_score",
+    "groundedness_score",
+    "groundedness_reason",
+    "groundedness_unsupported_count",
+    "groundedness_error",
     "response_time_ms",
     "response_length",
     "error",
@@ -200,7 +208,10 @@ class RAGMetric:
     trusted_source_count: int = 0
     untrusted_source_count: int = 0
     evidence_score: float = 0.0
-    groundedness_score: float = 1.0  # post-generation faithfulness (not persisted)
+    groundedness_score: float = 1.0
+    groundedness_reason: str = ""
+    groundedness_unsupported_count: int = 0
+    groundedness_error: Optional[str] = None
 
     # Response
     response_time_ms: float = 0.0
@@ -485,6 +496,16 @@ class MetricsManager:
                         AVG(num_results) as avg_results,
                         AVG(CASE WHEN empty_retrieval THEN 1.0 ELSE 0.0 END) as empty_retrieval_rate,
                         AVG(citation_coverage) as citation_coverage,
+                        AVG(groundedness_score) FILTER (
+                            WHERE groundedness_reason <> ''
+                              AND groundedness_reason <> 'not_applicable_conversation'
+                        ) as avg_groundedness_score,
+                        AVG(
+                            CASE WHEN groundedness_reason <> ''
+                              AND groundedness_reason <> 'not_applicable_conversation' THEN
+                                CASE WHEN decision_reason = 'ungrounded_answer' THEN 1.0 ELSE 0.0 END
+                            END
+                        ) as groundedness_failure_rate,
                         AVG(CASE WHEN cache_hit THEN 1.0 ELSE 0.0 END) as cache_hit_rate,
                         SUM(total_tokens) as total_tokens,
                         SUM(estimated_cost_usd) as total_estimated_cost,
@@ -516,6 +537,8 @@ class MetricsManager:
                     "avg_results_per_query": round(row["avg_results"] or 0, 2),
                     "empty_retrieval_rate": round(row["empty_retrieval_rate"] or 0, 4),
                     "citation_coverage": round(row["citation_coverage"] or 0, 4),
+                    "avg_groundedness_score": round(row["avg_groundedness_score"] or 0, 4),
+                    "groundedness_failure_rate": round(row["groundedness_failure_rate"] or 0, 4),
                     "cache_hit_rate": round(row["cache_hit_rate"] or 0, 4),
                     "total_tokens": row["total_tokens"] or 0,
                     "total_estimated_cost_usd": round(row["total_estimated_cost"] or 0, 6),

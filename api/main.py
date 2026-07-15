@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO)
 # Imports from RAG codebase
 from rag.db import init_db, close_pool, get_pool
 from rag.metrics import get_metrics_manager, RAGMetric
-from rag.query_preprocessor import get_preprocessor
+from rag.query_preprocessor import get_preprocessor, requires_structured_tools
 from rag.retriever import build_rag_result
 from rag.result import RAGDecision
 from rag.responses import decision_response
@@ -49,6 +49,8 @@ ENABLE_KNOWLEDGE_BASE: bool = os.getenv("ENABLE_KNOWLEDGE_BASE", "True").lower()
 ENABLE_TOOL_CALLING: bool = os.getenv("ENABLE_TOOL_CALLING", "True").lower() == "true"
 API_RATE_LIMIT = int(os.getenv("API_RATE_LIMIT", "60"))
 API_RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("API_RATE_LIMIT_WINDOW_SECONDS", "60"))
+FACTUAL_TEMPERATURE = float(os.getenv("RAG_FACTUAL_TEMPERATURE", "0.1"))
+CONVERSATION_TEMPERATURE = float(os.getenv("PERSONALITY_TEMPERATURE", "0.8"))
 api_rate_limiter = InMemoryRateLimiter(
     limit=API_RATE_LIMIT,
     window_seconds=API_RATE_LIMIT_WINDOW_SECONDS,
@@ -84,6 +86,16 @@ class QueryRequest(BaseModel):
     channel_id: Optional[str] = "api_channel"
     include_sources: bool = False
 
+
+def _referenced_provenance(answer_text: str, provenance: list[dict]) -> list[dict]:
+    """Return only provenance entries actually cited by the generated answer."""
+    from rag.citations import referenced_labels
+
+    labels = set(referenced_labels(answer_text))
+    if not labels:
+        return []
+    return [item for item in provenance if str(item.get("label") or "") in labels]
+
 # App definition
 app = FastAPI(
     title="NomNom RAG REST API",
@@ -111,10 +123,10 @@ async def startup_event():
         logger.error(f"Database initialization failed: {e}")
     if ENABLE_KNOWLEDGE_BASE:
         try:
-            result = await get_knowledge_manager().load_all()
-            logger.info("Knowledge base loaded for API: %s", result)
+            result = await get_knowledge_manager().initialize_catalog()
+            logger.info("Knowledge catalog initialized for API: %s", result)
         except Exception as e:
-            logger.error(f"Knowledge base initialization failed: {e}")
+            logger.error(f"Knowledge catalog initialization failed: {e}")
     if ENABLE_RAG:
         try:
             from rag.bm25_search import init_bm25_indices
@@ -230,6 +242,7 @@ async def execute_rag_query(
         response_text = cached_response["response_text"]
         latency = (time.time() - query_start) * 1000
         provenance = cached_response.get("provenance", [])
+        cited_provenance = _referenced_provenance(response_text, provenance)
         # Re-attach the chunk-level citation footer (stored raw in cache).
         if os.getenv("RAG_SHOW_CITATIONS", "true").lower() == "true":
             try:
@@ -265,12 +278,11 @@ async def execute_rag_query(
                 completion_tokens=cached_response.get("completion_tokens", 0),
                 total_tokens=cached_response.get("prompt_tokens", 0) + cached_response.get("completion_tokens", 0),
                 rag_decision="answer",
+                citation_coverage=1.0 if cited_provenance else 0.0,
                 provenance=provenance,
                 trusted_source_count=len(provenance),
             )
             await metrics.record(metric)
-            # Update metric in db since it has response details
-            await metrics.update_db(metric)
         except Exception as e:
             logger.warning(f"Failed to record cache hit metric in API: {e}")
 
@@ -281,10 +293,10 @@ async def execute_rag_query(
             "decision": "answer",
             "cache_hit": True,
             "latency_ms": round(latency, 2),
-            "source_count": len(provenance),
+            "source_count": len(cited_provenance),
             "sources": [
                 item.get("source_id", "")
-                for item in provenance
+                for item in cited_provenance
                 if payload.include_sources and item.get("source_id")
             ],
             "citations": [
@@ -297,7 +309,7 @@ async def execute_rag_query(
                     "url": item.get("url", ""),
                     "similarity": item.get("similarity", 0.0),
                 }
-                for item in provenance
+                for item in cited_provenance
                 if payload.include_sources
             ],
             "metrics": {
@@ -342,16 +354,29 @@ async def execute_rag_query(
                 query_intent_str = metric.query_intent
             detected_domain = metric.detected_domain
 
-            if rag_result.decision is not RAGDecision.ANSWER:
+            can_try_tools = (
+                ENABLE_TOOL_CALLING
+                and STRUCTURED_TOOLS_AVAILABLE
+                and PZ_TOOLS
+                and requires_structured_tools(query_intent_str)
+            )
+
+            if rag_result.decision is not RAGDecision.ANSWER and not can_try_tools:
                 response_text = decision_response(
                     rag_result.metric.query_language,
                     rag_result.decision,
+                    event="api_pre_generation_decision",
+                    query=query,
+                    rag_result=rag_result,
+                    channel_id=payload.channel_id,
+                    user_id=payload.user_id,
                 )
                 latency = (time.time() - query_start) * 1000
                 metric.response_time_ms = latency
                 metric.response_length = len(response_text)
+                metric.citation_coverage = 0.0
                 metrics = get_metrics_manager()
-                await metrics.update_db(metric)
+                await metrics.record(metric)
                 return {
                     "query": query,
                     "query_id": request_context.query_id,
@@ -386,7 +411,15 @@ async def execute_rag_query(
             ENABLE_TOOL_CALLING
             and STRUCTURED_TOOLS_AVAILABLE
             and PZ_TOOLS
-            and query_intent_str in ("analytical", "hybrid", None)
+            and requires_structured_tools(query_intent_str)
+        )
+
+        # Evidence-backed factual answers should be reproducible and concise;
+        # retain the higher personality temperature only for casual chat.
+        generation_temperature = (
+            CONVERSATION_TEMPERATURE
+            if query_intent_str == "conversation"
+            else FACTUAL_TEMPERATURE
         )
 
         # Execute LLM call
@@ -395,13 +428,13 @@ async def execute_rag_query(
                 messages=prompt_messages,
                 tools=PZ_TOOLS,
                 tool_functions=PZ_TOOL_FUNCTIONS,
-                temperature=0.8,
+                temperature=generation_temperature,
                 request_context=request_context,
             )
         else:
             response_text = await chat_completion(
                 messages=prompt_messages,
-                temperature=0.8,
+                temperature=generation_temperature,
                 request_context=request_context,
             )
 
@@ -438,11 +471,34 @@ async def execute_rag_query(
         # vector provenance the groundedness gate checks — skip the gate for them.
         decision_value = "answer"
         raw_answer = response_text
+        finalized = None
+        tool_results = []
+        if use_tools_for_query:
+            from src.ollama_provider import get_last_tool_results
+            from rag.groundedness import sources_from_tool_results
+
+            tool_results = get_last_tool_results()
+        answered_with_tools = bool(sources_from_tool_results(tool_results)) if tool_results else False
+        if (
+            rag_result
+            and rag_result.decision is not RAGDecision.ANSWER
+            and not answered_with_tools
+        ):
+            response_text = decision_response(
+                rag_result.metric.query_language,
+                rag_result.decision,
+                event="api_tool_response_without_tool_evidence",
+                query=query,
+                rag_result=rag_result,
+                channel_id=payload.channel_id,
+                user_id=payload.user_id,
+            )
+            decision_value = rag_result.decision.value
+            metric.response_length = len(response_text)
         if (
             rag_result
             and rag_result.decision is RAGDecision.ANSWER
-            and response_text
-            and not use_tools_for_query
+            and not answered_with_tools
         ):
             from rag.answer_finalize import finalize_rag_answer
 
@@ -450,23 +506,18 @@ async def execute_rag_query(
             response_text = finalized.text
             decision_value = finalized.decision.value
             metric.response_length = len(response_text)
-        elif use_tools_for_query and response_text:
+        elif answered_with_tools:
             # C2: verify tool-calling answers against the actual tool outputs,
             # since they are not part of the vector provenance.
             from rag.answer_finalize import finalize_tool_answer
-            from src.ollama_provider import get_last_tool_results
 
             lang = rag_result.metric.query_language if rag_result else "vi"
             finalized = await finalize_tool_answer(
-                query, response_text, get_last_tool_results(), language=lang
+                query, response_text, tool_results, language=lang
             )
             response_text = finalized.text
             decision_value = finalized.decision.value
             metric.response_length = len(response_text)
-
-        # Re-save metrics to ensure SQL database write
-        metrics = get_metrics_manager()
-        await metrics.update_db(metric)
 
         # Save cache
         provenance = []
@@ -474,8 +525,33 @@ async def execute_rag_query(
             provenance = [item.to_dict() for item in rag_result.provenance]
 
         answered = decision_value == "answer"
-        # Vector provenance is only meaningful for non-tool answers.
-        cite_ok = answered and not use_tools_for_query
+        # A hybrid query may *try* tool calling but receive no tool call, then
+        # answer from vector evidence. In that case provenance remains valid.
+        cite_ok = answered and not answered_with_tools
+        cited_provenance = (
+            _referenced_provenance(raw_answer, provenance) if cite_ok else []
+        )
+        metric.rag_decision = decision_value
+        metric.citation_coverage = 1.0 if cited_provenance else 0.0
+        if answered_with_tools and finalized is not None:
+            if finalized.groundedness is not None:
+                metric.groundedness_score = finalized.groundedness.score
+                metric.groundedness_reason = finalized.groundedness.reason
+                metric.groundedness_unsupported_count = len(
+                    finalized.groundedness.unsupported
+                )
+                metric.groundedness_error = finalized.groundedness.error
+            metric.decision_reason = (
+                "tool_answer_ungrounded"
+                if finalized.overridden
+                else "tool_answer_grounded"
+            )
+
+        latency = (time.time() - query_start) * 1000
+        metric.response_time_ms = latency
+        metric.response_length = len(response_text)
+        await get_metrics_manager().record(metric)
+
         if (
             rag_result
             and answered
@@ -507,11 +583,11 @@ async def execute_rag_query(
             "decision": decision_value,
             "cache_hit": False,
             "latency_ms": round(latency, 2),
-            "source_count": len(provenance) if cite_ok else 0,
+            "source_count": len(cited_provenance),
             "sources": [
                 item.get("source_id", "")
-                for item in provenance
-                if cite_ok and payload.include_sources and item.get("source_id")
+                for item in cited_provenance
+                if payload.include_sources and item.get("source_id")
             ],
             "citations": [
                 {
@@ -523,8 +599,8 @@ async def execute_rag_query(
                     "url": item.get("url", ""),
                     "similarity": item.get("similarity", 0.0),
                 }
-                for item in provenance
-                if cite_ok and payload.include_sources
+                for item in cited_provenance
+                if payload.include_sources
             ],
             "metrics": {
                 "prompt_tokens": prompt_tokens,
@@ -568,6 +644,12 @@ def _build_metrics_summary(raw: Dict[str, Any]) -> MetricsSummary:
         empty_retrieval_rate=round(float(raw.get("empty_retrieval_rate", 0.0) or 0.0), 4),
         average_retrieved_chunks=round(float(raw.get("avg_results_per_query", 0.0) or 0.0), 2),
         citation_coverage=round(float(raw.get("citation_coverage", 0.0) or 0.0), 4),
+        average_groundedness_score=round(
+            float(raw.get("avg_groundedness_score", 0.0) or 0.0), 4
+        ),
+        groundedness_failure_rate=round(
+            float(raw.get("groundedness_failure_rate", 0.0) or 0.0), 4
+        ),
         cache_hit_rate=round(float(raw.get("cache_hit_rate", 0.0) or 0.0), 4),
         total_tokens=int(raw.get("total_tokens", 0) or 0),
         estimated_cost_usd=round(

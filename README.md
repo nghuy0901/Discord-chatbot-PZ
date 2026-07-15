@@ -67,11 +67,26 @@ Provider values:
 
 For self-hosted local models, serve the model through a vLLM OpenAI-compatible `/v1` endpoint and set `LLM_PROVIDER=openai_compatible`.
 
+Docker Compose includes a separate local vLLM service for embeddings:
+
+```dotenv
+EMBEDDING_PROVIDER=openai_compatible
+EMBEDDING_MODEL=BAAI/bge-m3
+EMBEDDING_BASE_URL=http://vllm-embeddings:8000/v1
+EMBEDDING_API_KEY=local-dev-key
+VLLM_EMBEDDING_IMAGE=vllm/vllm-openai:latest
+VLLM_EMBEDDING_PORT=8001
+VLLM_GPU_MEMORY_UTILIZATION=0.70
+HF_TOKEN=
+```
+
+The vLLM container exposes embeddings to other containers at `http://vllm-embeddings:8000/v1` and to the host at `http://localhost:8001/v1`. It uses a Docker volume for the Hugging Face cache and starts `BAAI/bge-m3` with the required `BgeM3EmbeddingModel` architecture override.
+
 For Ollama Cloud, use the native Ollama API and configure:
 
 ```dotenv
 LLM_PROVIDER=ollama
-OLLAMA_MODEL=qwen3-coder-next:cloud
+OLLAMA_MODEL=gpt-oss:20b
 OLLAMA_BASE_URL=https://ollama.com
 OLLAMA_API_KEY=your_ollama_api_key
 ```

@@ -1,6 +1,6 @@
 # NomNom Deployment Guide
 
-This guide describes a Docker Compose deployment for the NomNom Discord bot, FastAPI API, PostgreSQL pgvector, and Redis.
+This guide describes a Docker Compose deployment for the NomNom Discord bot, FastAPI API, PostgreSQL pgvector, Redis, and a local vLLM embedding server.
 
 ## Architecture
 
@@ -14,6 +14,8 @@ graph TD
     API --> Redis
     Bot --> LLM[OpenAI, Gemini, or OpenAI-compatible /v1 endpoint]
     API --> LLM
+    Bot --> Embed[vLLM Embeddings: BAAI/bge-m3]
+    API --> Embed
 ```
 
 ## Environment
@@ -31,9 +33,13 @@ LLM_API_KEY=
 
 EMBEDDING_PROVIDER=openai_compatible
 EMBEDDING_MODEL=BAAI/bge-m3
-EMBEDDING_BASE_URL=https://llm.example.com/v1
-EMBEDDING_API_KEY=
+EMBEDDING_BASE_URL=http://vllm-embeddings:8000/v1
+EMBEDDING_API_KEY=local-dev-key
 EMBEDDING_DIMENSION=1024
+VLLM_EMBEDDING_IMAGE=vllm/vllm-openai:latest
+VLLM_EMBEDDING_PORT=8001
+VLLM_GPU_MEMORY_UTILIZATION=0.70
+HF_TOKEN=
 
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=
@@ -42,7 +48,9 @@ POSTGRES_URL=postgresql://postgres:postgres@postgres:5432/postgres
 REDIS_URL=redis://redis:6379/0
 ```
 
-For self-hosted local models, run vLLM or another OpenAI-compatible server separately and point `LLM_BASE_URL` and `EMBEDDING_BASE_URL` at its `/v1` endpoint.
+The compose stack runs vLLM for embeddings at `http://vllm-embeddings:8000/v1` inside Docker and publishes it to `http://localhost:8001/v1` on the host. It uses a named Docker volume for the Hugging Face cache and starts `BAAI/bge-m3` with the required `BgeM3EmbeddingModel` architecture override.
+
+Chat LLM serving is still separate from the embedding service. Use Ollama Cloud, OpenAI/Gemini, or another OpenAI-compatible `/v1` chat endpoint for `LLM_*`.
 
 ## Validate
 

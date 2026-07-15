@@ -54,3 +54,30 @@ def test_baseline_gate_only_references_computed_metrics():
     gated = set(config.get("minimums", {})) | set(config.get("maximums", {}))
     missing = gated - produced
     assert not missing, f"gate references metrics the eval never computes: {sorted(missing)}"
+
+
+def test_retrieval_summary_excludes_abstain_and_clarify_rows():
+    """Rows with intentionally empty expected_sources must not lower Recall."""
+    from evaluation.reporting import EvaluationItemResult
+    from scripts.run_release_eval import summarize
+
+    answerable = EvaluationItemResult(
+        example_id="answer", expected_behavior="answer", actual_behavior="answer",
+        answer="a", retrieved_source_ids=["pz/a.md"], provenance=[],
+        deterministic_scores={
+            "recall_at_5": 1.0, "mrr": 1.0, "ndcg_at_5": 1.0,
+            "source_hit_rate": 1.0, "keyword_coverage": 1.0,
+        },
+        judge_scores={}, latency_ms=1.0,
+    )
+    abstain = EvaluationItemResult(
+        example_id="abstain", expected_behavior="abstain", actual_behavior="abstain",
+        answer="", retrieved_source_ids=[], provenance=[], deterministic_scores={},
+        judge_scores={}, latency_ms=1.0,
+    )
+
+    summary = summarize([answerable, abstain])
+
+    assert summary["answerable_retrieval_count"] == 1
+    assert summary["recall_at_5"] == 1.0
+    assert summary["source_hit_rate"] == 1.0

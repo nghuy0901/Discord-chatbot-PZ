@@ -177,6 +177,41 @@ def referenced_labels(answer_text: str) -> List[str]:
     return seen
 
 
+def validate_factual_line_citations(
+    answer_text: str,
+    provenance: List[ProvenanceItem],
+) -> Tuple[bool, List[str]]:
+    """Require every substantive answer line to cite an existing source.
+
+    This deterministic guard catches a common judge failure: the model cites a
+    few bullets correctly, then appends an uncited recommendation or plausible
+    conclusion. Structural headings ending in ``:`` are allowed; factual lines
+    are not allowed to borrow a marker from another paragraph.
+    """
+    valid_labels = {item.label for item in provenance if item.label}
+    if not valid_labels:
+        return False, ["no_valid_provenance"]
+
+    missing: List[str] = []
+    for raw_line in (answer_text or "").splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        normalized = re.sub(r"^(?:[-*•]|\d+[.)])\s*", "", line).strip()
+        if not normalized or normalized.startswith("#"):
+            continue
+        if normalized.endswith(":"):
+            continue
+        if re.fullmatch(r"[-|:\s]+", normalized):
+            continue
+
+        labels = set(_MARKER_RE.findall(normalized))
+        if not labels or not labels <= valid_labels:
+            missing.append(_one_line(normalized, 160))
+
+    return not missing, missing
+
+
 def render_sources_footer(
     answer_text: str,
     provenance: List[ProvenanceItem],

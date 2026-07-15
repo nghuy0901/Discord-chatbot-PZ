@@ -28,6 +28,11 @@ class QueryIntent(str, Enum):
     HYBRID = "hybrid"           # → Tool Calling + Vector Search (factual + context)
     CONVERSATION = "conversation"  # → No tools, no RAG needed (casual chat)
 
+
+def requires_structured_tools(intent: object) -> bool:
+    value = intent.value if isinstance(intent, QueryIntent) else str(intent or "")
+    return value == QueryIntent.ANALYTICAL.value
+
 # ---------------------------------------------------------------------------
 # Abbreviation/slang expansion maps
 # ---------------------------------------------------------------------------
@@ -39,7 +44,6 @@ ABBREVIATIONS = {
     "đc": "được",
     "ng": "người",
     "ntn": "như thế nào",
-    "sao": "tại sao",
     "j": "gì",
     "gì v": "gì vậy",
     "đi": "đi",
@@ -82,6 +86,7 @@ ABBREVIATIONS = {
 GAME_GLOSSARY_VI_EN = {
     "rìu": "axe", "búa": "hammer", "dao": "knife", "kiếm": "sword",
     "súng": "gun", "đạn": "ammo bullet", "vũ khí": "weapon",
+    "sát thương": "damage",
     "giáp": "armor", "áo giáp": "armor", "quần áo": "clothing", "mũ": "hat helmet",
     "băng gạc": "bandage", "băng": "bandage", "thuốc giảm đau": "painkillers",
     "thuốc": "medicine pills", "vết thương": "wound injury",
@@ -96,6 +101,7 @@ GAME_GLOSSARY_VI_EN = {
     "mộc": "carpentry", "rèn": "metalworking blacksmith",
     "may vá": "tailoring", "kỹ năng": "skill",
     "công thức": "recipe", "chế tạo": "crafting",
+    "điểm spawn": "starting location spawn", "bình thường": "normal",
     "địa điểm": "location", "bản đồ": "map",
     "thây ma": "zombie", "đói": "hunger", "khát": "thirst",
     "mệt": "fatigue", "ngủ": "sleep",
@@ -104,6 +110,7 @@ GAME_GLOSSARY_VI_EN = {
     "kho": "storage warehouse", "ba lô": "backpack bag", "túi": "bag",
     "cửa": "door", "tường": "wall", "khóa": "lock",
     "pin": "battery", "đèn pin": "flashlight",
+    "cắn": "bite", "kết nối": "connect", "điều kiện": "requirements",
 }
 
 # Discord formatting patterns
@@ -168,13 +175,11 @@ class QueryPreprocessor:
         # Step 5: Detect domain from keywords
         metadata["domain"] = self._detect_domain(cleaned, channel_name)
 
-        # Step 6: Add domain context prefix (if domain detected)
-        if metadata["domain"]:
-            cleaned = self._add_domain_context(cleaned, metadata["domain"])
-
-        # Step 6.5: Cross-lingual augmentation — append English game terms for
-        # Vietnamese queries so the lexical arm can match the English KB (H3).
-        cleaned = self._augment_cross_lingual(cleaned, metadata["language"])
+        # Keep semantic and lexical retrieval inputs separate. Domain is already
+        # carried as metadata, so adding it to every query only creates noise.
+        metadata["lexical_query"] = self._augment_cross_lingual(
+            cleaned, metadata["language"]
+        )
 
         # Step 7 (Phase 4): Classify query intent for routing
         metadata["query_intent"] = self.classify_query(
@@ -228,11 +233,19 @@ class QueryPreprocessor:
             return text
         low = text.lower()
         extra: list = []
-        for vi_term, en_term in GAME_GLOSSARY_VI_EN.items():
-            if vi_term in low:
+        occupied: list[tuple[int, int]] = []
+        for vi_term, en_term in sorted(
+            GAME_GLOSSARY_VI_EN.items(), key=lambda item: len(item[0]), reverse=True
+        ):
+            for match in re.finditer(re.escape(vi_term), low):
+                span = match.span()
+                if any(span[0] < end and start < span[1] for start, end in occupied):
+                    continue
+                occupied.append(span)
                 for en in en_term.split():
                     if en not in low and en not in extra:
                         extra.append(en)
+                break
         return f"{text} {' '.join(extra)}" if extra else text
 
     def _expand_abbreviations(self, text: str) -> str:
@@ -271,7 +284,9 @@ class QueryPreprocessor:
                 "thây ma", "sinh tồn", "chế tạo", "nấu ăn", "câu cá",
                 "trồng trọt", "mộc", "rèn", "may vá", "sơ cứu",
                 "vết thương", "máy phát", "xe cộ", "vũ khí", "rìu",
-                "công thức", "kỹ năng", "đói", "khát", "nhiễm",
+                "súng", "sát thương", "công thức", "kỹ năng", "đói",
+                "khát", "nhiễm", "damage", "gun", "firearm", "shotgun",
+                "rifle", "pistol",
             ],
             "server_rules": [
                 "server rule", "server rules", "rules of", "regulation",
@@ -375,8 +390,37 @@ class QueryPreprocessor:
         r"^(bye|tạm\s*biệt|goodbye|bb)\b",
         r"(bạn\s*(là\s*ai|tên\s*gì|là\s*gì)|who\s*are\s*you|your\s*name)",
         r"(đùa|joke|funny|haha|lol|kk|:v|xD)",
+        r"(chuyện\s*cười|câu\s*chuyện\s*cười|truyện\s*cười)",
+        r"(kể|nói|bịa|chế).*(vui|hài|cười|joke|troll|roast)",
+        r"(làm|viết).*(thơ|rap|vè).*(vui|troll|chọc|trêu|hài)?",
+        r"(meme|troll|roast|chọc|trêu)\b",
         r"(khỏe\s*(không|ko)|how\s*are\s*you)",
         r"(tâm\s*sự|vent|rant)",
+        r"(gà|cùi|lú|lag\s*não|vô\s*tri|đoán\s*mò|sai\s*bét|nhạt|máy\s*móc)",
+        r"(nomnom|bot).*?(chậm\s+như|ngu\s+(nhất|quá)|dở\s+(quá|thật)|tệ\s+(quá|thật))",
+        r"(nomnom|bot).*(thông\s*minh|giỏi|thiên\s*tài|hay\s*quá)",
+        r"(tư\s*vấn|lời\s*khuyên|xin\s*lỗi|động\s*lực|áp\s*lực|tâm\s*trạng)",
+        r"(trì\s*hoãn|deadline|bình\s*tĩnh|ngủ\s*sớm|ngủ\s*đủ|thói\s*quen|góp\s*ý)",
+        r"(bạn\s*bè|đang\s*giận|nói\s*chuyện\s+với)",
+        r"(dọn\s*bàn|ghi\s*chú|cuộc\s*họp|cà\s*phê|điện\s*thoại)",
+        r"(học\s+và\s+nghỉ|giữ\s+tập\s*trung|cuộc\s+trò\s*chuyện)",
+        r"(tối\s*nay\s*ăn\s*gì|uống\s*cà\s*phê|dọn\s*bàn|ghi\s*chú\s*cuộc\s*họp)",
+        r"(mẹo.*quên|checklist.*ngủ|bắt\s*đầu\s+một\s+cuộc\s+trò\s*chuyện)",
+        r"\b(tôi|mình|em|anh|chị|bạn)\s+nên\b",
+        r"(đố\s*mẹo|đố\s*vui|câu\s*đố|hack\s*não)",
+        r"(ý\s*tôi\s*không\s*phải|nói\s*lại|ví\s*dụ\s*khác)",
+        r"(đoạn\s*trên|câu\s*vừa\s*rồi|lúc\s*nãy|cuối\s*cùng|đúng\s*trọng\s*tâm)",
+        r"(giải\s*thích|tóm\s*tắt).*(dễ\s*hiểu\s*hơn|ngắn\s*hơn|một\s*câu)",
+    ]
+
+    # A short sentence is not necessarily small talk. These cues cover common
+    # item/mechanic questions that carry no domain keyword. Sending them
+    # through hybrid retrieval is safer than answering from model memory.
+    _FACTUAL_QUERY_CUES: list = [
+        r"\?$",
+        r"(dùng\s*để|làm\s*gì|cần\s*gì|ở\s*đâu|bao\s*nhiêu|tìm\s*(được|thấy)?)",
+        r"(cách\s*(chế|làm|tạo)|tác\s*dụng|công\s*dụng|hoạt\s*động)",
+        r"\b(what|where|when|which|why|how|does|do|can)\b",
     ]
 
     def classify_query(
@@ -402,11 +446,10 @@ class QueryPreprocessor:
         """
         text_lower = text.lower().strip()
 
-        # Short messages that are just greetings / casual
-        if len(text_lower) < 30:
-            for pattern in self._CONVERSATION_PATTERNS:
-                if re.search(pattern, text_lower):
-                    return QueryIntent.CONVERSATION
+        # Greetings, banter, jokes, and creative prompts do not need game data.
+        for pattern in self._CONVERSATION_PATTERNS:
+            if re.search(pattern, text_lower):
+                return QueryIntent.CONVERSATION
 
         # Check analytical patterns first (higher priority for PZ domain)
         analytical_score = 0
@@ -438,7 +481,11 @@ class QueryPreprocessor:
             # Domain detected but no specific intent → hybrid
             return QueryIntent.HYBRID
 
-        # No domain, no patterns → conversation
+        # A concise factual question without a keyword still needs evidence.
+        if any(re.search(pattern, text_lower) for pattern in self._FACTUAL_QUERY_CUES):
+            return QueryIntent.HYBRID
+
+        # No domain, no factual cue, short text → conversation.
         if len(text_lower) < 50:
             return QueryIntent.CONVERSATION
 

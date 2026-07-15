@@ -60,7 +60,6 @@ class EvidencePolicy:
             else float(os.getenv("RAG_CLARIFY_MIN_CONFIDENCE", "0.35"))
         )
         # Floors / weights for the confidence model.
-        self.agreement_floor = float(os.getenv("RAG_EVIDENCE_AGREEMENT_FLOOR", "0.80"))
         self.self_rag_floor = float(os.getenv("RAG_EVIDENCE_SELF_RAG_FLOOR", "0.75"))
         self.support_floor = float(os.getenv("RAG_EVIDENCE_SUPPORT_FLOOR", "0.40"))
         self.corroboration_weight = float(
@@ -105,7 +104,7 @@ class EvidencePolicy:
                 rejected,
             )
 
-        confidence = self._confidence(trusted)
+        confidence = self._confidence(trusted, query)
         answer_min, clarify_min = self._thresholds(query_intent)
 
         if confidence >= answer_min:
@@ -135,11 +134,18 @@ class EvidencePolicy:
     # ------------------------------------------------------------------ #
     #  Confidence model
     # ------------------------------------------------------------------ #
-    def _confidence(self, trusted: Sequence[Dict[str, Any]]) -> float:
+    def _confidence(
+        self, trusted: Sequence[Dict[str, Any]], query: str
+    ) -> float:
         """Aggregate per-source strengths into a single confidence in [0, 1]."""
-        strengths = sorted(
-            (self._result_strength(item) for item in trusted), reverse=True
-        )
+        best_by_source: Dict[str, float] = {}
+        for index, item in enumerate(trusted):
+            source = str(item.get("source") or item.get("source_id") or index)
+            best_by_source[source] = max(
+                best_by_source.get(source, 0.0),
+                self._result_strength(item, query),
+            )
+        strengths = sorted(best_by_source.values(), reverse=True)
         if not strengths:
             return 0.0
 
@@ -157,7 +163,7 @@ class EvidencePolicy:
 
         return _clamp(top1 + corroboration + separation)
 
-    def _result_strength(self, result: Dict[str, Any]) -> float:
+    def _result_strength(self, result: Dict[str, Any], query: str = "") -> float:
         """Strength of a single trusted source in [0, 1]."""
         similarity = relevance_score(result)
         methods = {str(m).lower() for m in (result.get("retrieval_methods") or [])}
@@ -166,9 +172,15 @@ class EvidencePolicy:
 
         strength = similarity
 
-        # Lexical + semantic agreement is a strong, scale-independent signal.
+        # Agreement is useful only when the chunk overlaps the actual query,
+        # not generic corpus boilerplate shared by both retrieval arms.
         if {"vector", "bm25"} <= methods:
-            strength = max(strength, self.agreement_floor)
+            content = str(result.get("content") or "")
+            if content:
+                from rag.bm25_search import tokenize
+
+                overlap = set(tokenize(query)) & set(tokenize(content))
+                strength = strength + 0.05 if overlap else strength * 0.75
 
         # Self-RAG explicitly graded this chunk as supporting the query.
         if (
@@ -206,4 +218,16 @@ class EvidencePolicy:
             r"\b(cái đó|nó|thứ đó|chỗ đó|that one|it|there)\b",
             normalized,
         )
-        return bool(referential)
+        if not referential:
+            return False
+        remaining = re.sub(referential.re, " ", normalized)
+        generic = {
+            "cái", "thứ", "chỗ", "đó", "nó", "cần", "bao", "nhiêu",
+            "that", "one", "it", "there", "what", "is", "are", "does",
+            "do", "how", "much", "and", "the", "a", "an",
+        }
+        anchors = [
+            token for token in re.findall(r"\w+", remaining)
+            if len(token) > 1 and token not in generic
+        ]
+        return not anchors

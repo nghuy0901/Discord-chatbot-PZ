@@ -1,4 +1,5 @@
 from rag.metrics import RAGMetric
+import pytest
 
 
 def test_metric_contains_hybrid_and_quality_fields():
@@ -33,6 +34,9 @@ def test_metric_contains_trust_decision_and_provenance_fields():
         trusted_source_count=2,
         untrusted_source_count=1,
         evidence_score=0.82,
+        groundedness_score=0.91,
+        groundedness_reason="checked",
+        groundedness_unsupported_count=1,
     )
 
     data = metric.to_dict()
@@ -43,3 +47,42 @@ def test_metric_contains_trust_decision_and_provenance_fields():
     assert data["trusted_source_count"] == 2
     assert data["untrusted_source_count"] == 1
     assert data["evidence_score"] == 0.82
+    assert data["groundedness_score"] == 0.91
+    assert data["groundedness_reason"] == "checked"
+    assert data["groundedness_unsupported_count"] == 1
+
+
+@pytest.mark.asyncio
+async def test_db_summary_excludes_conversation_from_groundedness(monkeypatch):
+    from rag.metrics import MetricsManager
+
+    captured = {}
+
+    class Connection:
+        async def fetchrow(self, query, *args):
+            if "FROM rag_metrics" in query:
+                captured["query"] = query
+                return {}
+            return {}
+
+    class Acquire:
+        async def __aenter__(self):
+            return Connection()
+
+        async def __aexit__(self, *args):
+            return None
+
+    class Pool:
+        def acquire(self):
+            return Acquire()
+
+    async def fake_get_pool():
+        return Pool()
+
+    monkeypatch.setattr("rag.db.get_pool", fake_get_pool)
+    manager = MetricsManager()
+    manager._db_initialized = True
+
+    await manager.get_db_summary()
+
+    assert "groundedness_reason <> 'not_applicable_conversation'" in captured["query"]

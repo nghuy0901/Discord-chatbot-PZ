@@ -40,6 +40,8 @@ class MetricsSummary(BaseModel):
     empty_retrieval_rate: float
     average_retrieved_chunks: float
     citation_coverage: float
+    average_groundedness_score: float = 0.0
+    groundedness_failure_rate: float = 0.0
     cache_hit_rate: float
     total_tokens: int
     estimated_cost_usd: float

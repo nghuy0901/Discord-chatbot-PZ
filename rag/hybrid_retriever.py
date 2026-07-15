@@ -149,12 +149,11 @@ def _ensure_methods(results: List[Dict[str, Any]], method: str) -> List[Dict[str
 
 
 def _record_key(result: Dict[str, Any]) -> str:
-    return str(
-        result.get("record_name")
-        or result.get("heading_path")
-        or result.get("source")
-        or result.get("doc_id")
-        or ""
+    if result.get("content_mode") not in {"record_item", "recipe"}:
+        return ""
+    record = result.get("record_name") or result.get("heading_path")
+    return f"{result.get('source', '')}:{record}" if record else str(
+        result.get("doc_id") or ""
     )
 
 
@@ -182,6 +181,7 @@ def _cap_per_record(
 # ---------------------------------------------------------------------------
 async def hybrid_search(
     query: str,
+    bm25_query: Optional[str] = None,
     channel_id: Optional[str] = None,
     domains: Optional[List[str]] = None,
     vector_top_k: int = 15,
@@ -224,47 +224,64 @@ async def hybrid_search(
 
     # ---- 1. Vector (semantic) search ----
     vector_results = []
+    vector_queries = [query]
+    if bm25_query and bm25_query.strip().casefold() != query.strip().casefold():
+        vector_queries.append(bm25_query)
     vector_start = time.time()
     try:
         if search_type == "chat":
             from rag.db import search_similar
             filter_dict = trusted_chat_filter(channel_id)
-            vector_results = search_similar(
-                query=query,
-                k=vector_top_k,
-                filter_dict=filter_dict,
-                score_threshold=vector_threshold,
-            )
-            # Tag results
-            for r in vector_results:
-                r["retrieval_method"] = "vector"
+            for vector_query in vector_queries:
+                vector_results.extend(
+                    search_similar(
+                        query=vector_query,
+                        k=vector_top_k,
+                        filter_dict=filter_dict,
+                        score_threshold=vector_threshold,
+                    )
+                )
         elif search_type == "kb":
             from knowledge.manager import get_knowledge_manager
             from rag.trust import trusted_domains_from
 
             kb = get_knowledge_manager()
             search_domains = trusted_domains_from(domains)
-            if search_domains:
-                for domain in search_domains:
+            for vector_query in vector_queries:
+                if search_domains:
+                    for domain in search_domains:
+                        vector_results.extend(
+                            kb.search(
+                                query=vector_query,
+                                domain=domain,
+                                k=vector_top_k,
+                                score_threshold=vector_threshold,
+                            )
+                        )
+                else:
                     vector_results.extend(
                         kb.search(
-                            query=query,
-                            domain=domain,
+                            query=vector_query,
                             k=vector_top_k,
                             score_threshold=vector_threshold,
                         )
                     )
-            else:
-                vector_results = kb.search(
-                    query=query,
-                    k=vector_top_k,
-                    score_threshold=vector_threshold,
-                )
-            vector_results.sort(key=lambda x: x.get("similarity", 0), reverse=True)
-            vector_results = vector_results[:vector_top_k]
-            for r in vector_results:
-                r["retrieval_method"] = "vector"
         vector_results = filter_trusted_results(vector_results)
+        best_vector_results = {}
+        for result in vector_results:
+            doc_id = _make_doc_id(result)
+            current = best_vector_results.get(doc_id)
+            if current is None or result.get("similarity", 0) > current.get(
+                "similarity", 0
+            ):
+                best_vector_results[doc_id] = result
+        vector_results = sorted(
+            best_vector_results.values(),
+            key=lambda item: item.get("similarity", 0),
+            reverse=True,
+        )[:vector_top_k]
+        for result in vector_results:
+            result["retrieval_method"] = "vector"
     except Exception as e:
         logger.warning(f"Hybrid: Vector search failed ({search_type}): {e}")
 
@@ -294,7 +311,7 @@ async def hybrid_search(
                     search_domains = set()
                     filter_dict = None
                 bm25_results = bm25_idx.search(
-                    query=query,
+                    query=bm25_query or query,
                     top_k=bm25_top_k,
                     min_score=bm25_min_score,
                     filter_dict=filter_dict,

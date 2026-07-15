@@ -46,7 +46,30 @@ def _answer_rag_result():
     )
 
 
-def search_items(category: str = None, sort_by: str = None, limit: int = 10):
+def _abstain_rag_result():
+    return RAGBuildResult(
+        context="",
+        domain_prompt="",
+        metric=RAGMetric(
+            query_language="vi",
+            query_intent="analytical",
+            rag_decision="abstain",
+        ),
+        decision=RAGDecision.ABSTAIN,
+        decision_reason="no_trusted_evidence",
+        evidence_score=0.0,
+        provenance=[],
+        retrieved_results=[],
+        primary_domain="pz",
+    )
+
+
+def search_items(
+    category: str = None,
+    sub_category: str = None,
+    sort_by: str = None,
+    limit: int = 10,
+):
     """Search items."""
     return '{"items":[{"name":"Battle Axe","max_damage":35}]}'
 
@@ -74,6 +97,7 @@ async def test_analytical_query_runs_tools_without_json_crash(mock_discord_messa
             "function": {"name": "search_items", "arguments": '{"sort_by": "max_damage", "sub_category": "Axes"}'},
         }]),
         _resp("Rìu sát thương cao nhất là **Battle Axe** (35)."),
+        _resp('{"grounded":true,"score":1.0,"unsupported_claims":[]}'),
     ])
     monkeypatch.setattr(provider, "get_chat_client", lambda: fake)
 
@@ -87,3 +111,39 @@ async def test_analytical_query_runs_tools_without_json_crash(mock_discord_messa
     assert "Sorry, I ran into an issue" not in joined   # no crash
     assert "JSON serializable" not in joined
     assert "Battle Axe" in joined                        # real tool-derived answer
+
+
+@pytest.mark.e2e
+@pytest.mark.asyncio
+async def test_analytical_query_tries_tools_when_rag_abstains(mock_discord_message, monkeypatch):
+    async def fake_build_prompt(**kwargs):
+        return (
+            [{"role": "user", "content": kwargs["user_message"]}],
+            0.1,
+            "analytical",
+            _abstain_rag_result(),
+        )
+
+    aclient.discordClient.context_manager.build_prompt = fake_build_prompt
+    monkeypatch.setattr(aclient, "ENABLE_TOOL_CALLING", True)
+    monkeypatch.setattr(aclient, "STRUCTURED_TOOLS_AVAILABLE", True)
+    monkeypatch.setattr(aclient, "PZ_TOOLS", [search_items])
+    monkeypatch.setattr(aclient, "PZ_TOOL_FUNCTIONS", {"search_items": search_items})
+
+    fake = FakeClient([
+        _resp("", tool_calls=[{
+            "id": "c1",
+            "function": {"name": "search_items", "arguments": '{"sort_by": "max_damage", "category": "Guns"}'},
+        }]),
+        _resp("Súng sát thương cao nhất là **Battle Axe** (35)."),
+        _resp('{"grounded":true,"score":1.0,"unsupported_claims":[]}'),
+    ])
+    monkeypatch.setattr(provider, "get_chat_client", lambda: fake)
+
+    await aclient.discordClient._generate_and_send(
+        mock_discord_message, "súng nào có sát thương cao nhất nomnom ?"
+    )
+
+    joined = "\n".join(m.content for m in mock_discord_message.channel.sent)
+    assert "Mình chưa có đủ thông tin" not in joined
+    assert "Battle Axe" in joined

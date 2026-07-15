@@ -13,6 +13,15 @@ async def test_api_does_not_call_llm_without_evidence(
 
     called = False
 
+    class CapturingMetrics:
+        def __init__(self):
+            self.recorded = []
+
+        async def record(self, metric):
+            self.recorded.append(metric)
+
+    metrics = CapturingMetrics()
+
     async def fake_chat_completion(**kwargs):
         nonlocal called
         called = True
@@ -32,6 +41,7 @@ async def test_api_does_not_call_llm_without_evidence(
                 query_language="vi",
                 rag_decision="abstain",
                 decision_reason="no_trusted_evidence",
+                citation_coverage=1.0,
             ),
             decision=RAGDecision.ABSTAIN,
             decision_reason="no_trusted_evidence",
@@ -41,6 +51,7 @@ async def test_api_does_not_call_llm_without_evidence(
     monkeypatch.setattr(api_main, "ENABLE_RAG", True)
     monkeypatch.setattr(api_main, "chat_completion", fake_chat_completion)
     monkeypatch.setattr(api_main, "build_rag_result", fake_build_rag_result)
+    monkeypatch.setattr(api_main, "get_metrics_manager", lambda: metrics)
 
     response = await async_client.post(
         "/api/query",
@@ -50,3 +61,4 @@ async def test_api_does_not_call_llm_without_evidence(
     assert response.status_code == 200
     assert response.json()["decision"] == "abstain"
     assert called is False
+    assert metrics.recorded[0].citation_coverage == 0.0

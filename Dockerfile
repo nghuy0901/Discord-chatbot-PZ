@@ -1,4 +1,16 @@
-FROM python:3.12-slim
+FROM python:3.12-slim AS builder
+
+WORKDIR /build
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-runtime.txt /build/requirements-runtime.txt
+RUN pip wheel --no-cache-dir --wheel-dir /build/wheels -r /build/requirements-runtime.txt
+
+
+FROM python:3.12-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -6,16 +18,15 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential curl \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --create-home --shell /usr/sbin/nologin nomnom
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+COPY --from=builder /build/wheels /tmp/wheels
+RUN pip install --no-cache-dir --no-index /tmp/wheels/* \
+    && rm -rf /tmp/wheels
 
-COPY . /app
-
-RUN useradd --create-home --shell /usr/sbin/nologin nomnom \
-    && chown -R nomnom:nomnom /app
+COPY --chown=nomnom:nomnom . /app
 
 USER nomnom
 

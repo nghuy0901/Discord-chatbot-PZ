@@ -6,7 +6,12 @@ import sqlite3
 
 import pytest
 
-from knowledge.structured.pz_tools import _disambiguate_names, search_items
+from knowledge.structured.pz_tools import (
+    _disambiguate_names,
+    get_recipe,
+    search_items,
+    search_literature,
+)
 from scripts.convert_md_to_sqlite import MDToSQLiteConverter, SCHEMA_SQL
 
 DB_PATH = os.path.join("knowledge", "structured", "pz_data.db")
@@ -104,3 +109,102 @@ def test_search_items_axes_are_distinct_and_disambiguated():
     assert wood and all(w.get("max_damage") for w in wood)
     if len(wood) > 1:                         # name clash → disambiguated
         assert all("(" in w["name"] for w in wood)
+
+
+@pytest.mark.skipif(not os.path.exists(DB_PATH), reason="pz_data.db not present")
+def test_search_items_normalizes_gun_synonyms_to_firearms():
+    data = json.loads(search_items(category="Guns", sort_by="max_damage", limit=5))
+    items = data["items"]
+
+    assert data["count"] == 5
+    assert all(item["category"] == "Weapons" for item in items)
+    assert all(item["sub_category"] == "Firearms" for item in items)
+    assert items[0]["name"] in {"Double Barrel Shotgun", "JS-2000 Shotgun"}
+    assert items[0]["max_damage"] == 2.2
+
+
+@pytest.mark.skipif(not os.path.exists(DB_PATH), reason="pz_data.db not present")
+def test_search_items_normalizes_vietnamese_gun_term_to_firearms():
+    data = json.loads(search_items(name_contains="súng", sort_by="max_damage", limit=5))
+    items = data["items"]
+
+    assert data["count"] == 5
+    assert all(item["sub_category"] == "Firearms" for item in items)
+
+
+@pytest.mark.skipif(not os.path.exists(DB_PATH), reason="pz_data.db not present")
+@pytest.mark.parametrize(
+    ("kwargs", "expected_category", "expected_sub_category"),
+    [
+        ({"category": "Tools"}, "Equipment", "Tools"),
+        ({"name_contains": "dụng cụ"}, "Equipment", "Tools"),
+        ({"category": "Ammo"}, "Weapons", "Ammo"),
+        ({"category": "đạn"}, "Weapons", "Ammo"),
+        ({"category": "Medical"}, "Equipment", "Medical"),
+        ({"category": "thuốc"}, "Equipment", "Medical"),
+        ({"category": "đồ ăn"}, "Food", None),
+        ({"category": "Traits"}, "Player", "Trait"),
+        ({"category": "đặc tính"}, "Player", "Trait"),
+    ],
+)
+def test_search_items_normalizes_common_category_aliases(
+    kwargs,
+    expected_category,
+    expected_sub_category,
+):
+    data = json.loads(search_items(**kwargs, limit=5))
+    items = data["items"]
+
+    assert data["count"] > 0
+    assert all(item["category"] == expected_category for item in items)
+    if expected_sub_category:
+        assert all(item["sub_category"] == expected_sub_category for item in items)
+
+
+@pytest.mark.skipif(not os.path.exists(DB_PATH), reason="pz_data.db not present")
+def test_search_items_normalizes_armor_alias_to_clothing_defense_items():
+    data = json.loads(search_items(category="Armor", sort_by="bite_defense", limit=5))
+    items = data["items"]
+
+    assert data["count"] == 5
+    assert all(item["category"] == "Clothing" for item in items)
+    assert items[0]["bite_defense"] >= items[-1]["bite_defense"]
+
+
+@pytest.mark.skipif(not os.path.exists(DB_PATH), reason="pz_data.db not present")
+@pytest.mark.parametrize(
+    ("alias", "expected_type"),
+    [
+        ("Blacksmith", "Blacksmithing"),
+        ("rèn", "Blacksmithing"),
+        ("công thức nấu ăn", "Cooking"),
+        ("nấu ăn", "Cooking"),
+        ("sửa chữa", "Repair"),
+        ("may vá", "Tailoring"),
+        ("dụng cụ", "Tools"),
+    ],
+)
+def test_get_recipe_normalizes_common_crafting_type_aliases(alias, expected_type):
+    data = json.loads(get_recipe(crafting_type=alias, limit=5))
+    recipes = data["recipes"]
+
+    assert data["count"] > 0
+    assert all(recipe["crafting_type"] == expected_type for recipe in recipes)
+
+
+def test_search_literature_finds_skill_books_from_markdown_docs():
+    data = json.loads(search_literature(query="sách skill carpentry", limit=5))
+    records = data["records"]
+
+    assert data["count"] == 5
+    assert records[0]["name"].startswith("Carpentry I:")
+    assert all("BookCarpentry" in record.get("item_id", "") for record in records)
+
+
+def test_search_literature_finds_generator_magazine_from_markdown_docs():
+    data = json.loads(search_literature(query="How to Use Generators", limit=3))
+    records = data["records"]
+
+    assert data["count"] >= 1
+    assert records[0]["name"] == "Magazine: How to Use Generators"
+    assert records[0]["item_id"] == "Base.ElectronicsMag4"

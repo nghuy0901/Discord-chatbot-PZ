@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 import os
 
+from src.llm.embedding_factory import embedding_input_mode
+
 
 @dataclass(frozen=True)
 class EmbeddingSignature:
@@ -8,6 +10,7 @@ class EmbeddingSignature:
     model: str
     dimension: int
     collection_version: str
+    input_mode: str = "provider_native_v1"
 
 
 def current_embedding_signature() -> EmbeddingSignature:
@@ -16,6 +19,7 @@ def current_embedding_signature() -> EmbeddingSignature:
         model=os.getenv("EMBEDDING_MODEL", ""),
         dimension=int(os.getenv("EMBEDDING_DIMENSION", "0")),
         collection_version=os.getenv("EMBEDDING_COLLECTION_VERSION", "v1"),
+        input_mode=embedding_input_mode(),
     )
 
 

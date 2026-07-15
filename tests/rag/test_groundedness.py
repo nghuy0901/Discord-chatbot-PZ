@@ -46,17 +46,30 @@ def test_markdown_wrapped_json_parses():
     res = asyncio.run(check_groundedness(
         "q", "answer [1]", SOURCES,
         judge=judge_returning('```json\n{"grounded": true, "score": 0.8}\n```'),
+        min_score=0.6,
     ))
     assert res.grounded is True
 
 
-def test_judge_error_fails_open():
+def test_judge_error_fails_open(monkeypatch):
+    monkeypatch.setattr("rag.groundedness.GROUNDEDNESS_FAIL_OPEN", True)
     async def boom(prompt: str) -> str:
         raise RuntimeError("provider down")
 
     res = asyncio.run(check_groundedness("q", "answer [1]", SOURCES, judge=boom))
     assert res.grounded is True  # fail-open by default
     assert res.error
+
+
+def test_judge_error_can_fail_closed(monkeypatch):
+    monkeypatch.setattr("rag.groundedness.GROUNDEDNESS_FAIL_OPEN", False)
+
+    async def boom(prompt: str) -> str:
+        raise RuntimeError("provider down")
+
+    res = asyncio.run(check_groundedness("q", "answer [1]", SOURCES, judge=boom))
+    assert res.grounded is False
+    assert res.reason == "fail_closed"
 
 
 def test_no_sources_is_skipped():

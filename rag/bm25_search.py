@@ -24,6 +24,7 @@ import time
 import logging
 import asyncio
 import threading
+import unicodedata
 from typing import List, Dict, Any, Optional, Tuple
 
 logger = logging.getLogger(__name__)
@@ -73,7 +74,18 @@ def tokenize(text: str) -> List[str]:
     text = _NOISE_PATTERNS.sub(" ", text.lower())
     # Split on non-alphanumeric, keeping Vietnamese diacritics
     tokens = re.findall(r"[\w\u00C0-\u024F\u1E00-\u1EFF]+", text)
-    return [t for t in tokens if t not in VIETNAMESE_STOPWORDS and len(t) >= 2]
+    output: List[str] = []
+    for token in tokens:
+        if token in VIETNAMESE_STOPWORDS or len(token) < 2:
+            continue
+        output.append(token)
+        folded = "".join(
+            char for char in unicodedata.normalize("NFD", token)
+            if not unicodedata.combining(char)
+        ).replace("đ", "d")
+        if folded != token:
+            output.append(folded)
+    return output
 
 
 # ---------------------------------------------------------------------------

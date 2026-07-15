@@ -13,6 +13,8 @@ def chunk(**overrides):
         "trusted": True,
         "similarity": 0.45,
         "retrieval_methods": ["vector"],
+        "content": "Axe minimum damage maximum damage tree damage",
+        "source": "pz/Weapons/Axes_Weapon.md",
     }
     base.update(overrides)
     return base
@@ -72,10 +74,44 @@ def test_corroboration_raises_confidence():
     )
     many = EvidencePolicy().assess(
         query="q",
-        results=[chunk(similarity=0.45) for _ in range(4)],
+        results=[
+            chunk(similarity=0.45, source=f"pz/source-{index}.md")
+            for index in range(4)
+        ],
         recent_messages=[],
     )
     assert many.score > one.score
+
+
+def test_duplicate_chunks_from_same_source_do_not_corroborate():
+    one = EvidencePolicy().assess(
+        query="axe damage",
+        results=[chunk(similarity=0.45)],
+        recent_messages=[],
+    )
+    duplicates = EvidencePolicy().assess(
+        query="axe damage",
+        results=[chunk(similarity=0.45, chunk_index=index) for index in range(4)],
+        recent_messages=[],
+    )
+
+    assert duplicates.score == one.score
+
+
+def test_vector_bm25_agreement_without_query_term_coverage_does_not_answer():
+    result = chunk(
+        similarity=0.52,
+        retrieval_methods=["vector", "bm25"],
+        content="Fire weather electricity lore navigation",
+    )
+
+    assessment = EvidencePolicy().assess(
+        query="rìu sát thương axe damage",
+        results=[result],
+        recent_messages=[],
+    )
+
+    assert assessment.decision is not RAGDecision.ANSWER
 
 
 def test_untrusted_never_answers():
