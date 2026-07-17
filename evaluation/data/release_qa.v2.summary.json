@@ -1,0 +1,26 @@
+{
+  "dataset_version": "public-v2",
+  "review_status": "draft",
+  "rows": 300,
+  "fact_groups": 100,
+  "categories": {
+    "answerable": 180,
+    "unanswerable": 60,
+    "ambiguous": 30,
+    "adversarial": 30
+  },
+  "behaviors": {
+    "answer": 180,
+    "abstain": 84,
+    "clarify": 36
+  },
+  "splits": {
+    "development": 210,
+    "holdout": 90
+  },
+  "languages": {
+    "vi": 240,
+    "en": 60
+  },
+  "approved_by": "codex-draft"
+}

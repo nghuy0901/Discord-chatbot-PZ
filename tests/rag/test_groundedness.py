@@ -99,3 +99,11 @@ def test_tool_results_become_sources():
     assert "Bandage" in srcs[0]["content"]
     assert srcs[0]["source"] == "tool:get_recipe"
     assert srcs[1]["content"] == "raw text"
+
+
+def test_groundedness_prompt_accepts_only_direct_semantic_equivalence():
+    from rag.groundedness import GROUNDEDNESS_PROMPT
+
+    prompt = GROUNDEDNESS_PROMPT.lower()
+    assert "guarantees" in prompt and "100%" in prompt
+    assert "likely" in prompt and "must not" in prompt

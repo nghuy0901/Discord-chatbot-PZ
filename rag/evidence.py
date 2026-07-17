@@ -215,7 +215,7 @@ class EvidencePolicy:
             return False
         normalized = query.lower().strip()
         referential = re.search(
-            r"\b(cái đó|nó|thứ đó|chỗ đó|that one|it|there)\b",
+            r"\b(cái đó|cái này|nó|thứ đó|thứ này|chỗ đó|chỗ này|that one|this one|it|there|this)\b",
             normalized,
         )
         if not referential:
@@ -224,7 +224,11 @@ class EvidencePolicy:
         generic = {
             "cái", "thứ", "chỗ", "đó", "nó", "cần", "bao", "nhiêu",
             "that", "one", "it", "there", "what", "is", "are", "does",
-            "do", "how", "much", "and", "the", "a", "an",
+            "do", "how", "much", "and", "the", "a", "an", "this",
+            "nguyên", "liệu", "chế", "tạo", "như", "thế", "nào", "làm", "gây",
+            "sát", "thương", "cân", "nặng", "trọng", "lượng", "nằm", "ở",
+            "đâu", "vậy", "craft", "crafting", "recipe", "damage", "weight",
+            "weigh", "where", "located",
         }
         anchors = [
             token for token in re.findall(r"\w+", remaining)

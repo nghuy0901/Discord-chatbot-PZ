@@ -21,6 +21,7 @@ RRF is preferred over linear combination because:
 import os
 import hashlib
 import logging
+import re
 from typing import List, Dict, Any, Optional, Set, Tuple
 
 logger = logging.getLogger(__name__)
@@ -174,6 +175,20 @@ def _cap_per_record(
             seen[key] = seen.get(key, 0) + 1
             capped.append(r)
     return capped
+
+
+def _exact_title_word_count(result: Dict[str, Any], query: str) -> int:
+    """Return matched title length so the most specific exact title wins."""
+    title = result.get("record_name") or str(result.get("heading_path") or "").split(">")[-1]
+    title_words = re.findall(r"[^\W_]+", str(title).casefold())
+    query_words = re.findall(r"[^\W_]+", str(query).casefold())
+    if not title_words or len(title_words) > len(query_words):
+        return 0
+    width = len(title_words)
+    return width if any(
+        query_words[index : index + width] == title_words
+        for index in range(len(query_words) - width + 1)
+    ) else 0
 
 
 # ---------------------------------------------------------------------------
@@ -354,6 +369,12 @@ async def hybrid_search(
     # KB diversity: cap near-identical same-record chunks before the final cut
     # so the cap cannot silently shrink the result set below final_top_k (M1).
     if search_type == "kb":
+        fused.sort(
+            key=lambda result: _exact_title_word_count(
+                result, bm25_query or query
+            ),
+            reverse=True,
+        )
         fused = _cap_per_record(fused, RAG_MAX_PER_RECORD)
     fused = fused[:final_top_k]
 

@@ -4,6 +4,8 @@ This folder stores offline RAG evaluation datasets, source inventories, baseline
 
 Use `scripts/run_release_eval.py` for release decisions. It runs the production RAG path, disables response cache, records decisions/provenance, and evaluates against `evaluation/baselines/nomnom_public_v1.json`.
 
+The reviewable 300-row draft is `evaluation/data/release_qa.v2.jsonl`; its quota summary is `evaluation/data/release_qa.v2.summary.json`. Regenerate it deterministically with `python scripts/build_release_dataset_v2.py`.
+
 ```powershell
 python scripts/validate_eval_dataset.py --dataset evaluation/data/release_qa.v1.jsonl
 python scripts/run_release_eval.py --dataset evaluation/data/release_qa.v1.jsonl --split development --repeat 1 --output evaluation/reports/development.json

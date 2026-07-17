@@ -235,6 +235,58 @@ async def test_augmented_query_vector_hit_survives_final_top_k(monkeypatch):
     assert any(result["doc_id"] == "axe-stats" for result in results)
 
 
+@pytest.mark.asyncio
+async def test_exact_item_title_is_boosted_above_compound_titles(monkeypatch):
+    from rag.hybrid_retriever import hybrid_search
+
+    titles = [
+        "Firefighter Axe",
+        "Wood Axe",
+        "Hand Axe",
+        "Ice Axe",
+        "Stone Axe",
+        "Pick Axe",
+        "Battle Axe",
+        "Axe",
+    ]
+
+    class FakeKnowledgeManager:
+        def search(self, query, k, score_threshold, domain=None):
+            return [
+                {
+                    "doc_id": title.lower().replace(" ", "-"),
+                    "content": f"{title} facts",
+                    "heading_path": f"Weapon > {title}",
+                    "domain": "pz",
+                    "source": "pz/Weapons/Axes_Weapon.md",
+                    "content_type": "knowledge_base",
+                    "content_mode": "prose",
+                    "trusted": True,
+                    "similarity": 0.90 - rank / 100,
+                }
+                for rank, title in enumerate(titles)
+            ]
+
+    class FakeBM25:
+        is_ready = False
+
+    monkeypatch.setattr(
+        "knowledge.manager.get_knowledge_manager", lambda: FakeKnowledgeManager()
+    )
+    monkeypatch.setattr("rag.bm25_search.get_kb_bm25", lambda: FakeBM25())
+
+    results, _ = await hybrid_search(
+        query="rìu dùng để làm gì?",
+        bm25_query="rìu dùng để làm gì axe",
+        search_type="kb",
+        domains=["pz"],
+        vector_top_k=8,
+        final_top_k=7,
+    )
+
+    assert results[0]["heading_path"] == "Weapon > Axe"
+
+
 def test_record_cap_does_not_drop_distinct_prose_chunks():
     from rag.hybrid_retriever import _cap_per_record
 

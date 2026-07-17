@@ -1,3 +1,5 @@
+import pytest
+
 from rag.evidence import EvidencePolicy
 from rag.result import RAGDecision
 
@@ -41,6 +43,25 @@ def test_clarifies_referential_query_without_history():
         results=[trusted_chunk()],
         recent_messages=[],
     )
+    assert assessment.decision is RAGDecision.CLARIFY
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        "Cái đó cần bao nhiêu nguyên liệu?",
+        "Cái này chế tạo như thế nào?",
+        "Nó gây bao nhiêu sát thương?",
+        "How much does it weigh?",
+    ],
+)
+def test_clarifies_property_only_referential_queries(query):
+    assessment = EvidencePolicy().assess(
+        query=query,
+        results=[trusted_chunk()],
+        recent_messages=[],
+    )
+
     assert assessment.decision is RAGDecision.CLARIFY
 
 

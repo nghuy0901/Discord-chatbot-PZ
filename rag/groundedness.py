@@ -49,6 +49,7 @@ GROUNDEDNESS_PROMPT = """You are a strict fact-checking assistant. Decide whethe
 
 Apply these rules strictly:
 - A claim carrying marker [n] must be explicitly supported by source [n], not merely by some other source.
+- Direct translations and deterministic equivalents count as explicit support: "guarantees" supports "always" or "100%". Vague terms such as "likely" or "high chance" must not be converted into numeric percentages.
 - Missing, blank, "-", or unspecified source fields are NOT evidence that a property is absent or that the opposite is true.
 - Do not accept plausible game knowledge, common sense, or an inference as support.
 - If even one material factual claim is not explicit in its cited source, set grounded=false and list it.
